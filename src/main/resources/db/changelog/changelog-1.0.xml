@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet author="dnavarrete" id="20240420_1">
+        <createTable tableName="file_image" schemaName="images">
+            <column name="id" type="varchar(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="file_path" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_public" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="file_image" />
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
