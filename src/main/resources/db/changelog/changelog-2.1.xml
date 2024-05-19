@@ -4,8 +4,9 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    <include file="changelog-0.xml" relativeToChangelogFile="true"/>
-    <include file="changelog-1.0.xml" relativeToChangelogFile="true"/>
-    <include file="changelog-2.0.xml" relativeToChangelogFile="true"/>
-    <include file="changelog-2.1.xml" relativeToChangelogFile="true"/>
+
+    <changeSet id="20240518_6" author="msoto">
+        <dropNotNullConstraint tableName="plant" schemaName="garden" columnName="id_garden"/>
+    </changeSet>
+
 </databaseChangeLog>
