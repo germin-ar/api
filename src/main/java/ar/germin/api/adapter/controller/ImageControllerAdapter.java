@@ -28,15 +28,13 @@ public class ImageControllerAdapter {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<SaveImageResponseModel> saveImage(@RequestPart("image") FilePart filePart) {
-        return filePart
-                .content()
+        return DataBufferUtils.join(filePart.content())
                 .flatMap(dataBuffer -> {
                     byte[] bytes = new byte[dataBuffer.readableByteCount()];
                     dataBuffer.read(bytes);
                     DataBufferUtils.release(dataBuffer);
                     return this.saveImagePortIn.save(bytes);
                 })
-                .single()
                 .map(SaveImageResponseModel::fromDomain);
     }
 
