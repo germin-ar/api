@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.sql.Types;
 import java.util.Optional;
 
 @Component
@@ -27,13 +28,15 @@ public class FileImageJdbcAdapter implements SaveFileRepository, GetFileReposito
     @Override
     public FileImage save(FileImage fileImage) {
         try {
+            String sql = "insert into images.file_image (id, file_path, is_public) values (:id, :filePath, :isPublic)";
             MapSqlParameterSource params = new MapSqlParameterSource()
-                    .addValue("id", fileImage.getId())
+                    .addValue("id", fileImage.getId(), Types.OTHER)
                     .addValue("filePath", fileImage.getFilePath())
                     .addValue("isPublic", fileImage.getIsPublic());
 
-            this.namedParameterJdbcTemplate
-                    .update("insert into images.file_image (id, file_path, is_public) values (:id, :filePath, :isPublic)", params);
+            log.info("Saving image with sql [{}] with params: [{}]", sql, params);
+
+            this.namedParameterJdbcTemplate.update(sql, params);
 
             return fileImage;
         } catch (DuplicateKeyException ex) {
@@ -45,14 +48,15 @@ public class FileImageJdbcAdapter implements SaveFileRepository, GetFileReposito
     @Override
     public FileImage getById(String id) {
         String sql = "select id, file_path, is_public from images.file_image where id = :id";
-        MapSqlParameterSource params = new MapSqlParameterSource("id", id);
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("id", id, Types.OTHER);
 
         log.info("Querying image with sql [{}] with params: [{}]", sql, params);
 
-        return Optional.ofNullable(this.namedParameterJdbcTemplate.queryForObject(sql,
+        return Optional
+                .ofNullable(this.namedParameterJdbcTemplate.queryForObject(sql,
                         params,
-                        new BeanPropertyRowMapper<>(FileImageModel.class))
-                )
+                        new BeanPropertyRowMapper<>(FileImageModel.class)))
                 .map(FileImageModel::toDomain)
                 .orElseThrow(() -> {
                     log.error("Image not found with id: {}", id);

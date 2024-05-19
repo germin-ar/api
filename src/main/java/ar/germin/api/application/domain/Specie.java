@@ -14,6 +14,6 @@ public class Specie {
     Genus genus;
     Family family;
     List<String> commonNames;
-    String idGbif;
+    Integer idGbif;
     String idPowo;
 }

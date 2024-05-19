@@ -1,9 +1,15 @@
 package ar.germin.api.adapter.rest.models;
 
-import ar.germin.api.application.domain.*;
+import ar.germin.api.application.domain.AIDetection;
+import ar.germin.api.application.domain.Candidate;
+import ar.germin.api.application.domain.Family;
+import ar.germin.api.application.domain.Genus;
+import ar.germin.api.application.domain.Specie;
 import lombok.Data;
+import org.apache.logging.log4j.util.Strings;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -66,7 +72,7 @@ class ResultModel {
                                 .build())
                         .commonNames(species.getCommonNames())
                         .idGbif(gbif.getId())
-                        .idPowo(powo.getId())
+                        .idPowo(Optional.ofNullable(powo).map(Powo::getId).orElse(Strings.EMPTY))
                         .build())
                 .build();
     }
@@ -98,7 +104,7 @@ class FamilyModel {
 
 @Data
 class Gbif {
-    String id;
+    Integer id;
 }
 
 @Data

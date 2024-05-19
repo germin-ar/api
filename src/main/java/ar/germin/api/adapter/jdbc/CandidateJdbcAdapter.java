@@ -1,5 +1,6 @@
 package ar.germin.api.adapter.jdbc;
 
+import ar.germin.api.application.domain.AIDetection;
 import ar.germin.api.application.domain.Candidate;
 import ar.germin.api.application.domain.FileImage;
 import ar.germin.api.application.port.out.GetCandidateRepository;
@@ -20,7 +21,7 @@ public class CandidateJdbcAdapter implements SaveCandidateRepository, GetCandida
     }
 
     @Override
-    public List<Candidate> save(List<Candidate> candidates) {
+    public List<Candidate> save(AIDetection aiDetection) {
         return List.of();
     }
 
