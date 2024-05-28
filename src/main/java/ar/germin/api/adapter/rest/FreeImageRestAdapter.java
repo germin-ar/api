@@ -10,8 +10,8 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestClient;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
@@ -19,25 +19,25 @@ import java.util.UUID;
 @Slf4j
 public class FreeImageRestAdapter implements UploadFileRepository {
     private final GerminarConfiguration germinarConfiguration;
-    private final WebClient webClient;
+    private final RestClient restClient;
 
     @Autowired
     public FreeImageRestAdapter(GerminarConfiguration germinarConfiguration,
                                 WebClient.Builder webClientBuilder) {
         this.germinarConfiguration = germinarConfiguration;
-        this.webClient = webClientBuilder
+        this.restClient = RestClient.builder()
                 .baseUrl("https://freeimage.host")
                 .build();
     }
 
     @Override
-    public Mono<FileImage> upload(byte[] file) {
+    public FileImage upload(byte[] file) {
         try {
             log.info("Uploading image");
             MultipartBodyBuilder builder = new MultipartBodyBuilder();
             builder.part("source", new ByteArrayResource(file)).filename(UUID.randomUUID().toString());
 
-            return webClient
+            return restClient
                     .post()
                     .uri(uriBuilder ->
                             uriBuilder
@@ -47,10 +47,10 @@ public class FreeImageRestAdapter implements UploadFileRepository {
                                     .build()
                     )
                     .contentType(MediaType.MULTIPART_FORM_DATA)
-                    .bodyValue(builder.build())
+                    .body(builder.build())
                     .retrieve()
-                    .bodyToMono(SaveFreeImageResponseModel.class)
-                    .map(saveFreeImageResponseModel -> saveFreeImageResponseModel.toDomain(file));
+                    .body(SaveFreeImageResponseModel.class)
+                    .toDomain(file);
         } catch (Exception e) {
             log.error("Error uploading image", e);
             throw e;

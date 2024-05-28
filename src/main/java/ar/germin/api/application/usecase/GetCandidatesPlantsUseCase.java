@@ -30,7 +30,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
     }
 
     @Override
-    public Mono<AIDetection> get(String id) {
+    public AIDetection get(String id) {
         FileImage fileImage = this.getFileRepository.getById(id);
 
         return this.getAIDetectionRepository.getByFileImage(fileImage);

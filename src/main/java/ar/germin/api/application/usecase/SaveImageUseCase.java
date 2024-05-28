@@ -8,7 +8,6 @@ import ar.germin.api.application.port.out.UploadFileRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Mono;
 
 @Slf4j
 @Component
@@ -24,11 +23,10 @@ public class SaveImageUseCase implements SaveImagePortIn {
     }
 
     @Override
-    public Mono<FileImage> save(byte[] image) {
-        return this
-                .uploadFileRepository
-                .upload(image)
-                .map(this::saveImage);
+    public FileImage save(byte[] image) {
+        FileImage fileImage = this.uploadFileRepository.upload(image);
+
+        return this.saveImage(fileImage);
     }
 
     private FileImage saveImage(FileImage fileImage) {

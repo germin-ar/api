@@ -4,5 +4,5 @@ import ar.germin.api.application.domain.AIDetection;
 import reactor.core.publisher.Mono;
 
 public interface GetCandidatesPlantsPortIn {
-    Mono<AIDetection> get(String id);
+    AIDetection get(String id);
 }

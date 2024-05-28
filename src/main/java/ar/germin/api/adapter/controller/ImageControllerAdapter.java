@@ -29,7 +29,7 @@ public class ImageControllerAdapter {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<SaveImageResponseModel> saveImage(@RequestPart("image") FilePart filePart) {
         return DataBufferUtils.join(filePart.content())
-                .flatMap(dataBuffer -> {
+                .map(dataBuffer -> {
                     byte[] bytes = new byte[dataBuffer.readableByteCount()];
                     dataBuffer.read(bytes);
                     DataBufferUtils.release(dataBuffer);
