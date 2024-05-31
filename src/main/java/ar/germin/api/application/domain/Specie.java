@@ -8,6 +8,7 @@ import java.util.List;
 @Builder
 @Value
 public class Specie {
+    //TODO riego
     String scientificName;
     String scientificNameWithoutAuthor;
     String scientificNameAuthorship;
