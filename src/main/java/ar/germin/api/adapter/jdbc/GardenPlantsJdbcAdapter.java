@@ -28,12 +28,11 @@ public class GardenPlantsJdbcAdapter implements GetGardenRepository, SaveGardenR
 
     @Override
     public Garden getById(String id) {
-        String sql = "select * from garden.garden where id = :id ";
+        String sql = "select id, name, id_user from garden.garden where id = :id ";
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("id", id, Types.OTHER);
 
         log.info("Querying garden with sql [{}] with params: [{}]", sql, params);
-
 
         return Optional
                 .ofNullable(this.namedParameterJdbcTemplate.queryForObject(sql, params,

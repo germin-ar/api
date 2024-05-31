@@ -13,10 +13,12 @@ public class Plant {
     String name;
     Integer id_garden;
     Integer id_plants_catalog;
+
+
     Date date_created;
     Date date_modified;
     String description;
-    List<FileImage> images;
+    // TODO ver list -> List<FileImage> images;
     Boolean favorite;
     Double height;
     //TODO enum  ALTO BAJO MEDIO

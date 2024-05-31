@@ -11,5 +11,5 @@ public class Garden {
     Integer id;
     String name;
     User id_user;
-    List<Plant> plants;
+    //List<Plant> plants;
 }
