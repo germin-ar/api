@@ -6,7 +6,7 @@ import ar.germin.api.application.port.out.GetGardenRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GetGardenPlantsUseCase implements GetPlantsGardenPortIn{
+public class GetGardenPlantsUseCase implements GetPlantsGardenPortIn {
 
     private final GetGardenRepository getGardenRepository;
 
@@ -16,7 +16,7 @@ public class GetGardenPlantsUseCase implements GetPlantsGardenPortIn{
 
 
     @Override
-    public Garden get(String id) {
+    public Garden get(Integer id) {
         return this.getGardenRepository.getById(id);
     }
 

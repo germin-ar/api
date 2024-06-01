@@ -6,36 +6,26 @@
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <changeSet id="20240531_7" author="msoto">
-        <addColumn
-                schemaName="garden"
-                tableName="plant">
-            <column name="data_created"
-                    type="TIMESTAMP WITHOUT TIME ZONE">
+        <addColumn schemaName="garden" tableName="plant">
+            <column name="creation_date" type="TIMESTAMP">
                 <constraints nullable="true"/>
             </column>
-            <column name="date_modified"
-                    type="TIMESTAMP WITHOUT TIME ZONE"
-            >
+            <column name="modification_date" type="TIMESTAMP">
                 <constraints nullable="true"/>
             </column>
-            <column name="description"
-                    type="varchar">
+            <column name="description" type="varchar">
                 <constraints nullable="true"/>
             </column>
-            <column name="favorite"
-                    type="boolean">
+            <column name="favorite" type="boolean">
                 <constraints nullable="true"/>
             </column>
-            <column name="height"
-                    type="double">
+            <column name="height" type="double">
                 <constraints nullable="true"/>
             </column>
-            <column name="sun_exposure"
-                    type="varchar">
+            <column name="sun_exposure" type="varchar">
                 <constraints nullable="true"/>
             </column>
-            <column name="notes"
-                    type="varchar">
+            <column name="notes" type="varchar">
                 <constraints nullable="true"/>
             </column>
         </addColumn>

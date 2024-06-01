@@ -1,34 +1,66 @@
 package ar.germin.api.adapter.jdbc.models;
 
-import ar.germin.api.adapter.controller.models.GardenResponseModel;
 import ar.germin.api.application.domain.Garden;
+import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.domain.User;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.Builder;
 import lombok.Data;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
 public class GardenModel {
-    private Integer id;
-    private String name;
-    private UserModel id_user;
+    private Integer gardenId;
+    private String gardenName;
+    private Integer userId;
+    private String userEmail;
+    private String userName;
+    private Integer plantId;
+    private String plantName;
+    private LocalDateTime plantCreationDate;
+    private LocalDateTime plantModificationDate;
 
-    public Garden toDomain(){
+    public Garden toDomain() {
         return Garden.builder()
-                .id(this.id)
-                .name(this.name)
-                .id_user(User.builder()
-                        .id(id_user.getId())
-                        .name(id_user.getName())
-                        .email(id_user.getEmail())
+                .id(gardenId)
+                .name(gardenName)
+                .user(User.builder()
+                        .id(userId)
+                        .email(userEmail)
+                        .name(userName)
                         .build())
                 .build();
     }
+
+    public static Garden toDomainFromModelList(List<GardenModel> gardenModels) {
+        Integer id = gardenModels.stream().findAny().map(GardenModel::getGardenId).orElseThrow();
+        String name = gardenModels.stream().findAny().map(GardenModel::getGardenName).orElseThrow();
+        User user = gardenModels.stream().findAny().map(gardenModel -> User.builder()
+                .id(gardenModel.getUserId())
+                .email(gardenModel.getUserEmail())
+                .name(gardenModel.getUserName())
+                .build()).orElseThrow();
+
+        return Garden.builder()
+                .id(id)
+                .name(name)
+                .user(user)
+                .plants(gardenModels
+                        .stream()
+                        .map(gardenModel -> Plant.builder()
+                                .id(gardenModel.getPlantId())
+                                .name(gardenModel.getPlantName())
+                                .creationDate(gardenModel.getPlantCreationDate())
+                                .modificationDate(gardenModel.getPlantModificationDate())
+                                .build())
+                        .toList())
+                .build();
+    }
 }
+
 @Data
-class UserModel{
+class UserModel {
     Integer id;
     String name;
     String email;

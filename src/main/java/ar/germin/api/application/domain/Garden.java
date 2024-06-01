@@ -10,6 +10,6 @@ import java.util.List;
 public class Garden {
     Integer id;
     String name;
-    User id_user;
-    //List<Plant> plants;
+    User user;
+    List<Plant> plants;
 }

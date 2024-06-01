@@ -21,7 +21,7 @@ public class GardenControllerAdapter {
     }
 
     @GetMapping("/{id}")
-    public GardenResponseModel getGardens(@PathVariable String id) {
+    public GardenResponseModel getGardens(@PathVariable Integer id) {
         return GardenResponseModel.fromDomain(this.getPlantsGardenPortIn.get(id));
     }
 

@@ -3,6 +3,7 @@ package ar.germin.api.application.domain;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -11,17 +12,13 @@ import java.util.List;
 public class Plant {
     Integer id;
     String name;
-    Integer id_garden;
-    Integer id_plants_catalog;
-
-
-    Date date_created;
-    Date date_modified;
+    LocalDateTime creationDate;
+    LocalDateTime modificationDate;
     String description;
     // TODO ver list -> List<FileImage> images;
     Boolean favorite;
     Double height;
     //TODO enum  ALTO BAJO MEDIO
-    String sun_exposure;
+    String sunExposure;
     String notes;
 }

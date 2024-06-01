@@ -19,29 +19,31 @@ import java.util.Optional;
 @Component
 @Slf4j
 public class GardenPlantsJdbcAdapter implements GetGardenRepository, SaveGardenRepository {
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private static final String SELECT_GARDEN_BY_ID = "sql/selectGardenById.sql";
 
-    public GardenPlantsJdbcAdapter(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final String selectGardenByIdSql;
+
+    public GardenPlantsJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.selectGardenByIdSql = sqlReader.readSql(SELECT_GARDEN_BY_ID);
     }
 
-
     @Override
-    public Garden getById(String id) {
-        String sql = "select id, name, id_user from garden.garden where id = :id ";
+    public Garden getById(Integer id) {
         MapSqlParameterSource params = new MapSqlParameterSource()
-                .addValue("id", id, Types.OTHER);
+                .addValue("id", id);
 
-        log.info("Querying garden with sql [{}] with params: [{}]", sql, params);
+        log.info("Querying garden with sql [{}] with params: [{}]", selectGardenByIdSql, params);
 
         return Optional
-                .ofNullable(this.namedParameterJdbcTemplate.queryForObject(sql, params,
-                        new BeanPropertyRowMapper<>(GardenModel.class)))
-                .map(GardenModel::toDomain)
+                .of(this.namedParameterJdbcTemplate.query(selectGardenByIdSql, params, BeanPropertyRowMapper.newInstance(GardenModel.class)))
+                .map(GardenModel::toDomainFromModelList)
                 .orElseThrow(() -> {
                     log.error("Garden with id {} not found", id);
                     return new GardenNotFoundException();
                 });
+
     }
 
     @Override
