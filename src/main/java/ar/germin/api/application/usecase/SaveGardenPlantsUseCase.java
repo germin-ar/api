@@ -1,6 +1,7 @@
 package ar.germin.api.application.usecase;
 
 import ar.germin.api.application.domain.Garden;
+import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.port.in.SavePlantsGardenPortIn;
 import ar.germin.api.application.port.out.SaveGardenRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -24,4 +25,11 @@ public class SaveGardenPlantsUseCase implements SavePlantsGardenPortIn {
 
         return null;
     }
+
+    @Override
+    public Boolean savePlant(Plant plant) {
+        return this.saveGardenRepository.savePlant(plant);
+    }
+
+
 }
