@@ -9,7 +9,6 @@ import ar.germin.api.application.port.out.GetFileRepository;
 import ar.germin.api.application.port.out.SaveCandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Mono;
 
 @Component
 public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
