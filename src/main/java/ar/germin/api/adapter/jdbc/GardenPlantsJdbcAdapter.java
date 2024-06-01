@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.sql.Types;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -44,6 +45,12 @@ public class GardenPlantsJdbcAdapter implements GetGardenRepository, SaveGardenR
                     return new GardenNotFoundException();
                 });
 
+    }
+
+    @Override
+    public List<Garden> getByUserId(Integer userId) {
+        // TODO: implement me
+        return List.of();
     }
 
     @Override
