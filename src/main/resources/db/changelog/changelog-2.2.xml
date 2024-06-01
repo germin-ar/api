@@ -30,5 +30,4 @@
             </column>
         </addColumn>
     </changeSet>
-
 </databaseChangeLog>

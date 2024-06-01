@@ -11,4 +11,5 @@ public class User {
     String email;
     // TODO password  ver cognito? String password;
     // TODO favoritos, preferencia alimentaria, notificaciones
+    //TODO tutoriales guardados,ubicacion geografica,foto,suscripcion
 }

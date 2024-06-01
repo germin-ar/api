@@ -19,6 +19,7 @@ public class Plant {
     Boolean favorite;
     Double height;
     //TODO enum  ALTO BAJO MEDIO
+    //TODO frecuencia de riego
     String sunExposure;
     String notes;
 }
