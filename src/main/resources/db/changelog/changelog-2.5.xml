@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240602_1" author="armando">
+        <sql>
+            CREATE SCHEMA plant_detail
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240602_2" author="armando">
+        <createTable tableName="plant_detail" schemaName="plant_detail">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="common_name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="family" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="origin" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="type" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cycle" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="watering" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="watering_period" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="growth_rate" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="maintenance" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cuisine" type="boolean">
+                <constraints nullable="true"/>
+            </column>
+            <column name="indoor" type="boolean">
+                <constraints nullable="true"/>
+            </column>
+            <column name="care_level" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20240602_3" author="armando">
+        <createTable tableName="pruning_month" schemaName="plant_detail">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="month" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_plant_detail" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="pruning_month"
+                                 baseColumnNames="id_plant_detail"
+                                 constraintName="fk_pruning_month_id_plant_detail"
+                                 referencedTableName="plant_detail"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="plant_detail"
+                                 referencedTableSchemaName="plant_detail"
+                                 validate="true"
+        />
+    </changeSet>
+
+    <changeSet id="20240602_4" author="armando">
+        <createTable tableName="propagation" schemaName="plant_detail">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_plant_detail" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="propagation"
+                                 baseColumnNames="id_plant_detail"
+                                 constraintName="fk_propagation_id_plant_detail"
+                                 referencedTableName="plant_detail"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="plant_detail"
+                                 referencedTableSchemaName="plant_detail"
+                                 validate="true"
+        />
+    </changeSet>
+
+    <changeSet id="20240602_5" author="armando">
+        <createTable tableName="sunlight" schemaName="plant_detail">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_plant_detail" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="sunlight"
+                                 baseColumnNames="id_plant_detail"
+                                 constraintName="fk_sunlight_id_plant_detail"
+                                 referencedTableName="plant_detail"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="plant_detail"
+                                 referencedTableSchemaName="plant_detail"
+                                 validate="true"
+        />
+    </changeSet>
+
+    <changeSet id="20240602_6" author="armando">
+        <createTable tableName="watering_general_benchmark" schemaName="plant_detail">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="value" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unit" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_plant_detail" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="watering_general_benchmark"
+                                 baseColumnNames="id_plant_detail"
+                                 constraintName="fk_watering_general_benchmark_id_plant_detail"
+                                 referencedTableName="plant_detail"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="plant_detail"
+                                 referencedTableSchemaName="plant_detail"
+                                 validate="true"
+        />
+    </changeSet>
+    <changeSet id="20240602_7" author="armando">
+        <createTable tableName="dimensions" schemaName="plant_detail">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="min_value" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_value" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unit" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_plant_detail" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="dimensions"
+                                 baseColumnNames="id_plant_detail"
+                                 constraintName="fk_dimensions_id_plant_detail"
+                                 referencedTableName="plant_detail"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="plant_detail"
+                                 referencedTableSchemaName="plant_detail"
+                                 validate="true"
+        />
+    </changeSet>
+    </databaseChangeLog>
