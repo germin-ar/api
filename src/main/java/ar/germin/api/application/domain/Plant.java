@@ -16,6 +16,9 @@ public class Plant {
     // TODO ver list -> List<FileImage> images;
     Boolean isFavorite;
     Double height;
+    //TODO enum  ALTO BAJO MEDIO
+    //TODO frecuencia de riego
+    // String sunExposure;
     // TODO normalizar -> notes
     String notes;
 }
