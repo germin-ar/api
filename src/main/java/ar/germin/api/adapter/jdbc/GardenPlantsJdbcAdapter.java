@@ -82,7 +82,7 @@ public class GardenPlantsJdbcAdapter implements GetGardenRepository, SaveGardenR
 
             String sql = "insert into garden.plant (name, id_garden, id_plants_catalog,creation_date, modification_date, description, favorite, height, sun_exposure, notes ) values(:name, :idGarden, :idPlantsCatalog, :creationDate, :modificationDate, :description, :favorite, :height, :sunExposure, :notes)";
             MapSqlParameterSource params = new MapSqlParameterSource()
-                    .addValue("name", plant.getName())
+                    .addValue("name", plant.getAlias())
                     .addValue("idGarden", 1)
                     .addValue("idPlantsCatalog", 1)
                     .addValue("creationDate", plant.getCreationDate())

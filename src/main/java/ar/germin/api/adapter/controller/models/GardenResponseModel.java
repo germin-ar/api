@@ -34,7 +34,7 @@ public class GardenResponseModel {
                         .stream()
                         .map(plant -> PlantModel.builder()
                                 .id(plant.getId())
-                                .name(plant.getName())
+                                .name(plant.getAlias())
                                 .modificationDate(plant.getModificationDate())
                                 .creationDate(plant.getCreationDate())
                                 .build())

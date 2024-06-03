@@ -50,7 +50,7 @@ public class GardenModel {
                         .stream()
                         .map(gardenModel -> Plant.builder()
                                 .id(gardenModel.getPlantId())
-                                .name(gardenModel.getPlantName())
+                                .alias(gardenModel.getPlantName())
                                 .creationDate(gardenModel.getPlantCreationDate())
                                 .modificationDate(gardenModel.getPlantModificationDate())
                                 .build())

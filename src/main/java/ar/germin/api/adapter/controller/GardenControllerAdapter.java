@@ -2,6 +2,7 @@ package ar.germin.api.adapter.controller;
 
 
 import ar.germin.api.adapter.controller.models.GardenResponseModel;
+import ar.germin.api.adapter.controller.models.PlantResponseModel;
 import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.port.in.GetPlantsGardenPortIn;
 import ar.germin.api.application.port.in.SavePlantsGardenPortIn;
@@ -31,8 +32,10 @@ public class GardenControllerAdapter {
     }
 
     @PostMapping("/addPlant")
-    public ResponseEntity<Boolean> addPlantToGarden(@RequestBody Plant newPlant){
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.savePlantPorIn.savePlant(newPlant));
+    public ResponseEntity<PlantResponseModel> addPlantToGarden(@RequestBody Plant newPlant){
+        PlantResponseModel plant =  PlantResponseModel.fromDomain(newPlant);
+        return ResponseEntity.status(HttpStatus.CREATED).body(plant);
+        //return ResponseEntity.status(HttpStatus.CREATED).body(this.savePlantPorIn.savePlant(plant));
     }
 
     @GetMapping("/a")
