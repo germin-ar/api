@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240531_0" author="armando">
+        <sql>
+            create schema calendar
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240531_1" author="armando">
+        <createTable tableName="calendar" schemaName="calendar">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_user" type="int">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="calendar"
+                                 baseColumnNames="id_user"
+                                 constraintName="fk_calendar_id_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="calendar"
+                                 referencedTableSchemaName="garden"
+                                 validate="true"
+        />
+
+    </changeSet>
+
+    <changeSet id="20240531_2" author="armando">
+        <createTable tableName="calendar_event" schemaName="calendar">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar"/>
+            <column name="description" type="varchar"/>
+            <column name="start_time" type="timestamp"/>
+            <column name="end_time" type="timestamp"/>
+            <column name="calendar_id" type="int"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="calendar_event"
+                                 baseColumnNames="calendar_id"
+                                 constraintName="fk_calendar_calendar_id"
+                                 referencedTableName="calendar"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="calendar"
+                                 referencedTableSchemaName="calendar"
+                                 validate="true"
+        />
+    </changeSet>
+    <changeSet id="20240531_3"  author="armando" >
+        <createTable tableName="notification" schemaName="calendar">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="message" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="read" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notification_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_id" type="int"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="notification"
+                                 baseColumnNames="event_id"
+                                 constraintName="fk_calendar_event_id"
+                                 referencedTableName="calendar_event"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="calendar"
+                                 referencedTableSchemaName="calendar"
+                                 validate="true"
+        />
+    </changeSet>
+
+
+</databaseChangeLog>

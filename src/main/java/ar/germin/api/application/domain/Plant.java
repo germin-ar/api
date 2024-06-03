@@ -4,9 +4,6 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
-
 @Builder
 @Value
 public class Plant {
@@ -19,6 +16,7 @@ public class Plant {
     Boolean favorite;
     Double height;
     //TODO enum  ALTO BAJO MEDIO
+    //TODO frecuencia de riego
     String sunExposure;
     String notes;
 }
