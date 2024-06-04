@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 
 @Data
@@ -48,9 +49,10 @@ public class GardenModel {
                 .user(user)
                 .plants(gardenModels
                         .stream()
+                        .filter(gardenModel -> Optional.ofNullable(gardenModel.plantId).isPresent())
                         .map(gardenModel -> Plant.builder()
                                 .id(gardenModel.getPlantId())
-                                .name(gardenModel.getPlantName())
+                                .alias(gardenModel.getPlantName())
                                 .creationDate(gardenModel.getPlantCreationDate())
                                 .modificationDate(gardenModel.getPlantModificationDate())
                                 .build())

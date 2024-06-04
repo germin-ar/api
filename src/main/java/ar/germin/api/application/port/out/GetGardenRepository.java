@@ -8,4 +8,6 @@ public interface GetGardenRepository {
     Garden getById(Integer id);
 
     List<Garden> getByUserId(Integer userId);
+
+    Garden getByIdAndUserId(Integer id, Integer userId);
 }

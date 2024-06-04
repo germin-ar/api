@@ -4,19 +4,21 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.time.LocalDateTime;
+
 @Builder
 @Value
 public class Plant {
     Integer id;
-    String name;
+    String alias;
     LocalDateTime creationDate;
     LocalDateTime modificationDate;
-    String description;
+    LocalDateTime plantingDate;
     // TODO ver list -> List<FileImage> images;
-    Boolean favorite;
+    Boolean isFavorite;
     Double height;
     //TODO enum  ALTO BAJO MEDIO
     //TODO frecuencia de riego
-    String sunExposure;
+    // String sunExposure;
+    // TODO normalizar -> notes
     String notes;
 }

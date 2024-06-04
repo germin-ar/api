@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/image")
+@RequestMapping("/api/v1/images")
 public class ImageControllerAdapter {
     private final SaveImagePortIn saveImagePortIn;
 

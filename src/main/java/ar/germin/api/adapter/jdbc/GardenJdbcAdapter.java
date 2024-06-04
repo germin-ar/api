@@ -13,21 +13,23 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.Types;
 import java.util.List;
 import java.util.Optional;
 
 @Component
 @Slf4j
-public class GardenPlantsJdbcAdapter implements GetGardenRepository, SaveGardenRepository {
-    private static final String SELECT_GARDEN_BY_ID = "sql/selectGardenById.sql";
+public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenRepository {
+    private static final String SELECT_GARDEN_BY_ID_PATH = "sql/selectGardenById.sql";
+    private static final String SAVE_GARDEN_PATH = "sql/saveGarden.sql";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String selectGardenByIdSql;
+    private final String saveGardenSql;
 
-    public GardenPlantsJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public GardenJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-        this.selectGardenByIdSql = sqlReader.readSql(SELECT_GARDEN_BY_ID);
+        this.selectGardenByIdSql = sqlReader.readSql(SELECT_GARDEN_BY_ID_PATH);
+        this.saveGardenSql = sqlReader.readSql(SAVE_GARDEN_PATH);
     }
 
     @Override
@@ -54,20 +56,28 @@ public class GardenPlantsJdbcAdapter implements GetGardenRepository, SaveGardenR
     }
 
     @Override
-    public Garden save(Garden garden) {
-        try {
-            String sql = "insert into garden.garden (id, name) values (:id, :name)";
-            MapSqlParameterSource params = new MapSqlParameterSource()
-                    .addValue("id", garden.getId(), Types.OTHER)
-                    .addValue("name", garden.getName());
-            log.info("Saving garden with sql [{}] with params: [{}]", sql, params);
+    public Garden getByIdAndUserId(Integer id, Integer userId) {
+        // TODO: implement me
+        return null;
+    }
 
-            this.namedParameterJdbcTemplate.update(sql, params);
-            return garden;
+    @Override
+    public Garden save(Integer userId, String name) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("name", name)
+                    .addValue("idUser", userId);
+            log.info("Saving garden with sql [{}] with params: [{}]", saveGardenSql, params);
+
+            this.namedParameterJdbcTemplate.update(saveGardenSql, params);
+            return null;
         } catch (DuplicateKeyException ex) {
             log.error("Error saving garden for duplicate name", ex);
+            // FIXME: esta excepción no va
             throw new GardenNameAlreadyExistsException("El nombre del jardin ya existe");
         }
 
     }
+
+
 }
