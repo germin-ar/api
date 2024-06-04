@@ -34,7 +34,7 @@ public class GardenResponseModel {
                         .stream()
                         .map(plant -> PlantModel.builder()
                                 .id(plant.getId())
-                                .name(plant.getAlias())
+                                .alias(plant.getAlias())
                                 .modificationDate(plant.getModificationDate())
                                 .creationDate(plant.getCreationDate())
                                 .build())
@@ -53,7 +53,7 @@ public class GardenResponseModel {
     @Builder
     @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
     record PlantModel(Integer id,
-                      String name,
+                      String alias,
                       @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime creationDate,
                       @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime modificationDate) {
 

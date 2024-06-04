@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PlantResponseModel {
     Integer id;
-    String name;
+    String alias;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime creationDate;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime modificationDate;
     String description;
@@ -30,13 +30,11 @@ public class PlantResponseModel {
     public static PlantResponseModel fromDomain(Plant plant){
         return PlantResponseModel.builder()
                 .id(plant.getId())
-                .name(plant.getAlias())
+                .alias(plant.getAlias())
                 .creationDate(plant.getCreationDate())
                 .modificationDate(plant.getModificationDate())
-                .description(plant.getDescription())
-                .favorite(plant.getFavorite())
+                .favorite(plant.getIsFavorite())
                 .height(plant.getHeight())
-                .sunExposure(plant.getSunExposure())
                 .notes(plant.getNotes())
                 .build();
     }
