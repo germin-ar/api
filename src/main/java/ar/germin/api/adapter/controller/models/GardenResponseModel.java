@@ -1,6 +1,9 @@
 package ar.germin.api.adapter.controller.models;
 
+import ar.germin.api.adapter.jdbc.models.GardenModel;
 import ar.germin.api.application.domain.Garden;
+import ar.germin.api.application.domain.Plant;
+import ar.germin.api.application.domain.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -9,6 +12,7 @@ import lombok.Value;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Builder
 @Value
@@ -40,6 +44,28 @@ public class GardenResponseModel {
                                 .build())
                         .toList())
                 .build();
+
+
+}
+    public static List<GardenResponseModel> fromDomainList(List<Garden> gardens) {
+        return gardens.stream().map(garden -> GardenResponseModel.builder()
+                        .id(garden.getId())
+                        .name(garden.getName())
+                        .user(UserModel.builder()
+                                .id(garden.getUser().getId())
+                                .name(garden.getUser().getName())
+                                .email(garden.getUser().getEmail())
+                                .build())
+                        .plants(garden.getPlants().stream()
+                                .map(plant -> PlantModel.builder()
+                                        .id(plant.getId())
+                                        .alias(plant.getAlias())
+                                        .modificationDate(plant.getModificationDate())
+                                        .creationDate(plant.getCreationDate())
+                                        .build())
+                                .toList())
+                        .build())
+                .toList();
     }
 
     @Builder

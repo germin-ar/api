@@ -8,6 +8,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Data
@@ -58,6 +59,34 @@ public class GardenModel {
                                 .build())
                         .toList())
                 .build();
+    }
+
+    public static List<Garden> toDomainFromModelListGardens(List<GardenModel> gardenModels) {
+        return gardenModels.stream().map(gardenModel -> {
+            Integer id = gardenModel.getGardenId();
+            String name = gardenModel.getGardenName();
+            User user = User.builder()
+                    .id(gardenModel.getUserId())
+                    .email(gardenModel.getUserEmail())
+                    .name(gardenModel.getUserName())
+                    .build();
+            List<Plant> plants = gardenModels.stream()
+                    .filter(gm -> Optional.ofNullable(gm.plantId).isPresent())
+                    .map(gm -> Plant.builder()
+                            .id(gm.getPlantId())
+                            .alias(gm.getPlantName())
+                            .creationDate(gm.getPlantCreationDate())
+                            .modificationDate(gm.getPlantModificationDate())
+                            .build())
+                    .collect(Collectors.toList());
+
+            return Garden.builder()
+                    .id(id)
+                    .name(name)
+                    .user(user)
+                    .plants(plants)
+                    .build();
+        }).collect(Collectors.toList());
     }
 }
 

@@ -3,6 +3,8 @@ package ar.germin.api.adapter.controller;
 
 import ar.germin.api.adapter.controller.models.CreateGardenRequestModel;
 import ar.germin.api.adapter.controller.models.GardenResponseModel;
+import ar.germin.api.adapter.jdbc.models.GardenModel;
+import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.port.in.GetPlantsGardenPortIn;
 import ar.germin.api.application.port.in.SaveGardenPortIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ public class GardenControllerAdapter {
     private final GetPlantsGardenPortIn getPlantsGardenPortIn;
     private final SaveGardenPortIn saveGardenPortIn;
 
+
     @Autowired
     public GardenControllerAdapter(GetPlantsGardenPortIn getPlantsGardenPortIn, SaveGardenPortIn saveGardenPortIn) {
         this.getPlantsGardenPortIn = getPlantsGardenPortIn;
@@ -32,7 +35,8 @@ public class GardenControllerAdapter {
 
     @GetMapping
     public List<GardenResponseModel> getGardensByUser(@RequestHeader("id-user") Integer userId) {
-        return List.of();
+        //Todo ver el response model
+        return GardenResponseModel.fromDomainList(this.getPlantsGardenPortIn.getGardensByUser(userId));
     }
 
     @GetMapping("/{id}")
