@@ -1,5 +1,6 @@
 package ar.germin.api.adapter.controller;
 
+import ar.germin.api.adapter.controller.models.NoteResponseModel;
 import ar.germin.api.adapter.controller.models.PlantRequestModel;
 import ar.germin.api.application.port.in.SavePlantPortIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,15 @@ public class PlantControllerAdapter {
                 .alias(plantRequestModel.alias())
                 .plantingDate(plantRequestModel.plantingDate())
                 .height(plantRequestModel.height())
-                .notes(plantRequestModel.notes())
+                .notes(plantRequestModel.notes()
+                        .stream()
+                        .map(note -> NoteResponseModel.builder()
+                                .id(note.getId())
+                                .observations(note.getObservations())
+                                .creationDate(note.getCreationDate())
+                                .modificationDate(note.getModificationDate())
+                                .build())
+                        .toList())
                 .idGarden(plantRequestModel.idGarden())
                 .build());
     }

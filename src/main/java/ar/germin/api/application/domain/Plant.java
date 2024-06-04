@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @Value
@@ -19,6 +20,5 @@ public class Plant {
     //TODO enum  ALTO BAJO MEDIO
     //TODO frecuencia de riego
     // String sunExposure;
-    // TODO normalizar -> notes
-    String notes;
+    List<Note> notes;
 }
