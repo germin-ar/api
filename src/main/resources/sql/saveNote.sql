@@ -1,4 +1,4 @@
-insert into note.note (id_user,
+insert into garden.note (id_user,
                        id_plant,
                        observations)
 values (:userId,
