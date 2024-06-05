@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240604_1" author="agos">
+        <createTable tableName="note">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="plant_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="observations" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="note"
+                                 baseColumnNames="plant_id"
+                                 constraintName="fk_note_plant_id"
+                                 referencedTableName="plant"
+                                 referencedColumnNames="id"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseTableName="note"
+                                 baseColumnNames="user_id"
+                                 constraintName="fk_note_user_id"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"
+                                 validate="true"/>
+    </changeSet>
+
+    <changeSet id="20240604_2" author="agos">
+        <dropColumn tableName="plant" columnName="notes"/>
+        <addColumn tableName="plant">
+            <column name="note_id" type="int">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="note_id"
+                                 baseTableName="plant"
+                                 constraintName="fk_note_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="note"
+                                 validate="true"/>
+    </changeSet>
+</databaseChangeLog>
