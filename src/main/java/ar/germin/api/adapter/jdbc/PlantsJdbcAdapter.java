@@ -2,6 +2,7 @@ package ar.germin.api.adapter.jdbc;
 
 import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.exceptions.ErrorPlantSaveException;
+import ar.germin.api.application.port.out.DeletePlantRepository;
 import ar.germin.api.application.port.out.SavePlantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +13,18 @@ import org.springframework.web.ErrorResponseException;
 
 @Slf4j
 @Component
-public class PlantsJdbcAdapter implements SavePlantRepository {
+public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantRepository {
     private static final String SAVE_PLANT_PATH = "sql/savePlant.sql";
-
+    private static final String DELETE_PLANT_PATH = "sql/deletePlant.sql";
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String savePlantSql;
+    private final String deletePlantSql;
 
     @Autowired
     public PlantsJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.savePlantSql = sqlReader.readSql(SAVE_PLANT_PATH);
+        this.deletePlantSql = sqlReader.readSql(DELETE_PLANT_PATH);
     }
 
     @Override
@@ -44,5 +47,20 @@ public class PlantsJdbcAdapter implements SavePlantRepository {
             throw new ErrorPlantSaveException("No se pudo guardar la planta");
         }
 
+    }
+
+    @Override
+    public void delete(Integer id) {
+        try {
+            MapSqlParameterSource sqlParams = new MapSqlParameterSource()
+                    .addValue("id", id );
+
+            log.info("deleting plant with sql [{}] with params: [{}]", deletePlantSql, sqlParams);
+            this.namedParameterJdbcTemplate.update(deletePlantSql, sqlParams);
+
+        } catch (ErrorResponseException ex) {
+            log.error("Error deleting plant", ex);
+            throw new ErrorPlantSaveException("No se pudo borrar la planta");
+        }
     }
 }

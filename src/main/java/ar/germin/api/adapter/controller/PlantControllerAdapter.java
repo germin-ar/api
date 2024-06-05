@@ -1,21 +1,21 @@
 package ar.germin.api.adapter.controller;
 
 import ar.germin.api.adapter.controller.models.PlantRequestModel;
+import ar.germin.api.application.port.in.DeletePlantPortIn;
 import ar.germin.api.application.port.in.SavePlantPortIn;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/plants")
 public class PlantControllerAdapter {
     private final SavePlantPortIn savePlantPortIn;
+    private final DeletePlantPortIn deletePlantPortIn;
 
     @Autowired
-    public PlantControllerAdapter(SavePlantPortIn savePlantPortIn) {
+    public PlantControllerAdapter(SavePlantPortIn savePlantPortIn,DeletePlantPortIn deletePlantPortIn) {
         this.savePlantPortIn = savePlantPortIn;
+        this.deletePlantPortIn = deletePlantPortIn;
     }
 
     @PostMapping
@@ -28,4 +28,9 @@ public class PlantControllerAdapter {
                 .idGarden(plantRequestModel.idGarden())
                 .build());
     }
+    @DeleteMapping("/{id}")
+    public void deletePlant(@PathVariable ("id")Integer id){
+        this.deletePlantPortIn.delete(id);
+    }
+
 }
