@@ -2,6 +2,7 @@ package ar.germin.api.adapter.jdbc;
 
 import ar.germin.api.adapter.jdbc.models.GardenModel;
 import ar.germin.api.application.domain.Garden;
+import ar.germin.api.application.domain.User;
 import ar.germin.api.application.exceptions.GardenNameAlreadyExistsException;
 import ar.germin.api.application.exceptions.GardenNotFoundException;
 import ar.germin.api.application.port.out.GetGardenRepository;
@@ -77,7 +78,7 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
     }
 
     @Override
-    public Garden save(Integer userId, String name) {
+    public Boolean save(Integer userId, String name) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource()
                     .addValue("name", name)
@@ -85,11 +86,13 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
             log.info("Saving garden with sql [{}] with params: [{}]", saveGardenSql, params);
 
             this.namedParameterJdbcTemplate.update(saveGardenSql, params);
-            return null;
+
+            return true;
         } catch (DuplicateKeyException ex) {
             log.error("Error saving garden for duplicate name", ex);
             // FIXME: esta excepción no va
-            throw new GardenNameAlreadyExistsException("El nombre del jardin ya existe");
+            return false;
+            //throw new GardenNameAlreadyExistsException("El nombre del jardin ya existe");
         }
 
     }

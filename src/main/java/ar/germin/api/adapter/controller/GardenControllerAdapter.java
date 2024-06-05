@@ -45,8 +45,8 @@ public class GardenControllerAdapter {
     }
 
     @PostMapping
-    public void saveGarden(@RequestBody CreateGardenRequestModel createGardenRequestModel) {
-        this.saveGardenPortIn.save(createGardenRequestModel.getUserId(), createGardenRequestModel.getName());
+    public Boolean saveGarden(@RequestBody CreateGardenRequestModel createGardenRequestModel) {
+        return this.saveGardenPortIn.save(createGardenRequestModel.getUserId(), createGardenRequestModel.getName());
     }
 
     @DeleteMapping("/{id}")
