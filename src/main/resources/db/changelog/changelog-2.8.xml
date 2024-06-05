@@ -7,14 +7,14 @@
 
     <changeSet id="20240604_1" author="jfoppoli">
         <addColumn tableName="plant" schemaName="garden">
-            <column name="is_active?" type="boolean" defaultValue="true">
+            <column name="is_active" type="boolean" defaultValue="true">
             </column>
         </addColumn>
     </changeSet>
 
     <changeSet id="20240604_2" author="jfoppoli">
         <addColumn tableName="garden" schemaName="garden">
-            <column name="is_active?" type="boolean" defaultValue="true">
+            <column name="is_active" type="boolean" defaultValue="true">
             </column>
         </addColumn>
     </changeSet>
