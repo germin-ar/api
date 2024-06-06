@@ -4,6 +4,7 @@ import ar.germin.api.adapter.jdbc.models.GardenModel;
 import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.exceptions.GardenNameAlreadyExistsException;
 import ar.germin.api.application.exceptions.GardenNotFoundException;
+import ar.germin.api.application.port.out.DeleteGardenRepository;
 import ar.germin.api.application.port.out.GetGardenRepository;
 import ar.germin.api.application.port.out.SaveGardenRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -18,18 +19,21 @@ import java.util.Optional;
 
 @Component
 @Slf4j
-public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenRepository {
+public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenRepository, DeleteGardenRepository {
     private static final String SELECT_GARDEN_BY_ID_PATH = "sql/selectGardenById.sql";
     private static final String SAVE_GARDEN_PATH = "sql/saveGarden.sql";
+    private static final String DELETE_GARDEN_PATH = "sql/deleteGarden.sql";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String selectGardenByIdSql;
     private final String saveGardenSql;
+    private final String deleteGardenSql;
 
     public GardenJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.selectGardenByIdSql = sqlReader.readSql(SELECT_GARDEN_BY_ID_PATH);
         this.saveGardenSql = sqlReader.readSql(SAVE_GARDEN_PATH);
+        this.deleteGardenSql = sqlReader.readSql(DELETE_GARDEN_PATH);
     }
 
     @Override
@@ -79,5 +83,19 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
 
     }
 
+    @Override
+    public void deleteById(Integer gardenId) {
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("id", gardenId);
+        log.info("Deleting garden with sql [{}] with params: [{}]", deleteGardenSql, params);
 
+        int rowsAffected = this.namedParameterJdbcTemplate.update(deleteGardenSql, params);
+        if (rowsAffected == 0) {
+            log.error("Garden with id {} not found", gardenId);
+            throw new GardenNotFoundException();
+        }
+    }
 }
+
+
+

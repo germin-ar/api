@@ -3,6 +3,7 @@ package ar.germin.api.adapter.controller;
 
 import ar.germin.api.adapter.controller.models.CreateGardenRequestModel;
 import ar.germin.api.adapter.controller.models.GardenResponseModel;
+import ar.germin.api.application.port.in.DeleteGardenPortIn;
 import ar.germin.api.application.port.in.GetPlantsGardenPortIn;
 import ar.germin.api.application.port.in.SaveGardenPortIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,13 @@ import java.util.List;
 public class GardenControllerAdapter {
     private final GetPlantsGardenPortIn getPlantsGardenPortIn;
     private final SaveGardenPortIn saveGardenPortIn;
+    private final DeleteGardenPortIn deleteGardenPortIn;
 
     @Autowired
-    public GardenControllerAdapter(GetPlantsGardenPortIn getPlantsGardenPortIn, SaveGardenPortIn saveGardenPortIn) {
+    public GardenControllerAdapter(GetPlantsGardenPortIn getPlantsGardenPortIn, SaveGardenPortIn saveGardenPortIn, DeleteGardenPortIn deleteGardenPortIn) {
         this.getPlantsGardenPortIn = getPlantsGardenPortIn;
         this.saveGardenPortIn = saveGardenPortIn;
+        this.deleteGardenPortIn = deleteGardenPortIn;
     }
 
     @GetMapping
@@ -47,6 +50,6 @@ public class GardenControllerAdapter {
 
     @DeleteMapping("/{id}")
     public void deleteGarden(@PathVariable("id") Integer id) {
-        // TODO: borrar jardín
+        this.deleteGardenPortIn.delete(new DeleteGardenPortIn.Params(id));
     }
 }
