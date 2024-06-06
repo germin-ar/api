@@ -9,6 +9,8 @@ import ar.germin.api.application.port.out.UpdatePlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/api/v1/plants")
 public class PlantControllerAdapter {
@@ -39,7 +41,18 @@ public class PlantControllerAdapter {
     }
 
     @PutMapping("/update")
-    public Integer updatePlant(@RequestBody UpdatePlantRepository.Params params){
-        return this.updatePlantPortIn.update(params);
+    public Integer updatePlant(@RequestBody PlantRequestModel plantRequestModel){
+        return this.updatePlantPortIn.update(UpdatePlantRepository.Params.builder()
+                        .id(plantRequestModel.id())
+                        .alias(plantRequestModel.alias())
+                        .height(plantRequestModel.height())
+                        .plantingDate(plantRequestModel.plantingDate())
+                        .notes(plantRequestModel.notes())
+                        .idGarden(plantRequestModel.idGarden())
+                        .isActive(plantRequestModel.isActive())
+                        .isFavorite(plantRequestModel.isFavorite())
+                        .build());
             }
+
+
 }

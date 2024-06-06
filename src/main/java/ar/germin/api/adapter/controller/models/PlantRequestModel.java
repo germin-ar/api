@@ -12,6 +12,7 @@ public record  PlantRequestModel(Integer id,
                                 @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime plantingDate,
                                 String notes,
                                 Integer idGarden,
+                                Boolean isActive,
                                 Boolean isFavorite
                                 ) {
 //    public Plant toDomain() {
