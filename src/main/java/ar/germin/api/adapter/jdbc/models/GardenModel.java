@@ -18,15 +18,18 @@ public class GardenModel {
     private Integer userId;
     private String userEmail;
     private String userName;
+    private Boolean gardenIsActive;
     private Integer plantId;
     private String plantName;
     private LocalDateTime plantCreationDate;
     private LocalDateTime plantModificationDate;
+    private Boolean plantIsActive;
 
     public Garden toDomain() {
         return Garden.builder()
                 .id(gardenId)
                 .name(gardenName)
+                .isActive(gardenIsActive)
                 .user(User.builder()
                         .id(userId)
                         .email(userEmail)
@@ -38,6 +41,7 @@ public class GardenModel {
     public static Garden toDomainFromModelList(List<GardenModel> gardenModels) {
         Integer id = gardenModels.stream().findAny().map(GardenModel::getGardenId).orElseThrow();
         String name = gardenModels.stream().findAny().map(GardenModel::getGardenName).orElseThrow();
+        Boolean isActive = gardenModels.stream().findAny().map(GardenModel::getGardenIsActive).orElseThrow();
         User user = gardenModels.stream().findAny().map(gardenModel -> User.builder()
                 .id(gardenModel.getUserId())
                 .email(gardenModel.getUserEmail())
@@ -48,6 +52,7 @@ public class GardenModel {
                 .id(id)
                 .name(name)
                 .user(user)
+                .isActive(isActive)
                 .plants(gardenModels
                         .stream()
                         .filter(gardenModel -> Optional.ofNullable(gardenModel.plantId).isPresent())
@@ -56,6 +61,7 @@ public class GardenModel {
                                 .alias(gardenModel.getPlantName())
                                 .creationDate(gardenModel.getPlantCreationDate())
                                 .modificationDate(gardenModel.getPlantModificationDate())
+                                .isActive(gardenModel.getPlantIsActive())
                                 .build())
                         .toList())
                 .build();
@@ -65,6 +71,7 @@ public class GardenModel {
         return gardenModels.stream().map(gardenModel -> {
             Integer id = gardenModel.getGardenId();
             String name = gardenModel.getGardenName();
+            Boolean isActive = gardenModel.getGardenIsActive();
             User user = User.builder()
                     .id(gardenModel.getUserId())
                     .email(gardenModel.getUserEmail())
@@ -77,12 +84,14 @@ public class GardenModel {
                             .alias(gm.getPlantName())
                             .creationDate(gm.getPlantCreationDate())
                             .modificationDate(gm.getPlantModificationDate())
+                            .isActive(gm.getPlantIsActive())
                             .build())
                     .collect(Collectors.toList());
 
             return Garden.builder()
                     .id(id)
                     .name(name)
+                    .isActive(isActive)
                     .user(user)
                     .plants(plants)
                     .build();

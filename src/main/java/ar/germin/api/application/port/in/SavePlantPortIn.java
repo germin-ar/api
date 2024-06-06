@@ -18,5 +18,6 @@ public interface SavePlantPortIn {
         LocalDateTime plantingDate;
         String notes;
         Integer idGarden;
+        Boolean isActive;
     }
 }

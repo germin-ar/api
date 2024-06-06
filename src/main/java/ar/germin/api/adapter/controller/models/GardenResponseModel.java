@@ -22,12 +22,14 @@ public class GardenResponseModel {
     String name;
     UserModel user;
     List<PlantModel> plants;
+    Boolean isActive;
     //imagenes
 
     public static GardenResponseModel fromDomain(Garden garden) {
         return GardenResponseModel.builder()
                 .id(garden.getId())
                 .name(garden.getName())
+                .isActive(garden.getIsActive())
                 .user(UserModel.builder()
                         .id(garden.getUser().getId())
                         .name(garden.getUser().getName())
@@ -51,6 +53,7 @@ public class GardenResponseModel {
         return gardens.stream().map(garden -> GardenResponseModel.builder()
                         .id(garden.getId())
                         .name(garden.getName())
+                        .isActive(garden.getIsActive())
                         .user(UserModel.builder()
                                 .id(garden.getUser().getId())
                                 .name(garden.getUser().getName())
@@ -62,6 +65,7 @@ public class GardenResponseModel {
                                         .alias(plant.getAlias())
                                         .modificationDate(plant.getModificationDate())
                                         .creationDate(plant.getCreationDate())
+                                        .isActive(plant.getIsActive())
                                         .build())
                                 .toList())
                         .build())
@@ -80,6 +84,7 @@ public class GardenResponseModel {
     @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
     record PlantModel(Integer id,
                       String alias,
+                      Boolean isActive,
                       @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime creationDate,
                       @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime modificationDate) {
 

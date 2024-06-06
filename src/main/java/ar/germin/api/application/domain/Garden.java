@@ -11,5 +11,6 @@ public class Garden {
     Integer id;
     String name;
     User user;
+    Boolean isActive;
     List<Plant> plants;
 }
