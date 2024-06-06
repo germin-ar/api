@@ -1,0 +1,1 @@
+DELETE FROM gardens WHERE id = :id;
