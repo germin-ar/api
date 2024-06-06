@@ -26,11 +26,13 @@ public class PlantResponseModel {
     String notes;
     String nameGarden;
     String expo;
+    Integer idGarden;
 
     public static PlantResponseModel fromDomain(Plant plant){
         return PlantResponseModel.builder()
                 .id(plant.getId())
                 .alias(plant.getAlias())
+                .idGarden(plant.getIdGarden())
                 .creationDate(plant.getCreationDate())
                 .modificationDate(plant.getModificationDate())
                 .favorite(plant.getIsFavorite())

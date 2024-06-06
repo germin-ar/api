@@ -71,20 +71,20 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
     }
 
     @Override
-    public Integer update(PlantRequestModel plantRequestModel) {
+    public Integer update(UpdatePlantRepository.Params params) {
         try {
             MapSqlParameterSource sqlParams = new MapSqlParameterSource()
-                    .addValue("id", plantRequestModel.id())
-                    .addValue("alias", plantRequestModel.alias())
-                    .addValue("idGarden", plantRequestModel.idGarden())
-                    .addValue("favorite", plantRequestModel.isFavorite())
-                    .addValue("height", plantRequestModel.height())
-                    .addValue("notes", plantRequestModel.notes())
-                    .addValue("plantingDate", plantRequestModel.plantingDate());
+                    .addValue("id", params.getId())
+                    .addValue("alias", params.getAlias())
+                    .addValue("idGarden", params.getIdGarden())
+                    .addValue("favorite", params.getIsFavorite())
+                    .addValue("height", params.getHeight())
+                    .addValue("notes", params.getNotes())
+                    .addValue("plantingDate", params.getPlantingDate());
 
             log.info("Updating plant with sql [{}] with params: [{}]", updatePlantSql, sqlParams);
             this.namedParameterJdbcTemplate.update(updatePlantSql, sqlParams);
-            return plantRequestModel.id();
+            return params.getId();
         } catch (ErrorResponseException ex) {
             log.error("Error updating plant", ex);
             throw new ErrorPlantSaveException("No se pudo actualizar la planta");

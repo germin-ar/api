@@ -54,4 +54,5 @@ public class GardenControllerAdapter {
     public void deleteGarden(@PathVariable("id") Integer id) {
         // TODO: borrar jardín
     }
+
 }

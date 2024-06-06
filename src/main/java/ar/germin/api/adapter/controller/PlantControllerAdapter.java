@@ -5,6 +5,7 @@ import ar.germin.api.adapter.controller.models.PlantRequestModel;
 import ar.germin.api.application.port.in.DeletePlantPortIn;
 import ar.germin.api.application.port.in.SavePlantPortIn;
 import ar.germin.api.application.port.in.UpdatePlantPortIn;
+import ar.germin.api.application.port.out.UpdatePlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +39,7 @@ public class PlantControllerAdapter {
     }
 
     @PutMapping("/update")
-    public Integer updatePlant(@RequestBody PlantRequestModel plantRequestModel){
-        return this.updatePlantPortIn.update(plantRequestModel);
+    public Integer updatePlant(@RequestBody UpdatePlantRepository.Params params){
+        return this.updatePlantPortIn.update(params);
             }
 }

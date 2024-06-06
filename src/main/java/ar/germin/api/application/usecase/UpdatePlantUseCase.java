@@ -23,7 +23,7 @@ public UpdatePlantUseCase(UpdatePlantRepository updatePlantRepository) {
 }
 
     @Override
-    public Integer update(PlantRequestModel plantRequestModel) {
+    public Integer update(UpdatePlantRepository.Params plantRequestModel) {
         //this.updatePlantRepository.update(plantRequestModel);
         return this.updatePlantRepository.update(plantRequestModel);
     }

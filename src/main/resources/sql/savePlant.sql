@@ -1,4 +1,4 @@
-insert into garden.plant (name,
+insert into garden.plant (alias,
                           id_garden,
                           id_plants_catalog,
                           creation_date,
