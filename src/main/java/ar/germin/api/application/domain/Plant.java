@@ -19,6 +19,7 @@ public class Plant {
     //TODO enum  ALTO BAJO MEDIO
     //TODO frecuencia de riego
     // String sunExposure;
-    // TODO normalizar -> notes
     String notes;
+    Boolean isActive;
+    Integer idGarden;
 }

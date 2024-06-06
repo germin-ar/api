@@ -3,7 +3,7 @@ select garden.id                garden_id,
        garden_user.id           user_id,
        garden_user.email        user_email,
        garden_user.name         user_name,
-       plants.name              plant_name,
+       plants.alias              plant_name,
        plants.id                plant_id,
        plants.creation_date     plant_creation_date,
        plants.modification_date plant_modification_date

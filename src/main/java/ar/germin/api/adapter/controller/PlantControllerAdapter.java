@@ -1,8 +1,10 @@
 package ar.germin.api.adapter.controller;
 
 import ar.germin.api.adapter.controller.models.PlantRequestModel;
+
 import ar.germin.api.application.port.in.DeletePlantPortIn;
 import ar.germin.api.application.port.in.SavePlantPortIn;
+import ar.germin.api.application.port.in.UpdatePlantPortIn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +13,13 @@ import org.springframework.web.bind.annotation.*;
 public class PlantControllerAdapter {
     private final SavePlantPortIn savePlantPortIn;
     private final DeletePlantPortIn deletePlantPortIn;
+    private final UpdatePlantPortIn updatePlantPortIn;
 
     @Autowired
-    public PlantControllerAdapter(SavePlantPortIn savePlantPortIn,DeletePlantPortIn deletePlantPortIn) {
+    public PlantControllerAdapter(SavePlantPortIn savePlantPortIn,DeletePlantPortIn deletePlantPortIn, UpdatePlantPortIn updatePlantPortIn) {
         this.savePlantPortIn = savePlantPortIn;
         this.deletePlantPortIn = deletePlantPortIn;
+        this.updatePlantPortIn = updatePlantPortIn;
     }
 
     @PostMapping
@@ -33,4 +37,8 @@ public class PlantControllerAdapter {
         this.deletePlantPortIn.delete(id);
     }
 
+    @PutMapping("/update")
+    public Integer updatePlant(@RequestBody PlantRequestModel plantRequestModel){
+        return this.updatePlantPortIn.update(plantRequestModel);
+            }
 }

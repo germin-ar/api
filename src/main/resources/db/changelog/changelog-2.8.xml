@@ -18,4 +18,10 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet id="20240606_1" author="jfoppoli">
+        <renameColumn tableName="plant" oldColumnName="name" newColumnName="alias" schemaName="garden"/>
+    </changeSet>
+    <changeSet id="20240606_2" author="jfoppoli">
+    </changeSet>
 </databaseChangeLog>
