@@ -27,5 +27,10 @@ public class GetGardenPlantsUseCase implements GetPlantsGardenPortIn {
         return this.getGardenRepository.getByUserId(id);
     }
 
+    @Override
+    public List<Garden> getAllGardensByUser(Integer id) {
+        return this.getGardenRepository.getAllGardensByUserId(id);
+    }
+
 
 }

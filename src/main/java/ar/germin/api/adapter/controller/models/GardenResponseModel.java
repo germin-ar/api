@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 @Builder
 @Value
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
@@ -24,6 +26,29 @@ public class GardenResponseModel {
     List<PlantModel> plants;
     Boolean isActive;
     //imagenes
+
+    public static List<GardenResponseModel> fromDomainAllListGardens(List<Garden> gardens) {
+        return gardens.stream().map(garden -> GardenResponseModel.builder()
+                        .id(garden.getId())
+                        .name(garden.getName())
+                        .isActive(garden.getIsActive())
+                        .user(UserModel.builder()
+                                .id(garden.getUser().getId())
+                                .name(garden.getUser().getName())
+                                .email(garden.getUser().getEmail())
+                                .build())
+                        .plants(garden.getPlants().stream()
+                                .map(plant -> PlantModel.builder()
+                                        .id(plant.getId())
+                                        .alias(plant.getAlias())
+                                        .modificationDate(plant.getModificationDate())
+                                        .creationDate(plant.getCreationDate())
+                                        .isActive(plant.getIsActive())
+                                        .build())
+                                .toList())
+                        .build())
+                .toList();
+    }
 
     public static GardenResponseModel fromDomain(Garden garden) {
         return GardenResponseModel.builder()
@@ -59,15 +84,6 @@ public class GardenResponseModel {
                                 .name(garden.getUser().getName())
                                 .email(garden.getUser().getEmail())
                                 .build())
-                        .plants(garden.getPlants().stream()
-                                .map(plant -> PlantModel.builder()
-                                        .id(plant.getId())
-                                        .alias(plant.getAlias())
-                                        .modificationDate(plant.getModificationDate())
-                                        .creationDate(plant.getCreationDate())
-                                        .isActive(plant.getIsActive())
-                                        .build())
-                                .toList())
                         .build())
                 .toList();
     }

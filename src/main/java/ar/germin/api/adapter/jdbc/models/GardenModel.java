@@ -74,6 +74,23 @@ public class GardenModel {
             Boolean isActive = gardenModel.getGardenIsActive();
             User user = User.builder()
                     .id(gardenModel.getUserId())
+                    .build();
+            return Garden.builder()
+                    .id(id)
+                    .name(name)
+                    .isActive(isActive)
+                    .user(user)
+                    .build();
+        }).collect(Collectors.toList());
+    }
+
+    public static List<Garden> toDomainFromModelAllListGardens(List<GardenModel> gardenModels) {
+        return gardenModels.stream().map(gardenModel -> {
+            Integer id = gardenModel.getGardenId();
+            String name = gardenModel.getGardenName();
+            Boolean isActive = gardenModel.getGardenIsActive();
+            User user = User.builder()
+                    .id(gardenModel.getUserId())
                     .email(gardenModel.getUserEmail())
                     .name(gardenModel.getUserName())
                     .build();
@@ -98,6 +115,7 @@ public class GardenModel {
         }).collect(Collectors.toList());
     }
 }
+
 
 @Data
 class UserModel {

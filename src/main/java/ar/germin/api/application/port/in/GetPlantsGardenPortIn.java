@@ -8,4 +8,5 @@ import java.util.List;
 public interface GetPlantsGardenPortIn {
     Garden get(Integer id);
     List<Garden> getGardensByUser(Integer id);
+    List<Garden> getAllGardensByUser(Integer id);
 }

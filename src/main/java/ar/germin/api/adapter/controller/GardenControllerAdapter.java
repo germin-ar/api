@@ -40,6 +40,12 @@ public class GardenControllerAdapter {
         return GardenResponseModel.fromDomainList(this.getPlantsGardenPortIn.getGardensByUser(userId));
     }
 
+    @GetMapping("/all")
+    public List<GardenResponseModel> getAllGardens(@RequestHeader("id-user") Integer userId) {
+        return GardenResponseModel.fromDomainAllListGardens(this.getPlantsGardenPortIn.getAllGardensByUser(userId));
+    }
+
+
     @GetMapping("/{id}")
     public GardenResponseModel getGardens(@PathVariable Integer id) {
         return GardenResponseModel.fromDomain(this.getPlantsGardenPortIn.get(id));
@@ -49,6 +55,8 @@ public class GardenControllerAdapter {
     public Boolean saveGarden(@RequestBody CreateGardenRequestModel createGardenRequestModel) {
         return this.saveGardenPortIn.save(createGardenRequestModel.getUserId(), createGardenRequestModel.getName());
     }
+
+
 
     @DeleteMapping("/{id}")
     public void deleteGarden(@PathVariable("id") Integer id) {

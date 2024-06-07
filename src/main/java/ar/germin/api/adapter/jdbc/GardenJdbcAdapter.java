@@ -23,17 +23,20 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
     private static final String SELECT_GARDEN_BY_ID_PATH = "sql/selectGardenById.sql";
     private static final String SAVE_GARDEN_PATH = "sql/saveGarden.sql";
     private static final String SELECT_GARDENS_BY_ID_USER = "sql/selectGardensByIdUser.sql";
+    private static final String SELECT_ALL_GARDENS_BY_USER = "sql/selectAllGardensByIdUser.sql";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String selectGardenByIdSql;
     private final String saveGardenSql;
     private final String selectGardensByIdUserSql;
+    private final String selectAllGardensByUserSql;
 
     public GardenJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.selectGardenByIdSql = sqlReader.readSql(SELECT_GARDEN_BY_ID_PATH);
         this.saveGardenSql = sqlReader.readSql(SAVE_GARDEN_PATH);
         this.selectGardensByIdUserSql = sqlReader.readSql(SELECT_GARDENS_BY_ID_USER);
+        this.selectAllGardensByUserSql = sqlReader.readSql(SELECT_ALL_GARDENS_BY_USER);
     }
 
     @Override
@@ -70,12 +73,31 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
                 });
 
     }
+    // asssssssssssssss
+    @Override
+    public List<Garden> getAllGardensByUserId(Integer userId) {
+
+        MapSqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("idUser", userId);
+
+        log.info("Querying gardens with sql [{}] with param: [{}]", selectAllGardensByUserSql, parameters);
+
+        return Optional
+                .of(this.namedParameterJdbcTemplate.query(selectAllGardensByUserSql, parameters, BeanPropertyRowMapper.newInstance(GardenModel.class)))
+                .map(GardenModel::toDomainFromModelAllListGardens)
+                .orElseThrow(() -> {
+                    log.error("Gardens with id {} not found", userId);
+                    return new GardenNotFoundException();
+                });
+    }
 
     @Override
     public Garden getByIdAndUserId(Integer id, Integer userId) {
         // TODO: implement me
         return null;
     }
+
+
 
     @Override
     public Boolean save(Integer userId, String name) {
