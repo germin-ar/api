@@ -1,7 +1,7 @@
 package ar.germin.api.application.port.in;
 
 public interface DeleteGardenPortIn {
-    void delete(DeleteGardenPortIn.Params params);
+    void delete(Params params);
 
     class Params {
         private final Integer gardenId;

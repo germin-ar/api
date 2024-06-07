@@ -1,1 +1,3 @@
-DELETE FROM gardens WHERE id = :id;
+UPDATE gardens
+SET is_active = false
+WHERE id = :id;

@@ -4,9 +4,12 @@ import ar.germin.api.adapter.jdbc.models.GardenModel;
 import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.exceptions.GardenNameAlreadyExistsException;
 import ar.germin.api.application.exceptions.GardenNotFoundException;
+import ar.germin.api.application.exceptions.PlantsNotFoundException;
+import ar.germin.api.application.exceptions.UpdatePlantIdToNullException;
 import ar.germin.api.application.port.out.DeleteGardenRepository;
 import ar.germin.api.application.port.out.GetGardenRepository;
 import ar.germin.api.application.port.out.SaveGardenRepository;
+import ar.germin.api.application.port.out.UpdatePlantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -19,21 +22,27 @@ import java.util.Optional;
 
 @Component
 @Slf4j
-public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenRepository, DeleteGardenRepository {
+public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenRepository, DeleteGardenRepository, UpdatePlantRepository {
     private static final String SELECT_GARDEN_BY_ID_PATH = "sql/selectGardenById.sql";
     private static final String SAVE_GARDEN_PATH = "sql/saveGarden.sql";
     private static final String DELETE_GARDEN_PATH = "sql/deleteGarden.sql";
+    private static final String REMOVE_GARDEN_ID_FROM_PLANTS_PATH = "sql/removeGardenIdFromPlants.sql";
+    private static final String UPDATE_PLANTS_SET_ID_GARDEN_TO_NULL_PATH = "sql/updatePlantsSetIdGardenToNull.sql";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String selectGardenByIdSql;
     private final String saveGardenSql;
     private final String deleteGardenSql;
+    private final String removeGardenIdFromPlantsSql;
+    private final String updatePlantsSetIdGardenToNullSql;
 
     public GardenJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.selectGardenByIdSql = sqlReader.readSql(SELECT_GARDEN_BY_ID_PATH);
         this.saveGardenSql = sqlReader.readSql(SAVE_GARDEN_PATH);
         this.deleteGardenSql = sqlReader.readSql(DELETE_GARDEN_PATH);
+        this.removeGardenIdFromPlantsSql = sqlReader.readSql(REMOVE_GARDEN_ID_FROM_PLANTS_PATH);
+        this.updatePlantsSetIdGardenToNullSql = sqlReader.readSql(UPDATE_PLANTS_SET_ID_GARDEN_TO_NULL_PATH);
     }
 
     @Override
@@ -84,7 +93,7 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
     }
 
     @Override
-    public void deleteById(Integer gardenId) {
+    public void deleteGardenById(Integer gardenId) {
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("id", gardenId);
         log.info("Deleting garden with sql [{}] with params: [{}]", deleteGardenSql, params);
@@ -94,8 +103,39 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
             log.error("Garden with id {} not found", gardenId);
             throw new GardenNotFoundException();
         }
+
+        // Remove garden_id from plants
+        log.info("Removing garden id from plants with sql [{}] with params: [{}]", removeGardenIdFromPlantsSql, params);
+        this.namedParameterJdbcTemplate.update(removeGardenIdFromPlantsSql, params);
+    }
+
+    @Override
+    public void removeGardenIdFromPlants(Integer gardenId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("idGarden", gardenId);
+            log.info("Removing garden id from plants with sql [{}] with params: [{}]", removeGardenIdFromPlantsSql, params);
+            int rowsAffected = this.namedParameterJdbcTemplate.update(removeGardenIdFromPlantsSql, params);
+            if (rowsAffected == 0) {
+                throw new PlantsNotFoundException("No plants were associated with garden id: " + gardenId);
+            }
+        } catch (Exception ex) {
+            log.error("Error removing garden id from plants", ex);
+            throw new UpdatePlantIdToNullException("Error removing garden id from plants: " + ex.getMessage(), ex);
+        }
+    }
+
+    @Override
+    public void updatePlantsSetIdGardenToNull(Integer gardenId) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("gardenId", gardenId);
+            log.info("Updating plants to set idGarden to null with sql [{}] with params: [{}]", updatePlantsSetIdGardenToNullSql, params);
+
+            this.namedParameterJdbcTemplate.update(updatePlantsSetIdGardenToNullSql, params);
+        } catch (Exception ex) {
+            log.error("Error updating plants to set idGarden to null", ex);
+            throw new UpdatePlantIdToNullException("Error updating plants to set idGarden to null: " + ex.getMessage(), ex);
+        }
     }
 }
-
-
-
