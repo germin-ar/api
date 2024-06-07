@@ -33,6 +33,7 @@ public class PlantControllerAdapter {
                 .height(plantRequestModel.height())
                 .notes(plantRequestModel.notes())
                 .idGarden(plantRequestModel.idGarden())
+                .idUser(plantRequestModel.idUser())
                 .build());
     }
     @DeleteMapping("/{id}")

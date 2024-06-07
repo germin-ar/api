@@ -13,7 +13,8 @@ public record  PlantRequestModel(Integer id,
                                 String notes,
                                 Integer idGarden,
                                 Boolean isActive,
-                                Boolean isFavorite
+                                Boolean isFavorite,
+                                 Integer idUser
                                 ) {
 //    public Plant toDomain() {
 //        return Plant.builder()

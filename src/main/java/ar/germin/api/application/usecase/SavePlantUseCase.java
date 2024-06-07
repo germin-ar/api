@@ -25,6 +25,7 @@ public class SavePlantUseCase implements SavePlantPortIn {
         // TODO: validar si el jardín existe y que corresponda al usuario que llama
         return this.savePlantRepository.save(SavePlantRepository.Params.builder()
                 .idGarden(params.getIdGarden())
+                .idUser(params.getIdUser())
                 .alias(params.getAlias())
                 .notes(params.getNotes())
                 .height(params.getHeight())

@@ -19,5 +19,6 @@ public interface SavePlantPortIn {
         String notes;
         Integer idGarden;
         Boolean isActive;
+        Integer idUser;
     }
 }

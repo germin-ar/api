@@ -22,4 +22,5 @@ public class Plant {
     String notes;
     Boolean isActive;
     Integer idGarden;
+    Integer idUser;
 }
