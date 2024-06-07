@@ -7,7 +7,7 @@ import lombok.Value;
 import java.time.LocalDateTime;
 
 public interface SavePlantRepository {
-    Plant save(Params params);
+    Integer save(Params params);
 
     @Value
     @Builder
@@ -17,5 +17,7 @@ public interface SavePlantRepository {
         LocalDateTime plantingDate;
         String notes;
         Integer idGarden;
+        Integer idUser;
+        Boolean isActive;
     }
 }

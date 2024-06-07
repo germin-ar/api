@@ -3,6 +3,8 @@ package ar.germin.api.adapter.controller;
 
 import ar.germin.api.adapter.controller.models.CreateGardenRequestModel;
 import ar.germin.api.adapter.controller.models.GardenResponseModel;
+import ar.germin.api.adapter.jdbc.models.GardenModel;
+import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.port.in.GetPlantsGardenPortIn;
 import ar.germin.api.application.port.in.SaveGardenPortIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ public class GardenControllerAdapter {
     private final GetPlantsGardenPortIn getPlantsGardenPortIn;
     private final SaveGardenPortIn saveGardenPortIn;
 
+
     @Autowired
     public GardenControllerAdapter(GetPlantsGardenPortIn getPlantsGardenPortIn, SaveGardenPortIn saveGardenPortIn) {
         this.getPlantsGardenPortIn = getPlantsGardenPortIn;
@@ -32,8 +35,16 @@ public class GardenControllerAdapter {
 
     @GetMapping
     public List<GardenResponseModel> getGardensByUser(@RequestHeader("id-user") Integer userId) {
-        return List.of();
+        //Todo ver el response model
+        //TODO este metodo se usa en el jardin y en el registro/editar. Hacer un metodo que solo devuelva los jardines sin plantas, NO TOCAR ESTE METODO
+        return GardenResponseModel.fromDomainList(this.getPlantsGardenPortIn.getGardensByUser(userId));
     }
+
+    @GetMapping("/all")
+    public List<GardenResponseModel> getAllGardens(@RequestHeader("id-user") Integer userId) {
+        return GardenResponseModel.fromDomainAllListGardens(this.getPlantsGardenPortIn.getAllGardensByUser(userId));
+    }
+
 
     @GetMapping("/{id}")
     public GardenResponseModel getGardens(@PathVariable Integer id) {
@@ -41,12 +52,15 @@ public class GardenControllerAdapter {
     }
 
     @PostMapping
-    public void saveGarden(@RequestBody CreateGardenRequestModel createGardenRequestModel) {
-        this.saveGardenPortIn.save(createGardenRequestModel.getUserId(), createGardenRequestModel.getName());
+    public Boolean saveGarden(@RequestBody CreateGardenRequestModel createGardenRequestModel) {
+        return this.saveGardenPortIn.save(createGardenRequestModel.getUserId(), createGardenRequestModel.getName());
     }
+
+
 
     @DeleteMapping("/{id}")
     public void deleteGarden(@PathVariable("id") Integer id) {
         // TODO: borrar jardín
     }
+
 }

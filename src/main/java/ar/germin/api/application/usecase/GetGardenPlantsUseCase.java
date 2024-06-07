@@ -5,6 +5,8 @@ import ar.germin.api.application.port.in.GetPlantsGardenPortIn;
 import ar.germin.api.application.port.out.GetGardenRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class GetGardenPlantsUseCase implements GetPlantsGardenPortIn {
 
@@ -18,6 +20,16 @@ public class GetGardenPlantsUseCase implements GetPlantsGardenPortIn {
     @Override
     public Garden get(Integer id) {
         return this.getGardenRepository.getById(id);
+    }
+
+    @Override
+    public List<Garden> getGardensByUser(Integer id) {
+        return this.getGardenRepository.getByUserId(id);
+    }
+
+    @Override
+    public List<Garden> getAllGardensByUser(Integer id) {
+        return this.getGardenRepository.getAllGardensByUserId(id);
     }
 
 

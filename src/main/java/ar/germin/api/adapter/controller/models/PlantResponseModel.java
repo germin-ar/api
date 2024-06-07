@@ -17,6 +17,7 @@ public class PlantResponseModel {
     String alias;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime creationDate;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime modificationDate;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime plantingDate;
     String description;
     // TODO ver list -> List<FileImage> images;
     Boolean favorite;
@@ -26,11 +27,13 @@ public class PlantResponseModel {
     String notes;
     String nameGarden;
     String expo;
+    Integer idGarden;
 
     public static PlantResponseModel fromDomain(Plant plant){
         return PlantResponseModel.builder()
                 .id(plant.getId())
                 .alias(plant.getAlias())
+                .idGarden(plant.getIdGarden())
                 .creationDate(plant.getCreationDate())
                 .modificationDate(plant.getModificationDate())
                 .favorite(plant.getIsFavorite())

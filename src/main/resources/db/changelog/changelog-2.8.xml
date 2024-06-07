@@ -8,6 +8,7 @@
     <changeSet id="20240604_1" author="jfoppoli">
         <addColumn tableName="plant" schemaName="garden">
             <column name="is_active" type="boolean" defaultValue="true">
+                <constraints nullable="false"/>
             </column>
         </addColumn>
     </changeSet>
@@ -15,7 +16,14 @@
     <changeSet id="20240604_2" author="jfoppoli">
         <addColumn tableName="garden" schemaName="garden">
             <column name="is_active" type="boolean" defaultValue="true">
+                <constraints nullable="false"/>
             </column>
         </addColumn>
+    </changeSet>
+
+    <changeSet id="20240606_1" author="jfoppoli">
+        <renameColumn tableName="plant" oldColumnName="name" newColumnName="alias" schemaName="garden"/>
+    </changeSet>
+    <changeSet id="20240606_2" author="jfoppoli">
     </changeSet>
 </databaseChangeLog>

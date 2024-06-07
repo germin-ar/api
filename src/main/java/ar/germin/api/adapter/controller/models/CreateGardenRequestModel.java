@@ -11,4 +11,5 @@ import lombok.Value;
 public class CreateGardenRequestModel {
     Integer userId;
     String name;
+    Boolean isActive;
 }
