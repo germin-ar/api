@@ -9,7 +9,11 @@ select garden.id                garden_id,
        plants.creation_date     plant_creation_date,
        plants.modification_date plant_modification_date,
        plants.is_active         plant_is_active
-from garden.garden garden
-         left join garden.user garden_user on garden_user.id = garden.id_user
-         left join garden.plant plants on garden.id = plants.id_garden
-where garden_user.id = :idUser;
+
+
+
+from garden.plant plants
+    left join garden.garden garden on plants.id_garden = garden.id
+    left join garden.user garden_user on garden_user.id = garden.id_user
+where garden_user.id = :idUser
+   OR garden_user.id IS NULL;;

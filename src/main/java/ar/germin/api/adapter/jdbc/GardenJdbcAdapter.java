@@ -80,13 +80,13 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
         MapSqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("idUser", userId);
 
-        log.info("Querying gardens with sql [{}] with param: [{}]", selectAllGardensByUserSql, parameters);
+        log.info("Querying all gardens list with sql [{}] with param: [{}]", selectAllGardensByUserSql, parameters);
 
         return Optional
                 .of(this.namedParameterJdbcTemplate.query(selectAllGardensByUserSql, parameters, BeanPropertyRowMapper.newInstance(GardenModel.class)))
                 .map(GardenModel::toDomainFromModelAllListGardens)
                 .orElseThrow(() -> {
-                    log.error("Gardens with id {} not found", userId);
+                    log.error("Gardens all list with id {} not found", userId);
                     return new GardenNotFoundException();
                 });
     }

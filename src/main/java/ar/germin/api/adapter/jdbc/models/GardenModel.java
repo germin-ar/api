@@ -6,8 +6,7 @@ import ar.germin.api.application.domain.User;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -85,34 +84,38 @@ public class GardenModel {
     }
 
     public static List<Garden> toDomainFromModelAllListGardens(List<GardenModel> gardenModels) {
-        return gardenModels.stream().map(gardenModel -> {
-            Integer id = gardenModel.getGardenId();
-            String name = gardenModel.getGardenName();
-            Boolean isActive = gardenModel.getGardenIsActive();
-            User user = User.builder()
-                    .id(gardenModel.getUserId())
-                    .email(gardenModel.getUserEmail())
-                    .name(gardenModel.getUserName())
-                    .build();
-            List<Plant> plants = gardenModels.stream()
-                    .filter(gm -> Optional.ofNullable(gm.plantId).isPresent())
-                    .map(gm -> Plant.builder()
-                            .id(gm.getPlantId())
-                            .alias(gm.getPlantName())
-                            .creationDate(gm.getPlantCreationDate())
-                            .modificationDate(gm.getPlantModificationDate())
-                            .isActive(gm.getPlantIsActive())
-                            .build())
-                    .collect(Collectors.toList());
+        Map<Integer, Garden> processedGardens = new HashMap<>();
 
-            return Garden.builder()
-                    .id(id)
-                    .name(name)
-                    .isActive(isActive)
-                    .user(user)
-                    .plants(plants)
-                    .build();
-        }).collect(Collectors.toList());
+        for (GardenModel gardenModel : gardenModels) {
+            Integer id = gardenModel.getGardenId();
+            if (!processedGardens.containsKey(id)) {
+                Garden garden = Garden.builder()
+                        .id(gardenModel.getGardenId())
+                        .name(gardenModel.getGardenName())
+                        .isActive(gardenModel.getGardenIsActive())
+                        .user(User.builder()
+                                .id(gardenModel.getUserId())
+                                .email(gardenModel.getUserEmail())
+                                .name(gardenModel.getUserName())
+                                .build())
+                        .plants(new ArrayList<>())
+                        .build();
+                processedGardens.put(id, garden);
+            }
+
+            if (gardenModel.getPlantId() != null) {
+                Plant plant = Plant.builder()
+                        .id(gardenModel.getPlantId())
+                        .alias(gardenModel.getPlantName())
+                        .creationDate(gardenModel.getPlantCreationDate())
+                        .modificationDate(gardenModel.getPlantModificationDate())
+                        .isActive(gardenModel.getPlantIsActive())
+                        .build();
+                processedGardens.get(id).getPlants().add(plant);
+            }
+        }
+
+        return new ArrayList<>(processedGardens.values());
     }
 }
 
