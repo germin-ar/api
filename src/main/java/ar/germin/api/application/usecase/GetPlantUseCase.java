@@ -1,6 +1,7 @@
 package ar.germin.api.application.usecase;
 
 import ar.germin.api.adapter.controller.models.PlantResponseModel;
+import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.port.in.GetPlantPortIn;
 import ar.germin.api.application.port.out.GetPlantRepository;
 import org.springframework.stereotype.Component;
@@ -13,8 +14,9 @@ public class GetPlantUseCase implements GetPlantPortIn {
         this.getPlantRepository = getPlantRepository;
     }
 
+
     @Override
-    public PlantResponseModel get(Integer idUser, Integer idPlant) {
+    public Plant get(Integer idUser, Integer idPlant) {
         return this.getPlantRepository.get(idUser, idPlant);
     }
 }

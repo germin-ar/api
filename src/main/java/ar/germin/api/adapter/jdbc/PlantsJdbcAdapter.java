@@ -2,6 +2,7 @@ package ar.germin.api.adapter.jdbc;
 
 import ar.germin.api.adapter.controller.models.PlantResponseModel;
 import ar.germin.api.adapter.jdbc.models.PlantModel;
+import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.exceptions.ErrorPlantSaveException;
 import ar.germin.api.application.exceptions.PlantNotFoundException;
 import ar.germin.api.application.port.out.DeletePlantRepository;
@@ -18,6 +19,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.ErrorResponseException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -109,20 +111,19 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
     }
 
     @Override
-    public PlantResponseModel get(Integer idUser, Integer idPlant) {
+    public Plant get(Integer idUser, Integer idPlant) {
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("idUser", idUser)
                 .addValue("idPlant", idPlant);
 
         log.info("Querying garden with sql [{}] with params: [{}]", getPlantSql, params);
+        List<PlantModel> plantModels = this.namedParameterJdbcTemplate.query(getPlantSql, params, BeanPropertyRowMapper.newInstance(PlantModel.class));
 
-        try {
-            PlantModel plantModel = this.namedParameterJdbcTemplate.queryForObject(getPlantSql, params, BeanPropertyRowMapper.newInstance(PlantModel.class));
-            assert plantModel != null;
-            return plantModel.toDomain();
-        } catch (PlantNotFoundException e) {
+        if (plantModels.isEmpty()) {
             log.error("Plant with id [{}] not found", idPlant);
             throw new PlantNotFoundException();
         }
+
+        return plantModels.get(0).toDomain();
     }
 }

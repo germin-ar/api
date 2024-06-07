@@ -1,6 +1,7 @@
 package ar.germin.api.adapter.jdbc.models;
 
 import ar.germin.api.adapter.controller.models.PlantResponseModel;
+import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.domain.Plant;
 import lombok.Data;
 
@@ -19,8 +20,8 @@ public class PlantModel {
     private String notes;
     private LocalDateTime plantingDate;
 
-    public PlantResponseModel toDomain(){
-        return PlantResponseModel.builder()
+    public Plant toDomain(){
+        return Plant.builder()
                 .id(id)
                 .alias(alias)
                 .idGarden(idGarden)

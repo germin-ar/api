@@ -21,6 +21,7 @@ public class PlantControllerAdapter {
     private final UpdatePlantPortIn updatePlantPortIn;
     private final GetPlantPortIn getPlantPortIn;
 
+
     @Autowired
     public PlantControllerAdapter(SavePlantPortIn savePlantPortIn,DeletePlantPortIn deletePlantPortIn, UpdatePlantPortIn updatePlantPortIn, GetPlantPortIn getPlantPortIn) {
         this.savePlantPortIn = savePlantPortIn;
@@ -61,7 +62,8 @@ public class PlantControllerAdapter {
 
     @GetMapping("/{idPlant}")
     public PlantResponseModel getPlant(@RequestHeader("id-user") Integer idUser, @PathVariable Integer idPlant) {
-        return this.getPlantPortIn.get(idUser, idPlant);
+
+        return PlantResponseModel.fromDomain(this.getPlantPortIn.get(idUser, idPlant));
     }
 
 }

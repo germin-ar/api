@@ -21,7 +21,6 @@ public class PlantResponseModel {
     String description;
     // TODO ver list -> List<FileImage> images;
     Boolean favorite;
-    Boolean isFavorite;
     Double height;
     //TODO enum  ALTO BAJO MEDIO
     String sunExposure;
