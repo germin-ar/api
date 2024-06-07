@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240518_0" author="dnavarrete">
+        <sql>
+            create schema garden;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240518_1" author="dnavarrete">
+        <createTable tableName="user" schemaName="garden">
+            <column name="id" type="int" autoIncrement="true" incrementBy="1" startWith="1">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="user"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20240518_2" author="msoto">
+         <createTable tableName="plant_catalog" schemaName="garden">
+             <column name="id" type="int" autoIncrement="true" incrementBy="1" startWith="1">
+                 <constraints nullable="false" primaryKey="true" />
+             </column>
+             <column name="scientific_name" type="varchar">
+                 <constraints nullable="false"/>
+             </column>
+             <column name="description" type="varchar">
+                 <constraints nullable="false"/>
+             </column>
+             <column name="id_powo" type="int">
+                 <constraints nullable="false"/>
+             </column>
+             <column name="id_gbif" type="integer">
+                 <constraints nullable="false"/>
+             </column>
+         </createTable>
+    </changeSet>
+
+    <changeSet id="20240518_3" author="msoto">
+        <createTable tableName="garden" schemaName="garden">
+            <column name="id" type="int" autoIncrement="true" incrementBy="1" startWith="1">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false" />
+            </column>
+            <column name="id_user" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id_user"
+                                 baseTableName="garden"
+                                 constraintName="fk_id_user"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user"
+                                 baseTableSchemaName="garden"
+                                 referencedTableSchemaName="garden"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet id="20240518_4" author="msoto">
+        <createTable tableName="plant" schemaName="garden">
+            <column name="id" type="int" autoIncrement="true" incrementBy="1" startWith="1">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false" />
+            </column>
+            <column name="id_garden" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_plants_catalog" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id_garden"
+                                 baseTableName="plant"
+                                 constraintName="fk_id_garden"
+                                 referencedColumnNames="id"
+                                 referencedTableName="garden"
+                                 baseTableSchemaName="garden"
+                                 referencedTableSchemaName="garden"
+                                 validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="id_plants_catalog"
+                                 baseTableName="plant"
+                                 constraintName="fk_id_plants_catalog"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plant_catalog"
+                                 baseTableSchemaName="garden"
+                                 referencedTableSchemaName="garden"
+                                 validate="true"/>
+    </changeSet>
+    <changeSet id="20240518_5" author="msoto">
+        <createTable tableName="plant_photo" schemaName="garden">
+            <column name="id" type="int" autoIncrement="true" incrementBy="1" startWith="1">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="id_plant" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="uploaded_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id_plant"
+                                 baseTableName="plant_photo"
+                                 constraintName="fk_id_plant"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plant"
+                                 baseTableSchemaName="garden"
+                                 referencedTableSchemaName="garden"
+                                 validate="true"/>
+
+    </changeSet>
+
+</databaseChangeLog>

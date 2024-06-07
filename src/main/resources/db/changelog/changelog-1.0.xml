@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240420_1" author="dnavarrete">
+        <createTable tableName="file_image" schemaName="images">
+            <column name="id" type="uuid">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="file_path" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_public" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="file_image"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20240420_2" author="dnavarrete">
+        <createTable tableName="ai_detections" schemaName="images">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="file_image_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20240420_3" author="dnavarrete">
+        <createTable tableName="ai_candidates" schemaName="images">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ai_detection_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="score" type="float">
+                <constraints nullable="false"/>
+            </column>
+            <column name="specie_id_gbif" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="specie_id_powo" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="specie_scientific_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="ai_detection_id"
+                                 baseTableName="ai_candidates"
+                                 constraintName="fk_ai_detection_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ai_detections"
+                                 baseTableSchemaName="images"
+                                 referencedTableSchemaName="images"
+                                 validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

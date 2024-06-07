@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240602_8" author="armando">
+        <sql>
+            CREATE SCHEMA specie_care
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240602_10" author="armando">
+        <createTable tableName="section" schemaName="specie_care">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_cientific_name" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="section"
+                                 baseColumnNames="id_cientific_name"
+                                 constraintName="fk_section_id_cientific_name"
+                                 referencedTableName="cientific_name"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="specie_care"
+                                 referencedTableSchemaName="plant_detail"
+                                 validate="true"
+        />
+    </changeSet>
+</databaseChangeLog>

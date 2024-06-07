@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240601_1" author="armando">
+        <sql>
+            CREATE SCHEMA preferences
+        </sql>
+    </changeSet>
+
+    <changeSet id="20240601_2" author="armando">
+        <createTable tableName="suscription" schemaName="preferences">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_user" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_suscription" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="period_init" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+            <column name="period_final" type="date">
+                <constraints nullable="true"/>
+            </column>
+            <column name="payment_method" type="date">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="suscription"
+                                 baseColumnNames="id_user"
+                                 constraintName="fk_suscription_id_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="preferences"
+                                 referencedTableSchemaName="garden"
+                                 validate="true"
+        />
+    </changeSet>
+
+    <changeSet id="20240601_3" author="armando">
+        <createTable tableName="plant_not_suggested" schemaName="preferences">
+            <column name="id_user" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_plant" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="plant_not_suggested" columnNames="id_user, id_plant" schemaName="preferences"/>
+        <addForeignKeyConstraint  baseTableName="plant_not_suggested"
+                                  baseColumnNames="id_user"
+                                  constraintName="fk_plant_not_suggested_id_user"
+                                  referencedTableName="user"
+                                  referencedColumnNames="id"
+                                  baseTableSchemaName="preferences"
+                                  referencedTableSchemaName="garden"
+                                  validate="true"
+        />
+        <addForeignKeyConstraint  baseTableName="plant_not_suggested"
+                                  baseColumnNames="id_plant"
+                                  constraintName="fk_plant_not_suggested_id_plant"
+                                  referencedTableName="plant"
+                                  referencedColumnNames="id"
+                                  baseTableSchemaName="preferences"
+                                  referencedTableSchemaName="garden"
+                                  validate="true"
+        />
+    </changeSet>
+</databaseChangeLog>

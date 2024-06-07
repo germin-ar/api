@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: api
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/master.xml
+
+germinar:
+  integrations:
+    perenual:
+      api-key: ${PERENUAL_API_KEY}
+
+    plantnet:
+      api-key: ${PLANTNET_API_KEY}
+
+    freeimage:
+      api-key: ${FREEIMAGE_API_KEY}
