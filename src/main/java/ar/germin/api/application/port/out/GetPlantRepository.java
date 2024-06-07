@@ -1,7 +1,10 @@
 package ar.germin.api.application.port.out;
 
-import ar.germin.api.application.domain.Plant;
+
+import ar.germin.api.adapter.controller.models.PlantResponseModel;
+
+
 
 public interface GetPlantRepository {
-    Plant get(Integer id);
+    PlantResponseModel get(Integer idUser, Integer idPlant);
 }

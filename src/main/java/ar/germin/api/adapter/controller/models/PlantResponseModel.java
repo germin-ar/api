@@ -17,9 +17,11 @@ public class PlantResponseModel {
     String alias;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime creationDate;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime modificationDate;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime plantingDate;
     String description;
     // TODO ver list -> List<FileImage> images;
     Boolean favorite;
+    Boolean isFavorite;
     Double height;
     //TODO enum  ALTO BAJO MEDIO
     String sunExposure;

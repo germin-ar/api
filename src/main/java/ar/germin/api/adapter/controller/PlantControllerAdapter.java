@@ -2,7 +2,9 @@ package ar.germin.api.adapter.controller;
 
 import ar.germin.api.adapter.controller.models.PlantRequestModel;
 
+import ar.germin.api.adapter.controller.models.PlantResponseModel;
 import ar.germin.api.application.port.in.DeletePlantPortIn;
+import ar.germin.api.application.port.in.GetPlantPortIn;
 import ar.germin.api.application.port.in.SavePlantPortIn;
 import ar.germin.api.application.port.in.UpdatePlantPortIn;
 import ar.germin.api.application.port.out.UpdatePlantRepository;
@@ -17,12 +19,14 @@ public class PlantControllerAdapter {
     private final SavePlantPortIn savePlantPortIn;
     private final DeletePlantPortIn deletePlantPortIn;
     private final UpdatePlantPortIn updatePlantPortIn;
+    private final GetPlantPortIn getPlantPortIn;
 
     @Autowired
-    public PlantControllerAdapter(SavePlantPortIn savePlantPortIn,DeletePlantPortIn deletePlantPortIn, UpdatePlantPortIn updatePlantPortIn) {
+    public PlantControllerAdapter(SavePlantPortIn savePlantPortIn,DeletePlantPortIn deletePlantPortIn, UpdatePlantPortIn updatePlantPortIn, GetPlantPortIn getPlantPortIn) {
         this.savePlantPortIn = savePlantPortIn;
         this.deletePlantPortIn = deletePlantPortIn;
         this.updatePlantPortIn = updatePlantPortIn;
+        this.getPlantPortIn = getPlantPortIn;
     }
 
     @PostMapping
@@ -55,9 +59,9 @@ public class PlantControllerAdapter {
                         .build());
             }
 
-    @GetMapping("/{id}")
-    public PlantRequestModel getPlant(@PathVariable ("id-user") Integer id){
-        return null;
+    @GetMapping("/{idPlant}")
+    public PlantResponseModel getPlant(@RequestHeader("id-user") Integer idUser, @PathVariable Integer idPlant) {
+        return this.getPlantPortIn.get(idUser, idPlant);
     }
 
 }

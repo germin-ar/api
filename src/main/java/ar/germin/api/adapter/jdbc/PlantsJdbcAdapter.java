@@ -1,13 +1,16 @@
 package ar.germin.api.adapter.jdbc;
 
-import ar.germin.api.adapter.controller.models.PlantRequestModel;
-import ar.germin.api.application.domain.Plant;
+import ar.germin.api.adapter.controller.models.PlantResponseModel;
+import ar.germin.api.adapter.jdbc.models.PlantModel;
 import ar.germin.api.application.exceptions.ErrorPlantSaveException;
+import ar.germin.api.application.exceptions.PlantNotFoundException;
 import ar.germin.api.application.port.out.DeletePlantRepository;
+import ar.germin.api.application.port.out.GetPlantRepository;
 import ar.germin.api.application.port.out.SavePlantRepository;
 import ar.germin.api.application.port.out.UpdatePlantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -15,16 +18,20 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.ErrorResponseException;
 
+import java.util.Optional;
+
 @Slf4j
 @Component
-public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantRepository, UpdatePlantRepository {
+public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantRepository, UpdatePlantRepository, GetPlantRepository {
     private static final String SAVE_PLANT_PATH = "sql/savePlant.sql";
     private static final String DELETE_PLANT_PATH = "sql/deletePlant.sql";
     private static final String UPDATE_PLANT_PATH = "sql/updatePlant.sql";
+    private static final String GET_PLANT_PATH = "sql/selectPlantByUserIdAndPlantId.sql";
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String savePlantSql;
     private final String deletePlantSql;
     private final String updatePlantSql;
+    private final String getPlantSql;
 
     @Autowired
     public PlantsJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
@@ -32,6 +39,7 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
         this.savePlantSql = sqlReader.readSql(SAVE_PLANT_PATH);
         this.deletePlantSql = sqlReader.readSql(DELETE_PLANT_PATH);
         this.updatePlantSql = sqlReader.readSql(UPDATE_PLANT_PATH);
+        this.getPlantSql = sqlReader.readSql(GET_PLANT_PATH);
     }
 
     @Override
@@ -97,6 +105,24 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
         } catch (ErrorResponseException ex) {
             log.error("Error updating plant", ex);
             throw new ErrorPlantSaveException("No se pudo actualizar la planta");
+        }
+    }
+
+    @Override
+    public PlantResponseModel get(Integer idUser, Integer idPlant) {
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("idUser", idUser)
+                .addValue("idPlant", idPlant);
+
+        log.info("Querying garden with sql [{}] with params: [{}]", getPlantSql, params);
+
+        try {
+            PlantModel plantModel = this.namedParameterJdbcTemplate.queryForObject(getPlantSql, params, BeanPropertyRowMapper.newInstance(PlantModel.class));
+            assert plantModel != null;
+            return plantModel.toDomain();
+        } catch (PlantNotFoundException e) {
+            log.error("Plant with id [{}] not found", idPlant);
+            throw new PlantNotFoundException();
         }
     }
 }
