@@ -1,6 +1,5 @@
 package ar.germin.api.adapter.jdbc;
 
-import ar.germin.api.adapter.controller.models.PlantResponseModel;
 import ar.germin.api.adapter.jdbc.models.PlantModel;
 import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.exceptions.ErrorPlantSaveException;
@@ -61,9 +60,7 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
 
             KeyHolder keyHolder = new GeneratedKeyHolder();
             this.namedParameterJdbcTemplate.update(savePlantSql, sqlParams, keyHolder, new String[]{"id"});
-            Integer generatedId = keyHolder.getKey().intValue();
-
-
+            Integer generatedId = Optional.ofNullable(keyHolder.getKey()).map(Number::intValue).orElse(-1);
 
             return generatedId;
         } catch (ErrorResponseException ex) {
@@ -77,7 +74,7 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
     public void delete(Integer id) {
         try {
             MapSqlParameterSource sqlParams = new MapSqlParameterSource()
-                    .addValue("id", id );
+                    .addValue("id", id);
 
             log.info("deleting plant with sql [{}] with params: [{}]", deletePlantSql, sqlParams);
             this.namedParameterJdbcTemplate.update(deletePlantSql, sqlParams);

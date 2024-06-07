@@ -1,6 +1,5 @@
 package ar.germin.api.application.usecase;
 
-import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.port.in.SavePlantPortIn;
 import ar.germin.api.application.port.out.GetGardenRepository;
 import ar.germin.api.application.port.out.SavePlantRepository;
