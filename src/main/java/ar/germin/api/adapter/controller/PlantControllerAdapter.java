@@ -26,8 +26,8 @@ public class PlantControllerAdapter {
     }
 
     @PostMapping
-    public void createPlant(@RequestBody PlantRequestModel plantRequestModel) {
-        this.savePlantPortIn.save(SavePlantPortIn.Params.builder()
+    public Integer createPlant(@RequestBody PlantRequestModel plantRequestModel) {
+        return this.savePlantPortIn.save(SavePlantPortIn.Params.builder()
                 .alias(plantRequestModel.alias())
                 .plantingDate(plantRequestModel.plantingDate())
                 .height(plantRequestModel.height())
@@ -54,5 +54,9 @@ public class PlantControllerAdapter {
                         .build());
             }
 
+    @GetMapping("/{id}")
+    public PlantRequestModel getPlant(@PathVariable ("id-user") Integer id){
+        return null;
+    }
 
 }

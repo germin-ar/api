@@ -21,7 +21,7 @@ public class SavePlantUseCase implements SavePlantPortIn {
     }
 
     @Override
-    public Plant save(SavePlantPortIn.Params params) {
+    public Integer save(SavePlantPortIn.Params params) {
         // TODO: validar si el jardín existe y que corresponda al usuario que llama
         return this.savePlantRepository.save(SavePlantRepository.Params.builder()
                 .idGarden(params.getIdGarden())
