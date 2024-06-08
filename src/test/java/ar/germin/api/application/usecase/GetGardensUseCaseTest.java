@@ -22,7 +22,7 @@ class GetGardensUseCaseTest {
     private final GetPlantRepository getPlantRepository = mock(GetPlantRepository.class);
 
     @Test
-    void testGetGardensByUserReturnsEmptyListWhenNoGardensExist() {
+    void testGetGardensByUserReturnsEmptyListWhenNoGardensExists() {
         when(getGardenRepository.getByUserId(2)).thenReturn(Collections.emptyList());
         when(getPlantRepository.getByIdUser(2)).thenReturn(Collections.emptyList());
 
