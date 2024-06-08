@@ -2,6 +2,7 @@ package ar.germin.api.application.domain;
 
 import lombok.Builder;
 import lombok.Value;
+import lombok.With;
 
 import java.util.List;
 
@@ -10,7 +11,6 @@ import java.util.List;
 public class Garden {
     Integer id;
     String name;
-    User user;
-    Boolean isActive;
+    @With
     List<Plant> plants;
 }

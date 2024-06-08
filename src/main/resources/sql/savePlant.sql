@@ -6,7 +6,8 @@ insert into garden.plant (alias,
                           modification_date,
                           height,
                           notes,
-                          planting_date)
+                          planting_date,
+                          is_active)
 values (:alias,
         :idGarden,
         :idUser,
@@ -15,4 +16,5 @@ values (:alias,
         now(),
         :height,
         :notes,
-        :plantingDate);
+        :plantingDate,
+        true);

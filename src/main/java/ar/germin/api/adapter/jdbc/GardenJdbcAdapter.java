@@ -2,8 +2,6 @@ package ar.germin.api.adapter.jdbc;
 
 import ar.germin.api.adapter.jdbc.models.GardenModel;
 import ar.germin.api.application.domain.Garden;
-import ar.germin.api.application.domain.User;
-import ar.germin.api.application.exceptions.GardenNameAlreadyExistsException;
 import ar.germin.api.application.exceptions.GardenNotFoundException;
 import ar.germin.api.application.port.out.GetGardenRepository;
 import ar.germin.api.application.port.out.SaveGardenRepository;
@@ -22,21 +20,18 @@ import java.util.Optional;
 public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenRepository {
     private static final String SELECT_GARDEN_BY_ID_PATH = "sql/selectGardenById.sql";
     private static final String SAVE_GARDEN_PATH = "sql/saveGarden.sql";
-    private static final String SELECT_GARDENS_BY_ID_USER = "sql/selectGardensByIdUser.sql";
-    private static final String SELECT_ALL_GARDENS_BY_USER = "sql/selectAllGardensByIdUser.sql";
+    private static final String SELECT_GARDENS_BY_ID_USER_PATH = "sql/selectGardensByIdUser.sql";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String selectGardenByIdSql;
     private final String saveGardenSql;
     private final String selectGardensByIdUserSql;
-    private final String selectAllGardensByUserSql;
 
     public GardenJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.selectGardenByIdSql = sqlReader.readSql(SELECT_GARDEN_BY_ID_PATH);
         this.saveGardenSql = sqlReader.readSql(SAVE_GARDEN_PATH);
-        this.selectGardensByIdUserSql = sqlReader.readSql(SELECT_GARDENS_BY_ID_USER);
-        this.selectAllGardensByUserSql = sqlReader.readSql(SELECT_ALL_GARDENS_BY_USER);
+        this.selectGardensByIdUserSql = sqlReader.readSql(SELECT_GARDENS_BY_ID_USER_PATH);
     }
 
     @Override
@@ -47,8 +42,8 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
         log.info("Querying garden with sql [{}] with params: [{}]", selectGardenByIdSql, params);
 
         return Optional
-                .of(this.namedParameterJdbcTemplate.query(selectGardenByIdSql, params, BeanPropertyRowMapper.newInstance(GardenModel.class)))
-                .map(GardenModel::toDomainFromModelList)
+                .ofNullable(this.namedParameterJdbcTemplate.queryForObject(selectGardenByIdSql, params, new BeanPropertyRowMapper<>(GardenModel.class)))
+                .map(GardenModel::toDomain)
                 .orElseThrow(() -> {
                     log.error("Garden with id {} not found", id);
                     return new GardenNotFoundException();
@@ -73,31 +68,6 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
                 });
 
     }
-    // asssssssssssssss
-    @Override
-    public List<Garden> getAllGardensByUserId(Integer userId) {
-
-        MapSqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("idUser", userId);
-
-        log.info("Querying all gardens list with sql [{}] with param: [{}]", selectAllGardensByUserSql, parameters);
-
-        return Optional
-                .of(this.namedParameterJdbcTemplate.query(selectAllGardensByUserSql, parameters, BeanPropertyRowMapper.newInstance(GardenModel.class)))
-                .map(GardenModel::toDomainFromModelAllListGardens)
-                .orElseThrow(() -> {
-                    log.error("Gardens all list with id {} not found", userId);
-                    return new GardenNotFoundException();
-                });
-    }
-
-    @Override
-    public Garden getByIdAndUserId(Integer id, Integer userId) {
-        // TODO: implement me
-        return null;
-    }
-
-
 
     @Override
     public Boolean save(Integer userId, String name) {

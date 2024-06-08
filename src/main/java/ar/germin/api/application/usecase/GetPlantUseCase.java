@@ -1,6 +1,5 @@
 package ar.germin.api.application.usecase;
 
-import ar.germin.api.adapter.controller.models.PlantResponseModel;
 import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.port.in.GetPlantPortIn;
 import ar.germin.api.application.port.out.GetPlantRepository;
@@ -17,6 +16,6 @@ public class GetPlantUseCase implements GetPlantPortIn {
 
     @Override
     public Plant get(Integer idUser, Integer idPlant) {
-        return this.getPlantRepository.get(idUser, idPlant);
+        return this.getPlantRepository.getByIdUserAndIdPlant(idUser, idPlant);
     }
 }
