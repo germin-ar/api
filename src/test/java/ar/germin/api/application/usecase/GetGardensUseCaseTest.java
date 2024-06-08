@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -24,7 +25,7 @@ class GetGardensUseCaseTest {
     @Test
     void testGetGardensByUserReturnsEmptyListWhenNoGardensExists() {
         when(getGardenRepository.getByUserId(2)).thenReturn(Collections.emptyList());
-        when(getPlantRepository.getByIdUser(2)).thenReturn(Collections.emptyList());
+        when(getPlantRepository.getByIdGardenAndIdUser(anyInt(), 2)).thenReturn(Collections.emptyList());
 
         GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
 
@@ -35,49 +36,53 @@ class GetGardensUseCaseTest {
 
     @Test
     void testGetGardensByUserReturnsCorrectNumberOfGardens() {
-        Garden garden1 = mock(Garden.class);
-        Garden garden2 = mock(Garden.class);
-        List<Garden> mockGardens = new ArrayList<>();
-        mockGardens.add(garden1);
-        mockGardens.add(garden2);
+        Garden garden1 = Garden.builder()
+                .id(1)
+                .name("Jardín de rosas")
+                .build();
 
-        when(getGardenRepository.getByUserId(2)).thenReturn(mockGardens);
+        Garden garden2 = Garden.builder()
+                .id(2)
+                .name("Terraza")
+                .build();
+
+        List<Garden> gardens = List.of(garden1, garden2);
+
+        when(getGardenRepository.getByUserId(2)).thenReturn(gardens);
 
         GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
 
-        List<Garden> gardens = useCase.getGardensByUser(2);
+        List<Garden> result = useCase.getGardensByUser(2);
 
-        Assertions.assertNotNull(gardens);
-        Assertions.assertEquals(2, gardens.size());
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(2, result.size());
+        Assertions.assertEquals(1, result.stream().filter(g -> g.getName().equals("Jardín de rosas")).count());
+        Assertions.assertEquals(1, result.stream().filter(g -> g.getName().equals("Terraza")).count());
     }
 
     @Test
     void testGetGardensByUserWithPlantsReturnsCorrectNumberOfPlants() {
-        User user = mock(User.class);
 
-        Garden garden = mock(Garden.class);
-        List<Garden> mockGardens = new ArrayList<>();
-        mockGardens.add(garden);
+        Garden garden = Garden.builder()
+                .id(1)
+                .build();
 
-        Plant plant1 = mock(Plant.class);
-        Plant plant2 = mock(Plant.class);
-        List<Plant> mockPlants = new ArrayList<>();
-        mockPlants.add(plant1);
-        mockPlants.add(plant2);
+        Plant plant1 = Plant.builder()
+                .build();
+        Plant plant2 = Plant.builder()
+                .build();
 
-        when(user.getId()).thenReturn(2);
-        when(garden.getId()).thenReturn(5);
-        when(getGardenRepository.getByUserId(2)).thenReturn(mockGardens);
-        when(garden.withPlants(mockPlants)).thenReturn(mockGardens.get(0));
-        when(mockGardens.get(0).getPlants()).thenReturn(mockPlants);
-        when(getPlantRepository.getByIdGardenAndIdUser(5, 2)).thenReturn(mockPlants);
+        List<Plant> mockPlants = List.of(plant1, plant2);
+
+        when(getGardenRepository.getByUserId(2)).thenReturn(List.of(garden));
+        when(getPlantRepository.getByIdGardenAndIdUser(1, 2)).thenReturn(mockPlants);
 
         GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
 
-        List<Garden> gardensResult = useCase.getGardensByUser(2);
+        List<Garden> result = useCase.getGardensByUser(2);
 
-        Assertions.assertNotNull(gardensResult);
-        Assertions.assertEquals(2, gardensResult.get(0).getPlants().size());
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(2, result.get(0).getPlants().size());
     }
 
     @Test
