@@ -50,11 +50,9 @@ class GetCandidatesPlantsUseCaseTest {
     }
 
     @Test
-    void testGetAIDetectionReturnsNullWhenNo() {
+    void testGetAIDetectionReturnsNullWhenNoDetectionFound() {
         FileImage fileImage = mock(FileImage.class);
-
-        AIDetection aiDetection = mock(AIDetection.class);
-
+        
         when(getFileRepository.getById("1a")).thenReturn(fileImage);
         when(getAIDetectionRepository.getByFileImage(fileImage)).thenReturn(null);
 
