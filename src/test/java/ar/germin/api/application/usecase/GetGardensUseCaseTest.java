@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -25,7 +27,7 @@ class GetGardensUseCaseTest {
     @Test
     void testGetGardensByUserReturnsEmptyListWhenNoGardensExists() {
         when(getGardenRepository.getByUserId(2)).thenReturn(Collections.emptyList());
-        when(getPlantRepository.getByIdGardenAndIdUser(anyInt(), 2)).thenReturn(Collections.emptyList());
+        when(getPlantRepository.getByIdGardenAndIdUser(anyInt(), eq(2))).thenReturn(Collections.emptyList());
 
         GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
 
