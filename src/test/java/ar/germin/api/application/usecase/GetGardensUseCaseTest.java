@@ -2,18 +2,15 @@ package ar.germin.api.application.usecase;
 
 import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.domain.Plant;
-import ar.germin.api.application.domain.User;
 import ar.germin.api.application.port.in.GetGardensPortIn;
 import ar.germin.api.application.port.out.GetGardenRepository;
 import ar.germin.api.application.port.out.GetPlantRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -64,14 +61,15 @@ class GetGardensUseCaseTest {
 
     @Test
     void testGetGardensByUserWithPlantsReturnsCorrectNumberOfPlants() {
-
         Garden garden = Garden.builder()
                 .id(1)
                 .build();
 
         Plant plant1 = Plant.builder()
+                .alias("Tomate")
                 .build();
         Plant plant2 = Plant.builder()
+                .alias("Lechuga")
                 .build();
 
         List<Plant> mockPlants = List.of(plant1, plant2);
@@ -85,55 +83,41 @@ class GetGardensUseCaseTest {
 
         Assertions.assertNotNull(result);
         Assertions.assertEquals(2, result.get(0).getPlants().size());
+        Assertions.assertEquals(1, result.get(0).getPlants().stream().filter(p -> p.getAlias().equals("Tomate")).count());
+        Assertions.assertEquals(1, result.get(0).getPlants().stream().filter(p -> p.getAlias().equals("Lechuga")).count());
     }
 
     @Test
-    void testGetGardensByUserWithPlantsWithoutGardenReturnsCorrectNumberOfPlants() {
-        User user = mock(User.class);
+    void testGetPlantsWithoutGardenByUserReturnsCorrectNumberOfPlants() {
+        Plant plant1 = Plant.builder().build();
+        Plant plant2 = Plant.builder().build();
 
-        Plant plant1 = mock(Plant.class);
-        Plant plant2 = mock(Plant.class);
-        List<Plant> mockPlants = new ArrayList<>();
-        mockPlants.add(plant1);
-        mockPlants.add(plant2);
-
-        when(user.getId()).thenReturn(2);
-        when(plant1.getId()).thenReturn(8);
-        when(plant2.getId()).thenReturn(9);
-        when(plant1.getIdGarden()).thenReturn(null);
-        when(plant2.getIdGarden()).thenReturn(null);
-        when(getPlantRepository.getByIdUser(2)).thenReturn(mockPlants);
+        when(getPlantRepository.getByIdUser(2)).thenReturn(List.of(plant1, plant2));
 
         GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
 
-        List<Garden> gardensResult = useCase.getGardensByUser(2);
+        List<Garden> result = useCase.getGardensByUser(2);
 
-        Assertions.assertNotNull(gardensResult);
-        Assertions.assertEquals(2, gardensResult.get(0).getPlants().size());
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(2, result.get(0).getPlants().size());
+        Assertions.assertEquals(plant1, result.get(0).getPlants().get(0));
+        Assertions.assertEquals(plant2, result.get(0).getPlants().get(1));
+
     }
 
     @Test
     void testGetGardensByUserWithoutPlantsReturnsEmptyList() {
-        User user = mock(User.class);
+        Garden garden = Garden.builder().build();
 
-        Garden garden = mock(Garden.class);
-        List<Garden> mockGardens = new ArrayList<>();
-        mockGardens.add(garden);
-
-        List<Plant> mockPlants = new ArrayList<>();
-
-        when(user.getId()).thenReturn(2);
-        when(garden.getId()).thenReturn(5);
-        when(getGardenRepository.getByUserId(2)).thenReturn(mockGardens);
-        when(garden.withPlants(mockPlants)).thenReturn(mockGardens.get(0));
-        when(mockGardens.get(0).getPlants()).thenReturn(mockPlants);
-        when(getPlantRepository.getByIdGardenAndIdUser(5, 2)).thenReturn(mockPlants);
+        when(getGardenRepository.getByUserId(2)).thenReturn(List.of(garden));
+        when(getPlantRepository.getByIdGardenAndIdUser(5, 2)).thenReturn(null);
 
         GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
 
         List<Garden> gardensResult = useCase.getGardensByUser(2);
 
         Assertions.assertNotNull(gardensResult);
+        Assertions.assertEquals(1, gardensResult.size());
         Assertions.assertEquals(Collections.emptyList(), gardensResult.get(0).getPlants());
     }
 }
