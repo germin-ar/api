@@ -114,10 +114,10 @@ class GetGardensUseCaseTest {
 
         GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
 
-        List<Garden> gardensResult = useCase.getGardensByUser(2);
+        List<Garden> result = useCase.getGardensByUser(2);
 
-        Assertions.assertNotNull(gardensResult);
-        Assertions.assertEquals(1, gardensResult.size());
-        Assertions.assertEquals(Collections.emptyList(), gardensResult.get(0).getPlants());
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(1, result.size());
+        Assertions.assertEquals(Collections.emptyList(), result.get(0).getPlants());
     }
 }
