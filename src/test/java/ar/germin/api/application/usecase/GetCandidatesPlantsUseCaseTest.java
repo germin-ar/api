@@ -26,33 +26,38 @@ class GetCandidatesPlantsUseCaseTest {
 
     @Test
     void testGetAIDetectionWithCandidatesReturnsCorrectNumberOfCandidates() {
-        FileImage fileImage = mock(FileImage.class);
+        FileImage fileImage = FileImage.builder()
+                .id("1a")
+                .build();
 
-        AIDetection aiDetection = mock(AIDetection.class);
+        Candidate candidate1 = Candidate.builder()
+                .id("9z")
+                .build();
+        Candidate candidate2 = Candidate.builder().build();
 
-        Candidate candidate1 = mock(Candidate.class);
-        Candidate candidate2 = mock(Candidate.class);
-        List<Candidate> mockAICandidates = new ArrayList<>();
-        mockAICandidates.add(candidate1);
-        mockAICandidates.add(candidate2);
+        AIDetection aiDetection = AIDetection.builder()
+                .candidates(List.of(candidate1, candidate2))
+                .build();
 
-        when(aiDetection.getId()).thenReturn("1a");
-        when(aiDetection.getCandidates()).thenReturn(mockAICandidates);
         when(getFileRepository.getById("1a")).thenReturn(fileImage);
         when(getAIDetectionRepository.getByFileImage(fileImage)).thenReturn(aiDetection);
-        when(saveCandidateRepository.save(aiDetection)).thenReturn(mockAICandidates);
+        when(saveCandidateRepository.save(aiDetection)).thenReturn(List.of(candidate1, candidate2));
 
         GetCandidatesPlantsPortIn useCase = new GetCandidatesPlantsUseCase(getFileRepository, getAIDetectionRepository, getCandidateRepository, saveCandidateRepository);
 
-        Integer candidateResults = useCase.get("1a").getCandidates().size();
+        AIDetection result = useCase.get("1a");
 
-        Assertions.assertEquals(2, candidateResults);
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(2, result.getCandidates().size());
+        Assertions.assertEquals("9z", result.getCandidates().get(0).getId());
     }
 
     @Test
     void testGetAIDetectionReturnsNullWhenNoDetectionFound() {
-        FileImage fileImage = mock(FileImage.class);
-        
+        FileImage fileImage = FileImage.builder()
+                .id("1a")
+                .build();
+
         when(getFileRepository.getById("1a")).thenReturn(fileImage);
         when(getAIDetectionRepository.getByFileImage(fileImage)).thenReturn(null);
 
