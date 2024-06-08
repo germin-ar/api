@@ -4,12 +4,10 @@ import ar.germin.api.adapter.rest.models.TreflePlantSearchResponseModel;
 import ar.germin.api.application.port.out.GetPlantDataRepository;
 import ar.germin.api.configuration.GerminarConfiguration;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.Charsets;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 import java.net.URI;
-import java.net.URLEncoder;
 
 @Slf4j
 @Component
