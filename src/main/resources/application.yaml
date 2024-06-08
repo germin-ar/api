@@ -19,3 +19,6 @@ germinar:
 
     freeimage:
       api-key: ${FREEIMAGE_API_KEY}
+
+    trefle:
+      api-key: ${TREFLE_API_KEY}
