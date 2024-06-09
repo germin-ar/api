@@ -1,19 +1,16 @@
 package ar.germin.api.application.usecase;
 
-import ar.germin.api.application.domain.AIDetection;
-import ar.germin.api.application.domain.Candidate;
-import ar.germin.api.application.domain.FileImage;
+import ar.germin.api.application.domain.*;
 import ar.germin.api.application.port.in.GetCandidatesPlantsPortIn;
-import ar.germin.api.application.port.out.GetAIDetectionRepository;
-import ar.germin.api.application.port.out.GetCandidateRepository;
-import ar.germin.api.application.port.out.GetFileRepository;
-import ar.germin.api.application.port.out.GetPlantDataRepository;
-import ar.germin.api.application.port.out.SaveCandidateRepository;
+import ar.germin.api.application.port.out.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
+import java.util.Objects;
 
+@Slf4j
 @Component
 public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
     private final GetFileRepository getFileRepository;
@@ -21,18 +18,20 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
     private final GetCandidateRepository getCandidateRepository;
     private final SaveCandidateRepository saveCandidateRepository;
     private final GetPlantDataRepository getPlantDataRepository;
+    private final GetPlantCatalogRepository getPlantCatalogRepository;
 
     @Autowired
     public GetCandidatesPlantsUseCase(GetFileRepository getFileRepository,
                                       GetAIDetectionRepository getAIDetectionRepository,
                                       GetCandidateRepository getCandidateRepository,
                                       SaveCandidateRepository saveCandidateRepository,
-                                      GetPlantDataRepository getPlantDataRepository) {
+                                      GetPlantDataRepository getPlantDataRepository, GetPlantCatalogRepository getPlantCatalogRepository) {
         this.getFileRepository = getFileRepository;
         this.getAIDetectionRepository = getAIDetectionRepository;
         this.getCandidateRepository = getCandidateRepository;
         this.saveCandidateRepository = saveCandidateRepository;
         this.getPlantDataRepository = getPlantDataRepository;
+        this.getPlantCatalogRepository = getPlantCatalogRepository;
     }
 
     @Override
@@ -40,13 +39,25 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
         FileImage fileImage = this.getFileRepository.getById(id);
 
         AIDetection aiDetection = this.getAIDetectionRepository.getByFileImage(fileImage);
+        //consulta a la base
+//        //todo deberia de extraer el nombre desde los candidatos.
+        PlantCatalog plantFromDtabase = this.getPlantCatalogRepository.getPlant("Ocimum basilicum");
+        log.info("plantCatalog from db:{}",plantFromDtabase);
 
-        aiDetection
-                .getCandidates()
-                .stream()
-                .max(Comparator.comparingDouble(Candidate::getScore))
-                .ifPresent(c -> this.getPlantDataRepository.search(c.getSpecie().getScientificNameWithoutAuthor()));
+        if(Objects.equals(plantFromDtabase.getScientificName(), "")){
+            log.info("entra en el if deberia ir a buscar y luego guardar en las tablas");
+
+         }
+            aiDetection
+                    .getCandidates()
+                    .stream()
+                    .max(Comparator.comparingDouble(Candidate::getScore))
+                    .ifPresent(c -> this.getPlantDataRepository.search(c.getSpecie().getScientificNameWithoutAuthor()));
+
 
         return aiDetection;
     }
+
+
+
 }
