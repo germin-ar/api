@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet id="20240609_0" author="armando">
+        <sql>
+            CREATE SCHEMA trefle_details
+        </sql>
+    </changeSet>
+    <changeSet id="20240609_1" author="armando">
+        <createTable tableName="main_species" schemaName="trefle_details">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="common_name" type="varchar"/>
+            <column name="slug" type="varchar"/>
+
+            <column name="scientific_name" type="varchar"/>
+            <column name="genus_id" type="int"/>
+            <column name="duration" type="varchar"/>
+            <column name="edible_part" type="varchar"/>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="20240609_2" author="armando">
+        <createTable tableName="genus" schemaName="trefle_details">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar"/>
+            <column name="slug" type="varchar"/>
+        </createTable>
+
+    </changeSet>
+    <changeSet id="20240609_3" author="armando">
+        <createTable tableName="family" schemaName="trefle_details">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar"/>
+            <column name="slug" type="varchar"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20240609_4" author="armando">
+        <createTable tableName="growth" schemaName="trefle_details">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="rowSpacing" type="double"/>
+            <column name="spread" type="double"/>
+            <column name="ph_maximum" type="double"/>
+            <column name="ph_minimum" type="double"/>
+            <column name="light" type="int"/>
+            <column name="atmospheric_humidity" type="int"/>
+            <column name="minimum_precipitation" type="double"/>
+            <column name="maximum_precipitation" type="double"/>
+            <column name="minimum_root_depth" type="double"/>
+            <column name="soilNutriments" type="int"/>
+            <column name="soilSalinity" type="int"/>
+            <column name="id_main_species" type="int"/>
+        </createTable>
+        <!--            todo: agregar relacion con main_species-->
+        <addForeignKeyConstraint baseTableName="growth"
+                                 baseColumnNames="id_main_species"
+                                 constraintName="fk_growth_id_main_species"
+                                 referencedTableName="main_species"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="trefle_details"
+                                 referencedTableSchemaName="trefle_details"
+                                 validate="true"
+        />
+    </changeSet>
+
+    <changeSet id="20240609_5" author="armando">
+        <createTable tableName="species" schemaName="trefle_details">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="common_name" type="varchar"/>
+            <column name="slug" type="varchar"/>
+            <column name="scientific_name" type="varchar"/>
+            <column name="family_common_name" type="varchar"/>
+            <column name="genus_id" type="int"/>
+            <column name="image_url" type="varchar"/>
+            <column name="genus" type="varchar"/>
+            <column name="family" type="varchar"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20240609_6" author="armando">
+        <createTable tableName="specifications" schemaName="trefle_details">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="growth_habit" type="varchar"/>
+            <column name="average_height" type="double"/>
+            <column name="maximum_height" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_main_species" type="int"/>
+            <!--            todo: agregar relacion con main_species-->
+        </createTable>
+        <addForeignKeyConstraint baseTableName="specifications"
+                                 baseColumnNames="id_main_species"
+                                 constraintName="fk_specifications_id_main_species"
+                                 referencedTableName="main_species"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="trefle_details"
+                                 referencedTableSchemaName="trefle_details"
+                                 validate="true"
+        />
+    </changeSet>
+    <changeSet id="20240609_7" author="armando">
+        <createTable tableName="common_names" schemaName="trefle_details">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="growthHabit" type="int"/>
+            <column name="spread" type="double"/>
+            <column name="id_main_species" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <!--            todo: agregar relacion con main_species-->
+        </createTable>
+        <addForeignKeyConstraint baseTableName="common_names"
+                                 baseColumnNames="id_main_species"
+                                 constraintName="fk_common_names_id_main_species"
+                                 referencedTableName="main_species"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="trefle_details"
+                                 referencedTableSchemaName="trefle_details"
+                                 validate="true"
+        />
+    </changeSet>
+
+    <changeSet id="20240609_8" author="armando">
+        <createTable tableName="images" schemaName="trefle_details">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="part_name" type="varchar"/>
+            <column name="url" type="double"/>
+            <column name="id_main_species" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <!--            todo: agregar relacion con main_species-->
+        </createTable>
+        <addForeignKeyConstraint baseTableName="images"
+                                 baseColumnNames="id_main_species"
+                                 constraintName="fk_images_id_main_species"
+                                 referencedTableName="main_species"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="trefle_details"
+                                 referencedTableSchemaName="trefle_details"
+                                 validate="true"
+        />
+        
+    </changeSet>
+
+    <changeSet id="20240609_9" author="armando">
+        <createTable tableName="trefle_detail" schemaName="trefle_details">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="common_name" type="int"/>
+            <column name="scientific_name" type="varchar"/>
+            <column name="main_species_id" type="int"/>
+            <column name="image_url" type="varchar"/>
+            <column name="genus_id" type="int"/>
+            <column name="observations" type="varchar"/>
+            <column name="vegetable" type="boolean"/>
+            <!--            todo: agregar relacion con main_species-->
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

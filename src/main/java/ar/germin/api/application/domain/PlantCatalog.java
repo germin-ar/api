@@ -5,9 +5,9 @@ import lombok.Value;
 
 @Builder
 @Value
-public class Family {
+public class PlantCatalog {
+    Integer id;
     String scientificName;
-    String scientificNameWithoutAuthor;
-    String scientificNameAuthorship;
+    String description;
 
 }
