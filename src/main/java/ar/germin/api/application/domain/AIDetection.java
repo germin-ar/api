@@ -2,6 +2,7 @@ package ar.germin.api.application.domain;
 
 import lombok.Builder;
 import lombok.Value;
+import lombok.With;
 
 import java.util.List;
 
@@ -10,5 +11,6 @@ import java.util.List;
 public class AIDetection {
     String id;
     String language;
+    @With
     List<Candidate> candidates;
 }

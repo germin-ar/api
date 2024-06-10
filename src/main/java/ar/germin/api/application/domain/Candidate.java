@@ -12,4 +12,6 @@ public class Candidate {
     Float score;
     Specie specie;
     Boolean selectedByUser;
+    @With
+    PlantCatalog plantCatalog;
 }

@@ -1,113 +1,113 @@
 package ar.germin.api.adapter.rest.models;
 
+import ar.germin.api.application.domain.PlantCatalog;
 import lombok.Data;
 
-import java.util.List;
-
-import lombok.Data;
 import java.util.List;
 
 @Data
 public class TreflePlantDetailSearchResponseModel {
-  long id;
-  String commonName;
-  String scientificName;
-  String slug;
-  long mainSpeciesID;
-  String imageURL;
-  long genusID;
-  String observations;
-  boolean vegetable;
-  MainSpecies mainSpecies;
-  Genus genus;
-  Family family;
-  List<Images> Images;
+    Long id;
+    String commonName;
+    String scientificName;
+    String slug;
+    Long mainSpeciesID;
+    String imageURL;
+    Long genusID;
+    String observations;
+    Boolean vegetable;
+    MainSpecies mainSpecies;
+    Genus genus;
+    Family family;
+    List<Images> images;
+
+    public PlantCatalog toDomain() {
+        return PlantCatalog.builder().build();
+    }
 }
 
 @Data
 class FamilyDetailModel {
-  private long id;
-  private String name;
-  private String slug;
+    private Long id;
+    private String name;
+    private String slug;
 }
 
 @Data
 class GenusDetailModel {
-  private long id;
-  private String name;
-  private String slug;
+    private Long id;
+    private String name;
+    private String slug;
 
 }
 
 @Data
 class MainSpeciesModel {
-  private long id;
-  private String commonName;
-  private String slug;
-  private String scientificName;
-  private long genusID;
-  private String observations;
-  private boolean vegetable;
-  private String imageURL;
-  private Object duration;
-  private Object ediblePart;
-  private boolean edible;
-  private List<Images> images;
-  private List<String> commonNames;
-  private Specifications specifications;
-  private Growth growth;
-
-
+    private Long id;
+    private String commonName;
+    private String slug;
+    private String scientificName;
+    private Long genusID;
+    private String observations;
+    private Long vegetable;
+    private String imageURL;
+    private List<String> duration;
+    private List<String> ediblePart;
+    private Boolean edible;
+    private List<Images> images;
+    private List<String> commonNames;
+    private Specifications specifications;
+    private Growth growth;
 }
+
 @Data
 class GrowthModel {
-  private Integer id;
-  //    private Object description;
+    private Integer id;
+    //    private Object description;
 //    private Object sowing;
 //    private Object daysToHarvest;
-  private Double rowSpacing;
-  private Double spread;
-  private double phMaximum;
-  private double phMinimum;
-  private long light;
-  private long atmosphericHumidity;
-  private Double minimumPrecipitation;
-  private Double maximumPrecipitation;
-  private Double minimumRootDepth;
-  private long soilNutriments;
-  private long soilSalinity;
-
+    private Double rowSpacing;
+    private Double spread;
+    private Double phMaximum;
+    private Double phMinimum;
+    private Long light;
+    private Long atmosphericHumidity;
+    private Double minimumPrecipitation;
+    private Double maximumPrecipitation;
+    private Double minimumRootDepth;
+    private Long soilNutriments;
+    private Long soilSalinity;
 }
 
 @Data
 class ImagesModel {
-  private Integer id;
-  //flower - empty - fruit - bark - leaf - habit - other
-  private String partName;
-  private String url;
-  //relacion con mainSpecies
-  private Integer MainSpeciesId;
+    private Integer id;
+    //flower - empty - fruit - bark - leaf - habit - other
+    private String partName;
+    private String url;
+    //relacion con mainSpecies
+    private Integer MainSpeciesId;
 }
 
 @Data
 class SpecificationsModel {
-  //private Object ligneousType;
-  private String growthHabit;
-  private Double averageHeight;
-  private Double maximumHeight;
+    //private Object ligneousType;
+    private String growthHabit;
+    private Double averageHeight;
+    private Double maximumHeight;
 
 }
 
 @Data
 class SpeciesDetailModel {
-  private long id;
-  private String commonName;
-  private String slug;
-  private String scientificName;
-  private String familyCommonName;
-  private long genusID;
-  private String imageURL;
-  private String genus;
-  private String family;
+    private Long id;
+    private String commonName;
+    private String slug;
+    private String scientificName;
+    private String familyCommonName;
+    private Long genusID;
+    private String imageURL;
+    private String genus;
+    private String family;
 }
 

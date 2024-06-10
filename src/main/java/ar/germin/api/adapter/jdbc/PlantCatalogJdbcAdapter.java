@@ -19,10 +19,11 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository {
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String selectPlantCatalogByScientificNameSql;
 
-    public PlantCatalogJdbcAdapter(SqlReader sqlReader,NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public PlantCatalogJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.selectPlantCatalogByScientificNameSql = sqlReader.readSql(SELECT_PLANT_CATALOG_BY_SCIENTIFIC_NAME_PATH);
     }
+
     @Override
     public PlantCatalog getPlantCatalog(String scientificName) {
         MapSqlParameterSource params = new MapSqlParameterSource()

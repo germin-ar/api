@@ -9,5 +9,4 @@ public class PlantCatalog {
     Integer id;
     String scientificName;
     String description;
-
 }

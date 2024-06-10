@@ -2,6 +2,7 @@ package ar.germin.api.adapter.rest;
 
 import ar.germin.api.adapter.rest.models.TreflePlantDetailSearchResponseModel;
 import ar.germin.api.adapter.rest.models.TreflePlantSearchResponseModel;
+import ar.germin.api.application.domain.PlantCatalog;
 import ar.germin.api.application.port.out.GetPlantDataRepository;
 import ar.germin.api.application.port.out.GetPlantDetailDataRepository;
 import ar.germin.api.configuration.GerminarConfiguration;
@@ -49,30 +50,31 @@ public class TrefleRestAdapter implements GetPlantDataRepository, GetPlantDetail
     }
 
 
-  public void searchDetail(String slug) {
-    try {
-      TreflePlantDetailSearchResponseModel result = this.restClient
-              .get()
-              .uri(uriBuilder -> {
-                URI uri = uriBuilder
-                        .path("/api/v1/plants")
-                                .pathSegment(slug.trim())
-                        .queryParam("token", this.germinarConfiguration.integrations().trefle().apiKey())
-                        .build();
+    public PlantCatalog searchDetail(String scientificName) {
+        try {
+            TreflePlantDetailSearchResponseModel result = this.restClient
+                    .get()
+                    .uri(uriBuilder -> {
+                        URI uri = uriBuilder
+                                .path("/api/v1/plants")
+                                .pathSegment(scientificName)
+                                .queryParam("token", this.germinarConfiguration.integrations().trefle().apiKey())
+                                .build();
 
+                        log.info("Calling trefleDetail with uri: {}", uri);
+                        return uri;
+                    })
+                    .retrieve()
+                    .body(TreflePlantDetailSearchResponseModel.class);
 
-                log.info("Calling trefleDetail with uri: {}", uri);
-                return uri;
-              })
-              .retrieve()
-              .body(TreflePlantDetailSearchResponseModel.class);
+            log.info("repuesta trefle: {}", result);
 
-      log.info("repuesta trefle: {}", result);
-    } catch (RuntimeException ex) {
-      log.error("Error getting candidates", ex);
-      throw ex;
+            return result.toDomain();
+        } catch (RuntimeException ex) {
+            log.error("Error getting candidates", ex);
+            throw ex;
+        }
     }
-  }
 
 
 }
