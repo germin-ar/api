@@ -3,6 +3,7 @@ package ar.germin.api.adapter.jdbc;
 import ar.germin.api.adapter.jdbc.models.PlantCatalogModel;
 import ar.germin.api.application.domain.PlantCatalog;
 import ar.germin.api.application.exceptions.ErrorPlantSaveException;
+import ar.germin.api.application.exceptions.PlantCatalogNotFoundException;
 import ar.germin.api.application.port.out.GetPlantCatalogRepository;
 import ar.germin.api.application.port.out.SavePlantCatalogRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,7 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
     @Override
     public PlantCatalog getPlantCatalog(String slugScientificName) {
         MapSqlParameterSource params = new MapSqlParameterSource()
-                .addValue("slug_scientific_name", slugScientificName);
+                .addValue("slugScientificName", slugScientificName);
         log.info("Querying plant_catalog with SQL [{}] with params: [{}]", selectPlantCatalogByScientificNameSql, params);
 
         RowMapper<PlantCatalogModel> rowMapper = (rs, rowNum) -> {
@@ -52,6 +53,8 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
         };
 
         try {
+
+
             PlantCatalogModel plantCatalogModel = this.namedParameterJdbcTemplate.queryForObject(
                     selectPlantCatalogByScientificNameSql,
                     params,
@@ -60,7 +63,7 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
             return plantCatalogModel.toDomain();
         } catch (EmptyResultDataAccessException e) {
             log.warn("PlantCatalog with scientific name [{}] not found", slugScientificName);
-            return PlantCatalog.builder().build();
+            throw new PlantCatalogNotFoundException();
         } catch (Exception e) {
             log.error("Error querying plant_catalog with scientific name [{}]", slugScientificName, e);
             throw e;
