@@ -14,6 +14,7 @@ public class PlantCatalog {
     String family;
     Double averageSize;
     String fertilizer;
+    Integer light;
     String irrigation;
     String pruning;
     String soil;

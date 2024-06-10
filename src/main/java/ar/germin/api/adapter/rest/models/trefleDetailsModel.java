@@ -1,5 +1,6 @@
 package ar.germin.api.adapter.rest.models;
 
+import lombok.Builder;
 import lombok.Data;
 import java.util.List;
 
@@ -20,7 +21,7 @@ class TrefleDetailModel {
   private Family family;
   private List<Images> Images;
 }
-
+@Builder
 @Data
 class Family {
   private long id;
@@ -29,7 +30,7 @@ class Family {
   private String slug;
   //private FamilyLinks links;
 }
-
+@Builder
 @Data
 class Genus {
   private long id;
@@ -56,7 +57,7 @@ class Genus {
 //    private String genus;
 //
 //}
-
+@Builder
 @Data
 class MainSpecies {
   private long id;
@@ -145,7 +146,7 @@ class MainSpecies {
 //
 //}
 
-
+@Builder
 @Data
 class Growth {
   private Integer id;
@@ -194,7 +195,7 @@ class Growth {
 //    private Double cm;
 //
 //}
-
+@Builder
 @Data
 class Images {
   private Integer id;
@@ -203,11 +204,11 @@ class Images {
 
   private String url;
   //relacion con mainSpecies
-  private Integer MainSpeciesId;
+  //private Integer MainSpeciesId;
 
 
 }
-
+@Builder
 @Data
 class Specifications {
   private Object ligneousType;

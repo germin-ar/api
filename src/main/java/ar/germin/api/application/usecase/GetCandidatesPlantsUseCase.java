@@ -56,7 +56,6 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
                 .max(Comparator.comparingDouble(Candidate::getScore))
                 .map(List::of)
                 .orElseThrow();
-
         return aiDetection.withCandidates(candidates);
     }
 
