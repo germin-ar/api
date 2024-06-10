@@ -60,6 +60,8 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
                 .map(List::of)
                 .orElseThrow();
 
+        candidates.forEach(this::checkHealth);
+
         return aiDetection.withCandidates(candidates);
     }
 
@@ -73,8 +75,12 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
 
             return plantCatalog;
         }
+    }
 
+    private void checkHealth(Candidate candidate) {
+        //llamada api plant.id
 
+        //llamada api python
     }
 
 
