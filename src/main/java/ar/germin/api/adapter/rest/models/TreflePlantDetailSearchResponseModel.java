@@ -20,9 +20,14 @@ public class TreflePlantDetailSearchResponseModel {
     Genus genus;
     Family family;
     List<Images> images;
+    GrowthModel growth;
 
     public PlantCatalog toDomain() {
-        return PlantCatalog.builder().build();
+        return PlantCatalog.builder()
+                .scientificName(scientificName)
+                .slug(slug)
+                .description(observations)
+                .build();
     }
 }
 
