@@ -4,6 +4,6 @@ import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.domain.PlantCatalog;
 
 public interface GetPlantCatalogRepository {
-    PlantCatalog getPlant(String scientificName);
+    PlantCatalog getPlantCatalog(String scientificName);
 
 }

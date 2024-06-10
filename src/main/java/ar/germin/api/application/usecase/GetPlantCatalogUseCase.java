@@ -15,7 +15,7 @@ public class GetPlantCatalogUseCase implements GetPlantCatalogPortIn {
     }
 
     @Override
-    public PlantCatalog getPlant(String scientificName) {
-        return this.getPlantCatalogRepository.getPlant(scientificName);
+    public PlantCatalog getPlantCatalog(String scientificName) {
+        return this.getPlantCatalogRepository.getPlantCatalog(scientificName);
     }
 }

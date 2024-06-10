@@ -19,19 +19,24 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
     private final SaveCandidateRepository saveCandidateRepository;
     private final GetPlantDataRepository getPlantDataRepository;
     private final GetPlantCatalogRepository getPlantCatalogRepository;
+    private final GetPlantDetailDataRepository getPlantDetailDataRepository;
 
     @Autowired
     public GetCandidatesPlantsUseCase(GetFileRepository getFileRepository,
                                       GetAIDetectionRepository getAIDetectionRepository,
                                       GetCandidateRepository getCandidateRepository,
                                       SaveCandidateRepository saveCandidateRepository,
-                                      GetPlantDataRepository getPlantDataRepository, GetPlantCatalogRepository getPlantCatalogRepository) {
+                                      GetPlantDataRepository getPlantDataRepository,
+                                      GetPlantCatalogRepository getPlantCatalogRepository,
+                                      GetPlantDetailDataRepository getPlantDetailDataRepository
+                                      ) {
         this.getFileRepository = getFileRepository;
         this.getAIDetectionRepository = getAIDetectionRepository;
         this.getCandidateRepository = getCandidateRepository;
         this.saveCandidateRepository = saveCandidateRepository;
         this.getPlantDataRepository = getPlantDataRepository;
         this.getPlantCatalogRepository = getPlantCatalogRepository;
+        this.getPlantDetailDataRepository = getPlantDetailDataRepository;
     }
 
     @Override
@@ -41,7 +46,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
         AIDetection aiDetection = this.getAIDetectionRepository.getByFileImage(fileImage);
         //consulta a la base
 //        //todo deberia de extraer el nombre desde los candidatos.
-        PlantCatalog plantFromDtabase = this.getPlantCatalogRepository.getPlant("Ocimum basilicum");
+        PlantCatalog plantFromDtabase = this.getPlantCatalogRepository.getPlantCatalog("Ocimum basilicum");
         log.info("plantCatalog from db:{}",plantFromDtabase);
 
         if(Objects.equals(plantFromDtabase.getScientificName(), "")){
@@ -52,7 +57,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
                     .getCandidates()
                     .stream()
                     .max(Comparator.comparingDouble(Candidate::getScore))
-                    .ifPresent(c -> this.getPlantDataRepository.search(c.getSpecie().getScientificNameWithoutAuthor()));
+                    .ifPresent(c -> this.getPlantDetailDataRepository.searchDetail(c.getSpecie().getScientificNameWithoutAuthor()));
 
 
         return aiDetection;

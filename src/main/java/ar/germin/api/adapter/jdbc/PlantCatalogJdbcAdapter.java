@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 
 @Component
 @Slf4j
@@ -25,7 +24,7 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository {
         this.selectPlantCatalogByScientificNameSql = sqlReader.readSql(SELECT_PLANT_CATALOG_BY_SCIENTIFIC_NAME_PATH);
     }
     @Override
-    public PlantCatalog getPlant(String scientificName) {
+    public PlantCatalog getPlantCatalog(String scientificName) {
         MapSqlParameterSource params = new MapSqlParameterSource()
                 .addValue("scientificName", scientificName);
         log.info("Querying plant_catalog with SQL [{}] with params: [{}]", selectPlantCatalogByScientificNameSql, params);

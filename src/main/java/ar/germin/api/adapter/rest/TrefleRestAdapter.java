@@ -1,7 +1,9 @@
 package ar.germin.api.adapter.rest;
 
+import ar.germin.api.adapter.rest.models.TreflePlantDetailSearchResponseModel;
 import ar.germin.api.adapter.rest.models.TreflePlantSearchResponseModel;
 import ar.germin.api.application.port.out.GetPlantDataRepository;
+import ar.germin.api.application.port.out.GetPlantDetailDataRepository;
 import ar.germin.api.configuration.GerminarConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -11,7 +13,7 @@ import java.net.URI;
 
 @Slf4j
 @Component
-public class TrefleRestAdapter implements GetPlantDataRepository {
+public class TrefleRestAdapter implements GetPlantDataRepository, GetPlantDetailDataRepository {
     private final GerminarConfiguration germinarConfiguration;
     private final RestClient restClient;
 
@@ -45,5 +47,32 @@ public class TrefleRestAdapter implements GetPlantDataRepository {
             throw ex;
         }
     }
+
+
+  public void searchDetail(String slug) {
+    try {
+      TreflePlantDetailSearchResponseModel result = this.restClient
+              .get()
+              .uri(uriBuilder -> {
+                URI uri = uriBuilder
+                        .path("/api/v1/plants")
+                                .pathSegment(slug.trim())
+                        .queryParam("token", this.germinarConfiguration.integrations().trefle().apiKey())
+                        .build();
+
+
+                log.info("Calling trefleDetail with uri: {}", uri);
+                return uri;
+              })
+              .retrieve()
+              .body(TreflePlantDetailSearchResponseModel.class);
+
+      log.info("repuesta trefle: {}", result);
+    } catch (RuntimeException ex) {
+      log.error("Error getting candidates", ex);
+      throw ex;
+    }
+  }
+
 
 }
