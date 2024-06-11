@@ -1,5 +1,6 @@
 package ar.germin.api.application.usecase;
 
+import ar.germin.api.application.port.in.SaveGardenPortIn;
 import ar.germin.api.application.port.out.SaveGardenRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,44 +16,44 @@ public class SaveGardenUseCaseTest {
     void testSaveGardenWithValidIdAndNameReturnsTrue() {
         when(saveGardenRepository.save(1, "GardenName")).thenReturn(true);
 
-        SaveGardenUseCase useCase = new SaveGardenUseCase(saveGardenRepository);
+        SaveGardenPortIn useCase = new SaveGardenUseCase(saveGardenRepository);
 
-        Boolean candidateResults = useCase.save(1, "GardenName");
+        Boolean result = useCase.save(1, "GardenName");
 
-        Assertions.assertTrue(candidateResults);
+        Assertions.assertTrue(result);
     }
 
     @Test
     void testSaveGardenWithNullNameReturnsFalse() {
         when(saveGardenRepository.save(1, null)).thenReturn(false);
 
-        SaveGardenUseCase useCase = new SaveGardenUseCase(saveGardenRepository);
+        SaveGardenPortIn useCase = new SaveGardenUseCase(saveGardenRepository);
 
-        Boolean candidateResults = useCase.save(1, null);
+        Boolean result = useCase.save(1, null);
 
-        Assertions.assertFalse(candidateResults);
+        Assertions.assertFalse(result);
     }
 
     @Test
     void testSaveGardenWithEmptyNameReturnsFalse() {
         when(saveGardenRepository.save(1, "")).thenReturn(false);
 
-        SaveGardenUseCase useCase = new SaveGardenUseCase(saveGardenRepository);
+        SaveGardenPortIn useCase = new SaveGardenUseCase(saveGardenRepository);
 
-        Boolean candidateResults = useCase.save(1, "");
+        Boolean result = useCase.save(1, "");
 
-        Assertions.assertFalse(candidateResults);
+        Assertions.assertFalse(result);
     }
 
     @Test
     void testSaveGardenWithNullUserIdReturnsFalse() {
         when(saveGardenRepository.save(null, "GardenName")).thenReturn(false);
 
-        SaveGardenUseCase useCase = new SaveGardenUseCase(saveGardenRepository);
+        SaveGardenPortIn useCase = new SaveGardenUseCase(saveGardenRepository);
 
-        Boolean candidateResults = useCase.save(null, "GardenName");
+        Boolean result = useCase.save(null, "GardenName");
 
-        Assertions.assertFalse(candidateResults);
+        Assertions.assertFalse(result);
     }
 
 }
