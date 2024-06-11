@@ -32,7 +32,7 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
     public PlantCatalogJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.selectPlantCatalogByScientificNameSql = sqlReader.readSql(SELECT_PLANT_CATALOG_BY_SCIENTIFIC_NAME_PATH);
-        this.savePlantCatalogSql =sqlReader.readSql(SAVE_PLANT_CATALOG_PATH);
+        this.savePlantCatalogSql = sqlReader.readSql(SAVE_PLANT_CATALOG_PATH);
     }
 
     @Override
@@ -71,19 +71,29 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
     }
 
     @Override
-    public Integer save(PlantCatalog plantCatalog) {
+    public void save(PlantCatalog plantCatalog) {
         try {
             MapSqlParameterSource sqlParams = new MapSqlParameterSource()
                     .addValue("description", plantCatalog.getDescription())
-                    .addValue("scientific_name",plantCatalog.getScientificName())
-                    .addValue("slug_scientific_name",plantCatalog.getSlug());
+                    .addValue("scientific_name", plantCatalog.getScientificName())
+                    .addValue("slug_scientific_name", plantCatalog.getSlug())
+                    .addValue("genus", plantCatalog.getGenus())
+                    .addValue("family", plantCatalog.getFamily())
+                    .addValue("average_size", plantCatalog.getAverageSize())
+                    .addValue("fertilizer", plantCatalog.getFertilizer())
+                    .addValue("irrigation", plantCatalog.getIrrigation())
+                    .addValue("pruning", plantCatalog.getPruning())
+                    .addValue("soil", plantCatalog.getSoil())
+                    .addValue("insecticide", plantCatalog.getInsecticide())
+                    .addValue("tips", plantCatalog.getInsecticide());
+
 
             log.info("Saving plant with sql [{}] with params: [{}]", savePlantCatalogSql, sqlParams);
 
-            KeyHolder keyHolder = new GeneratedKeyHolder();
-            this.namedParameterJdbcTemplate.update(savePlantCatalogSql, sqlParams, keyHolder, new String[]{"id"});
-
-          return Optional.ofNullable(keyHolder.getKey()).map(Number::intValue).orElse(-1);
+            //KeyHolder keyHolder = new GeneratedKeyHolder();
+            //this.namedParameterJdbcTemplate.update(savePlantCatalogSql, sqlParams, keyHolder, new String[]{"id"});
+            this.namedParameterJdbcTemplate.update(savePlantCatalogSql, sqlParams);
+            //return Optional.ofNullable(keyHolder.getKey()).map(Number::intValue).orElse(-1);
         } catch (ErrorResponseException ex) {
             log.error("Error saving plantCatalog", ex);
             throw new ErrorPlantSaveException("No se pudo guardar el plantCatalog");

@@ -37,6 +37,16 @@ import java.util.List;
 @Data
 public class TreflePlantDetailSearchResponseModel {
     private DataModelDetail data;
+    public PlantCatalog toDomain() {
+        return PlantCatalog.builder()
+                .scientificName(data.scientificName)
+                .slug(data.slug)
+                .light(data.light)
+                .genus(data.genus.getName())
+                .averageSize(20.3)
+                .description(data.observations)
+                .build();
+    }
 }
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
@@ -58,16 +68,7 @@ class DataModelDetail {
     Family family;
     GrowthModel growth;
 
-    public PlantCatalog toDomain() {
-        return PlantCatalog.builder()
-                .scientificName(scientificName)
-                .slug(slug)
-                .light(growth.getLight())
-                .genus(genus.getName())
-                .averageSize(specifications.getAverageHeight())
-                .description(observations)
-                .build();
-    }
+
 }
 
 @Data

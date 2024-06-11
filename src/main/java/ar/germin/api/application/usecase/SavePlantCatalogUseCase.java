@@ -18,7 +18,7 @@ public class SavePlantCatalogUseCase implements SavePlantCatalogPortIn {
   }
 
   @Override
-  public Integer save(PlantCatalog plantCatalog) {
-    return this.savePlantCatalogRepository.save( plantCatalog );
+  public void save(PlantCatalog plantCatalog) {
+     this.savePlantCatalogRepository.save( plantCatalog );
   }
 }

@@ -72,8 +72,8 @@ public class TrefleRestAdapter implements GetPlantDataRepository, GetPlantDetail
             log.info("repuesta trefle: {}", result);
 
           assert result != null;
-          result.getData();
-          return null;
+
+          return result.toDomain();
         } catch (RuntimeException ex) {
             log.error("Error getting candidates", ex);
             throw ex;
