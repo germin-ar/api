@@ -43,8 +43,15 @@ public class TreflePlantDetailSearchResponseModel {
                 .slug(data.slug)
                 .light(data.light)
                 .genus(data.genus.getName())
-                .averageSize(20.3)
+                //.averageSize(data.getSpecifications().getAverageHeight())
+                .family(data.family.getName())
                 .description(data.observations)
+                .fertilizer("fertilizer")
+                .irrigation("irrigation")
+                .pruning("pruning")
+                .soil("soil")
+                .insecticide("insecticide")
+                .tips("tips")
                 .build();
     }
 }
