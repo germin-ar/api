@@ -1,4 +1,5 @@
 update garden.plant
-set is_active = false
-where plant.id = :id;
+set is_active         = false,
+    modification_date = now()
+where id = :id;
 
