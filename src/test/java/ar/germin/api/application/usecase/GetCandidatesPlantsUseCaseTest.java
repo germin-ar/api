@@ -3,6 +3,8 @@ package ar.germin.api.application.usecase;
 import ar.germin.api.application.domain.AIDetection;
 import ar.germin.api.application.domain.Candidate;
 import ar.germin.api.application.domain.FileImage;
+import ar.germin.api.application.exceptions.FileImageAlreadyExistsException;
+import ar.germin.api.application.exceptions.FileImageNotFoundException;
 import ar.germin.api.application.port.in.GetCandidatesPlantsPortIn;
 import ar.germin.api.application.port.out.GetAIDetectionRepository;
 import ar.germin.api.application.port.out.GetCandidateRepository;
@@ -57,13 +59,15 @@ class GetCandidatesPlantsUseCaseTest {
                 .id("1a")
                 .build();
 
+        FileImageNotFoundException ex = new FileImageNotFoundException();
+
         when(getFileRepository.getById("1a")).thenReturn(fileImage);
-        when(getAIDetectionRepository.getByFileImage(fileImage)).thenReturn(null);
+        when(getAIDetectionRepository.getByFileImage(fileImage)).thenThrow(ex);
 
         GetCandidatesPlantsPortIn useCase = new GetCandidatesPlantsUseCase(getFileRepository, getAIDetectionRepository, getCandidateRepository, saveCandidateRepository);
 
-        AIDetection candidateResults = useCase.get("1a");
-
-        Assertions.assertNull(candidateResults);
+        Assertions.assertThrows(FileImageNotFoundException.class, () -> {
+            useCase.get("1a");
+        });
     }
 }
