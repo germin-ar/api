@@ -20,6 +20,9 @@ public class Specie {
     String idPowo;
 
     public String toSlugFormat() {
-        return this.getScientificNameWithoutAuthor().toLowerCase().replaceAll(" ", "-").replace("×", "x");
+        return this.getScientificNameWithoutAuthor()
+                .toLowerCase()
+                .replaceAll(" ", "-")
+                .replace("×", "x");
     }
 }

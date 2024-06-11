@@ -7,7 +7,13 @@ import ar.germin.api.application.domain.PlantCatalog;
 import ar.germin.api.application.domain.Specie;
 import ar.germin.api.application.exceptions.PlantCatalogNotFoundException;
 import ar.germin.api.application.port.in.GetCandidatesPlantsPortIn;
-import ar.germin.api.application.port.out.*;
+import ar.germin.api.application.port.out.GetAIDetectionRepository;
+import ar.germin.api.application.port.out.GetCandidateRepository;
+import ar.germin.api.application.port.out.GetFileRepository;
+import ar.germin.api.application.port.out.GetPlantCatalogRepository;
+import ar.germin.api.application.port.out.GetPlantDetailDataRepository;
+import ar.germin.api.application.port.out.SaveCandidateRepository;
+import ar.germin.api.application.port.out.SavePlantCatalogRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,7 +46,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
         this.saveCandidateRepository = saveCandidateRepository;
         this.getPlantCatalogRepository = getPlantCatalogRepository;
         this.getPlantDetailDataRepository = getPlantDetailDataRepository;
-      this.savePlantCatalogRepository = savePlantCatalogRepository;
+        this.savePlantCatalogRepository = savePlantCatalogRepository;
     }
 
     @Override
@@ -56,7 +62,12 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
                 .max(Comparator.comparingDouble(Candidate::getScore))
                 .map(List::of)
                 .orElseThrow();
-        return aiDetection.withCandidates(candidates);
+
+        AIDetection result = aiDetection.withCandidates(candidates).withFileImage(fileImage);
+
+        log.info("Result: [{}]", result);
+
+        return result;
     }
 
     private PlantCatalog getPlantCatalog(Specie specie) {

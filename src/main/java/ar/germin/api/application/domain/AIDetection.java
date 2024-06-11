@@ -13,4 +13,6 @@ public class AIDetection {
     String language;
     @With
     List<Candidate> candidates;
+    @With
+    FileImage fileImage;
 }
