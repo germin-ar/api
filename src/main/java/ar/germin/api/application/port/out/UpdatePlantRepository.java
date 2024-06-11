@@ -18,8 +18,8 @@ public interface UpdatePlantRepository {
         Double height;
         @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime plantingDate;
         String notes;
-        Integer idGarden;
-        Boolean isActive;
-        Boolean isFavorite;
+        Integer id_garden;
+        Boolean is_active;
+        Boolean is_favorite;
     }
 }
