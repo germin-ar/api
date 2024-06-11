@@ -98,12 +98,12 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
             MapSqlParameterSource sqlParams = new MapSqlParameterSource()
                     .addValue("id", params.getId())
                     .addValue("alias", params.getAlias())
-                    .addValue("idGarden", params.getIdGarden())
-                    .addValue("isFavorite", params.getIsFavorite())
-                    .addValue("isActive", params.getIsActive())
+                    .addValue("id_garden", params.getId_garden())
+                    .addValue("is_favorite", params.getIs_favorite())
+                    .addValue("is_active", params.getIs_active())
                     .addValue("height", params.getHeight())
                     .addValue("notes", params.getNotes())
-                    .addValue("plantingDate", params.getPlantingDate());
+                    .addValue("planting_date", params.getPlantingDate());
 
             log.info("Updating plant with sql [{}] with params: [{}]", updatePlantSql, sqlParams);
             this.namedParameterJdbcTemplate.update(updatePlantSql, sqlParams);

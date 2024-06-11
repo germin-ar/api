@@ -1,12 +1,11 @@
 update garden.plant
-set alias         = :alias,
-    favorite      = :isFavorite,
-    id_garden     = :idGarden,
-    height        = :height,
-    notes         = :notes,
-    planting_date = :plantingDate,
-    is_active     = :isActive
-where plant.id = :id
-  and is_active;
+set alias = :alias,
+    favorite = :is_favorite,
+    id_garden = :id_garden,
+    height = :height,
+    notes =:notes,
+    planting_date = :planting_date,
+    is_active = :is_active
+where plant.id= :id;
 
 
