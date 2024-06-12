@@ -37,15 +37,13 @@ public class GardenControllerAdapter {
     }
 
     @GetMapping
-    public List<GardenResponseModel> getGardensByUser(@RequestHeader("id-user") Integer userId) {
-        //Todo ver el response model
-        //TODO este metodo se usa en el jardin y en el registro/editar. Hacer un metodo que solo devuelva los jardines sin plantas, NO TOCAR ESTE METODO
-        return GardenResponseModel.fromDomainList(this.getGardensPortIn.getGardensByUser(userId));
+    public List<GardenResponseModel> getGardensByUser(@RequestHeader("id-user") Integer idUser) {
+        return GardenResponseModel.fromDomainList(this.getGardensPortIn.getGardensByUser(idUser));
     }
 
     @GetMapping("/{id}")
-    public GardenResponseModel getGardens(@PathVariable Integer id, @RequestHeader("id-user") Integer userId) {
-        return GardenResponseModel.fromDomain(this.getGardenPortIn.get(id, userId));
+    public GardenResponseModel getGarden(@PathVariable Integer id, @RequestHeader("id-user") Integer idUser) {
+        return GardenResponseModel.fromDomain(this.getGardenPortIn.get(id, idUser));
     }
 
     @PostMapping
@@ -55,7 +53,7 @@ public class GardenControllerAdapter {
 
 
     @DeleteMapping("/{id}")
-    public void deleteGarden(@PathVariable("id") Integer id) {
+    public void deleteGarden(@PathVariable("id") Integer id, @RequestHeader("id-user") Integer idUser) {
         // TODO: borrar jardín
     }
 

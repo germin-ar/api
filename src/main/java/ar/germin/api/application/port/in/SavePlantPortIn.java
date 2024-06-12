@@ -14,9 +14,9 @@ public interface SavePlantPortIn {
         String alias;
         Double height;
         LocalDateTime plantingDate;
-        String notes;
         Integer idGarden;
         Boolean isActive;
         Integer idUser;
+        String imageUrl;
     }
 }

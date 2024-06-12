@@ -15,12 +15,13 @@ import java.util.List;
 public class GardenModel {
     private Integer id;
     private String name;
-    private Boolean isActive;
+    private Integer idUser;
 
     public Garden toDomain() {
         return Garden.builder()
                 .id(id)
                 .name(name)
+                .idUser(idUser)
                 .build();
     }
 

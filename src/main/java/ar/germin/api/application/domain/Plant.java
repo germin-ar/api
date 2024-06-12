@@ -2,8 +2,10 @@ package ar.germin.api.application.domain;
 
 import lombok.Builder;
 import lombok.Value;
+import lombok.With;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @Value
@@ -20,7 +22,6 @@ public class Plant {
     //TODO frecuencia de riego
     // String sunExposure;
     String notes;
-    Boolean isActive;
     Integer idGarden;
     String description;
     Integer idUser;
@@ -35,4 +36,6 @@ public class Plant {
 
     String pcCommonName;
     String pcScientificName;
+    @With
+    List<PlantPhoto> photos;
 }

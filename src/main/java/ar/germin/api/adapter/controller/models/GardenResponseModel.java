@@ -1,5 +1,6 @@
 package ar.germin.api.adapter.controller.models;
 
+
 import ar.germin.api.application.domain.Garden;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -19,7 +20,6 @@ public class GardenResponseModel {
     Integer id;
     String name;
     List<PlantModel> plants;
-    //imagenes
 
     public static GardenResponseModel fromDomain(Garden garden) {
         return GardenResponseModel.builder()
@@ -33,6 +33,13 @@ public class GardenResponseModel {
                                 .alias(plant.getAlias())
                                 .modificationDate(plant.getModificationDate())
                                 .creationDate(plant.getCreationDate())
+                                .photos(plant
+                                        .getPhotos()
+                                        .stream()
+                                        .map(photo -> PlantPhotoModel.builder()
+                                                .url(photo.getUrl())
+                                                .build())
+                                        .toList())
                                 .build())
                         .toList())
                 .build();
@@ -50,8 +57,14 @@ public class GardenResponseModel {
     record PlantModel(Integer id,
                       String alias,
                       @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime creationDate,
-                      @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime modificationDate) {
+                      @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime modificationDate,
+                      List<PlantPhotoModel> photos) {
 
+    }
+
+    @Builder
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    record PlantPhotoModel(String url) {
     }
 
 }
