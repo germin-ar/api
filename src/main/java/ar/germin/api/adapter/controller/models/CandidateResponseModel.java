@@ -40,6 +40,8 @@ public class CandidateResponseModel {
                                         .temperatureMax(candidate.getPlantCatalog().getTemperatureMax())
                                         .temperatureMin(candidate.getPlantCatalog().getTemperatureMin())
                                         .description(candidate.getPlantCatalog().getDescription())
+                                        .height(candidate.getPlantCatalog().getMaxSize())
+                                        .tips(candidate.getPlantCatalog().getTips())
                                         .build())
                                 .build())
                         .toList())
@@ -68,14 +70,15 @@ public class CandidateResponseModel {
     @Builder
     @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
     record PlantDataModel(String description,
-                          Float height,
+                          Double height,
                           String fertilizer,
                           String irrigation,
                           String soil,
                           String sunExposure,
                           String insecticide,
                           Double temperatureMax,
-                          Double temperatureMin
+                          Double temperatureMin,
+                          String tips
             /*TODO falta temporadas
              *  ubicacion posibles, podado, Consejos*/) {
     }

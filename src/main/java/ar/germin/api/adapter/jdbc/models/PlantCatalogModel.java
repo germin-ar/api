@@ -17,6 +17,8 @@ public class PlantCatalogModel {
     private Double temperatureMin;
     private String growthSeason;
     private String wateringFrequency;
+    private String insecticide;
+    private String tips;
 
     public PlantCatalog toDomain() {
         return PlantCatalog.builder()
@@ -32,6 +34,8 @@ public class PlantCatalogModel {
                 .temperatureMax(temperatureMax)
                 .growthSeason(growthSeason)
                 .wateringFrequency(wateringFrequency)
+                .tips(tips)
+                .insecticide(insecticide)
                 .build();
     }
 }
