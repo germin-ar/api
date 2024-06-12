@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @Value
@@ -40,6 +41,9 @@ public class PlantResponseModel {
     String plantCatalogCommonName;
     String plantCatalogScientificName;
 
+    List<PhotoModel> images;
+
+
     public static PlantResponseModel fromDomain(Plant plant) {
         return PlantResponseModel.builder()
                 .id(plant.getId())
@@ -56,7 +60,20 @@ public class PlantResponseModel {
                 .plantCatalogGenus(plant.getPcGenus())
                 .plantCatalogIrrigation(plant.getPcWateringFrecuency())
                 .plantCatalogDescription(plant.getPcDescription())
+                .images(plant
+                        .getPhotos()
+                        .stream()
+                        .map(plantPhoto -> PhotoModel.builder()
+                                .url(plantPhoto.getUrl())
+                                .build())
+                        .toList())
                 .build();
+    }
+
+    @Builder
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    record PhotoModel(String url) {
+
     }
 
 }
