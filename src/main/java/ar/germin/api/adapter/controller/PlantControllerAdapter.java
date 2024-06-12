@@ -1,22 +1,14 @@
 package ar.germin.api.adapter.controller;
 
-import ar.germin.api.adapter.controller.models.PlantRequestModel;
 import ar.germin.api.adapter.controller.models.PlantResponseModel;
+import ar.germin.api.adapter.controller.models.SavePlantRequestModel;
+import ar.germin.api.adapter.controller.models.UpdatePlantRequestModel;
 import ar.germin.api.application.port.in.DeletePlantPortIn;
 import ar.germin.api.application.port.in.GetPlantPortIn;
 import ar.germin.api.application.port.in.SavePlantPortIn;
 import ar.germin.api.application.port.in.UpdatePlantPortIn;
-import ar.germin.api.application.port.out.UpdatePlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/plants")
@@ -36,40 +28,49 @@ public class PlantControllerAdapter {
     }
 
     @PostMapping
-    public Integer createPlant(@RequestBody PlantRequestModel plantRequestModel) {
-        return this.savePlantPortIn.save(SavePlantPortIn.Params.builder()
-                .alias(plantRequestModel.alias())
-                .plantingDate(plantRequestModel.plantingDate())
-                .height(plantRequestModel.height())
-                .notes(plantRequestModel.notes())
-                .idGarden(plantRequestModel.idGarden())
-                .idUser(plantRequestModel.idUser())
-                .build());
+    public Integer createPlant(@RequestHeader("id-user") Integer idUser,
+                               @RequestBody SavePlantRequestModel savePlantRequestModel) {
+        return this.savePlantPortIn.save(
+                SavePlantPortIn.Params.builder()
+                        .alias(savePlantRequestModel.alias())
+                        .plantingDate(savePlantRequestModel.plantingDate())
+                        .height(savePlantRequestModel.height())
+                        .idGarden(savePlantRequestModel.idGarden())
+                        .idUser(idUser)
+                        .imageUrl(savePlantRequestModel.imageUrl())
+                        .build());
     }
 
     @DeleteMapping("/{id}")
-    public void deletePlant(@PathVariable("id") Integer id) {
-        this.deletePlantPortIn.delete(id);
+    public void deletePlant(@PathVariable("id") Integer id,
+                            @RequestHeader("id-user") Integer idUser) {
+        this.deletePlantPortIn.delete(
+                DeletePlantPortIn.Params.builder()
+                        .id(id)
+                        .idUser(idUser)
+                        .build());
     }
 
-    @PutMapping("/update")
-    public Integer updatePlant(@RequestBody PlantRequestModel plantRequestModel) {
-        return this.updatePlantPortIn.update(UpdatePlantRepository.Params.builder()
-                .id(plantRequestModel.id())
-                .alias(plantRequestModel.alias())
-                .height(plantRequestModel.height())
-                .plantingDate(plantRequestModel.plantingDate())
-                .notes(plantRequestModel.notes())
-                .id_garden(plantRequestModel.idGarden())
-                .is_active(plantRequestModel.isActive())
-                .is_favorite(plantRequestModel.isFavorite())
-                .build());
+    @PostMapping("/{id}")
+    public Integer update(@PathVariable("id") Integer id,
+                          @RequestHeader("id-user") Integer idUser,
+                          @RequestBody UpdatePlantRequestModel updatePlantRequestModel) {
+        return this.updatePlantPortIn.update(
+                UpdatePlantPortIn.Params.builder()
+                        .id(id)
+                        .alias(updatePlantRequestModel.alias())
+                        .height(updatePlantRequestModel.height())
+                        .plantingDate(updatePlantRequestModel.plantingDate())
+                        .idGarden(updatePlantRequestModel.idGarden())
+                        .idUser(idUser)
+                        .isFavorite(updatePlantRequestModel.isFavorite())
+                        .build());
     }
 
-    @GetMapping("/{idPlant}")
-    public PlantResponseModel getPlant(@RequestHeader("id-user") Integer idUser, @PathVariable Integer idPlant) {
+    @GetMapping("/{id}")
+    public PlantResponseModel getPlant(@PathVariable Integer id, @RequestHeader("id-user") Integer idUser) {
 
-        return PlantResponseModel.fromDomain(this.getPlantPortIn.get(idUser, idPlant));
+        return PlantResponseModel.fromDomain(this.getPlantPortIn.get(idUser, id));
     }
 
 }

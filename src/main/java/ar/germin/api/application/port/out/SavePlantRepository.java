@@ -1,6 +1,5 @@
 package ar.germin.api.application.port.out;
 
-import ar.germin.api.application.domain.Plant;
 import lombok.Builder;
 import lombok.Value;
 
@@ -19,5 +18,6 @@ public interface SavePlantRepository {
         Integer idGarden;
         Integer idUser;
         Boolean isActive;
+        String imageUuid;
     }
 }

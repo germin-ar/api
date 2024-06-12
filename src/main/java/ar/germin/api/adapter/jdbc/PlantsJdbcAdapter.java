@@ -1,6 +1,7 @@
 package ar.germin.api.adapter.jdbc;
 
 import ar.germin.api.adapter.jdbc.models.PlantModel;
+import ar.germin.api.adapter.jdbc.models.PlantPlantCatalogModel;
 import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.exceptions.ErrorPlantSaveException;
 import ar.germin.api.application.exceptions.PlantNotFoundException;
@@ -10,6 +11,7 @@ import ar.germin.api.application.port.out.SavePlantRepository;
 import ar.germin.api.application.port.out.UpdatePlantRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -98,11 +100,9 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
             MapSqlParameterSource sqlParams = new MapSqlParameterSource()
                     .addValue("id", params.getId())
                     .addValue("alias", params.getAlias())
-                    .addValue("id_garden", params.getId_garden())
-                    .addValue("is_favorite", params.getIs_favorite())
-                    .addValue("is_active", params.getIs_active())
+                    .addValue("id_garden", params.getIdGarden())
+                    .addValue("is_favorite", params.getIsFavorite())
                     .addValue("height", params.getHeight())
-                    .addValue("notes", params.getNotes())
                     .addValue("planting_date", params.getPlantingDate());
 
             log.info("Updating plant with sql [{}] with params: [{}]", updatePlantSql, sqlParams);
@@ -116,19 +116,25 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
 
     @Override
     public Plant getByIdUserAndIdPlant(Integer idUser, Integer idPlant) {
-        MapSqlParameterSource params = new MapSqlParameterSource()
-                .addValue("idUser", idUser)
-                .addValue("idPlant", idPlant);
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("idUser", idUser)
+                    .addValue("idPlant", idPlant);
 
-        log.info("Querying garden with sql [{}] with params: [{}]", getPlantSql, params);
-        List<PlantModel> plantModels = this.namedParameterJdbcTemplate.query(getPlantSql, params, BeanPropertyRowMapper.newInstance(PlantModel.class));
+            log.info("Querying garden with sql [{}] with params: [{}]", getPlantSql, params);
 
-        if (plantModels.isEmpty()) {
-            log.error("Plant with id [{}] not found", idPlant);
+            return Optional
+                    .ofNullable(this.namedParameterJdbcTemplate.queryForObject(getPlantSql, params, new BeanPropertyRowMapper<>(PlantPlantCatalogModel.class)))
+                    .map(PlantPlantCatalogModel::toDomain)
+                    .orElseThrow(() -> {
+                        log.error("Plant with id {} and id user {} not found", idPlant, idUser);
+                        return new PlantNotFoundException();
+                    });
+        } catch (EmptyResultDataAccessException ex) {
+            log.error("Plant with id {} and id user {} not found", idPlant, idUser);
             throw new PlantNotFoundException();
         }
 
-        return plantModels.get(0).toDomain();
     }
 
     @Override

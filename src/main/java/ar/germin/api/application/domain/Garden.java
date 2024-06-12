@@ -13,4 +13,5 @@ public class Garden {
     String name;
     @With
     List<Plant> plants;
+    Integer idUser;
 }
