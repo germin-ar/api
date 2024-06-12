@@ -58,7 +58,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
 
         List<Candidate> candidates = aiDetection
                 .getCandidates()
-                .stream()
+                .parallelStream()
                 .map(candidate -> candidate.withPlantCatalog(getPlantCatalog(candidate.getSpecie())))
                 .max(Comparator.comparingDouble(Candidate::getScore))
                 .map(List::of)
