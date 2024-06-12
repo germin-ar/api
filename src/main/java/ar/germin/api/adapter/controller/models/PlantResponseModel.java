@@ -29,6 +29,11 @@ public class PlantResponseModel {
     String expo;
     Integer idGarden;
 
+    String plantCatalogFamily;
+    String plantCatalogGenus;
+    String plantCatalogIrrigation;
+    String plantCatalogDescription;
+
     public static PlantResponseModel fromDomain(Plant plant){
         return PlantResponseModel.builder()
                 .id(plant.getId())
@@ -39,6 +44,10 @@ public class PlantResponseModel {
                 .favorite(plant.getIsFavorite())
                 .height(plant.getHeight())
                 .notes(plant.getNotes())
+                .plantCatalogFamily(plant.getPcFamily())
+                .plantCatalogGenus(plant.getPcGenus())
+                .plantCatalogIrrigation(plant.getPcIrrigation())
+                .plantCatalogDescription(plant.getPcDescription())
                 .build();
     }
 

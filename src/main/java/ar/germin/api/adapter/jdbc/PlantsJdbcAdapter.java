@@ -1,6 +1,7 @@
 package ar.germin.api.adapter.jdbc;
 
 import ar.germin.api.adapter.jdbc.models.PlantModel;
+import ar.germin.api.adapter.jdbc.models.PlantPlantCatalogModel;
 import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.exceptions.ErrorPlantSaveException;
 import ar.germin.api.application.exceptions.PlantNotFoundException;
@@ -121,14 +122,9 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
                 .addValue("idPlant", idPlant);
 
         log.info("Querying garden with sql [{}] with params: [{}]", getPlantSql, params);
-        List<PlantModel> plantModels = this.namedParameterJdbcTemplate.query(getPlantSql, params, BeanPropertyRowMapper.newInstance(PlantModel.class));
+        PlantPlantCatalogModel plantModels = this.namedParameterJdbcTemplate.queryForObject(getPlantSql, params, new BeanPropertyRowMapper<>(PlantPlantCatalogModel.class));
 
-        if (plantModels.isEmpty()) {
-            log.error("Plant with id [{}] not found", idPlant);
-            throw new PlantNotFoundException();
-        }
-
-        return plantModels.get(0).toDomain();
+        return plantModels.toDomain();
     }
 
     @Override

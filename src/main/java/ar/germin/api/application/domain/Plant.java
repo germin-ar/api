@@ -22,5 +22,13 @@ public class Plant {
     String notes;
     Boolean isActive;
     Integer idGarden;
+    String description;
     Integer idUser;
+
+
+    //
+    String pcFamily;
+    String pcGenus;
+    String pcIrrigation;
+    String pcDescription;
 }
