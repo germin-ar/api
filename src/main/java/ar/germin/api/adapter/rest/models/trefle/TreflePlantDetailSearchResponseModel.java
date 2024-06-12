@@ -8,32 +8,6 @@ import lombok.Data;
 
 import java.util.List;
 
-//
-//@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-//@Data
-//public class TreflePlantResponseModel {
-//    private DataModel1 data;
-//}
-//
-//@Data
-//class DataModel1 {
-//    public int id;
-//    public String common_name;
-//    public String slug;
-//    public String scientific_name;
-//    public int main_species_id;
-//    public String image_url;
-//    public int year;
-//}
-
-
-//package ar.germin.api.adapter.rest.models;
-
-//import ar.germin.api.application.domain.PlantCatalog;
-//import lombok.Data;
-
-//import java.util.List;
-
 @Data
 public class TreflePlantDetailSearchResponseModel {
     private DataModelDetail data;
@@ -42,9 +16,8 @@ public class TreflePlantDetailSearchResponseModel {
         return PlantCatalog.builder()
                 .scientificName(data.scientificName)
                 .slug(data.slug)
-                .light(data.light)
+                .sunlight(data.getLight().toString())
                 .genus(data.genus.getName())
-                //.averageSize(data.getSpecifications().getAverageHeight())
                 .familyName(data.family.getName())
                 .description(data.observations)
                 .fertilizer("fertilizer")
@@ -71,12 +44,9 @@ class DataModelDetail {
     String observations;
     Boolean vegetable;
     Specifications specifications;
-    //MainSpecies mainSpecies;
     Genus genus;
     Family family;
     GrowthModel growth;
-
-
 }
 
 @Data
@@ -91,7 +61,6 @@ class GenusDetailModel {
     private Integer id;
     private String name;
     private String slug;
-
 }
 
 @Data
@@ -107,7 +76,6 @@ class MainSpeciesModel {
     private List<String> duration;
     private List<String> ediblePart;
     private Boolean edible;
-    //private List<ImagesModel> images;
     private List<String> commonNames;
     private Specifications specifications;
     private Growth growth;
@@ -117,9 +85,6 @@ class MainSpeciesModel {
 @Data
 class GrowthModel {
     private Integer id;
-    //    private Object description;
-//    private Object sowing;
-//    private Object daysToHarvest;
     private Double rowSpacing;
     private Double spread;
     private Double phMaximum;
@@ -132,24 +97,12 @@ class GrowthModel {
     private Integer soilNutriments;
     private Integer soilSalinity;
 }
-//
-//@Data
-//class ImagesModel {
-//    private Integer id;
-//    //flower - empty - fruit - bark - leaf - habit - other
-//    private String partName;
-//    private String url;
-//    //relacion con mainSpecies
-//    private Integer MainSpeciesId;
-//}
 
 @Data
 class SpecificationsModel {
-    //private Object ligneousType;
     private String growthHabit;
     private Double averageHeight;
     private Double maximumHeight;
-
 }
 
 @Builder
