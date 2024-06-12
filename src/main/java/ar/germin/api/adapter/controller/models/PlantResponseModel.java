@@ -34,6 +34,8 @@ public class PlantResponseModel {
     String plantCatalogIrrigation;
     String plantCatalogDescription;
 
+    String plantCatalogCommonName;
+    String plantCatalogScientificName;
     public static PlantResponseModel fromDomain(Plant plant){
         return PlantResponseModel.builder()
                 .id(plant.getId())
@@ -44,6 +46,8 @@ public class PlantResponseModel {
                 .favorite(plant.getIsFavorite())
                 .height(plant.getHeight())
                 .notes(plant.getNotes())
+                .plantCatalogCommonName(plant.getPcCommonName())
+                .plantCatalogScientificName(plant.getPcScientificName())
                 .plantCatalogFamilyName(plant.getPcFamilyname())
                 .plantCatalogGenus(plant.getPcGenus())
                 .plantCatalogIrrigation(plant.getPcWateringFrecuency())

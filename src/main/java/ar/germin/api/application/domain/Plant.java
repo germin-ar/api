@@ -31,4 +31,8 @@ public class Plant {
     String pcGenus;
     String pcWateringFrecuency;
     String pcDescription;
+
+
+    String pcCommonName;
+    String pcScientificName;
 }

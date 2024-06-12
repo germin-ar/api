@@ -23,6 +23,11 @@ public class PlantPlantCatalogModel {
     String pcWateringFrecuency;
     String pcDescription;
 
+    String pcCommonName;
+    String pcScientificName;
+
+
+
     public Plant toDomain() {
         return Plant.builder()
                 .id(plantId)
@@ -34,6 +39,8 @@ public class PlantPlantCatalogModel {
                 .height(plantHeight)
                 .notes(plantNotes)
                 .plantingDate(plantPlantingDate)
+                .pcCommonName(pcCommonName)
+                .pcScientificName(pcScientificName)
                 .pcFamilyname(pcFamilyName)
                 .pcGenus(pcGenus)
                 .pcWateringFrecuency(pcWateringFrecuency)
