@@ -4,6 +4,7 @@ import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.port.in.GetGardenPortIn;
 import ar.germin.api.application.port.out.GetGardenRepository;
+import ar.germin.api.application.port.out.GetPlantPhotosRepository;
 import ar.germin.api.application.port.out.GetPlantRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ class GetGardenUseCaseTest {
 
     private final GetGardenRepository getGardenRepository = mock(GetGardenRepository.class);
     private final GetPlantRepository getPlantRepository = mock(GetPlantRepository.class);
+    private final GetPlantPhotosRepository getPlantPhotosRepository = mock(GetPlantPhotosRepository.class);
 
     @Test
     void testGetGardenByIdReturnGarden() {
@@ -27,7 +29,7 @@ class GetGardenUseCaseTest {
 
         when(getGardenRepository.getById(5)).thenReturn(garden);
 
-        GetGardenPortIn useCase = new GetGardenUseCase(getGardenRepository, getPlantRepository);
+        GetGardenPortIn useCase = new GetGardenUseCase(getGardenRepository, getPlantRepository, getPlantPhotosRepository);
 
         Garden result = useCase.get(5, 2);
 
@@ -47,7 +49,7 @@ class GetGardenUseCaseTest {
         when(getGardenRepository.getById(5)).thenReturn(garden);
         when(getPlantRepository.getByIdGardenAndIdUser(5, 2)).thenReturn(List.of(plant1, plant2));
 
-        GetGardenPortIn useCase = new GetGardenUseCase(getGardenRepository, getPlantRepository);
+        GetGardenPortIn useCase = new GetGardenUseCase(getGardenRepository, getPlantRepository, getPlantPhotosRepository);
 
         Garden result = useCase.get(5, 2);
 
@@ -68,7 +70,7 @@ class GetGardenUseCaseTest {
         when(getGardenRepository.getById(5)).thenReturn(garden);
         when(getPlantRepository.getByIdGardenAndIdUser(5, 2)).thenReturn(Collections.emptyList());
 
-        GetGardenPortIn useCase = new GetGardenUseCase(getGardenRepository, getPlantRepository);
+        GetGardenPortIn useCase = new GetGardenUseCase(getGardenRepository, getPlantRepository, getPlantPhotosRepository);
 
         Garden result = useCase.get(5, 2);
 

@@ -12,8 +12,11 @@ import ar.germin.api.application.port.out.GetPlantDetailDataRepository;
 import ar.germin.api.application.port.out.GetPlantSuggestionRepository;
 import ar.germin.api.configuration.GerminarConfiguration;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -24,11 +27,13 @@ public class TrefleRestAdapter implements GetPlantDataRepository, GetPlantDetail
     private final GerminarConfiguration germinarConfiguration;
     private final RestClient restClient;
 
-    public TrefleRestAdapter(GerminarConfiguration germinarConfiguration) {
+    @Autowired
+    public TrefleRestAdapter(GerminarConfiguration germinarConfiguration, RestTemplate restTemplate) {
         this.germinarConfiguration = germinarConfiguration;
-        this.restClient = RestClient.builder()
-                .baseUrl("https://trefle.io")
-                .build();
+        this.restClient = RestClient.create(restTemplate);
+        //this.restClient = RestClient.builder()
+        //      .baseUrl("https://trefle.io")
+        //    .build();
     }
 
     public void search(String scientificName) {
@@ -36,11 +41,13 @@ public class TrefleRestAdapter implements GetPlantDataRepository, GetPlantDetail
             TreflePlantSearchResponseModel result = this.restClient
                     .get()
                     .uri(uriBuilder -> {
-                        URI uri = uriBuilder
+                        URI uri = UriComponentsBuilder
+                                .fromUriString("https://trefle.io")
                                 .path("/api/v1/plants")
                                 .queryParam("token", this.germinarConfiguration.integrations().trefle().apiKey())
                                 .queryParam("filter[scientific_name]", scientificName.trim())
-                                .build();
+                                .build()
+                                .toUri();
 
                         log.info("Calling trefle with uri: {}", uri);
                         return uri;
@@ -61,11 +68,13 @@ public class TrefleRestAdapter implements GetPlantDataRepository, GetPlantDetail
             TreflePlantDetailSearchResponseModel result = this.restClient
                     .get()
                     .uri(uriBuilder -> {
-                        URI uri = uriBuilder
+                        URI uri = UriComponentsBuilder
+                                .fromUriString("https://trefle.io")
                                 .path("/api/v1/plants")
                                 .pathSegment(scientificName)
                                 .queryParam("token", this.germinarConfiguration.integrations().trefle().apiKey())
-                                .build();
+                                .build()
+                                .toUri();
 
                         log.info("Calling trefleDetail with uri: {}", uri);
                         return uri;
