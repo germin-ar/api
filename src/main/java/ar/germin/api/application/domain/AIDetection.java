@@ -15,4 +15,6 @@ public class AIDetection {
     List<Candidate> candidates;
     @With
     FileImage fileImage;
+    @With
+    HealthAIDetection healthAIDetection;
 }

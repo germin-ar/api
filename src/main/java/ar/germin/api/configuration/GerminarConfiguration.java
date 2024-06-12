@@ -9,7 +9,8 @@ public record GerminarConfiguration(Integrations integrations) {
                                Plantnet plantnet,
                                FreeImage freeImage,
                                Trefle trefle,
-                               Weather weather) {
+                               Weather weather,
+                               PlantId plantId) {
     }
 
     public record Perenual(String apiKey) {
@@ -25,6 +26,9 @@ public record GerminarConfiguration(Integrations integrations) {
     }
 
     public record Weather(String apiKey) {
+    }
+
+    public record PlantId(String apiKey) {
     }
 }
 

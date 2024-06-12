@@ -6,10 +6,12 @@ import ar.germin.api.application.domain.FileImage;
 import ar.germin.api.application.port.out.GetAIDetectionRepository;
 import ar.germin.api.configuration.GerminarConfiguration;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 @Component
+@Qualifier("rest")
 @Slf4j
 public class PlantNetRestAdapter implements GetAIDetectionRepository {
     private final GerminarConfiguration germinarConfiguration;

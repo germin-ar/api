@@ -16,6 +16,7 @@ public class CandidateResponseModel {
     String language;
     List<CandidateModel> candidates;
     ImageModel image;
+    HealthModel health;
 
 
     public static CandidateResponseModel fromDomain(AIDetection aiDetection) {
@@ -53,6 +54,9 @@ public class CandidateResponseModel {
                         .uuid(aiDetection.getFileImage().getId())
                         .url(aiDetection.getFileImage().getFilePath())
                         .build())
+                .health(HealthModel.builder()
+                        .isHealty(aiDetection.getHealthAIDetection().getIsHealthy())
+                        .build())
                 .build();
     }
 
@@ -89,5 +93,10 @@ public class CandidateResponseModel {
                           String pruning
             /*TODO falta temporadas
              *  ubicacion posibles, podado, Consejos*/) {
+    }
+
+    @Builder
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    record HealthModel(Boolean isHealty) {
     }
 }
