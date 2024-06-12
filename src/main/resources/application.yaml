@@ -27,3 +27,6 @@ germinar:
 
     weather:
       api-key: ${WEATHER_API_KEY}
+
+    plant-id:
+      api-key: ${PLANTID_API_KEY}

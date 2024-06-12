@@ -3,19 +3,20 @@ package ar.germin.api.application.usecase;
 import ar.germin.api.application.domain.AIDetection;
 import ar.germin.api.application.domain.Candidate;
 import ar.germin.api.application.domain.FileImage;
+import ar.germin.api.application.domain.HealthAIDetection;
 import ar.germin.api.application.domain.PlantCatalog;
 import ar.germin.api.application.domain.Specie;
 import ar.germin.api.application.exceptions.PlantCatalogNotFoundException;
 import ar.germin.api.application.port.in.GetCandidatesPlantsPortIn;
 import ar.germin.api.application.port.out.GetAIDetectionRepository;
-import ar.germin.api.application.port.out.GetCandidateRepository;
 import ar.germin.api.application.port.out.GetFileRepository;
+import ar.germin.api.application.port.out.GetHealthSuggestionsRepository;
 import ar.germin.api.application.port.out.GetPlantCatalogRepository;
 import ar.germin.api.application.port.out.GetPlantDetailDataRepository;
-import ar.germin.api.application.port.out.SaveCandidateRepository;
 import ar.germin.api.application.port.out.SavePlantCatalogRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
@@ -26,28 +27,25 @@ import java.util.List;
 public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
     private final GetFileRepository getFileRepository;
     private final GetAIDetectionRepository getAIDetectionRepository;
-    private final GetCandidateRepository getCandidateRepository;
-    private final SaveCandidateRepository saveCandidateRepository;
     private final GetPlantCatalogRepository getPlantCatalogRepository;
     private final GetPlantDetailDataRepository getPlantDetailDataRepository;
     private final SavePlantCatalogRepository savePlantCatalogRepository;
+    private final GetHealthSuggestionsRepository getHealthSuggestionsRepository;
 
     @Autowired
     public GetCandidatesPlantsUseCase(GetFileRepository getFileRepository,
-                                      GetAIDetectionRepository getAIDetectionRepository,
-                                      GetCandidateRepository getCandidateRepository,
-                                      SaveCandidateRepository saveCandidateRepository,
+                                      @Qualifier("rest") GetAIDetectionRepository getAIDetectionRepository,
                                       GetPlantCatalogRepository getPlantCatalogRepository,
                                       GetPlantDetailDataRepository getPlantDetailDataRepository,
-                                      SavePlantCatalogRepository savePlantCatalogRepository
+                                      SavePlantCatalogRepository savePlantCatalogRepository,
+                                      GetHealthSuggestionsRepository getHealthSuggestionsRepository
     ) {
         this.getFileRepository = getFileRepository;
         this.getAIDetectionRepository = getAIDetectionRepository;
-        this.getCandidateRepository = getCandidateRepository;
-        this.saveCandidateRepository = saveCandidateRepository;
         this.getPlantCatalogRepository = getPlantCatalogRepository;
         this.getPlantDetailDataRepository = getPlantDetailDataRepository;
         this.savePlantCatalogRepository = savePlantCatalogRepository;
+        this.getHealthSuggestionsRepository = getHealthSuggestionsRepository;
     }
 
     @Override
@@ -63,8 +61,12 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
                 .max(Comparator.comparingDouble(Candidate::getScore))
                 .map(List::of)
                 .orElseThrow();
+        HealthAIDetection healthAIDetection = this.checkHealth(fileImage);
 
-        AIDetection result = aiDetection.withCandidates(candidates).withFileImage(fileImage);
+        AIDetection result = aiDetection
+                .withCandidates(candidates)
+                .withFileImage(fileImage)
+                .withHealthAIDetection(healthAIDetection);
 
         log.info("Result: [{}]", result);
 
@@ -81,10 +83,10 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
         }
     }
 
-    private void checkHealth(Candidate candidate) {
-        //llamada api plant.id
-
-        //llamada api python
+    private HealthAIDetection checkHealth(FileImage fileImage) {
+        HealthAIDetection healthAIDetection = this.getHealthSuggestionsRepository.getHealthStatus(fileImage);
+        log.info("respuesta estado salud: {}", healthAIDetection);
+        return healthAIDetection;
     }
 
 
