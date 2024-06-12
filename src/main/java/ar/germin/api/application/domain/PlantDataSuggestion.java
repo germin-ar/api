@@ -5,7 +5,8 @@ import lombok.Value;
 
 @Value
 @Builder
-public class Address {
-    String country;
-    String countryCode;
+public class PlantDataSuggestion {
+    String commonName;
+    String scientificName;
+    String image;
 }

@@ -1,21 +1,40 @@
 package ar.germin.api.adapter.rest.models;
 
-import ar.germin.api.application.domain.Weather;
+import ar.germin.api.application.domain.HistoricWeather;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class WeatherResponseModel {
+    @JsonProperty("location")
     LocationModel location;
+
+    @JsonProperty("forecast")
     ForecastModel forecast;
 
-    public Weather toDomain() {
-        return Weather.builder().build();
+    public HistoricWeather toDomain() {
+        Double avgMinTempC = this.getForecast().getForecastday().stream().mapToDouble(f -> f.getDay().getMintempC()).average().orElse(0);
+        Double avgMaxTempC = this.getForecast().getForecastday().stream().mapToDouble(f -> f.getDay().getMaxtempC()).average().orElse(0);
+        Double avgHumidity = this.getForecast().getForecastday().stream().mapToInt(f -> f.getDay().getAvghumidity()).average().orElse(0);
+        Double avgTotalPrecMm = this.getForecast().getForecastday().stream().mapToDouble(f -> f.getDay().getTotalprecipMm()).average().orElse(0);
+
+        return HistoricWeather.builder()
+                .minTemperature(avgMinTempC)
+                .maxTemperature(avgMaxTempC)
+                .avgHumidity(avgHumidity.intValue())
+                .totalprecipMm(avgTotalPrecMm)
+                .build();
     }
 }
 
 @Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 class AstroModel {
     String sunrise;
     String sunset;
@@ -26,11 +45,13 @@ class AstroModel {
 }
 
 @Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 class Day {
     Double maxtempC;
     Double maxtempF;
-    Double mIntegerempC;
-    Double mIntegerempF;
+    Double mintempC;
+    Double mintempF;
     Double avgtempC;
     Double avgtempF;
     Double maxwindMph;
@@ -49,11 +70,14 @@ class Day {
 }
 
 @Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 class ForecastModel {
     List<ForecastdayModel> forecastday;
 }
 
 @Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 class ForecastdayModel {
     String date;
     Integer dateEpoch;
@@ -63,6 +87,8 @@ class ForecastdayModel {
 }
 
 @Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 class Hour {
     Integer timeEpoch;
     String time;
@@ -100,6 +126,7 @@ class Hour {
 }
 
 @Data
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 class LocationModel {
     String name;
     String region;

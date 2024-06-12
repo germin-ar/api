@@ -38,7 +38,8 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
                                       GetCandidateRepository getCandidateRepository,
                                       SaveCandidateRepository saveCandidateRepository,
                                       GetPlantCatalogRepository getPlantCatalogRepository,
-                                      GetPlantDetailDataRepository getPlantDetailDataRepository, SavePlantCatalogRepository savePlantCatalogRepository
+                                      GetPlantDetailDataRepository getPlantDetailDataRepository,
+                                      SavePlantCatalogRepository savePlantCatalogRepository
     ) {
         this.getFileRepository = getFileRepository;
         this.getAIDetectionRepository = getAIDetectionRepository;

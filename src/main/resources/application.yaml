@@ -1,6 +1,8 @@
 spring:
   application:
     name: api
+  jackson:
+    property-naming-strategy: SNAKE_CASE
   jpa:
     properties:
       hibernate:
@@ -22,3 +24,6 @@ germinar:
 
     trefle:
       api-key: ${TREFLE_API_KEY}
+
+    weather:
+      api-key: ${WEATHER_API_KEY}

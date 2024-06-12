@@ -1,4 +1,4 @@
-package ar.germin.api.adapter.rest.models;
+package ar.germin.api.adapter.rest.models.trefle;
 
 import lombok.Builder;
 import lombok.Data;
