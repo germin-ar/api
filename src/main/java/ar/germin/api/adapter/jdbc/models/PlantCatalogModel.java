@@ -19,6 +19,9 @@ public class PlantCatalogModel {
     private String wateringFrequency;
     private String insecticide;
     private String tips;
+    private String harvestTime;
+    private String plantingTime;
+
 
     public PlantCatalog toDomain() {
         return PlantCatalog.builder()
@@ -36,6 +39,9 @@ public class PlantCatalogModel {
                 .wateringFrequency(wateringFrequency)
                 .tips(tips)
                 .insecticide(insecticide)
+                .growthSeason(growthSeason)
+                .harvestTime(harvestTime)
+                .plantingTime(plantingTime)
                 .build();
     }
 }

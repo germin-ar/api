@@ -42,6 +42,10 @@ public class CandidateResponseModel {
                                         .description(candidate.getPlantCatalog().getDescription())
                                         .height(candidate.getPlantCatalog().getMaxSize())
                                         .tips(candidate.getPlantCatalog().getTips())
+                                        .harvestTime(candidate.getPlantCatalog().getHarvestTime())
+                                        .plantingTime(candidate.getPlantCatalog().getPlantingTime())
+                                        .growthSeason(candidate.getPlantCatalog().getGrowthSeason())
+
                                         .build())
                                 .build())
                         .toList())
@@ -78,7 +82,10 @@ public class CandidateResponseModel {
                           String insecticide,
                           Double temperatureMax,
                           Double temperatureMin,
-                          String tips
+                          String tips,
+                          String harvestTime,
+                          String growthSeason,
+                          String plantingTime
             /*TODO falta temporadas
              *  ubicacion posibles, podado, Consejos*/) {
     }
