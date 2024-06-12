@@ -1,4 +1,4 @@
-package ar.germin.api.adapter.rest.models;
+package ar.germin.api.adapter.rest.models.trefle;
 
 import ar.germin.api.application.domain.PlantCatalog;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;

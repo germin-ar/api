@@ -5,7 +5,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "germinar")
 public record GerminarConfiguration(Integrations integrations) {
 
-    public record Integrations(Perenual perenual, Plantnet plantnet, FreeImage freeImage, Trefle trefle) {
+    public record Integrations(Perenual perenual,
+                               Plantnet plantnet,
+                               FreeImage freeImage,
+                               Trefle trefle,
+                               Weather weather) {
     }
 
     public record Perenual(String apiKey) {
@@ -18,6 +22,9 @@ public record GerminarConfiguration(Integrations integrations) {
     }
 
     public record Trefle(String apiKey) {
+    }
+
+    public record Weather(String apiKey) {
     }
 }
 

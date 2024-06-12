@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240611_1" author="agos">
+        <addColumn tableName="plant_catalog" schemaName="garden">
+            <column name="atmospheric_humidity" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="planting_time" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="harvest_time" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20240611_2" author="agos">
+        <renameColumn tableName="plant_catalog" schemaName="garden" oldColumnName="irrigation" newColumnName="watering_frecuency"/>
+        <renameColumn tableName="plant_catalog" schemaName="garden" oldColumnName="watering" newColumnName="watering_care"/>
+        <renameColumn tableName="plant_catalog" schemaName="garden" oldColumnName="family" newColumnName="family_name"/>
+        <renameColumn tableName="plant_catalog" schemaName="garden" oldColumnName="cycle" newColumnName="lifespan"/>
+        <renameColumn tableName="plant_catalog" schemaName="garden" oldColumnName="average_size" newColumnName="max_size"/>
+    </changeSet>
+
+    <changeSet id="20240611_3" author="agos">
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Solanum Lycopersicum"/>
+            <column name="description" value="También conocida como: Planta de tomate. Solanum lycopersicum es una enredadera herbácea anual o perenne originaria de América Central y del Sur que produce un fruto grande, jugoso y comestible conocido como tomate. Hoy en día se cultivan más de 10.000 variedades. Aunque el tomate es la verdura más popular del mundo, botánicamente es una fruta."/>
+            <column name="slug_scientific_name" value="solanum-lycopersicum"/>
+            <column name="genus" value="Solanáceas"/>
+            <column name="family_name" value="Brasicáceas"/>
+            <column name="max_size" value="3.00"/>
+            <column name="fertilizer" value="Naturalmente, todo tipo de planta necesita nutrientes para crecer adecuadamente, pero cuando cultivamos Tomate por su fruta, la cosecha será mejor si se complementa el suelo para aportar más de lo que las plantas necesitan. Cada uno de los principales macronutrientes aporta algo diferente a las plantas. El fósforo es el nutriente clave que favorece la formación de flores y frutos."/>
+            <column name="watering_frecuency" value="2 veces por semana"/>
+            <column name="pruning" value="Como planta anual, el Tomate se poda de forma concentrada desde la primavera hasta el otoño. El mejor momento del día para podar Tomate es por la mañana, un día en el que no se prevean precipitaciones."/>
+            <column name="soil" value="Arena, Marga, Arcilla, Ácido, Neutro, Suelo bien drenado"/>
+            <!--           <column name="insecticide" value="Solanum"/>-->
+            <column name="tips" value="Cuanto más luz solar reciba la fruta, más pronunciado será su sabor. Los tomates necesitan al menos 6-8 horas de sol directo al día y deben regarse de manera constante para mantener el suelo húmedo pero no empapado. Es importante utilizar un soporte o enrejado para mantener las plantas erguidas y evitar que las frutas toquen el suelo."/>
+            <column name="sunlight" value="A pleno sol, más de 6 horas de luz solar"/>
+            <column name="watering_care" value="La mejor forma de regar Tomate es aplicar el agua directamente sobre la tierra de forma lenta y suave. No se debe verter toda el agua en el suelo de una sola vez, ni tampoco regar por encima de la cabeza del Tomate. Aunque debe regar lentamente, también debe hacerlo en profundidad para asegurarse de que toda la tierra en la que crece su Tomate está suficientemente húmeda."/>
+            <column name="common_name" value="Tomate, Jitomate, Tomate Bola, Tomate de Riñón"/>
+            <column name="lifespan" value="Anual, Perenne"/>
+            <column name="propagation" value="Por semillas, injertos"/>
+            <column name="fruit" value="Verde, Rojo, Amarillo, Morado, Naranja, Negro, Blanco Frutas En Verano Listas Para Verano"/>
+            <column name="edible" value="Si"/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="maintenance" value="Alto"/>
+            <column name="temperature_min" value="15.00"/>
+            <column name="temperature_max" value="35.00"/>
+            <column name="specie" value="Tomato"/>
+            <column name="toxic" value="Tóxico para mascotas"/>
+            <column name="repotting" value="La mejor época para trasplantar tomate es entre mediados y finales de la primavera, cuando el clima es cálido y propicio para el desarrollo de las plantas jóvenes. Elija un lugar soleado con un suelo que drene bien y, si es necesario, estimule el crecimiento aplicando materia orgánica."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="growth_season" value="Verano, Otoño"/>
+            <column name="atmospheric_humidity" value="5"/>
+            <column name="planting_time" value="Finales de primavera, Principios de verano, Mediados de verano"/>
+            <column name="harvest_time" value="Mediados de verano, Finales de verano, Principios de otoño, Mediados de otoño"/>
+
+
+            <column name="scientific_name" value="Lactuca sativa"/>
+            <column name="description" value="La lechuga es una planta herbácea originaria de zonas templadas que se cultiva por su consumo como alimento, principalmente servida cruda en ensaladas. Es uno de los cultivos más antiguos que se conocen y ya era consumida en época de los romanos o los egipcios. Existen diferentes variedades dentro de esta hortaliza."/>
+            <column name="slug_scientific_name" value="lactuca-sativa"/>
+            <column name="genus" value="Lactuca"/>
+            <column name="family_name" value="Asteráceas"/>
+            <column name="max_size" value="90.00"/>
+            <column name="fertilizer" value="La Lechuga debe recibir un abono equilibrado, aunque puede que no necesite mucha fertilización si el suelo es suficientemente rico. Los abonos orgánicos como la emulsión de pescado, el estiércol bien descompuesto y el compost o té de compost funcionan muy bien para cultivar Lechuga."/>
+            <column name="watering_frecuency" value="2 veces por semana"/>
+            <column name="pruning" value="Durante el crecimiento de la planta, se producen hojas amarillentas, secas y manchadas, y es necesario recortar estas hojas manchadas y descoloridas. Si toda la hoja está descolorida o infectada, deberá cortarla por completo."/>
+            <column name="soil" value="Arena, Marga, Arcilla, Calcáreo, Ácido, Neutro, Alcalino"/>
+            <!--           <column name="insecticide" value="Solanum"/>-->
+            <column name="tips" value="En general, cuanto más rápido crezca la planta, más horas de sol necesitará. Complementa tu Lechuga con un fertilizante líquido equilibrado si se cultiva en maceta."/>
+            <column name="sunlight" value="A pleno sol, más de 6 horas de luz solar"/>
+            <column name="watering_care" value="La mejor forma de regar Lechuga es aplicar el agua directamente sobre la tierra de forma lenta y suave. No se debe verter toda el agua en el suelo de una sola vez, ni tampoco regar por encima de la cabeza Lechuga. Aunque debe regar lentamente, también debe hacerlo en profundidad para asegurarse de que toda la tierra en la que crece su Lechuga está suficientemente húmeda."/>
+            <column name="common_name" value="Oreja de mulo, Lechuga de cogollo, Lechuga larga, Ensalada"/>
+            <column name="lifespan" value="Anual, Bianual, Perenne"/>
+            <column name="propagation" value="Por semillas"/>
+            <column name="fruit" value="Frutas Verdes, Rojas, Moradas Y Blancas En Otoño Listas Para Usar"/>
+            <column name="edible" value="Si"/>
+            <column name="growth_rate" value="Alto"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="temperature_min" value="20.00"/>
+            <column name="temperature_max" value="35.00"/>
+            <column name="specie" value="Lechuga"/>
+            <column name="toxic" value="No tóxico"/>
+            <column name="repotting" value="Trasplante lechuga durante la temporada alta, de mediados de primavera a principios de verano, ya que el calor asegura el correcto establecimiento de las raíces. Elija un lugar soleado con un suelo bien drenado para obtener los mejores resultados. Recuerde que la clave está en manipular con cuidado sus delicadas raíces."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="atmospheric_humidity" value="6"/>
+            <column name="planting_time" value="Primavera, Verano, Principios de otoño, Mediados de invierno, Finales de invierno"/>
+            <column name="harvest_time" value="Primavera, Verano, Otoño"/>
+
+
+            <column name="scientific_name" value="Ocimum basilicum"/>
+            <column name="description" value="La albahaca es una hierba aromática que vive pocos años. El término “basílico” del nombre científico Ocinum basilicum proviene del latín y del griego, y significa “planta real”, quizás porque se tenía la creencia de que esta planta era empleada para fabricar perfumes “reales”."/>
+            <column name="slug_scientific_name" value="ocimum-basilicum"/>
+            <column name="genus" value="Albahacas"/>
+            <column name="family_name" value="Lamiáceas"/>
+            <column name="max_size" value="1.5"/>
+            <column name="fertilizer" value="Los fertilizantes contienen altos niveles de nitrógeno, potasio y fósforo, junto con otros nutrientes esenciales como hierro, manganeso y zinc. Todos ellos son elementos necesarios que favorecen el crecimiento en Albahaca. Un abono equilibrado funciona bien para Albahaca. También puede elegir un abono más rico en nitrógeno que en otros nutrientes, como el abono de pescado."/>
+            <column name="watering_frecuency" value="2 veces por semana"/>
+            <column name="pruning" value="La albahaca se pueden podar cuando alcanzan 20 cm de altura. Las hojas amarillas, una vez detectadas, se deben cortar de inmediato. Si la planta crece demasiado frondosa y se pierde el efecto ornamental, se pueden cortar las ramas sobrantes."/>
+            <column name="soil" value="Arena, Marga, Arcilla, Franco-arenoso, Ácido, Neutro, Alcalino"/>
+            <!--           <column name="insecticide" value="Solanum"/>-->
+            <column name="tips" value="Puede ser difícil para una Albahaca obtener suficiente nitrógeno del suelo, por lo que muchos jardineros prefieren complementarlo alimentando Albahaca con una fuente de nitrógeno."/>
+            <column name="sunlight" value="Sol parcial, de 3 a 6 horas de luz solar"/>
+            <column name="watering_care" value="A la albahaca le va bien un medio de cultivo húmedo. Para mantener el sustrato de las plántulas húmedo es necesario riego frecuente. Las plantas asentadas deben regarse una vez cada 4-6 días en primavera y otoño, y cada 2-4 días en verano. En invierno, trasládelas adentro y reduzca el riego."/>
+            <column name="common_name" value="Alhábega, Alfábega, Hierba de los reyes, Hierba de salitre"/>
+            <column name="lifespan" value="Anual, Perenne, Bianual"/>
+            <column name="propagation" value="Por semillas"/>
+            <column name="fruit" value="Frutas Verdes, Marrones Y Negras Listas Para Usar"/>
+            <column name="edible" value="Si"/>
+            <column name="growth_rate" value="Alto"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="20.00"/>
+            <column name="temperature_max" value="38.00"/>
+            <column name="specie" value="Albahaca"/>
+            <column name="toxic" value="No tóxico"/>
+            <column name="repotting" value="El mejor momento para trasplantar albahaca es a mediados o finales de la primavera o a mediados o finales del otoño, cuando las temperaturas son más suaves, lo que garantiza un crecimiento óptimo. Elija un lugar soleado y con buen drenaje para albahaca y tenga cuidado con sus delicadas raíces durante el proceso de trasplante."/>
+            <column name="dormancy" value="Sin letargo"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="atmospheric_humidity" value="5"/>
+            <column name="planting_time" value="Mediados de primavera, Finales de primavera, Principios de verano"/>
+            <column name="harvest_time" value="Finales de primavera, Mediados de verano, Finales de verano, Otoño"/>
+
+
+            <column name="scientific_name" value="Capsicum annuum"/>
+            <column name="description" value="El chile es una planta herbácea que fue llevada a Europa por los exploradores de la época. Se cultiva principalmente en huertos por su fruto alargado comestible llamado pimiento. Existen numerosas variedades que se diferencian en el color, desde verde hasta rojo, y en el sabor, que va de dulce a picante. El pimiento es apreciado en la cocina del mundo entero."/>
+            <column name="slug_scientific_name" value="capsicum-annuum"/>
+            <column name="genus" value="Chiles"/>
+            <column name="family_name" value="Solanáceas"/>
+            <column name="max_size" value="1.00"/>
+            <column name="fertilizer" value="A muchos cultivadores les gusta utilizar un abono rico en fósforo para flores y frutas. Los fertilizantes con alto contenido en fósforo son los que tienen una proporción NPK en la que el número del medio es el más alto, como 8-32-16 o 10-30-10. Sin embargo, algunas personas utilizan un abono equilibrado, como 10-10-10, para todas las plantas de su jardín, con el fin de simplificar las cosas."/>
+            <column name="watering_frecuency" value="2 veces por semana"/>
+            <column name="pruning" value="El chile se poda principalmente para satisfacer la necesidad de nutrientes de sus frutos. Sea diligente en la eliminación de las hojas viejas y las ramas laterales débiles en la parte inferior de la planta, para garantizar la ventilación y la llegada de luz, así como para aumentar su fotosíntesis"/>
+            <column name="soil" value="Arena, Marga, Arcilla, Ácido, Neutro, Alcalino"/>
+            <!--           <column name="insecticide" value="Solanum"/>-->
+            <column name="tips" value="Los Chiles prosperan con un alto nivel de exposición a la luz solar, ya que son nativas de hábitats con abundante sol. Cuando cultivamos Chile por su fruta, la cosecha será mejor si se complementa el suelo para aportar más de lo que las plantas necesitan."/>
+            <column name="sunlight" value="A pleno sol, más de 6 horas de luz solar"/>
+            <column name="watering_care" value="La mejor forma de regar Chile es aplicar el agua directamente sobre la tierra de forma lenta y suave. No se debe verter toda el agua en el suelo de una sola vez, ni tampoco regar por encima de la cabeza Chile. También debe hacerlo en profundidad para asegurarse de que toda la tierra en la que crece su Chile está suficientemente húmeda."/>
+            <column name="common_name" value="Guindilla, Pimiento morrón, Ají decorativo, Morrón, Ají, Chile dulce"/>
+            <column name="lifespan" value="Anual, Perenne, Bianual"/>
+            <column name="propagation" value="Por semillas, corte, capas, injertos, división"/>
+            <column name="fruit" value="Frutas Verdes, Rojas, Amarillas, Moradas, Naranjas Y Blancas Listas Para El Verano"/>
+            <column name="edible" value="Si"/>
+            <column name="growth_rate" value="Alto"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="temperature_min" value="20.00"/>
+            <column name="temperature_max" value="38.00"/>
+            <column name="specie" value="Chile"/>
+            <column name="toxic" value="No tóxico"/>
+            <column name="repotting" value="Trasplante chile durante el calor de mediados de primavera, una época ideal para el crecimiento. Elija un lugar soleado con suelo bien drenado para obtener los mejores resultados. Recuerde espaciar adecuadamente las plantas y regarlas inmediatamente después del trasplante."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="atmospheric_humidity" value="6"/>
+            <column name="planting_time" value="Primavera, Principios de verano, Mediados de verano"/>
+            <column name="harvest_time" value="Mediados de verano, Finales de verano, Principios de otoño, Mediados de otoño"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -11,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.UUID;
 
@@ -22,8 +21,7 @@ public class FreeImageRestAdapter implements UploadFileRepository {
     private final RestClient restClient;
 
     @Autowired
-    public FreeImageRestAdapter(GerminarConfiguration germinarConfiguration,
-                                WebClient.Builder webClientBuilder) {
+    public FreeImageRestAdapter(GerminarConfiguration germinarConfiguration) {
         this.germinarConfiguration = germinarConfiguration;
         this.restClient = RestClient.builder()
                 .baseUrl("https://freeimage.host")
