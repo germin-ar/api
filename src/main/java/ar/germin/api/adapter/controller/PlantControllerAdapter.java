@@ -7,6 +7,7 @@ import ar.germin.api.application.port.in.DeletePlantPortIn;
 import ar.germin.api.application.port.in.GetPlantPortIn;
 import ar.germin.api.application.port.in.SavePlantPortIn;
 import ar.germin.api.application.port.in.UpdatePlantPortIn;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/plants")
 public class PlantControllerAdapter {
@@ -27,7 +29,10 @@ public class PlantControllerAdapter {
 
 
     @Autowired
-    public PlantControllerAdapter(SavePlantPortIn savePlantPortIn, DeletePlantPortIn deletePlantPortIn, UpdatePlantPortIn updatePlantPortIn, GetPlantPortIn getPlantPortIn) {
+    public PlantControllerAdapter(SavePlantPortIn savePlantPortIn,
+                                  DeletePlantPortIn deletePlantPortIn,
+                                  UpdatePlantPortIn updatePlantPortIn,
+                                  GetPlantPortIn getPlantPortIn) {
         this.savePlantPortIn = savePlantPortIn;
         this.deletePlantPortIn = deletePlantPortIn;
         this.updatePlantPortIn = updatePlantPortIn;
