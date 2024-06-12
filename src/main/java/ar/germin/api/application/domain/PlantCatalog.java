@@ -14,11 +14,13 @@ public class PlantCatalog {
     String familyName;
     Double maxSize;
     String fertilizer;
-    Integer light;
+    String sunlight;
     String wateringFrequency;
     String pruning;
     String soil;
     String insecticide;
     String tips;
-
+    Double temperatureMax;
+    Double temperatureMin;
+    String growthSeason;
 }

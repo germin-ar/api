@@ -76,10 +76,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
             return this.getPlantCatalogRepository.getPlantCatalog(specie.toSlugFormat());
         } catch (PlantCatalogNotFoundException ex) {
             PlantCatalog plantCatalog = this.getPlantDetailDataRepository.searchDetail(specie.toSlugFormat());
-            // TODO: guardar plant catalog en base
             this.savePlantCatalogRepository.save(plantCatalog);
-
-
             return plantCatalog;
         }
     }

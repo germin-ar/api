@@ -8,7 +8,7 @@ import ar.germin.api.application.port.out.GetPlantCatalogRepository;
 import ar.germin.api.application.port.out.SavePlantCatalogRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -33,29 +33,17 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
 
     @Override
     public PlantCatalog getPlantCatalog(String slugScientificName) {
-        MapSqlParameterSource params = new MapSqlParameterSource()
-                .addValue("slugScientificName", slugScientificName);
-        log.info("Querying plant_catalog with SQL [{}] with params: [{}]", selectPlantCatalogByScientificNameSql, params);
 
-        RowMapper<PlantCatalogModel> rowMapper = (rs, rowNum) -> {
-            PlantCatalogModel model = new PlantCatalogModel();
-            model.setId(rs.getInt("id"));
-            model.setScientificName(rs.getString("scientific_name"));
-            model.setDescription(rs.getString("description"));
-            model.setSlug(rs.getString("slug_scientific_name"));
-
-
-            return model;
-        };
 
         try {
 
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("slugScientificName", slugScientificName);
 
             PlantCatalogModel plantCatalogModel = this.namedParameterJdbcTemplate.queryForObject(
                     selectPlantCatalogByScientificNameSql,
                     params,
-                    rowMapper
-            );
+                    new BeanPropertyRowMapper<>(PlantCatalogModel.class));
             return plantCatalogModel.toDomain();
         } catch (EmptyResultDataAccessException e) {
             log.warn("PlantCatalog with scientific name [{}] not found", slugScientificName);
