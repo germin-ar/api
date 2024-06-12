@@ -38,7 +38,8 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
                                       GetCandidateRepository getCandidateRepository,
                                       SaveCandidateRepository saveCandidateRepository,
                                       GetPlantCatalogRepository getPlantCatalogRepository,
-                                      GetPlantDetailDataRepository getPlantDetailDataRepository, SavePlantCatalogRepository savePlantCatalogRepository
+                                      GetPlantDetailDataRepository getPlantDetailDataRepository,
+                                      SavePlantCatalogRepository savePlantCatalogRepository
     ) {
         this.getFileRepository = getFileRepository;
         this.getAIDetectionRepository = getAIDetectionRepository;
@@ -81,8 +82,12 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
 
             return plantCatalog;
         }
+    }
 
+    private void checkHealth(Candidate candidate) {
+        //llamada api plant.id
 
+        //llamada api python
     }
 
 
