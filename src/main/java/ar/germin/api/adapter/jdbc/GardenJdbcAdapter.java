@@ -7,9 +7,12 @@ import ar.germin.api.application.port.out.GetGardenRepository;
 import ar.germin.api.application.port.out.SaveGardenRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -36,18 +39,23 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
 
     @Override
     public Garden getById(Integer id) {
-        MapSqlParameterSource params = new MapSqlParameterSource()
-                .addValue("id", id);
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("id", id);
 
-        log.info("Querying garden with sql [{}] with params: [{}]", selectGardenByIdSql, params);
+            log.info("Querying garden with sql [{}] with params: [{}]", selectGardenByIdSql, params);
 
-        return Optional
-                .ofNullable(this.namedParameterJdbcTemplate.queryForObject(selectGardenByIdSql, params, new BeanPropertyRowMapper<>(GardenModel.class)))
-                .map(GardenModel::toDomain)
-                .orElseThrow(() -> {
-                    log.error("Garden with id {} not found", id);
-                    return new GardenNotFoundException();
-                });
+            return Optional
+                    .ofNullable(this.namedParameterJdbcTemplate.queryForObject(selectGardenByIdSql, params, new BeanPropertyRowMapper<>(GardenModel.class)))
+                    .map(GardenModel::toDomain)
+                    .orElseThrow(() -> {
+                        log.error("Garden with id {} not found", id);
+                        return new GardenNotFoundException();
+                    });
+        } catch (EmptyResultDataAccessException ex){
+            throw new GardenNotFoundException();
+        }
+
 
     }
 
@@ -70,21 +78,21 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
     }
 
     @Override
-    public Boolean save(Integer userId, String name) {
+    public Integer save(Integer userId, String name) {
         try {
             MapSqlParameterSource params = new MapSqlParameterSource()
                     .addValue("name", name)
                     .addValue("idUser", userId);
             log.info("Saving garden with sql [{}] with params: [{}]", saveGardenSql, params);
 
-            this.namedParameterJdbcTemplate.update(saveGardenSql, params);
+            KeyHolder keyHolder = new GeneratedKeyHolder();
+            this.namedParameterJdbcTemplate.update(saveGardenSql, params, keyHolder, new String[]{"id"});
+            Integer generatedId = Optional.ofNullable(keyHolder.getKey()).map(Number::intValue).orElse(-1);
 
-            return true;
+            return generatedId;
         } catch (DuplicateKeyException ex) {
             log.error("Error saving garden for duplicate name", ex);
-            // FIXME: esta excepción no va
-            return false;
-            //throw new GardenNameAlreadyExistsException("El nombre del jardin ya existe");
+            throw new GardenNotFoundException();
         }
 
     }

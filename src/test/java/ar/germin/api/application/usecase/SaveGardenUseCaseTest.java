@@ -13,46 +13,46 @@ public class SaveGardenUseCaseTest {
 
     @Test
     void testSaveGardenWithValidIdAndNameReturnsTrue() {
-        when(saveGardenRepository.save(1, "GardenName")).thenReturn(true);
+        when(saveGardenRepository.save(1, "GardenName")).thenReturn(1);
 
         SaveGardenUseCase useCase = new SaveGardenUseCase(saveGardenRepository);
 
-        Boolean candidateResults = useCase.save(1, "GardenName");
+        Integer candidateResults = useCase.save(1, "GardenName");
 
-        Assertions.assertTrue(candidateResults);
+        Assertions.assertEquals(1, candidateResults);
     }
 
     @Test
     void testSaveGardenWithNullNameReturnsFalse() {
-        when(saveGardenRepository.save(1, null)).thenReturn(false);
+        when(saveGardenRepository.save(1, null)).thenReturn(null);
 
         SaveGardenUseCase useCase = new SaveGardenUseCase(saveGardenRepository);
 
-        Boolean candidateResults = useCase.save(1, null);
+        Integer candidateResults = useCase.save(1, null);
 
-        Assertions.assertFalse(candidateResults);
+        Assertions.assertNull(candidateResults);
     }
 
     @Test
     void testSaveGardenWithEmptyNameReturnsFalse() {
-        when(saveGardenRepository.save(1, "")).thenReturn(false);
+        when(saveGardenRepository.save(1, "")).thenReturn(1);
 
         SaveGardenUseCase useCase = new SaveGardenUseCase(saveGardenRepository);
 
-        Boolean candidateResults = useCase.save(1, "");
+        Integer candidateResults = useCase.save(1, "");
 
-        Assertions.assertFalse(candidateResults);
+        Assertions.assertEquals("", candidateResults);
     }
 
     @Test
     void testSaveGardenWithNullUserIdReturnsFalse() {
-        when(saveGardenRepository.save(null, "GardenName")).thenReturn(false);
+        when(saveGardenRepository.save(null, "GardenName")).thenReturn(1);
 
         SaveGardenUseCase useCase = new SaveGardenUseCase(saveGardenRepository);
 
-        Boolean candidateResults = useCase.save(null, "GardenName");
+        Integer candidateResults = useCase.save(null, "GardenName");
 
-        Assertions.assertFalse(candidateResults);
+        Assertions.assertEquals(1, candidateResults);
     }
 
 }

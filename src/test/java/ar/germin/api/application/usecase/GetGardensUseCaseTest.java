@@ -4,6 +4,7 @@ import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.port.in.GetGardensPortIn;
 import ar.germin.api.application.port.out.GetGardenRepository;
+import ar.germin.api.application.port.out.GetPlantPhotosRepository;
 import ar.germin.api.application.port.out.GetPlantRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,13 +21,14 @@ class GetGardensUseCaseTest {
 
     private final GetGardenRepository getGardenRepository = mock(GetGardenRepository.class);
     private final GetPlantRepository getPlantRepository = mock(GetPlantRepository.class);
+    private final GetPlantPhotosRepository getPlantPhotosRepositor = mock(GetPlantPhotosRepository.class);
 
     @Test
     void testGetGardensByUserReturnsEmptyListWhenNoGardensExists() {
         when(getGardenRepository.getByUserId(2)).thenReturn(Collections.emptyList());
         when(getPlantRepository.getByIdGardenAndIdUser(anyInt(), eq(2))).thenReturn(Collections.emptyList());
 
-        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
+        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepositor);
 
         List<Garden> gardens = useCase.getGardensByUser(2);
 
@@ -49,7 +51,7 @@ class GetGardensUseCaseTest {
 
         when(getGardenRepository.getByUserId(2)).thenReturn(gardens);
 
-        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
+        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepositor);
 
         List<Garden> result = useCase.getGardensByUser(2);
 
@@ -77,7 +79,7 @@ class GetGardensUseCaseTest {
         when(getGardenRepository.getByUserId(2)).thenReturn(List.of(garden));
         when(getPlantRepository.getByIdGardenAndIdUser(1, 2)).thenReturn(mockPlants);
 
-        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
+        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepositor);
 
         List<Garden> result = useCase.getGardensByUser(2);
 
@@ -94,7 +96,7 @@ class GetGardensUseCaseTest {
 
         when(getPlantRepository.getByIdUser(2)).thenReturn(List.of(plant1, plant2));
 
-        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
+        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepositor);
 
         List<Garden> result = useCase.getGardensByUser(2);
 
@@ -112,7 +114,7 @@ class GetGardensUseCaseTest {
         when(getGardenRepository.getByUserId(2)).thenReturn(List.of(garden));
         when(getPlantRepository.getByIdGardenAndIdUser(5, 2)).thenReturn(null);
 
-        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository);
+        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepositor);
 
         List<Garden> result = useCase.getGardensByUser(2);
 

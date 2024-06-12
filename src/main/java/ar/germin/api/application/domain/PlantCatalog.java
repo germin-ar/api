@@ -23,4 +23,6 @@ public class PlantCatalog {
     Double temperatureMax;
     Double temperatureMin;
     String growthSeason;
+    String harvestTime;
+    String plantingTime;
 }

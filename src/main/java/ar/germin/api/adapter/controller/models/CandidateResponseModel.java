@@ -34,7 +34,7 @@ public class CandidateResponseModel {
                                         .build())
                                 .plantData(PlantDataModel.builder()
                                         .fertilizer(candidate.getPlantCatalog().getFertilizer())
-                                        .irrigation(candidate.getPlantCatalog().getWateringFrequency())
+                                        .watering(candidate.getPlantCatalog().getWateringFrequency())
                                         .soil(candidate.getPlantCatalog().getSoil())
                                         .sunExposure(candidate.getPlantCatalog().getSunlight())
                                         .insecticide(candidate.getPlantCatalog().getInsecticide())
@@ -43,6 +43,10 @@ public class CandidateResponseModel {
                                         .description(candidate.getPlantCatalog().getDescription())
                                         .height(candidate.getPlantCatalog().getMaxSize())
                                         .tips(candidate.getPlantCatalog().getTips())
+                                        .harvestTime(candidate.getPlantCatalog().getHarvestTime())
+                                        .plantingTime(candidate.getPlantCatalog().getPlantingTime())
+                                        .growthSeason(candidate.getPlantCatalog().getGrowthSeason())
+                                        .pruning(candidate.getPlantCatalog().getPruning())
                                         .build())
                                 .build())
                         .toList())
@@ -76,13 +80,19 @@ public class CandidateResponseModel {
     record PlantDataModel(String description,
                           Double height,
                           String fertilizer,
-                          String irrigation,
+                          String watering,
                           String soil,
                           String sunExposure,
                           String insecticide,
                           Double temperatureMax,
                           Double temperatureMin,
-                          String tips) {
+                          String tips,
+                          String harvestTime,
+                          String growthSeason,
+                          String plantingTime,
+                          String pruning
+            /*TODO falta temporadas
+             *  ubicacion posibles, podado, Consejos*/) {
     }
 
     @Builder

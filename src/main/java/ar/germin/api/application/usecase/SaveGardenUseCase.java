@@ -15,7 +15,7 @@ public class SaveGardenUseCase implements SaveGardenPortIn {
     }
 
     @Override
-    public Boolean save(Integer userId, String name) {
+    public Integer save(Integer userId, String name) {
         return this.saveGardenRepository.save(userId, name);
     }
 }
