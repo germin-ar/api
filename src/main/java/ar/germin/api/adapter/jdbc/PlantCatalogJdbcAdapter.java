@@ -11,12 +11,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.ErrorResponseException;
-
-import java.util.Optional;
 
 
 @Component
@@ -78,10 +74,10 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
                     .addValue("scientific_name", plantCatalog.getScientificName())
                     .addValue("slug_scientific_name", plantCatalog.getSlug())
                     .addValue("genus", plantCatalog.getGenus())
-                    .addValue("family", plantCatalog.getFamily())
-                    .addValue("average_size", plantCatalog.getAverageSize())
+                    .addValue("family_name", plantCatalog.getFamilyName())
+                    .addValue("max_size", plantCatalog.getMaxSize())
                     .addValue("fertilizer", plantCatalog.getFertilizer())
-                    .addValue("irrigation", plantCatalog.getIrrigation())
+                    .addValue("watering_frecuency", plantCatalog.getWateringFrequency())
                     .addValue("pruning", plantCatalog.getPruning())
                     .addValue("soil", plantCatalog.getSoil())
                     .addValue("insecticide", plantCatalog.getInsecticide())

@@ -37,6 +37,7 @@ import java.util.List;
 @Data
 public class TreflePlantDetailSearchResponseModel {
     private DataModelDetail data;
+
     public PlantCatalog toDomain() {
         return PlantCatalog.builder()
                 .scientificName(data.scientificName)
@@ -44,10 +45,10 @@ public class TreflePlantDetailSearchResponseModel {
                 .light(data.light)
                 .genus(data.genus.getName())
                 //.averageSize(data.getSpecifications().getAverageHeight())
-                .family(data.family.getName())
+                .familyName(data.family.getName())
                 .description(data.observations)
                 .fertilizer("fertilizer")
-                .irrigation("irrigation")
+                .wateringFrequency("irrigation")
                 .pruning("pruning")
                 .soil("soil")
                 .insecticide("insecticide")
@@ -113,8 +114,6 @@ class MainSpeciesModel {
 }
 
 
-
-
 @Data
 class GrowthModel {
     private Integer id;
@@ -152,6 +151,7 @@ class SpecificationsModel {
     private Double maximumHeight;
 
 }
+
 @Builder
 @Data
 class SpeciesDetailModel {

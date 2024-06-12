@@ -11,11 +11,11 @@ public class PlantCatalog {
     String description;
     String slug;
     String genus;
-    String family;
-    Double averageSize;
+    String familyName;
+    Double maxSize;
     String fertilizer;
     Integer light;
-    String irrigation;
+    String wateringFrequency;
     String pruning;
     String soil;
     String insecticide;
