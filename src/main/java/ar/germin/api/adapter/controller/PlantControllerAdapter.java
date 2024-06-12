@@ -60,9 +60,9 @@ public class PlantControllerAdapter {
                 .height(plantRequestModel.height())
                 .plantingDate(plantRequestModel.plantingDate())
                 .notes(plantRequestModel.notes())
-                .idGarden(plantRequestModel.idGarden())
-                .isActive(plantRequestModel.isActive())
-                .isFavorite(plantRequestModel.isFavorite())
+                .id_garden(plantRequestModel.idGarden())
+                .is_active(plantRequestModel.isActive())
+                .is_favorite(plantRequestModel.isFavorite())
                 .build());
     }
 

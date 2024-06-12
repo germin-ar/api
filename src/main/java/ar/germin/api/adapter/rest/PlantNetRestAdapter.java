@@ -23,7 +23,7 @@ public class PlantNetRestAdapter implements GetAIDetectionRepository {
     @Override
     public AIDetection getByFileImage(FileImage fileImage) {
         try {
-            return this.restClient.get().uri(uriBuilder ->
+            PlantNetResponseModel responseModel = this.restClient.get().uri(uriBuilder ->
                             uriBuilder
                                     .path("/v2/identify/all")
                                     .queryParam("images", fileImage.getFilePath())
@@ -31,8 +31,11 @@ public class PlantNetRestAdapter implements GetAIDetectionRepository {
                                     .queryParam("lang", "es")
                                     .build())
                     .retrieve()
-                    .body(PlantNetResponseModel.class)
-                    .toDomain(fileImage.getId());
+                    .body(PlantNetResponseModel.class);
+
+            log.info("Response PlantNet: [{}]", responseModel);
+
+            return responseModel.toDomain(fileImage.getId());
         } catch (RuntimeException ex) {
             log.error("Error getting candidates", ex);
             throw ex;

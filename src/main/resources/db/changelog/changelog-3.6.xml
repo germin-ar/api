@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240610_0" author="armando">
+        <dropColumn tableName="plant_catalog" columnName="id_powo" schemaName="garden"/>
+        <dropColumn tableName="plant_catalog" columnName="id_gbif" schemaName="garden"/>
+    </changeSet>
+
+    <changeSet id="20240610_1" author="armando">
+        <addColumn tableName="plant_catalog" schemaName="garden">
+            <column name="slug_scientific_name" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="genus" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="family" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="average_size" type="double">
+                <constraints nullable="true"/>
+            </column>
+            <column name="fertilizer" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="irrigation" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="pruning" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="soil" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="insecticide" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="tips" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+<!-- agregar la luz-->
+            <!-- TODO agregar los campos que necesita el front-->
+        </addColumn>
+
+    </changeSet>
+
+
+</databaseChangeLog>

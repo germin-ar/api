@@ -13,6 +13,7 @@ import ar.germin.api.application.port.out.GetFileRepository;
 import ar.germin.api.application.port.out.GetPlantCatalogRepository;
 import ar.germin.api.application.port.out.GetPlantDetailDataRepository;
 import ar.germin.api.application.port.out.SaveCandidateRepository;
+import ar.germin.api.application.port.out.SavePlantCatalogRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
     private final SaveCandidateRepository saveCandidateRepository;
     private final GetPlantCatalogRepository getPlantCatalogRepository;
     private final GetPlantDetailDataRepository getPlantDetailDataRepository;
+    private final SavePlantCatalogRepository savePlantCatalogRepository;
 
     @Autowired
     public GetCandidatesPlantsUseCase(GetFileRepository getFileRepository,
@@ -36,7 +38,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
                                       GetCandidateRepository getCandidateRepository,
                                       SaveCandidateRepository saveCandidateRepository,
                                       GetPlantCatalogRepository getPlantCatalogRepository,
-                                      GetPlantDetailDataRepository getPlantDetailDataRepository
+                                      GetPlantDetailDataRepository getPlantDetailDataRepository, SavePlantCatalogRepository savePlantCatalogRepository
     ) {
         this.getFileRepository = getFileRepository;
         this.getAIDetectionRepository = getAIDetectionRepository;
@@ -44,6 +46,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
         this.saveCandidateRepository = saveCandidateRepository;
         this.getPlantCatalogRepository = getPlantCatalogRepository;
         this.getPlantDetailDataRepository = getPlantDetailDataRepository;
+        this.savePlantCatalogRepository = savePlantCatalogRepository;
     }
 
     @Override
@@ -60,9 +63,11 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
                 .map(List::of)
                 .orElseThrow();
 
-        candidates.forEach(this::checkHealth);
+        AIDetection result = aiDetection.withCandidates(candidates).withFileImage(fileImage);
 
-        return aiDetection.withCandidates(candidates);
+        log.info("Result: [{}]", result);
+
+        return result;
     }
 
     private PlantCatalog getPlantCatalog(Specie specie) {
@@ -70,8 +75,9 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
             return this.getPlantCatalogRepository.getPlantCatalog(specie.toSlugFormat());
         } catch (PlantCatalogNotFoundException ex) {
             PlantCatalog plantCatalog = this.getPlantDetailDataRepository.searchDetail(specie.toSlugFormat());
-
             // TODO: guardar plant catalog en base
+            this.savePlantCatalogRepository.save(plantCatalog);
+
 
             return plantCatalog;
         }

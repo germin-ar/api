@@ -1,5 +1,7 @@
 package ar.germin.api.adapter.rest;
 
+
+
 import ar.germin.api.adapter.rest.models.TreflePlantDetailSearchResponseModel;
 import ar.germin.api.adapter.rest.models.TreflePlantSearchResponseModel;
 import ar.germin.api.application.domain.PlantCatalog;
@@ -52,7 +54,7 @@ public class TrefleRestAdapter implements GetPlantDataRepository, GetPlantDetail
 
     public PlantCatalog searchDetail(String scientificName) {
         try {
-            TreflePlantDetailSearchResponseModel result = this.restClient
+          TreflePlantDetailSearchResponseModel result = this.restClient
                     .get()
                     .uri(uriBuilder -> {
                         URI uri = uriBuilder
@@ -69,7 +71,9 @@ public class TrefleRestAdapter implements GetPlantDataRepository, GetPlantDetail
 
             log.info("repuesta trefle: {}", result);
 
-            return result.toDomain();
+          assert result != null;
+
+          return result.toDomain();
         } catch (RuntimeException ex) {
             log.error("Error getting candidates", ex);
             throw ex;
