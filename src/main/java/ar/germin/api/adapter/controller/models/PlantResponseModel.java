@@ -29,7 +29,7 @@ public class PlantResponseModel {
     String expo;
     Integer idGarden;
 
-    String plantCatalogFamily;
+    String plantCatalogFamilyName;
     String plantCatalogGenus;
     String plantCatalogIrrigation;
     String plantCatalogDescription;
@@ -44,9 +44,9 @@ public class PlantResponseModel {
                 .favorite(plant.getIsFavorite())
                 .height(plant.getHeight())
                 .notes(plant.getNotes())
-                .plantCatalogFamily(plant.getPcFamily())
+                .plantCatalogFamilyName(plant.getPcFamilyname())
                 .plantCatalogGenus(plant.getPcGenus())
-                .plantCatalogIrrigation(plant.getPcIrrigation())
+                .plantCatalogIrrigation(plant.getPcWateringFrecuency())
                 .plantCatalogDescription(plant.getPcDescription())
                 .build();
     }

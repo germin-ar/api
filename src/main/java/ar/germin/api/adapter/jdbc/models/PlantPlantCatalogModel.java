@@ -18,9 +18,9 @@ public class PlantPlantCatalogModel {
     Double plantHeight;
     String plantNotes;
     LocalDateTime plantPlantingDate;
-    String pcFamily;
+    String pcFamilyName;
     String pcGenus;
-    String pcIrrigation;
+    String pcWateringFrecuency;
     String pcDescription;
 
     public Plant toDomain() {
@@ -34,9 +34,9 @@ public class PlantPlantCatalogModel {
                 .height(plantHeight)
                 .notes(plantNotes)
                 .plantingDate(plantPlantingDate)
-                .pcFamily(pcFamily)
+                .pcFamilyname(pcFamilyName)
                 .pcGenus(pcGenus)
-                .pcIrrigation(pcIrrigation)
+                .pcWateringFrecuency(pcWateringFrecuency)
                 .pcDescription(pcDescription)
                 .build();
     }

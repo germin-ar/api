@@ -27,8 +27,8 @@ public class Plant {
 
 
     //
-    String pcFamily;
+    String pcFamilyname;
     String pcGenus;
-    String pcIrrigation;
+    String pcWateringFrecuency;
     String pcDescription;
 }

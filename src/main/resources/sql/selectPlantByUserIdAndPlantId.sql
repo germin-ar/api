@@ -7,13 +7,13 @@ select plant.id                plant_id,
        plant.height            plant_height,
        plant.notes             plant_notes,
        plant.planting_date     plant_planting_date,
-       pc.family               pc_family,
+       pc.family_name          pc_family_name,
        pc.genus                pc_genus,
-       pc.irrigation           pc_irrigation,
+       pc.watering_frecuency   pc_watering_frecuency,
        pc.description          pc_description
 from garden.plant plant
          inner join garden.plant_catalog pc
-                   on plant.id_plants_catalog = pc.id
+                    on plant.id_plants_catalog = pc.id
 where plant.is_active
   and plant.user_id = :idUser
   and plant.id = :idPlant
