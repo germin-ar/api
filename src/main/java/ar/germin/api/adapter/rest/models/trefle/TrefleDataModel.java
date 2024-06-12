@@ -1,6 +1,5 @@
 package ar.germin.api.adapter.rest.models.trefle;
 
-import ar.germin.api.application.domain.PlantDataSuggestion;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;

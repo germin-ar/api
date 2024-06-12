@@ -2,7 +2,6 @@ package ar.germin.api.application.domain;
 
 import lombok.Builder;
 import lombok.Value;
-import org.apache.logging.log4j.util.Strings;
 
 import java.util.List;
 

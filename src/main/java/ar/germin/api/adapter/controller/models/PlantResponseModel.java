@@ -15,9 +15,12 @@ import java.time.LocalDateTime;
 public class PlantResponseModel {
     Integer id;
     String alias;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime creationDate;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime modificationDate;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime plantingDate;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    LocalDateTime creationDate;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    LocalDateTime modificationDate;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    LocalDateTime plantingDate;
     String description;
     // TODO ver list -> List<FileImage> images;
     Boolean favorite;
@@ -36,7 +39,8 @@ public class PlantResponseModel {
 
     String plantCatalogCommonName;
     String plantCatalogScientificName;
-    public static PlantResponseModel fromDomain(Plant plant){
+
+    public static PlantResponseModel fromDomain(Plant plant) {
         return PlantResponseModel.builder()
                 .id(plant.getId())
                 .alias(plant.getAlias())

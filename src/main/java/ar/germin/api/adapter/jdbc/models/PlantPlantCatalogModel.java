@@ -5,7 +5,6 @@ import ar.germin.api.application.domain.Plant;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Data
 public class PlantPlantCatalogModel {
@@ -25,7 +24,6 @@ public class PlantPlantCatalogModel {
 
     String pcCommonName;
     String pcScientificName;
-
 
 
     public Plant toDomain() {

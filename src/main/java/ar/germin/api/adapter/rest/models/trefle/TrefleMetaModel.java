@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class TrefleMetaModel {
-     Integer total;
+    Integer total;
 }

@@ -18,6 +18,13 @@ public class PlantModel {
     private String notes;
     private LocalDateTime plantingDate;
 
+    public static List<Plant> toDomainFromList(List<PlantModel> plantModels) {
+        return plantModels
+                .stream()
+                .map(PlantModel::toDomain)
+                .toList();
+    }
+
     public Plant toDomain() {
         return Plant.builder()
                 .id(id)
@@ -30,12 +37,5 @@ public class PlantModel {
                 .notes(notes)
                 .plantingDate(plantingDate)
                 .build();
-    }
-
-    public static List<Plant> toDomainFromList(List<PlantModel> plantModels) {
-        return plantModels
-                .stream()
-                .map(PlantModel::toDomain)
-                .toList();
     }
 }

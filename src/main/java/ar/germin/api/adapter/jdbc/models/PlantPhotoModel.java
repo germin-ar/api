@@ -13,6 +13,10 @@ public class PlantPhotoModel {
     String url;
     Integer idPlant;
 
+    public static List<PlantPhoto> toDomainList(List<PlantPhotoModel> plantPhotoModels) {
+        return plantPhotoModels.stream().map(PlantPhotoModel::toDomain).toList();
+    }
+
     public PlantPhoto toDomain() {
         return PlantPhoto.builder()
                 .id(id)
@@ -20,9 +24,5 @@ public class PlantPhotoModel {
                 .url(url)
                 .idPlant(idPlant)
                 .build();
-    }
-
-    public static List<PlantPhoto> toDomainList(List<PlantPhotoModel> plantPhotoModels) {
-        return plantPhotoModels.stream().map(PlantPhotoModel::toDomain).toList();
     }
 }

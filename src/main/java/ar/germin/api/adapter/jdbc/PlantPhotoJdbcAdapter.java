@@ -1,11 +1,9 @@
 package ar.germin.api.adapter.jdbc;
 
 
-import ar.germin.api.adapter.jdbc.models.GardenModel;
 import ar.germin.api.adapter.jdbc.models.PlantPhotoModel;
 import ar.germin.api.application.domain.PlantPhoto;
 import ar.germin.api.application.exceptions.ErrorPlantSaveException;
-import ar.germin.api.application.exceptions.GardenNotFoundException;
 import ar.germin.api.application.port.out.GetPlantPhotosRepository;
 import ar.germin.api.application.port.out.SavePlantPhotoRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +15,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.ErrorResponseException;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;

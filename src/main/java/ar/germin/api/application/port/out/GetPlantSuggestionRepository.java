@@ -1,8 +1,8 @@
 package ar.germin.api.application.port.out;
 
 import ar.germin.api.application.domain.Address;
-import ar.germin.api.application.domain.PlantDataSuggestion;
 import ar.germin.api.application.domain.HistoricWeather;
+import ar.germin.api.application.domain.PlantDataSuggestion;
 
 import java.util.List;
 

@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class SavePlantCatalogUseCase implements SavePlantCatalogPortIn {
-  private final SavePlantCatalogRepository savePlantCatalogRepository;
+    private final SavePlantCatalogRepository savePlantCatalogRepository;
 
-  @Autowired
-  public SavePlantCatalogUseCase(SavePlantCatalogRepository savePlantCatalogRepository) {
-    this.savePlantCatalogRepository = savePlantCatalogRepository;
-  }
+    @Autowired
+    public SavePlantCatalogUseCase(SavePlantCatalogRepository savePlantCatalogRepository) {
+        this.savePlantCatalogRepository = savePlantCatalogRepository;
+    }
 
-  @Override
-  public void save(PlantCatalog plantCatalog) {
-     this.savePlantCatalogRepository.save( plantCatalog );
-  }
+    @Override
+    public void save(PlantCatalog plantCatalog) {
+        this.savePlantCatalogRepository.save(plantCatalog);
+    }
 }

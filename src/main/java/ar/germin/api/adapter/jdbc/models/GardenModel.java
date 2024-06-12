@@ -17,14 +17,6 @@ public class GardenModel {
     private String name;
     private Integer idUser;
 
-    public Garden toDomain() {
-        return Garden.builder()
-                .id(id)
-                .name(name)
-                .idUser(idUser)
-                .build();
-    }
-
     public static List<Garden> toDomainFromModelList(List<GardenModel> gardenModels) {
         return gardenModels.stream().map(GardenModel::toDomain).toList();
     }
@@ -33,5 +25,13 @@ public class GardenModel {
         return gardenModels.stream()
                 .map(GardenModel::toDomain)
                 .toList();
+    }
+
+    public Garden toDomain() {
+        return Garden.builder()
+                .id(id)
+                .name(name)
+                .idUser(idUser)
+                .build();
     }
 }

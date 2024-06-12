@@ -1,8 +1,6 @@
 package ar.germin.api.application.usecase.service;
 
-import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.port.in.SavePlantPortIn;
-import ar.germin.api.application.port.out.GetGardenRepository;
 import ar.germin.api.application.port.out.SavePlantPhotoRepository;
 import ar.germin.api.application.port.out.SavePlantRepository;
 import lombok.extern.slf4j.Slf4j;

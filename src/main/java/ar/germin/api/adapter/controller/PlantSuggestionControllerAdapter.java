@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/api/v1/plant-suggestion")
 public class PlantSuggestionControllerAdapter {
 
-    private GetPlantsSuggestionPortIn getPlantsSuggestionPortIn;
+    private final GetPlantsSuggestionPortIn getPlantsSuggestionPortIn;
 
     @Autowired
     public PlantSuggestionControllerAdapter(GetPlantsSuggestionPortIn getPlantsSuggestionPortIn) {

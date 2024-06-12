@@ -1,6 +1,5 @@
 package ar.germin.api.application.usecase;
 
-import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.port.in.SaveGardenPortIn;
 import ar.germin.api.application.port.out.SaveGardenRepository;
 import org.springframework.beans.factory.annotation.Autowired;

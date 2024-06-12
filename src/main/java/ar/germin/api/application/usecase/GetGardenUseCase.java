@@ -2,7 +2,6 @@ package ar.germin.api.application.usecase;
 
 import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.domain.Plant;
-import ar.germin.api.application.domain.PlantPhoto;
 import ar.germin.api.application.exceptions.GardenNotFoundException;
 import ar.germin.api.application.port.in.GetGardenPortIn;
 import ar.germin.api.application.port.out.GetGardenRepository;
