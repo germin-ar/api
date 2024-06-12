@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 public record SavePlantRequestModel(String alias,
                                     Double height,
                                     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime plantingDate,
-                                    String notes,
                                     Integer idGarden,
                                     Boolean isFavorite,
                                     String imageUrl

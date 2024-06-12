@@ -13,6 +13,7 @@ select id,
        tips,
        harvest_time,
        growth_season,
-       planting_time
+       planting_time,
+       pruning
 from garden.plant_catalog
 where lower(garden.plant_catalog.slug_scientific_name) like lower(:slugScientificName);

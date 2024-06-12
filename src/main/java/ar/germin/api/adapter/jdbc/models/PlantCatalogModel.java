@@ -21,6 +21,7 @@ public class PlantCatalogModel {
     private String tips;
     private String harvestTime;
     private String plantingTime;
+    private String pruning;
 
 
     public PlantCatalog toDomain() {
@@ -42,6 +43,7 @@ public class PlantCatalogModel {
                 .growthSeason(growthSeason)
                 .harvestTime(harvestTime)
                 .plantingTime(plantingTime)
+                .pruning(pruning)
                 .build();
     }
 }

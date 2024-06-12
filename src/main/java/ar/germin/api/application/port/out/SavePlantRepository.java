@@ -14,7 +14,6 @@ public interface SavePlantRepository {
         String alias;
         Double height;
         LocalDateTime plantingDate;
-        String notes;
         Integer idGarden;
         Integer idUser;
         Boolean isActive;
