@@ -76,7 +76,6 @@ public class PlantControllerAdapter {
 
     @GetMapping("/{id}")
     public PlantResponseModel getPlant(@PathVariable Integer id, @RequestHeader("id-user") Integer idUser) {
-
         return PlantResponseModel.fromDomain(this.getPlantPortIn.get(idUser, id));
     }
 

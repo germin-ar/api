@@ -1,6 +1,5 @@
 package ar.germin.api.adapter.controller;
 
-
 import ar.germin.api.adapter.controller.models.CreateGardenRequestModel;
 import ar.germin.api.adapter.controller.models.GardenResponseModel;
 import ar.germin.api.application.port.in.GetGardenPortIn;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/v1/gardens")
