@@ -24,6 +24,7 @@
 
     <changeSet id="20240611_2" author="agos">
         <renameColumn tableName="plant_catalog" schemaName="garden" oldColumnName="irrigation" newColumnName="watering_frecuency"/>
+        <renameColumn tableName="plant_catalog" schemaName="garden" oldColumnName="watering" newColumnName="watering_care"/>
         <renameColumn tableName="plant_catalog" schemaName="garden" oldColumnName="family" newColumnName="family_name"/>
         <renameColumn tableName="plant_catalog" schemaName="garden" oldColumnName="cycle" newColumnName="lifespan"/>
         <renameColumn tableName="plant_catalog" schemaName="garden" oldColumnName="average_size" newColumnName="max_size"/>
@@ -51,7 +52,7 @@
             <column name="fruit" value="Verde, Rojo, Amarillo, Morado, Naranja, Negro, Blanco Frutas En Verano Listas Para Verano"/>
             <column name="edible" value="Si"/>
             <column name="growth_rate" value="Rápido"/>
-            <column name="maintanence" value="Alto"/>
+            <column name="maintenance" value="Alto"/>
             <column name="temperature_min" value="15.00"/>
             <column name="temperature_max" value="35.00"/>
             <column name="specie" value="Tomato"/>
@@ -84,7 +85,7 @@
             <column name="fruit" value="Frutas Verdes, Rojas, Moradas Y Blancas En Otoño Listas Para Usar"/>
             <column name="edible" value="Si"/>
             <column name="growth_rate" value="Alto"/>
-            <column name="maintanence" value="Moderado"/>
+            <column name="maintenance" value="Moderado"/>
             <column name="temperature_min" value="20.00"/>
             <column name="temperature_max" value="35.00"/>
             <column name="specie" value="Lechuga"/>
@@ -117,7 +118,7 @@
             <column name="fruit" value="Frutas Verdes, Marrones Y Negras Listas Para Usar"/>
             <column name="edible" value="Si"/>
             <column name="growth_rate" value="Alto"/>
-            <column name="maintanence" value="Bajo"/>
+            <column name="maintenance" value="Bajo"/>
             <column name="temperature_min" value="20.00"/>
             <column name="temperature_max" value="38.00"/>
             <column name="specie" value="Albahaca"/>
@@ -150,7 +151,7 @@
             <column name="fruit" value="Frutas Verdes, Rojas, Amarillas, Moradas, Naranjas Y Blancas Listas Para El Verano"/>
             <column name="edible" value="Si"/>
             <column name="growth_rate" value="Alto"/>
-            <column name="maintanence" value="Moderado"/>
+            <column name="maintenance" value="Moderado"/>
             <column name="temperature_min" value="20.00"/>
             <column name="temperature_max" value="38.00"/>
             <column name="specie" value="Chile"/>
