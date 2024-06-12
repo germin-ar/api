@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/germinar
+    username: postgres
+    password: pa55w0rd

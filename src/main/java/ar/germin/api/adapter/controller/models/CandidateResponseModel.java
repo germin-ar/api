@@ -33,7 +33,7 @@ public class CandidateResponseModel {
                                         .build())
                                 .plantData(PlantDataModel.builder()
                                         .fertilizer(candidate.getPlantCatalog().getFertilizer())
-                                        .irrigation(candidate.getPlantCatalog().getIrrigation())
+                                        .irrigation(candidate.getPlantCatalog().getWateringFrequency())
                                         .soil(candidate.getPlantCatalog().getSoil())
                                         //.sunExposure(candidate.getPlantCatalog().getSunExposure)
                                         .insecticide(candidate.getPlantCatalog().getInsecticide())
@@ -76,7 +76,7 @@ public class CandidateResponseModel {
                           String insecticide,
                           Double temperatureMax,
                           Double temperatureMin
-                          /*TODO falta temporadas
-                          *  ubicacion posibles, podado, Consejos*/) {
+            /*TODO falta temporadas
+             *  ubicacion posibles, podado, Consejos*/) {
     }
 }
