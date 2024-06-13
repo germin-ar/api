@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!--brocoli-->
+    <changeSet id="20240612_0" author="armando">
+        <insert tableName="plant_catalog" schemaName="garden">
+
+            <column name="scientific_name" value="Brassica oleracea"/>
+
+            <column name="description"
+                    value="El brócoli es un superalimento nutricionalmente denso, lleno de vitaminas y minerales esenciales.Es miembro de la familia Brassica Oleracea (Grupo Italica), que también incluye repollo, coliflor y col rizada.Está lleno de nutrientes esenciales, que proporciona una variedad de beneficios para la salud, como promover la digestión saludable y la inmunidad de construcción.El brócoli también es una excelente fuente de antioxidantes, que ayudan a neutralizar los radicales libres en el cuerpo y proteger las células del daño.El brócoli también contiene fibra esencial y fitoquímicos, que ayudan a reducir la inflamación y promover células sanas.Con todos estos increíbles beneficios, el brócoli es realmente un vegetal increíble que todos deberían incluir en su dieta."/>
+
+            <column name="slug_scientific_name" value="brassica-oleracea"/>
+
+            <column name="genus" value="Mostazas"/>
+
+            <column name="family_name" value="Brasicáceas"/>
+
+            <column name="max_size" value="76"/>
+
+            <column name="fertilizer" valueComputed="null"/>
+
+            <column name="watering_frecuency" valueComputed="null"/>
+
+            <column name="pruning" valueComputed="null"/>
+
+            <column name="soil" value="Arena, Marga, Ligeramente ácido, Neutro"/>
+            <!--           <column name="insecticide" value="Solanum"/>-->
+            <column name="tips" valueComputed="null"/>
+
+            <column name="sunlight"
+                    value="El brócoli (Brassica oleracea (Grupo Italica)) prefiere la exposición al sol al sol para un crecimiento y rendimientos óptimos.Debe recibir un mínimo de 6 horas de luz solar directa o indirecta cada día, con más luz solar beneficiosa.El mejor momento para que el brócoli reciba la luz del sol es durante la mañana cuando el sol comienza a aumentar y la luz es más brillante.Esto permite que la planta disfrute de toda la energía de la luz y la use para alimentar su crecimiento.Además, proporcionar a la planta un poco de sombra durante mediados y al final de la tarde puede ayudar a evitar el sobrecalentamiento y el marchitamiento en climas más calurosos."/>
+
+            <column name="watering_care"
+                    value="El brócoli (Brassica oleracea (grupo italica)) debe regarse profundamente aproximadamente una vez por semana.Para hacer esto, riegue su brócoli hasta que el agua salga de los agujeros de drenaje.Asegúrese de no saturar el suelo y evitar regar las hojas directamente.Durante el clima caliente y seco, puede ser necesaria agua extra.En caso de duda, riegue su brócoli cuando las 1-2 pulgadas superiores de tierra estén secas."/>
+
+            <column name="common_name" value="Brócoli"/>
+
+            <column name="lifespan" value="Anual, Bianual, Perenne"/>
+
+            <column name="propagation"
+                    value="Propagación de semillas, corte, división, propagación de capas, propagación de injerto"/>
+
+            <column name="fruit" valueComputed="null"/>
+
+            <column name="edible" value="yes"/>
+
+            <column name="growth_rate" value="Bajo"/>
+
+            <column name="maintenance" value="Bajo"/>
+
+            <column name="temperature_min" value="20.00"/>
+
+            <column name="temperature_max" value="38.00"/>
+
+            <column name="specie" value="Brócoli"/>
+
+            <column name="toxic" value="No toxico"/>
+
+            <column name="repotting" value="Necesita un excelente drenaje en macetas."/>
+
+            <column name="dormancy" valueComputed="null"/>
+
+            <column name="growth_season" value="Primavera verano Otoño"/>
+
+            <column name="atmospheric_humidity" valueComputed="null"/>
+
+            <column name="planting_time" value="Primavera, Verano, Mediados de otoño, Finales de invierno"/>
+            <column name="harvest_time" value="Primavera, Verano, Otoño, Finales de invierno"/>
+        </insert>
+    </changeSet>
+    <!--espinaca-->
+    <changeSet id="20240612_1" author="armando">
+        <insert tableName="plant_catalog" schemaName="garden">
+
+            <column name="scientific_name" value="Espinacia oleracea"/>
+
+            <column name="description"
+                    value="La espinaca (Spinacia oleracea) es una especie vegetal comestible que a menudo se considera un superalimento debido a su alto contenido de vitaminas, ácido fólico, fibra, hierro, magnesio y otros nutrientes. La espinaca se cultiva en jardines de todo el mundo y proporciona una importante fuente de alimento."/>
+
+            <column name="slug_scientific_name" value="espinacia-oleracea"/>
+
+            <column name="genus" value="espinacas"/>
+
+            <column name="family_name" value="Amarantáceas"/>
+
+            <column name="max_size" valueComputed="null"/>
+
+            <column name="fertilizer"
+                    value="Estiércol o abono junto con un fertilizante granulado para todo uso al lecho del jardín antes de plantar"/>
+
+            <column name="watering_frecuency" value="Cada semana"/>
+
+            <column name="pruning"
+                    value="Las espinacas (espinacia oleracea) deben podarse regularmente durante la temporada de crecimiento.Las plantas deben estar muertas para promover el follaje más completo y saludable.La poda debería ocurrir a principios del verano y nuevamente a fines del verano.\n\nA principios del verano, poda los 2 tercios superiores de la planta.Esto creará una forma espesa, reducirá el riesgo de enfermedad y ayudará a garantizar una cosecha saludable.Asegúrese de eliminar las hojas muertas o enfermas también.\n\nA fines del verano, pellizque la parte superior del tallo principal y retire los botones de flores que aparezcan.Esto evitará que la planta se atar y enfoque su energía para producir una cosecha saludable.Intente maximizar el área para el crecimiento futuro de follaje podando cualquier ramas que pueda haber salido mal durante la temporada de crecimiento.\n\nEn resumen, las espinacas de prunas (Spinacia oleracea) regularmente durante la temporada de crecimiento, a principios del verano y finales del verano, para promover el follaje más completo y saludable y una cosecha saludable.Retire las hojas muertas o enfermas, pellizque la parte superior del tallo principal y retire los capullos de flores, y pode las ramas que se hayan extraviado durante la temporada de crecimiento."/>
+
+            <column name="soil" value="Marga, Arena, Ácido, Neutro, Alcalino"/>
+            <!--           <column name="insecticide" value="Solanum"/>-->
+            <column name="tips" valueComputed="null"/>
+
+            <column name="sunlight"
+                    value="La espinaca (espinacia oleracea) requiere de 6 a 8 horas de luz solar directa por día.Para un crecimiento óptimo, las espinacas se deben proporcionar con plena exposición al sol durante las horas de la mañana antes de la parte más calurosa del día.En climas con veranos muy calurosos, la sombra ligera en la tarde puede ser beneficiosa.La espinaca crece bien en temperaturas que van desde 45 a 75 ° F y no tolerarán los extremos de alto calor o temperatura."/>
+
+            <column name="watering_care"
+                    value="Riegue sus plantas de espinacas profundamente, pero con poca frecuencia.Riégalos una o dos veces por semana, proporcionando suficiente agua para alcanzar de 6 a 12 pulgadas de profundidad.Es mejor regarlos por la mañana para que las hojas se sequen rápidamente y desanimar el hongo.En clima cálido y seco, es posible que deba regar con más frecuencia."/>
+
+            <column name="common_name" value="Espinaca"/>
+
+            <column name="lifespan" value="Anual, bienal"/>
+
+            <column name="propagation"
+                    value="Propagación de semillas, corte, división, propagación de capas, propagación de injerto"/>
+
+            <column name="fruit" valueComputed="null"/>
+
+            <column name="edible" value="Si"/>
+
+            <column name="growth_rate" value="Rapida"/>
+
+            <column name="maintenance" value="Moderado"/>
+
+            <column name="temperature_min" value="20.00"/>
+
+            <column name="temperature_max" value="38.00"/>
+
+            <column name="specie" value="Espinaca"/>
+
+            <column name="toxic" value="No Toxico"/>
+
+            <column name="repotting" valueComputed="null"/>
+
+            <column name="dormancy" valueComputed="null"/>
+
+            <column name="growth_season" value="Verano"/>
+
+            <column name="atmospheric_humidity" valueComputed="null"/>
+
+            <column name="planting_time" value="Primavera, Verano"/>
+
+            <column name="harvest_time" valueComputed="null"/>
+        </insert>
+    </changeSet>
+    <!--arveja-->
+    <changeSet id="20240612_2" author="armando">
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Pisum sativum"/>
+            <column name="description"
+                    value="La arveja ha sido cultivado para el consumo del ser humano desde hace más de diez mil años, encontrándose evidencias de su cultivo en Oriente Próximo. Muy ricos en proteínas y otros nutrientes, son un alimento básico en muchas culturas."/>
+
+            <column name="slug_scientific_name" value="pisum-sativum"/>
+
+            <column name="genus" value="Chicharos"/>
+
+            <column name="family_name" value="Fabáceas"/>
+
+            <column name="max_size" value="1.8"/>
+
+            <column name="fertilizer"
+                    value="No necesitan que se les aporte nitrógeno adicional en el suelo. Al elegir un fertilizante, compruebe el número NPK y seleccione uno con proporciones más bajas de nitrógeno en comparación con el fósforo y el potasio. Algunas enmiendas del suelo, como la harina de huesos, también son naturalmente bajas en nitrógeno. Los humus de lombriz o el estiércol de gallina también son buenas opciones como fertilizantes naturales."/>
+
+            <column name="watering_frecuency" value="2 veces por semana"/>
+
+            <column name="pruning" value="Recorte las hojas marchitas y enfermas una vez al mes."/>
+
+            <column name="soil" value="Arena, Franco, Neutro, Ligeramente alcalino"/>
+            <!--           <column name="insecticide" value="Solanum"/>-->
+            <column name="tips"
+                    value="Los guisantes de jardín o arvejas son una de las hortalizas más comunes plantadas por los jardineros de todo el mundo. Se pueden utilizar varios tipos de guisantes en multitud de platos, lo que los hace muy populares en huertos o en parterres elevados. También pueden producir hermosas flores y pueden usarse como enredadera para macizos de flores, según el tipo. Los guisantes crecen en armonía con cebolletas, zanahorias, pepinos y frijoles."/>
+
+            <column name="sunlight" value="Pleno sol, Sol parcial"/>
+
+            <column name="watering_care"
+                    value="Originarios de regiones con climas moderados, los guisantes de jardín se han adaptado a un nivel de humedad constante, lo que indica su preferencia por una hidratación estable. Esta especie prospera cuando el suelo permanece uniformemente húmedo sin encharcarse, lo que muestra un equilibrio en sus necesidades de agua. El riego debe alinearse con este equilibrio, lo que se traduce en dos veces por semana para mantener una salud óptima. Cultivados principalmente al aire libre, los guisantes de jardín se benefician de un suelo con buen drenaje que complementa sus ciclos de crecimiento y garantiza un uso eficiente del agua durante el riego."/>
+            <column name="common_name" value="Guisante, Arveja"/>
+            <column name="lifespan" value="Anual, Bienal"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="Verde, Púrpura, Lavanda"/>
+            <column name="edible" value="si"/>
+            <column name="growth_rate" value="Rapido"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="20"/>
+            <column name="temperature_max" value="38"/>
+            <column name="specie" value="Guisante"/>
+            <column name="toxic" value="no"/>
+            <column name="repotting" valueComputed="null"/>
+            <column name="dormancy" valueComputed="null"/>
+            <column name="growth_season" value="Fin de la primavera"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time"
+                    value="Primavera, principios de verano, mediados de verano, mediados de otoño, finales de otoño, mediados de invierno, finales de invierno"/>
+            <column name="harvest_time" value="Verano, principios de otoño, mediados de otoño"/>
+        </insert>
+    </changeSet>
+    <!--Apio
+    <changeSet id="20240612_3" author="armando">
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Apium graveolens"/>
+            <column name="description" valueComputed="null"/>
+            <column name="slug_scientific_name" value="apium-graveolens"/>
+            <column name="genus" valueComputed="null"/>
+            <column name="family_name" valueComputed="null"/>
+            <column name="max_size" valueComputed="null"/>
+            <column name="fertilizer" valueComputed="null"/>
+            <column name="watering_frecuency" valueComputed="null"/>
+            <column name="pruning" valueComputed="null"/>
+            <column name="soil" valueComputed="null"/>
+                       <column name="insecticide" value="Solanum"/>
+            <column name="tips" valueComputed="null"/>
+            <column name="sunlight" valueComputed="null"/>
+            <column name="watering_care" valueComputed="null"/>
+            <column name="common_name" valueComputed="null"/>
+            <column name="lifespan" valueComputed="null"/>
+            <column name="propagation" valueComputed="null"/>
+            <column name="fruit" valueComputed="null"/>
+            <column name="edible" valueComputed="null"/>
+            <column name="growth_rate" valueComputed="null"/>
+            <column name="maintenance" valueComputed="null"/>
+            <column name="temperature_min" valueComputed="null"/>
+            <column name="temperature_max" valueComputed="null"/>
+            <column name="specie" valueComputed="null"/>
+            <column name="toxic" valueComputed="null"/>
+            <column name="repotting" valueComputed="null"/>
+            <column name="dormancy" valueComputed="null"/>
+            <column name="growth_season" valueComputed="null"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" valueComputed="null"/>
+            <column name="harvest_time" valueComputed="null"/>
+        </insert>
+    </changeSet>-->
+
+    <changeSet id="20240612_4" author="armando">
+        <!-- coliflor -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Brassica oleracea var. botrytis"/>
+            <column name="description"
+                    value="La coliflor es un vegetal crucífero que pertenece a la familia de las brasicáceas. Es una excelente fuente de vitaminas C y K, y contiene varias otras vitaminas y minerales esenciales. Su consumo regular ayuda a mejorar la digestión, fortalecer el sistema inmunológico y reducir el riesgo de varias enfermedades."/>
+            <column name="slug_scientific_name" value="brassica-oleracea-botrytis"/>
+            <column name="genus" value="Brassica"/>
+            <column name="family_name" value="Brassicaceae"/>
+            <column name="max_size" value="45"/>
+            <column name="fertilizer" value="Fertilizante balanceado rico en nitrógeno"/>
+            <column name="watering_frecuency" valueComputed="null"/>
+            <column name="pruning" value="No requiere poda significativa"/>
+            <column name="soil" value="Marga, Ligeramente ácido, Neutro"/>
+            <column name="tips"
+                    value="Asegúrese de que la coliflor reciba suficiente luz solar y espacio para crecer."/>
+            <column name="sunlight" value="6 horas de luz solar directa al día"/>
+            <column name="watering_care" value="Riego regular, manteniendo el suelo húmedo pero no saturado"/>
+            <column name="common_name" value="Coliflor"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="propagation" value="Propagación por semillas"/>
+            <column name="fruit" value="No produce frutos"/>
+            <column name="edible" value="yes"/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="10.00"/>
+            <column name="temperature_max" value="30.00"/>
+            <column name="specie" value="Coliflor"/>
+            <column name="toxic" value="No toxico"/>
+            <column name="repotting" value="No suele necesitar trasplante"/>
+            <column name="dormancy" value="No tiene"/>
+            <column name="growth_season" value="Primavera, Otoño"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera, Otoño"/>
+            <column name="harvest_time" value="Verano, Otoño"/>
+        </insert>
+        <!-- repollo -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Brassica oleracea var. capitata"/>
+            <column name="description"
+                    value="El repollo es una planta de la familia de las brasicáceas conocida por sus hojas verdes o moradas, que forman una cabeza compacta. Es una excelente fuente de vitaminas C y K, y contiene antioxidantes que ayudan a mejorar la salud general."/>
+            <column name="slug_scientific_name" value="brassica-oleracea-capitata"/>
+            <column name="genus" value="Brassica"/>
+            <column name="family_name" value="Brassicaceae"/>
+            <column name="max_size" value="50"/>
+            <column name="fertilizer" value="Fertilizante rico en nitrógeno"/>
+            <column name="watering_frecuency" value="Moderado"/>
+            <column name="pruning" value="No requiere poda significativa"/>
+            <column name="soil" value="Marga, Ligeramente ácido, Neutro"/>
+            <column name="tips" value="Evitar encharcamientos y proporcionar un buen drenaje."/>
+            <column name="sunlight" value="6 horas de luz solar directa al día"/>
+            <column name="watering_care" value="Mantener el suelo uniformemente húmedo"/>
+            <column name="common_name" value="Repollo"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="propagation" value="Propagación por semillas"/>
+            <column name="fruit" value="No produce frutos"/>
+            <column name="edible" value="yes"/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="10.00"/>
+            <column name="temperature_max" value="25.00"/>
+            <column name="specie" value="Repollo"/>
+            <column name="toxic" value="No toxico"/>
+            <column name="repotting" value="No suele necesitar trasplante"/>
+            <column name="dormancy" value="No tiene"/>
+            <column name="growth_season" value="Primavera, Otoño"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera, Otoño"/>
+            <column name="harvest_time" value="Verano, Otoño"/>
+        </insert>
+        <!-- batata -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Ipomoea batatas"/>
+            <column name="description"
+                    value="La batata, también conocida como camote, es un tubérculo comestible de la familia Convolvulaceae. Es una fuente rica en carbohidratos complejos, fibra, vitaminas A y C, y minerales. Es beneficiosa para la salud ocular, el sistema inmunológico y la digestión."/>
+            <column name="slug_scientific_name" value="ipomoea-batatas"/>
+            <column name="genus" value="Ipomoea"/>
+            <column name="family_name" value="Convolvulaceae"/>
+            <column name="max_size" value="30"/>
+            <column name="fertilizer" value="Fertilizante equilibrado con énfasis en potasio"/>
+            <column name="watering_frecuency" value="Moderado"/>
+            <column name="pruning" value="No requiere poda significativa"/>
+            <column name="soil" value="Arenoso, Bien drenado"/>
+            <column name="tips" value="Proporcionar pleno sol y suelo bien drenado."/>
+            <column name="sunlight" value="6-8 horas de luz solar directa al día"/>
+            <column name="watering_care" value="Mantener el suelo húmedo pero no saturado"/>
+            <column name="common_name" value="Batata"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="propagation" value="Propagación por esquejes o brotes"/>
+            <column name="fruit" value="No produce frutos"/>
+            <column name="edible" value="yes"/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="15.00"/>
+            <column name="temperature_max" value="30.00"/>
+            <column name="specie" value="Batata"/>
+            <column name="toxic" value="No toxico"/>
+            <column name="repotting" value="No suele necesitar trasplante"/>
+            <column name="dormancy" value="No tiene"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera"/>
+            <column name="harvest_time" value="Otoño"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20240612_5" author="armando">
+        <!-- chaucha -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Phaseolus vulgaris"/>
+            <column name="description" value="La chaucha, también conocida como ejote o judía verde, es una leguminosa rica en fibra, vitaminas A, C y K, y minerales como el hierro y el magnesio. Es un vegetal bajo en calorías y excelente para incluir en una dieta saludable."/>
+            <column name="slug_scientific_name" value="phaseolus-vulgaris"/>
+            <column name="genus" value="Phaseolus"/>
+            <column name="family_name" value="Fabaceae"/>
+            <column name="max_size" value="60"/>
+            <column name="fertilizer" value="Fertilizante equilibrado"/>
+            <column name="watering_frecuency" value="Moderado"/>
+            <column name="pruning" value="No requiere poda significativa"/>
+            <column name="soil" value="Arenoso, Bien drenado"/>
+            <column name="tips" value="Proporcionar pleno sol y evitar el encharcamiento del suelo."/>
+            <column name="sunlight" value="6-8 horas de luz solar directa al día"/>
+            <column name="watering_care" value="Riego regular manteniendo el suelo húmedo pero no saturado"/>
+            <column name="common_name" value="Chaucha"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="propagation" value="Propagación por semillas"/>
+            <column name="fruit" value="Vaina comestible"/>
+            <column name="edible" value="yes"/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="15.00"/>
+            <column name="temperature_max" value="30.00"/>
+            <column name="specie" value="Chaucha"/>
+            <column name="toxic" value="No toxico"/>
+            <column name="repotting" value="No suele necesitar trasplante"/>
+            <column name="dormancy" value="No tiene"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera"/>
+            <column name="harvest_time" value="Verano, Otoño"/>
+        </insert>
+        <!-- alcaucil -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Cynara scolymus"/>
+            <column name="description"
+                    value="El alcaucil, también conocido como alcachofa, es una planta perenne de la familia Asteraceae. Es apreciado por sus cabezas florales comestibles que son ricas en fibra, vitaminas C y K, y antioxidantes. Es beneficioso para la salud digestiva y cardiovascular."/>
+            <column name="slug_scientific_name" value="cynara-scolymus"/>
+            <column name="genus" value="Cynara"/>
+            <column name="family_name" value="Asteraceae"/>
+            <column name="max_size" value="2"/>
+            <column name="fertilizer" value="Fertilizante rico en nitrógeno"/>
+            <column name="watering_frecuency" value="Moderado"/>
+            <column name="pruning" value="Poda ligera para eliminar hojas viejas"/>
+            <column name="soil" value="Profundo, Bien drenado, Ligeramente ácido"/>
+            <column name="tips" value="Plantar en un lugar con buen drenaje y suficiente espacio para crecer."/>
+            <column name="sunlight" value="6-8 horas de luz solar directa al día"/>
+            <column name="watering_care" value="Riego regular, manteniendo el suelo húmedo pero no empapado"/>
+            <column name="common_name" value="Alcaucil"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="propagation" value="Propagación por semillas o división"/>
+            <column name="fruit" value="Cabeza floral comestible"/>
+            <column name="edible" value="yes"/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="temperature_min" value="10.00"/>
+            <column name="temperature_max" value="25.00"/>
+            <column name="specie" value="Alcaucil"/>
+            <column name="toxic" value="No toxico"/>
+            <column name="repotting" value="No suele necesitar trasplante"/>
+            <column name="dormancy" value="Invierno"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera"/>
+            <column name="harvest_time" value="Otoño"/>
+        </insert>
+        <!-- zapallito tronco -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Cucurbita pepo"/>
+            <column name="description"
+                    value="El zapallito de tronco, también conocido como calabacín, es una planta anual de la familia Cucurbitaceae. Es una buena fuente de vitaminas A, C y potasio. Este vegetal es versátil en la cocina y se puede consumir crudo o cocido."/>
+            <column name="slug_scientific_name" value="cucurbita-pepo"/>
+            <column name="genus" value="Cucurbita"/>
+            <column name="family_name" value="Cucurbitaceae"/>
+            <column name="max_size" value="60"/>
+            <column name="fertilizer" value="Fertilizante equilibrado"/>
+            <column name="watering_frecuency" value="Moderado"/>
+            <column name="pruning" value="Eliminar hojas y frutos dañados"/>
+            <column name="soil" value="Fértil, Bien drenado"/>
+            <column name="tips" value="Proporcionar pleno sol y un buen drenaje."/>
+            <column name="sunlight" value="6-8 horas de luz solar directa al día"/>
+            <column name="watering_care" value="Riego regular, evitando el encharcamiento"/>
+            <column name="common_name" value="Zapallito de tronco"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="propagation" value="Propagación por semillas"/>
+            <column name="fruit" value="Fruto comestible"/>
+            <column name="edible" value="yes"/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="15.00"/>
+            <column name="temperature_max" value="30.00"/>
+            <column name="specie" value="Zapallito de tronco"/>
+            <column name="toxic" value="No toxico"/>
+            <column name="repotting" value="No suele necesitar trasplante"/>
+            <column name="dormancy" value="No tiene"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera"/>
+            <column name="harvest_time" value="Verano"/>
+        </insert>
+        <!-- radicheta -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Cichorium intybus"/>
+            <column name="description"
+                    value="La radicheta, también conocida como achicoria, es una planta perenne de la familia Asteraceae. Es apreciada por sus hojas amargas que se utilizan en ensaladas y otros platos. Es una buena fuente de fibra, vitaminas A y K, y antioxidantes."/>
+            <column name="slug_scientific_name" value="cichorium-intybus"/>
+            <column name="genus" value="Cichorium"/>
+            <column name="family_name" value="Asteraceae"/>
+            <column name="max_size" value="100"/>
+            <column name="fertilizer" value="Fertilizante equilibrado"/>
+            <column name="watering_frecuency" value="Moderado"/>
+            <column name="pruning" value="No requiere poda significativa"/>
+            <column name="soil" value="Bien drenado, Fértil"/>
+            <column name="tips" value="Proporcionar pleno sol o sombra parcial."/>
+            <column name="sunlight" value="4-6 horas de luz solar directa al día"/>
+            <column name="watering_care" value="Mantener el suelo húmedo pero no empapado"/>
+            <column name="common_name" value="Radicheta"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="propagation" value="Propagación por semillas"/>
+            <column name="fruit" value="No produce frutos"/>
+            <column name="edible" value="yes"/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="10.00"/>
+            <column name="temperature_max" value="25.00"/>
+            <column name="specie" value="Radicheta"/>
+            <column name="toxic" value="No toxico"/>
+            <column name="repotting" value="No suele necesitar trasplante"/>
+            <column name="dormancy" value="No tiene"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera"/>
+            <column name="harvest_time" value="Verano, Otoño"/>
+        </insert>
+        <!-- verdeo -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Allium fistulosum"/>
+            <column name="description"
+                    value="El verdeo, también conocido como cebolla de verdeo o cebollín, es una planta perenne de la familia Amaryllidaceae. Es una buena fuente de fibra, vitaminas A, C y K, y minerales como el calcio y el hierro. Se utiliza ampliamente en la cocina como condimento."/>
+            <column name="slug_scientific_name" value="allium-fistulosum"/>
+            <column name="genus" value="Allium"/>
+            <column name="family_name" value="Amaryllidaceae"/>
+            <column name="max_size" value="50"/>
+            <column name="fertilizer" value="Fertilizante equilibrado"/>
+            <column name="watering_frecuency" value="Moderado"/>
+            <column name="pruning" value="No requiere poda significativa"/>
+            <column name="soil" value="Bien drenado, Fértil"/>
+            <column name="tips" value="Proporcionar pleno sol y un buen drenaje."/>
+            <column name="sunlight" value="6-8 horas de luz solar directa al día"/>
+            <column name="watering_care" value="Mantener el suelo húmedo pero no empapado"/>
+            <column name="common_name" value="Verdeo"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="propagation" value="Propagación por semillas o división"/>
+            <column name="fruit" value="No produce frutos"/>
+            <column name="edible" value="yes"/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="10.00"/>
+            <column name="temperature_max" value="30.00"/>
+            <column name="specie" value="Verdeo"/>
+            <column name="toxic" value="No toxico"/>
+            <column name="repotting" value="No suele necesitar trasplante"/>
+            <column name="dormancy" value="No tiene"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera"/>
+            <column name="harvest_time" value="Verano, Otoño"/>
+        </insert>
+        <!-- puerro -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Allium porrum"/>
+            <column name="description"
+                    value="El puerro es una planta de la familia Amaryllidaceae que se cultiva por sus tallos comestibles. Es una buena fuente de vitaminas A, C y K, y minerales como el hierro y el manganeso. Se utiliza ampliamente en sopas, guisos y otros platos."/>
+            <column name="slug_scientific_name" value="allium-porrum"/>
+            <column name="genus" value="Allium"/>
+            <column name="family_name" value="Amaryllidaceae"/>
+            <column name="max_size" value="70"/>
+            <column name="fertilizer" value="Fertilizante equilibrado"/>
+            <column name="watering_frecuency" value="Moderado"/>
+            <column name="pruning" value="No requiere poda significativa"/>
+            <column name="soil" value="Bien drenado, Fértil"/>
+            <column name="tips" value="Proporcionar pleno sol o sombra parcial y un buen drenaje."/>
+            <column name="sunlight" value="6-8 horas de luz solar directa al día"/>
+            <column name="watering_care" value="Mantener el suelo húmedo pero no empapado"/>
+            <column name="common_name" value="Puerro"/>
+            <column name="lifespan" value="Bienal"/>
+            <column name="propagation" value="Propagación por semillas"/>
+            <column name="fruit" value="No produce frutos"/>
+            <column name="edible" value="yes"/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="10.00"/>
+            <column name="temperature_max" value="25.00"/>
+            <column name="specie" value="Puerro"/>
+            <column name="toxic" value="No toxico"/>
+            <column name="repotting" value="No suele necesitar trasplante"/>
+            <column name="dormancy" value="Invierno"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera"/>
+            <column name="harvest_time" value="Otoño, Invierno"/>
+        </insert>
+        <!-- hinojo -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Foeniculum vulgare"/>
+            <column name="description"
+                    value="El hinojo es una planta de la familia Apiaceae que se cultiva por sus bulbos, hojas y semillas comestibles. Es una buena fuente de fibra, vitamina C y antioxidantes. Es conocido por sus propiedades digestivas y su sabor anisado."/>
+            <column name="slug_scientific_name" value="foeniculum-vulgare"/>
+            <column name="genus" value="Foeniculum"/>
+            <column name="family_name" value="Apiaceae"/>
+            <column name="max_size" value="2"/>
+            <column name="fertilizer" value="Fertilizante equilibrado"/>
+            <column name="watering_frecuency" value="Moderado"/>
+            <column name="pruning" value="No requiere poda significativa"/>
+            <column name="soil" value="Bien drenado, Fértil"/>
+            <column name="tips" value="Proporcionar pleno sol y espacio suficiente para crecer."/>
+            <column name="sunlight" value="6-8 horas de luz solar directa al día"/>
+            <column name="watering_care" value="Mantener el suelo húmedo pero no empapado"/>
+            <column name="common_name" value="Hinojo"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="propagation" value="Propagación por semillas"/>
+            <column name="fruit" value="Semillas comestibles"/>
+            <column name="edible" value="yes"/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="10.00"/>
+            <column name="temperature_max" value="30.00"/>
+            <column name="specie" value="Hinojo"/>
+            <column name="toxic" value="No toxico"/>
+            <column name="repotting" value="No suele necesitar trasplante"/>
+            <column name="dormancy" value="Invierno"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera"/>
+            <column name="harvest_time" value="Verano, Otoño"/>
+        </insert>
+        <!-- rucula -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Eruca vesicaria"/>
+            <column name="description"
+                    value="La rúcula es una planta herbácea de sabor picante, utilizada en ensaladas y platos culinarios. Rica en vitaminas y antioxidantes."/>
+            <column name="slug_scientific_name" value="eruca-vesicaria"/>
+            <column name="genus" value="Eruca"/>
+            <column name="family_name" value="Brassicaceae"/>
+            <column name="max_size" value="0.4"/>
+            <column name="fertilizer" value="Fertilizantes equilibrados, preferiblemente orgánicos."/>
+            <column name="watering_frecuency" value="3 veces por semana"/>
+            <column name="pruning" value="Recortar hojas más viejas para fomentar nuevo crecimiento."/>
+            <column name="soil" value="Franco, Neutro, Ligeramente ácido"/>
+            <column name="tips"
+                    value="Crece mejor en climas frescos y suelos bien drenados. Se puede sembrar en sucesión para una cosecha continua."/>
+            <column name="sunlight" value="Pleno sol, Sol parcial"/>
+            <column name="watering_care" value="Riego regular para mantener el suelo húmedo."/>
+            <column name="common_name" value="Rúcula"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="edible" value="si"/>
+            <column name="growth_rate" value="Rapido"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="10"/>
+            <column name="temperature_max" value="25"/>
+            <column name="specie" value="Rúcula"/>
+            <column name="toxic" value="no"/>
+            <column name="repotting" valueComputed="null"/>
+            <column name="dormancy" valueComputed="null"/>
+            <column name="growth_season" value="Primavera, Otoño"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Primavera, Otoño"/>
+            <column name="harvest_time" value="Verano, Otoño"/>
+        </insert>
+        <!-- ajo -->
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="Allium sativum"/>
+            <column name="description"
+                    value="El ajo es una planta bulbosa utilizada tanto en la cocina como en la medicina tradicional. Conocida por su sabor fuerte y sus propiedades antibacterianas."/>
+            <column name="slug_scientific_name" value="allium-sativum"/>
+            <column name="genus" value="Allium"/>
+            <column name="family_name" value="Amaryllidaceae"/>
+            <column name="max_size" value="0.6"/>
+            <column name="fertilizer" value="Fertilizantes ricos en potasio y fósforo, bajos en nitrógeno."/>
+            <column name="watering_frecuency" value="2 veces por semana"/>
+            <column name="pruning" value="Eliminar flores para concentrar energía en el bulbo."/>
+            <column name="soil" value="Franco, Neutro, Ligeramente ácido"/>
+            <column name="tips"
+                    value="Plantar los dientes de ajo a finales de otoño para una cosecha en verano. Mantener el suelo bien drenado y libre de malezas."/>
+            <column name="sunlight" value="Pleno sol"/>
+            <column name="watering_care" value="Mantener el suelo húmedo pero no encharcado."/>
+            <column name="common_name" value="Ajo"/>
+            <column name="lifespan" value="Perenne (cultivada como anual)"/>
+            <column name="propagation" value="Bulbos"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="edible" value="si"/>
+            <column name="growth_rate" value="Lento"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="temperature_min" value="0"/>
+            <column name="temperature_max" value="30"/>
+            <column name="specie" value="Ajo"/>
+            <column name="toxic" value="no"/>
+            <column name="repotting" valueComputed="null"/>
+            <column name="dormancy" valueComputed="null"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="atmospheric_humidity" valueComputed="null"/>
+            <column name="planting_time" value="Otoño"/>
+            <column name="harvest_time" value="Verano"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Optional;
 
 @Data
 public class TreflePlantDetailSearchResponseModel {
@@ -16,7 +17,7 @@ public class TreflePlantDetailSearchResponseModel {
         return PlantCatalog.builder()
                 .scientificName(data.scientificName)
                 .slug(data.slug)
-                .sunlight(data.getLight().toString())
+                .sunlight(Optional.ofNullable(data.getLight()).orElse(0).toString())
                 .genus(data.genus.getName())
                 .familyName(data.family.getName())
                 .description(data.observations)

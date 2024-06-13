@@ -43,6 +43,10 @@
             <column name="pruning" value="Como planta anual, el Tomate se poda de forma concentrada desde la primavera hasta el otoño. El mejor momento del día para podar Tomate es por la mañana, un día en el que no se prevean precipitaciones."/>
             <column name="soil" value="Arena, Marga, Arcilla, Ácido, Neutro, Suelo bien drenado"/>
             <!--           <column name="insecticide" value="Solanum"/>-->
+        </insert></changeSet>
+    <changeSet id="20240611_4" author="agos">
+        <insert tableName="plant_catalog" schemaName="garden">
+            <column name="scientific_name" value="algo"/>
             <column name="tips" value="Cuanto más luz solar reciba la fruta, más pronunciado será su sabor. Los tomates necesitan al menos 6-8 horas de sol directo al día y deben regarse de manera constante para mantener el suelo húmedo pero no empapado. Es importante utilizar un soporte o enrejado para mantener las plantas erguidas y evitar que las frutas toquen el suelo."/>
             <column name="sunlight" value="A pleno sol, más de 6 horas de luz solar"/>
             <column name="watering_care" value="La mejor forma de regar Tomate es aplicar el agua directamente sobre la tierra de forma lenta y suave. No se debe verter toda el agua en el suelo de una sola vez, ni tampoco regar por encima de la cabeza del Tomate. Aunque debe regar lentamente, también debe hacerlo en profundidad para asegurarse de que toda la tierra en la que crece su Tomate está suficientemente húmeda."/>
@@ -63,7 +67,10 @@
             <column name="atmospheric_humidity" value="5"/>
             <column name="planting_time" value="Finales de primavera, Principios de verano, Mediados de verano"/>
             <column name="harvest_time" value="Mediados de verano, Finales de verano, Principios de otoño, Mediados de otoño"/>
-
+        </insert>
+    </changeSet>
+    <changeSet id="20240611_5" author="agos">
+        <insert tableName="plant_catalog" schemaName="garden">
 
             <column name="scientific_name" value="Lactuca sativa"/>
             <column name="description" value="La lechuga es una planta herbácea originaria de zonas templadas que se cultiva por su consumo como alimento, principalmente servida cruda en ensaladas. Es uno de los cultivos más antiguos que se conocen y ya era consumida en época de los romanos o los egipcios. Existen diferentes variedades dentro de esta hortaliza."/>
@@ -96,7 +103,10 @@
             <column name="atmospheric_humidity" value="6"/>
             <column name="planting_time" value="Primavera, Verano, Principios de otoño, Mediados de invierno, Finales de invierno"/>
             <column name="harvest_time" value="Primavera, Verano, Otoño"/>
-
+        </insert>
+    </changeSet>
+    <changeSet id="20240611_6" author="agos">
+        <insert tableName="plant_catalog" schemaName="garden">
 
             <column name="scientific_name" value="Ocimum basilicum"/>
             <column name="description" value="La albahaca es una hierba aromática que vive pocos años. El término “basílico” del nombre científico Ocinum basilicum proviene del latín y del griego, y significa “planta real”, quizás porque se tenía la creencia de que esta planta era empleada para fabricar perfumes “reales”."/>
@@ -129,7 +139,10 @@
             <column name="atmospheric_humidity" value="5"/>
             <column name="planting_time" value="Mediados de primavera, Finales de primavera, Principios de verano"/>
             <column name="harvest_time" value="Finales de primavera, Mediados de verano, Finales de verano, Otoño"/>
-
+        </insert>
+    </changeSet>
+    <changeSet id="20240611_7" author="agos">
+        <insert tableName="plant_catalog" schemaName="garden">
 
             <column name="scientific_name" value="Capsicum annuum"/>
             <column name="description" value="El chile es una planta herbácea que fue llevada a Europa por los exploradores de la época. Se cultiva principalmente en huertos por su fruto alargado comestible llamado pimiento. Existen numerosas variedades que se diferencian en el color, desde verde hasta rojo, y en el sabor, que va de dulce a picante. El pimiento es apreciado en la cocina del mundo entero."/>
