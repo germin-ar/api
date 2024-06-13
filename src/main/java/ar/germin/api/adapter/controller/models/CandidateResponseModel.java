@@ -33,6 +33,7 @@ public class CandidateResponseModel {
                                         .commonNames(candidate.getSpecie().getCommonNames())
                                         .build())
                                 .plantData(PlantDataModel.builder()
+                                        .id(candidate.getPlantCatalog().getId())
                                         .fertilizer(candidate.getPlantCatalog().getFertilizer())
                                         .watering(candidate.getPlantCatalog().getWateringFrequency())
                                         .soil(candidate.getPlantCatalog().getSoil())
@@ -77,20 +78,22 @@ public class CandidateResponseModel {
 
     @Builder
     @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-    record PlantDataModel(String description,
-                          Double height,
-                          String fertilizer,
-                          String watering,
-                          String soil,
-                          String sunExposure,
-                          String insecticide,
-                          Double temperatureMax,
-                          Double temperatureMin,
-                          String tips,
-                          String harvestTime,
-                          String growthSeason,
-                          String plantingTime,
-                          String pruning
+    record PlantDataModel(
+            Integer id,
+            String description,
+            Double height,
+            String fertilizer,
+            String watering,
+            String soil,
+            String sunExposure,
+            String insecticide,
+            Double temperatureMax,
+            Double temperatureMin,
+            String tips,
+            String harvestTime,
+            String growthSeason,
+            String plantingTime,
+            String pruning
             /*TODO falta temporadas
              *  ubicacion posibles, podado, Consejos*/) {
     }

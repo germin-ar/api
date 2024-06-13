@@ -28,6 +28,7 @@ public class CandidateJdbcAdapter implements SaveCandidateRepository, GetCandida
 
         CandidateModel candidateModel = CandidateModel.fromDomain(candidate);
         return 1;
+        //TODO retorna 1?
     }
 
     @Override

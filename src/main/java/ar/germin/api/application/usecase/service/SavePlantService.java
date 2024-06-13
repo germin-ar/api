@@ -29,6 +29,7 @@ public class SavePlantService {
                 .alias(params.getAlias())
                 .height(params.getHeight())
                 .plantingDate(params.getPlantingDate())
+                .idPlantCatalog(params.getIdPlantCatalog())
                 .build());
 
         Integer idPlantPhoto = this.savePlantPhotoRepository.save(

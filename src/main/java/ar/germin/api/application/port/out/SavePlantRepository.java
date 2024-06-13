@@ -18,5 +18,6 @@ public interface SavePlantRepository {
         Integer idUser;
         Boolean isActive;
         String imageUuid;
+        Integer idPlantCatalog;
     }
 }

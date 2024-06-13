@@ -12,7 +12,9 @@ select plant.id                plant_id,
        pc.family_name          pc_family_name,
        pc.genus                pc_genus,
        pc.watering_frecuency   pc_watering_frecuency,
-       pc.description          pc_description
+       pc.description          pc_description,
+       pc.sunlight             pc_sunligt,
+plant.id_plants_catalog plant_idcatalog
 from garden.plant plant
          inner join garden.plant_catalog pc
                     on plant.id_plants_catalog = pc.id

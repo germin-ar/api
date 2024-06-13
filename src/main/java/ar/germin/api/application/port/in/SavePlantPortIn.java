@@ -18,5 +18,6 @@ public interface SavePlantPortIn {
         Boolean isActive;
         Integer idUser;
         String imageUrl;
+        Integer idPlantCatalog;
     }
 }

@@ -49,6 +49,7 @@ public class PlantControllerAdapter {
                         .height(savePlantRequestModel.height())
                         .idGarden(savePlantRequestModel.idGarden())
                         .idUser(idUser)
+                        .idPlantCatalog(savePlantRequestModel.idPlantCatalog())
                         .imageUrl(savePlantRequestModel.imageUrl())
                         .build());
     }
