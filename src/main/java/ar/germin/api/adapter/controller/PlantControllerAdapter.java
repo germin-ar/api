@@ -73,7 +73,7 @@ public class PlantControllerAdapter {
                         .id(id)
                         .alias(updatePlantRequestModel.alias())
                         .height(updatePlantRequestModel.height())
-                        .plantingDate(updatePlantRequestModel.plantingDate())
+                        //.plantingDate(updatePlantRequestModel.plantingDate())
                         .idGarden(updatePlantRequestModel.idGarden())
                         .idUser(idUser)
                         .isFavorite(updatePlantRequestModel.isFavorite())

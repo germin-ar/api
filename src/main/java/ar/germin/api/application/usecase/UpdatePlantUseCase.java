@@ -31,7 +31,7 @@ public class UpdatePlantUseCase implements UpdatePlantPortIn {
                         .isFavorite(params.getIsFavorite())
                         .height(params.getHeight())
                         .alias(params.getAlias())
-                        .plantingDate(params.getPlantingDate())
+                        //.plantingDate(params.getPlantingDate())
                         .build());
     }
 

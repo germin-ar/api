@@ -16,7 +16,7 @@ public interface UpdatePlantPortIn {
         Integer idUser;
         String alias;
         Double height;
-        LocalDateTime plantingDate;
+        //LocalDateTime plantingDate;
         String notes;
         Integer idGarden;
         Boolean isFavorite;

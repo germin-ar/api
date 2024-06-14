@@ -14,7 +14,7 @@ public interface UpdatePlantRepository {
         Integer id;
         String alias;
         Double height;
-        LocalDateTime plantingDate;
+        //LocalDateTime plantingDate;
         Integer idGarden;
         Boolean isFavorite;
     }

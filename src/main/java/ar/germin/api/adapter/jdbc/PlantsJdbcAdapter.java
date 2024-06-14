@@ -101,8 +101,8 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
                     .addValue("alias", params.getAlias())
                     .addValue("id_garden", params.getIdGarden())
                     .addValue("is_favorite", params.getIsFavorite())
-                    .addValue("height", params.getHeight())
-                    .addValue("planting_date", params.getPlantingDate());
+                    .addValue("height", params.getHeight());
+                    //.addValue("planting_date", params.getPlantingDate());
 
             log.info("Updating plant with sql [{}] with params: [{}]", updatePlantSql, sqlParams);
             this.namedParameterJdbcTemplate.update(updatePlantSql, sqlParams);
