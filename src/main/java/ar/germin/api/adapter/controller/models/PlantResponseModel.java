@@ -35,13 +35,15 @@ public class PlantResponseModel {
 
     String plantCatalogFamilyName;
     String plantCatalogGenus;
-    String plantCatalogIrrigation;
+    String plantCatalogWateringFrecuency;
     String plantCatalogDescription;
 
     String plantCatalogCommonName;
     String plantCatalogScientificName;
 
     List<PhotoModel> images;
+
+    String plantCatalogSunExposure;
 
 
     public static PlantResponseModel fromDomain(Plant plant) {
@@ -51,6 +53,7 @@ public class PlantResponseModel {
                 .idGarden(plant.getIdGarden())
                 .creationDate(plant.getCreationDate())
                 .modificationDate(plant.getModificationDate())
+                .plantingDate(plant.getPlantingDate())
                 .favorite(plant.getIsFavorite())
                 .height(plant.getHeight())
                 .notes(plant.getNotes())
@@ -58,7 +61,8 @@ public class PlantResponseModel {
                 .plantCatalogScientificName(plant.getPcScientificName())
                 .plantCatalogFamilyName(plant.getPcFamilyname())
                 .plantCatalogGenus(plant.getPcGenus())
-                .plantCatalogIrrigation(plant.getPcWateringFrecuency())
+                .plantCatalogWateringFrecuency(plant.getPcWateringFrecuency())
+                .plantCatalogSunExposure(plant.getPcSunExposure())
                 .plantCatalogDescription(plant.getPcDescription())
                 .images(plant
                         .getPhotos()

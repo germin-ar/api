@@ -38,4 +38,6 @@ public class Plant {
     String pcScientificName;
     @With
     List<PlantPhoto> photos;
+
+    String pcSunExposure;
 }

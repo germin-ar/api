@@ -25,6 +25,7 @@ public class PlantPlantCatalogModel {
     String pcCommonName;
     String pcScientificName;
 
+    String pcSunlight;
 
     public Plant toDomain() {
         return Plant.builder()
@@ -42,6 +43,7 @@ public class PlantPlantCatalogModel {
                 .pcFamilyname(pcFamilyName)
                 .pcGenus(pcGenus)
                 .pcWateringFrecuency(pcWateringFrecuency)
+                .pcSunExposure(pcSunlight)
                 .pcDescription(pcDescription)
                 .build();
     }
