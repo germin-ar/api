@@ -97,7 +97,8 @@ public class TrefleRestAdapter implements GetPlantDataRepository, GetPlantDetail
         TrefleSuggestionsResponseModel responseModel = this.restClient
                 .get()
                 .uri(uriBuilder -> {
-                    URI uri = uriBuilder
+                    URI uri = UriComponentsBuilder
+                            .fromUriString("https://trefle.io")
                             .path("/api/v1/plants")
                             .queryParam("token", this.germinarConfiguration.integrations().trefle().apiKey())
                             .queryParam("range[atmospheric_humidity]", historicWeather.getAvgHumidity() / 10)
@@ -108,7 +109,8 @@ public class TrefleRestAdapter implements GetPlantDataRepository, GetPlantDetail
                             .queryParam("filter_not[light]", sunExposure)
                             .queryParam("region", address.getCountry())
                             .queryParam("page", page)
-                            .build();
+                            .build()
+                            .toUri();
 
                     log.info("Calling trefleDetail with uri: {}", uri);
                     return uri;
