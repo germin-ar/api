@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
-
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
 
     <changeSet id="20240611_0" author="jfoppoli">
         <addColumn tableName="plant_catalog" schemaName="garden">
             <column name="sunlight" type="varchar">
                 <constraints nullable="true"/>
             </column>
+
             <column name="watering" type="varchar">
                 <constraints nullable="true"/>
             </column>
@@ -59,7 +59,10 @@ https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
                 <constraints nullable="true"/>
             </column>
 
+
         </addColumn>
+
     </changeSet>
+
 
 </databaseChangeLog>
