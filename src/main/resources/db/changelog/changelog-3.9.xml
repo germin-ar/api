@@ -6,74 +6,74 @@
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <!--brocoli-->
-    <changeSet id="20240612_0" author="armando">
-        <insert tableName="plant_catalog" schemaName="garden">
+<!--    <changeSet id="20240612_0" author="armando">-->
+<!--        <insert tableName="plant_catalog" schemaName="garden">-->
 
-            <column name="scientific_name" value="Brassica oleracea"/>
+<!--            <column name="scientific_name" value="Brassica oleracea"/>-->
 
-            <column name="description"
-                    value="El brócoli es un superalimento nutricionalmente denso, lleno de vitaminas y minerales esenciales.Es miembro de la familia Brassica Oleracea (Grupo Italica), que también incluye repollo, coliflor y col rizada.Está lleno de nutrientes esenciales, que proporciona una variedad de beneficios para la salud, como promover la digestión saludable y la inmunidad de construcción.El brócoli también es una excelente fuente de antioxidantes, que ayudan a neutralizar los radicales libres en el cuerpo y proteger las células del daño.El brócoli también contiene fibra esencial y fitoquímicos, que ayudan a reducir la inflamación y promover células sanas.Con todos estos increíbles beneficios, el brócoli es realmente un vegetal increíble que todos deberían incluir en su dieta."/>
+<!--            <column name="description"-->
+<!--                    value="El brócoli es un superalimento nutricionalmente denso, lleno de vitaminas y minerales esenciales.Es miembro de la familia Brassica Oleracea (Grupo Italica), que también incluye repollo, coliflor y col rizada.Está lleno de nutrientes esenciales, que proporciona una variedad de beneficios para la salud, como promover la digestión saludable y la inmunidad de construcción.El brócoli también es una excelente fuente de antioxidantes, que ayudan a neutralizar los radicales libres en el cuerpo y proteger las células del daño.El brócoli también contiene fibra esencial y fitoquímicos, que ayudan a reducir la inflamación y promover células sanas.Con todos estos increíbles beneficios, el brócoli es realmente un vegetal increíble que todos deberían incluir en su dieta."/>-->
 
-            <column name="slug_scientific_name" value="brassica-oleracea"/>
+<!--            <column name="slug_scientific_name" value="brassica-oleracea"/>-->
 
-            <column name="genus" value="Mostazas"/>
+<!--            <column name="genus" value="Mostazas"/>-->
 
-            <column name="family_name" value="Brasicáceas"/>
+<!--            <column name="family_name" value="Brasicáceas"/>-->
 
-            <column name="max_size" value="76"/>
+<!--            <column name="max_size" value="76"/>-->
 
-            <column name="fertilizer" valueComputed="null"/>
+<!--            <column name="fertilizer" valueComputed="null"/>-->
 
-            <column name="watering_frecuency" valueComputed="null"/>
+<!--            <column name="watering_frecuency" valueComputed="null"/>-->
 
-            <column name="pruning" valueComputed="null"/>
+<!--            <column name="pruning" valueComputed="null"/>-->
 
-            <column name="soil" value="Arena, Marga, Ligeramente ácido, Neutro"/>
-            <!--           <column name="insecticide" value="Solanum"/>-->
-            <column name="tips" valueComputed="null"/>
+<!--            <column name="soil" value="Arena, Marga, Ligeramente ácido, Neutro"/>-->
+<!--            &lt;!&ndash;           <column name="insecticide" value="Solanum"/>&ndash;&gt;-->
+<!--            <column name="tips" valueComputed="null"/>-->
 
-            <column name="sunlight"
-                    value="El brócoli (Brassica oleracea (Grupo Italica)) prefiere la exposición al sol al sol para un crecimiento y rendimientos óptimos.Debe recibir un mínimo de 6 horas de luz solar directa o indirecta cada día, con más luz solar beneficiosa.El mejor momento para que el brócoli reciba la luz del sol es durante la mañana cuando el sol comienza a aumentar y la luz es más brillante.Esto permite que la planta disfrute de toda la energía de la luz y la use para alimentar su crecimiento.Además, proporcionar a la planta un poco de sombra durante mediados y al final de la tarde puede ayudar a evitar el sobrecalentamiento y el marchitamiento en climas más calurosos."/>
+<!--            <column name="sunlight"-->
+<!--                    value="El brócoli (Brassica oleracea (Grupo Italica)) prefiere la exposición al sol al sol para un crecimiento y rendimientos óptimos.Debe recibir un mínimo de 6 horas de luz solar directa o indirecta cada día, con más luz solar beneficiosa.El mejor momento para que el brócoli reciba la luz del sol es durante la mañana cuando el sol comienza a aumentar y la luz es más brillante.Esto permite que la planta disfrute de toda la energía de la luz y la use para alimentar su crecimiento.Además, proporcionar a la planta un poco de sombra durante mediados y al final de la tarde puede ayudar a evitar el sobrecalentamiento y el marchitamiento en climas más calurosos."/>-->
 
-            <column name="watering_care"
-                    value="El brócoli (Brassica oleracea (grupo italica)) debe regarse profundamente aproximadamente una vez por semana.Para hacer esto, riegue su brócoli hasta que el agua salga de los agujeros de drenaje.Asegúrese de no saturar el suelo y evitar regar las hojas directamente.Durante el clima caliente y seco, puede ser necesaria agua extra.En caso de duda, riegue su brócoli cuando las 1-2 pulgadas superiores de tierra estén secas."/>
+<!--            <column name="watering_care"-->
+<!--                    value="El brócoli (Brassica oleracea (grupo italica)) debe regarse profundamente aproximadamente una vez por semana.Para hacer esto, riegue su brócoli hasta que el agua salga de los agujeros de drenaje.Asegúrese de no saturar el suelo y evitar regar las hojas directamente.Durante el clima caliente y seco, puede ser necesaria agua extra.En caso de duda, riegue su brócoli cuando las 1-2 pulgadas superiores de tierra estén secas."/>-->
 
-            <column name="common_name" value="Brócoli"/>
+<!--            <column name="common_name" value="Brócoli"/>-->
 
-            <column name="lifespan" value="Anual, Bianual, Perenne"/>
+<!--            <column name="lifespan" value="Anual, Bianual, Perenne"/>-->
 
-            <column name="propagation"
-                    value="Propagación de semillas, corte, división, propagación de capas, propagación de injerto"/>
+<!--            <column name="propagation"-->
+<!--                    value="Propagación de semillas, corte, división, propagación de capas, propagación de injerto"/>-->
 
-            <column name="fruit" valueComputed="null"/>
+<!--            <column name="fruit" valueComputed="null"/>-->
 
-            <column name="edible" value="yes"/>
+<!--            <column name="edible" value="yes"/>-->
 
-            <column name="growth_rate" value="Bajo"/>
+<!--            <column name="growth_rate" value="Bajo"/>-->
 
-            <column name="maintenance" value="Bajo"/>
+<!--            <column name="maintenance" value="Bajo"/>-->
 
-            <column name="temperature_min" value="20.00"/>
+<!--            <column name="temperature_min" value="20.00"/>-->
 
-            <column name="temperature_max" value="38.00"/>
+<!--            <column name="temperature_max" value="38.00"/>-->
 
-            <column name="specie" value="Brócoli"/>
+<!--            <column name="specie" value="Brócoli"/>-->
 
-            <column name="toxic" value="No toxico"/>
+<!--            <column name="toxic" value="No toxico"/>-->
 
-            <column name="repotting" value="Necesita un excelente drenaje en macetas."/>
+<!--            <column name="repotting" value="Necesita un excelente drenaje en macetas."/>-->
 
-            <column name="dormancy" valueComputed="null"/>
+<!--            <column name="dormancy" valueComputed="null"/>-->
 
-            <column name="growth_season" value="Primavera verano Otoño"/>
+<!--            <column name="growth_season" value="Primavera verano Otoño"/>-->
 
-            <column name="atmospheric_humidity" valueComputed="null"/>
+<!--            <column name="atmospheric_humidity" valueComputed="null"/>-->
 
-            <column name="planting_time" value="Primavera, Verano, Mediados de otoño, Finales de invierno"/>
-            <column name="harvest_time" value="Primavera, Verano, Otoño, Finales de invierno"/>
-        </insert>
-    </changeSet>
-    <!--espinaca-->
+<!--            <column name="planting_time" value="Primavera, Verano, Mediados de otoño, Finales de invierno"/>-->
+<!--            <column name="harvest_time" value="Primavera, Verano, Otoño, Finales de invierno"/>-->
+<!--        </insert>-->
+<!--    </changeSet>-->
+    <!--espinaca
     <changeSet id="20240612_1" author="armando">
         <insert tableName="plant_catalog" schemaName="garden">
 
@@ -100,51 +100,51 @@
 
             <column name="soil" value="Marga, Arena, Ácido, Neutro, Alcalino"/>
             <!--           <column name="insecticide" value="Solanum"/>-->
-            <column name="tips" valueComputed="null"/>
+<!--            <column name="tips" valueComputed="null"/>-->
 
-            <column name="sunlight"
-                    value="La espinaca (espinacia oleracea) requiere de 6 a 8 horas de luz solar directa por día.Para un crecimiento óptimo, las espinacas se deben proporcionar con plena exposición al sol durante las horas de la mañana antes de la parte más calurosa del día.En climas con veranos muy calurosos, la sombra ligera en la tarde puede ser beneficiosa.La espinaca crece bien en temperaturas que van desde 45 a 75 ° F y no tolerarán los extremos de alto calor o temperatura."/>
+<!--            <column name="sunlight"-->
+<!--                    value="La espinaca (espinacia oleracea) requiere de 6 a 8 horas de luz solar directa por día.Para un crecimiento óptimo, las espinacas se deben proporcionar con plena exposición al sol durante las horas de la mañana antes de la parte más calurosa del día.En climas con veranos muy calurosos, la sombra ligera en la tarde puede ser beneficiosa.La espinaca crece bien en temperaturas que van desde 45 a 75 ° F y no tolerarán los extremos de alto calor o temperatura."/>-->
 
-            <column name="watering_care"
-                    value="Riegue sus plantas de espinacas profundamente, pero con poca frecuencia.Riégalos una o dos veces por semana, proporcionando suficiente agua para alcanzar de 6 a 12 pulgadas de profundidad.Es mejor regarlos por la mañana para que las hojas se sequen rápidamente y desanimar el hongo.En clima cálido y seco, es posible que deba regar con más frecuencia."/>
+<!--            <column name="watering_care"-->
+<!--                    value="Riegue sus plantas de espinacas profundamente, pero con poca frecuencia.Riégalos una o dos veces por semana, proporcionando suficiente agua para alcanzar de 6 a 12 pulgadas de profundidad.Es mejor regarlos por la mañana para que las hojas se sequen rápidamente y desanimar el hongo.En clima cálido y seco, es posible que deba regar con más frecuencia."/>-->
 
-            <column name="common_name" value="Espinaca"/>
+<!--            <column name="common_name" value="Espinaca"/>-->
 
-            <column name="lifespan" value="Anual, bienal"/>
+<!--            <column name="lifespan" value="Anual, bienal"/>-->
 
-            <column name="propagation"
-                    value="Propagación de semillas, corte, división, propagación de capas, propagación de injerto"/>
+<!--            <column name="propagation"-->
+<!--                    value="Propagación de semillas, corte, división, propagación de capas, propagación de injerto"/>-->
 
-            <column name="fruit" valueComputed="null"/>
+<!--            <column name="fruit" valueComputed="null"/>-->
 
-            <column name="edible" value="Si"/>
+<!--            <column name="edible" value="Si"/>-->
 
-            <column name="growth_rate" value="Rapida"/>
+<!--            <column name="growth_rate" value="Rapida"/>-->
 
-            <column name="maintenance" value="Moderado"/>
+<!--            <column name="maintenance" value="Moderado"/>-->
 
-            <column name="temperature_min" value="20.00"/>
+<!--            <column name="temperature_min" value="20.00"/>-->
 
-            <column name="temperature_max" value="38.00"/>
+<!--            <column name="temperature_max" value="38.00"/>-->
 
-            <column name="specie" value="Espinaca"/>
+<!--            <column name="specie" value="Espinaca"/>-->
 
-            <column name="toxic" value="No Toxico"/>
+<!--            <column name="toxic" value="No Toxico"/>-->
 
-            <column name="repotting" valueComputed="null"/>
+<!--            <column name="repotting" valueComputed="null"/>-->
 
-            <column name="dormancy" valueComputed="null"/>
+<!--            <column name="dormancy" valueComputed="null"/>-->
 
-            <column name="growth_season" value="Verano"/>
+<!--            <column name="growth_season" value="Verano"/>-->
 
-            <column name="atmospheric_humidity" valueComputed="null"/>
+<!--            <column name="atmospheric_humidity" valueComputed="null"/>-->
 
-            <column name="planting_time" value="Primavera, Verano"/>
+<!--            <column name="planting_time" value="Primavera, Verano"/>-->
 
-            <column name="harvest_time" valueComputed="null"/>
-        </insert>
-    </changeSet>
-    <!--arveja-->
+<!--            <column name="harvest_time" valueComputed="null"/>-->
+<!--        </insert>-->
+<!--    </changeSet>-->
+    <!--arveja
     <changeSet id="20240612_2" author="armando">
         <insert tableName="plant_catalog" schemaName="garden">
             <column name="scientific_name" value="Pisum sativum"/>
@@ -168,33 +168,33 @@
 
             <column name="soil" value="Arena, Franco, Neutro, Ligeramente alcalino"/>
             <!--           <column name="insecticide" value="Solanum"/>-->
-            <column name="tips"
-                    value="Los guisantes de jardín o arvejas son una de las hortalizas más comunes plantadas por los jardineros de todo el mundo. Se pueden utilizar varios tipos de guisantes en multitud de platos, lo que los hace muy populares en huertos o en parterres elevados. También pueden producir hermosas flores y pueden usarse como enredadera para macizos de flores, según el tipo. Los guisantes crecen en armonía con cebolletas, zanahorias, pepinos y frijoles."/>
+<!--            <column name="tips"-->
+<!--                    value="Los guisantes de jardín o arvejas son una de las hortalizas más comunes plantadas por los jardineros de todo el mundo. Se pueden utilizar varios tipos de guisantes en multitud de platos, lo que los hace muy populares en huertos o en parterres elevados. También pueden producir hermosas flores y pueden usarse como enredadera para macizos de flores, según el tipo. Los guisantes crecen en armonía con cebolletas, zanahorias, pepinos y frijoles."/>-->
 
-            <column name="sunlight" value="Pleno sol, Sol parcial"/>
+<!--            <column name="sunlight" value="Pleno sol, Sol parcial"/>-->
 
-            <column name="watering_care"
-                    value="Originarios de regiones con climas moderados, los guisantes de jardín se han adaptado a un nivel de humedad constante, lo que indica su preferencia por una hidratación estable. Esta especie prospera cuando el suelo permanece uniformemente húmedo sin encharcarse, lo que muestra un equilibrio en sus necesidades de agua. El riego debe alinearse con este equilibrio, lo que se traduce en dos veces por semana para mantener una salud óptima. Cultivados principalmente al aire libre, los guisantes de jardín se benefician de un suelo con buen drenaje que complementa sus ciclos de crecimiento y garantiza un uso eficiente del agua durante el riego."/>
-            <column name="common_name" value="Guisante, Arveja"/>
-            <column name="lifespan" value="Anual, Bienal"/>
-            <column name="propagation" value="Semillas"/>
-            <column name="fruit" value="Verde, Púrpura, Lavanda"/>
-            <column name="edible" value="si"/>
-            <column name="growth_rate" value="Rapido"/>
-            <column name="maintenance" value="Bajo"/>
-            <column name="temperature_min" value="20"/>
-            <column name="temperature_max" value="38"/>
-            <column name="specie" value="Guisante"/>
-            <column name="toxic" value="no"/>
-            <column name="repotting" valueComputed="null"/>
-            <column name="dormancy" valueComputed="null"/>
-            <column name="growth_season" value="Fin de la primavera"/>
-            <column name="atmospheric_humidity" valueComputed="null"/>
-            <column name="planting_time"
-                    value="Primavera, principios de verano, mediados de verano, mediados de otoño, finales de otoño, mediados de invierno, finales de invierno"/>
-            <column name="harvest_time" value="Verano, principios de otoño, mediados de otoño"/>
-        </insert>
-    </changeSet>
+<!--            <column name="watering_care"-->
+<!--                    value="Originarios de regiones con climas moderados, los guisantes de jardín se han adaptado a un nivel de humedad constante, lo que indica su preferencia por una hidratación estable. Esta especie prospera cuando el suelo permanece uniformemente húmedo sin encharcarse, lo que muestra un equilibrio en sus necesidades de agua. El riego debe alinearse con este equilibrio, lo que se traduce en dos veces por semana para mantener una salud óptima. Cultivados principalmente al aire libre, los guisantes de jardín se benefician de un suelo con buen drenaje que complementa sus ciclos de crecimiento y garantiza un uso eficiente del agua durante el riego."/>-->
+<!--            <column name="common_name" value="Guisante, Arveja"/>-->
+<!--            <column name="lifespan" value="Anual, Bienal"/>-->
+<!--            <column name="propagation" value="Semillas"/>-->
+<!--            <column name="fruit" value="Verde, Púrpura, Lavanda"/>-->
+<!--            <column name="edible" value="si"/>-->
+<!--            <column name="growth_rate" value="Rapido"/>-->
+<!--            <column name="maintenance" value="Bajo"/>-->
+<!--            <column name="temperature_min" value="20"/>-->
+<!--            <column name="temperature_max" value="38"/>-->
+<!--            <column name="specie" value="Guisante"/>-->
+<!--            <column name="toxic" value="no"/>-->
+<!--            <column name="repotting" valueComputed="null"/>-->
+<!--            <column name="dormancy" valueComputed="null"/>-->
+<!--            <column name="growth_season" value="Fin de la primavera"/>-->
+<!--            <column name="atmospheric_humidity" valueComputed="null"/>-->
+<!--            <column name="planting_time"-->
+<!--                    value="Primavera, principios de verano, mediados de verano, mediados de otoño, finales de otoño, mediados de invierno, finales de invierno"/>-->
+<!--            <column name="harvest_time" value="Verano, principios de otoño, mediados de otoño"/>-->
+<!--        </insert>-->
+<!--    </changeSet>-->
     <!--Apio
     <changeSet id="20240612_3" author="armando">
         <insert tableName="plant_catalog" schemaName="garden">
