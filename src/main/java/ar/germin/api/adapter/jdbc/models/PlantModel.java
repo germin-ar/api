@@ -13,7 +13,7 @@ public class PlantModel {
     private Integer idGarden;
     private LocalDateTime modificationDate;
     private LocalDateTime creationDate;
-    private Boolean isFavorite;
+    private Boolean favorite;
     private Double height;
     private String notes;
     private LocalDateTime plantingDate;
@@ -32,7 +32,7 @@ public class PlantModel {
                 .idGarden(idGarden)
                 .modificationDate(modificationDate)
                 .creationDate(creationDate)
-                .isFavorite(isFavorite)
+                .isFavorite(favorite)
                 .height(height)
                 .notes(notes)
                 .plantingDate(plantingDate)

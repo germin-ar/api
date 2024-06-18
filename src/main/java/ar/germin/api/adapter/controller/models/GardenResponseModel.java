@@ -33,6 +33,7 @@ public class GardenResponseModel {
                                 .alias(plant.getAlias())
                                 .modificationDate(plant.getModificationDate())
                                 .creationDate(plant.getCreationDate())
+                                .isFavorite(plant.getIsFavorite())
                                 .photos(plant
                                         .getPhotos()
                                         .stream()
@@ -58,7 +59,8 @@ public class GardenResponseModel {
                       String alias,
                       @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime creationDate,
                       @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'") LocalDateTime modificationDate,
-                      List<PlantPhotoModel> photos) {
+                      List<PlantPhotoModel> photos,
+                      Boolean isFavorite){
 
     }
 
