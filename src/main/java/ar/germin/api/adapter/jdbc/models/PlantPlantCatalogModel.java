@@ -27,6 +27,8 @@ public class PlantPlantCatalogModel {
 
     String pcSunlight;
 
+    String gardenName;
+
     public Plant toDomain() {
         return Plant.builder()
                 .id(plantId)
@@ -45,6 +47,7 @@ public class PlantPlantCatalogModel {
                 .pcWateringFrecuency(pcWateringFrecuency)
                 .pcSunExposure(pcSunlight)
                 .pcDescription(pcDescription)
+                .gardenName(gardenName)
                 .build();
     }
 }

@@ -64,6 +64,7 @@ public class PlantResponseModel {
                 .plantCatalogWateringFrecuency(plant.getPcWateringFrecuency())
                 .plantCatalogSunExposure(plant.getPcSunExposure())
                 .plantCatalogDescription(plant.getPcDescription())
+                .nameGarden(plant.getGardenName())
                 .images(plant
                         .getPhotos()
                         .stream()

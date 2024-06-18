@@ -14,10 +14,13 @@ select plant.id                plant_id,
        pc.watering_frecuency   pc_watering_frecuency,
        pc.description          pc_description,
        pc.sunlight             pc_sunlight,
-       plant.id_plants_catalog plant_idcatalog
+       plant.id_plants_catalog plant_idcatalog,
+       garden.name             garden_name
 from garden.plant plant
          inner join garden.plant_catalog pc
                     on plant.id_plants_catalog = pc.id
+         inner join garden.garden garden
+                    on plant.id_garden = garden.id
 where plant.is_active
   and plant.user_id = :idUser
   and plant.id = :idPlant

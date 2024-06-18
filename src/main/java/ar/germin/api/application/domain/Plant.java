@@ -40,4 +40,6 @@ public class Plant {
     List<PlantPhoto> photos;
 
     String pcSunExposure;
+
+    String gardenName;
 }
