@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -84,7 +85,11 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
     }
 
     private HealthAIDetection checkHealth(FileImage fileImage) {
-        HealthAIDetection healthAIDetection = this.getHealthSuggestionsRepository.getHealthStatus(fileImage);
+        //HealthAIDetection healthAIDetection = this.getHealthSuggestionsRepository.getHealthStatus(fileImage);
+        HealthAIDetection healthAIDetection = HealthAIDetection.builder()
+                .candidates(Collections.emptyList())
+                .isHealthy(true)
+                .build();
         log.info("respuesta estado salud: {}", healthAIDetection);
         return healthAIDetection;
     }

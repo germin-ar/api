@@ -8,6 +8,7 @@ import ar.germin.api.application.port.out.GetPlantPhotosRepository;
 import ar.germin.api.application.port.out.GetPlantRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -46,7 +47,7 @@ public class GetGardensUseCase implements GetGardensPortIn {
                 .filter(plant -> Optional.ofNullable(plant.getIdGarden()).isEmpty())
                 .toList();
 
-        List<Garden> gardensResponse = gardens;
+        List<Garden> gardensResponse = new ArrayList<>(gardens);
 
 
 
@@ -59,7 +60,7 @@ public class GetGardensUseCase implements GetGardensPortIn {
 
 
 
-        return gardens.stream()
+        return gardensResponse.stream()
                 .map(garden -> {
                     List<Plant> plants = garden.getPlants();
                     List<Plant> newPlants = plants
