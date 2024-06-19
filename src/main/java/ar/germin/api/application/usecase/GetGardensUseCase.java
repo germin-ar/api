@@ -46,15 +46,20 @@ public class GetGardensUseCase implements GetGardensPortIn {
                 .filter(plant -> Optional.ofNullable(plant.getIdGarden()).isEmpty())
                 .toList();
 
-        if (plantsWithoutGarden.isEmpty()) {
-            return gardens;
+        List<Garden> gardensResponse = gardens;
+
+
+
+        if (!plantsWithoutGarden.isEmpty()) {
+            Garden fakeGarden = Garden.builder()
+                    .plants(plantsWithoutGarden)
+                    .build();
+            gardensResponse.add(fakeGarden);
         }
 
-        Garden fakeGarden = Garden.builder()
-                .plants(plantsWithoutGarden)
-                .build();
 
-        return Stream.concat(gardens.stream(), Stream.of(fakeGarden))
+
+        return gardens.stream()
                 .map(garden -> {
                     List<Plant> plants = garden.getPlants();
                     List<Plant> newPlants = plants
