@@ -13,6 +13,7 @@ public interface SavePlantRepository {
     class Params {
         String alias;
         Double height;
+        String notes;
         LocalDateTime plantingDate;
         Integer idGarden;
         Integer idUser;

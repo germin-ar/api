@@ -48,6 +48,7 @@ public class PlantControllerAdapter {
                         .plantingDate(savePlantRequestModel.plantingDate())
                         .height(savePlantRequestModel.height())
                         .idGarden(savePlantRequestModel.idGarden())
+                        .notes(savePlantRequestModel.notes())
                         .idUser(idUser)
                         .idPlantCatalog(savePlantRequestModel.idPlantCatalog())
                         .imageUrl(savePlantRequestModel.imageUrl())

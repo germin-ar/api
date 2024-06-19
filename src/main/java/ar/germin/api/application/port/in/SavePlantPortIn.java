@@ -13,6 +13,7 @@ public interface SavePlantPortIn {
     class Params {
         String alias;
         Double height;
+        String notes;
         LocalDateTime plantingDate;
         Integer idGarden;
         Boolean isActive;
