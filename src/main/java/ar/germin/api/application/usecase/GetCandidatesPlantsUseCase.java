@@ -14,6 +14,7 @@ import ar.germin.api.application.port.out.GetHealthSuggestionsRepository;
 import ar.germin.api.application.port.out.GetPlantCatalogRepository;
 import ar.germin.api.application.port.out.GetPlantDetailDataRepository;
 import ar.germin.api.application.port.out.SavePlantCatalogRepository;
+import ar.germin.api.application.usecase.service.GetPlantCatalogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,25 +29,16 @@ import java.util.List;
 public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
     private final GetFileRepository getFileRepository;
     private final GetAIDetectionRepository getAIDetectionRepository;
-    private final GetPlantCatalogRepository getPlantCatalogRepository;
-    private final GetPlantDetailDataRepository getPlantDetailDataRepository;
-    private final SavePlantCatalogRepository savePlantCatalogRepository;
-    private final GetHealthSuggestionsRepository getHealthSuggestionsRepository;
+    private final GetPlantCatalogService getPlantCatalogService;
 
     @Autowired
     public GetCandidatesPlantsUseCase(GetFileRepository getFileRepository,
                                       @Qualifier("rest") GetAIDetectionRepository getAIDetectionRepository,
-                                      GetPlantCatalogRepository getPlantCatalogRepository,
-                                      GetPlantDetailDataRepository getPlantDetailDataRepository,
-                                      SavePlantCatalogRepository savePlantCatalogRepository,
-                                      GetHealthSuggestionsRepository getHealthSuggestionsRepository
+                                      GetPlantCatalogService getPlantCatalogService
     ) {
         this.getFileRepository = getFileRepository;
         this.getAIDetectionRepository = getAIDetectionRepository;
-        this.getPlantCatalogRepository = getPlantCatalogRepository;
-        this.getPlantDetailDataRepository = getPlantDetailDataRepository;
-        this.savePlantCatalogRepository = savePlantCatalogRepository;
-        this.getHealthSuggestionsRepository = getHealthSuggestionsRepository;
+        this.getPlantCatalogService = getPlantCatalogService;
     }
 
     @Override
@@ -58,7 +50,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
         List<Candidate> candidates = aiDetection
                 .getCandidates()
                 .parallelStream()
-                .map(candidate -> candidate.withPlantCatalog(getPlantCatalog(candidate.getSpecie())))
+                .map(candidate -> candidate.withPlantCatalog(this.getPlantCatalogService.getPlantCatalog(candidate.getSpecie().toSlugFormat())))
                 .max(Comparator.comparingDouble(Candidate::getScore))
                 .map(List::of)
                 .orElseThrow();
@@ -74,15 +66,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
         return result;
     }
 
-    private PlantCatalog getPlantCatalog(Specie specie) {
-        try {
-            return this.getPlantCatalogRepository.getPlantCatalog(specie.toSlugFormat());
-        } catch (PlantCatalogNotFoundException ex) {
-            PlantCatalog plantCatalog = this.getPlantDetailDataRepository.searchDetail(specie.toSlugFormat());
-            this.savePlantCatalogRepository.save(plantCatalog);
-            return plantCatalog;
-        }
-    }
+
 
     private HealthAIDetection checkHealth(FileImage fileImage) {
         //HealthAIDetection healthAIDetection = this.getHealthSuggestionsRepository.getHealthStatus(fileImage);

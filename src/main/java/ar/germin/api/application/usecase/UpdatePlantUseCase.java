@@ -24,6 +24,8 @@ public class UpdatePlantUseCase implements UpdatePlantPortIn {
     public Integer update(UpdatePlantPortIn.Params params) {
         this.getPlantRepository.getByIdUserAndIdPlant(params.getIdUser(), params.getId());
 
+
+
         return this.updatePlantRepository.update(
                 UpdatePlantRepository.Params.builder()
                         .id(params.getId())
