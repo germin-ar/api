@@ -1,7 +1,7 @@
 package ar.germin.api.adapter.rest;
 
-import ar.germin.api.adapter.rest.models.plantid.PlantIdCheckHealthRequestModel;
-import ar.germin.api.adapter.rest.models.plantid.PlantIdCheckHealthResponseModel;
+import ar.germin.api.adapter.rest.models.cropkindwise.CropKindwiseCheckHealthRequestModel;
+import ar.germin.api.adapter.rest.models.cropkindwise.CropKindwiseCheckHealthResponseModel;
 import ar.germin.api.adapter.rest.utils.RestUtils;
 import ar.germin.api.application.domain.FileImage;
 import ar.germin.api.application.domain.HealthAIDetection;
@@ -10,7 +10,6 @@ import ar.germin.api.configuration.GerminarConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
@@ -18,47 +17,50 @@ import java.util.List;
 
 @Slf4j
 @Component
-@Qualifier("plantid")
-public class PlantIdRestAdapter implements GetHealthSuggestionsRepository {
+@Qualifier("cropkindwise")
+public class CropKindwiseRestAdapter implements GetHealthSuggestionsRepository {
     private final RestClient restClient;
     private final GerminarConfiguration germinarConfiguration;
 
     @Autowired
-    public PlantIdRestAdapter(GerminarConfiguration germinarConfiguration) {
+    public CropKindwiseRestAdapter (GerminarConfiguration germinarConfiguration) {
         this.germinarConfiguration = germinarConfiguration;
         this.restClient = RestClient.builder()
-                .baseUrl("https://plant.id")
+                .baseUrl("https://crop.kindwise.com")
                 .build();
     }
+
 
     public HealthAIDetection getHealthStatus(FileImage fileImage) {
         String base64 = this.getBase64(fileImage.getFilePath());
 
-        PlantIdCheckHealthRequestModel plantIdCheckHealthRequestModel = PlantIdCheckHealthRequestModel.builder()
+        CropKindwiseCheckHealthRequestModel requestModel = CropKindwiseCheckHealthRequestModel.builder()
                 .images(List.of(base64))
                 .latitude(-35.8275455f)
                 .longitude(-58.6186088f)
                 .similarImages(true)
                 .build();
 
-        log.info("body for call plant.id: {}", plantIdCheckHealthRequestModel);
-        PlantIdCheckHealthResponseModel response = this.restClient
+        log.info("body for call crop.kindwise: {}", requestModel);
+
+        CropKindwiseCheckHealthResponseModel responseModel = this.restClient
                 .post()
                 .uri(uriBuilder ->
                         uriBuilder
-                                .path("/api/v3/health_assessment")
+                                .path("/api/v1/identification")
+                                .queryParam("language", "es")
+                                .queryParam("details", "type,common_names,eppo_code,wiki_url,taxonomy")
                                 .build())
-                .header("Api-Key", this.germinarConfiguration.integrations().plantId().apiKey())
-                .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-                .body(plantIdCheckHealthRequestModel)
+                .header("Api-Key", this.germinarConfiguration.integrations().cropKindwise().apiKey())
+                .body(requestModel)
                 .retrieve()
-                .body(PlantIdCheckHealthResponseModel.class);
+                .body(CropKindwiseCheckHealthResponseModel.class);
+        log.info("Response from crop.kindwise: {}", responseModel);
 
-        log.info("Response from plant.id: {}", response);
+        return responseModel.toDomain();
 
-        return response.toDomain();
+
     }
-
     private String getBase64(String imageUrl) {
         try {
             return RestUtils.fileUrlToBase64(imageUrl);
