@@ -13,7 +13,8 @@ public record SavePlantRequestModel(String alias,
                                     Integer idGarden,
                                     Boolean isFavorite,
                                     String imageUrl,
-                                    Integer idPlantCatalog
+                                    Integer idPlantCatalog,
+                                    String notes
 ) {
 
 }

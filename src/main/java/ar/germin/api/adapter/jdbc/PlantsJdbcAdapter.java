@@ -60,6 +60,7 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
                     .addValue("idGarden", params.getIdGarden()) // TODO: setear
                     .addValue("idUser", params.getIdUser())
                     .addValue("idPlantCatalog", params.getIdPlantCatalog())
+                    .addValue("notes", params.getNotes())
                     //.addValue("favorite", params.getIsFavorite())
                     .addValue("height", params.getHeight())
                     .addValue("plantingDate", params.getPlantingDate());
@@ -101,7 +102,8 @@ public class PlantsJdbcAdapter implements SavePlantRepository, DeletePlantReposi
                     .addValue("alias", params.getAlias())
                     .addValue("id_garden", params.getIdGarden())
                     .addValue("is_favorite", params.getIsFavorite())
-                    .addValue("height", params.getHeight());
+                    .addValue("height", params.getHeight())
+                    .addValue("notes", params.getNotes());
                     //.addValue("planting_date", params.getPlantingDate());
 
             log.info("Updating plant with sql [{}] with params: [{}]", updatePlantSql, sqlParams);
