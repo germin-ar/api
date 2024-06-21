@@ -3,7 +3,6 @@ package ar.germin.api.adapter.rest;
 import ar.germin.api.adapter.rest.models.plantid.PlantIdCheckHealthRequestModel;
 import ar.germin.api.adapter.rest.models.plantid.PlantIdCheckHealthResponseModel;
 import ar.germin.api.adapter.rest.utils.RestUtils;
-import ar.germin.api.application.domain.FileImage;
 import ar.germin.api.application.domain.HealthAIDetection;
 import ar.germin.api.application.port.out.GetHealthSuggestionsRepository;
 import ar.germin.api.configuration.GerminarConfiguration;
@@ -31,8 +30,8 @@ public class PlantIdRestAdapter implements GetHealthSuggestionsRepository {
                 .build();
     }
 
-    public HealthAIDetection getHealthStatus(FileImage fileImage) {
-        String base64 = this.getBase64(fileImage.getFilePath());
+    public HealthAIDetection getHealthStatus(String imageUrl) {
+        String base64 = this.getBase64(imageUrl);
 
         PlantIdCheckHealthRequestModel plantIdCheckHealthRequestModel = PlantIdCheckHealthRequestModel.builder()
                 .images(List.of(base64))

@@ -34,7 +34,14 @@ public class CropKindwiseCheckHealthResponseModel {
                                 .name(suggestion.getName())
                                 .build())
                         .toList())
-                .isHealthy(result.getIsPlant().getBinary())
+                .isHealthy(!this
+                        .getResult()
+                        .getDisease()
+                        .getSuggestions()
+                        .stream()
+                        .filter(suggestionModel -> suggestionModel.getName().equals("healthy"))
+                        .toList()
+                        .isEmpty())
                 .build();
     }
 
@@ -73,12 +80,8 @@ class InputModel {
     String datetime;
 }
 
-@Value
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-class IsPlantModel {
-    Double probability;
-    Double threshold;
-    Boolean binary;
+record IsPlantModel(Double probability, Double threshold, Boolean binary) {
 }
 
 @Value

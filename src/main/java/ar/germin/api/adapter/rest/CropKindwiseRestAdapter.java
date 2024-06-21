@@ -3,7 +3,6 @@ package ar.germin.api.adapter.rest;
 import ar.germin.api.adapter.rest.models.cropkindwise.CropKindwiseCheckHealthRequestModel;
 import ar.germin.api.adapter.rest.models.cropkindwise.CropKindwiseCheckHealthResponseModel;
 import ar.germin.api.adapter.rest.utils.RestUtils;
-import ar.germin.api.application.domain.FileImage;
 import ar.germin.api.application.domain.HealthAIDetection;
 import ar.germin.api.application.port.out.GetHealthSuggestionsRepository;
 import ar.germin.api.configuration.GerminarConfiguration;
@@ -30,8 +29,8 @@ public class CropKindwiseRestAdapter implements GetHealthSuggestionsRepository {
                 .build();
     }
 
-    public HealthAIDetection getHealthStatus(FileImage fileImage) {
-        String base64 = this.getBase64(fileImage.getFilePath());
+    public HealthAIDetection getHealthStatus(String imageUrl) {
+        String base64 = this.getBase64(imageUrl);
 
         CropKindwiseCheckHealthRequestModel requestModel = CropKindwiseCheckHealthRequestModel.builder()
                 .images(List.of(base64))
