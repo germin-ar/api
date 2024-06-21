@@ -13,6 +13,7 @@ public interface UpdatePlantRepository {
     class Params {
         Integer id;
         String alias;
+        String notes;
         Double height;
         //LocalDateTime plantingDate;
         Integer idGarden;

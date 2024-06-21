@@ -14,7 +14,7 @@ public class PlantHistoryModel {
     String alias;
     String urlImage;
     String modifiedAt;
-    Integer idDisease;
+    Integer idDiseases;
 
     public static List<PlantHistory> toDomainList(List<PlantHistoryModel> plantHistoryModels){
         return plantHistoryModels.stream().map(PlantHistoryModel::toDomain).toList();
@@ -28,7 +28,7 @@ public class PlantHistoryModel {
                 .alias(alias)
                 .url_image(urlImage)
                 .modified_at(modifiedAt)
-                .idDiseases(idDisease)
+                .idDiseases(idDiseases)
                 .build();
     }
 }
