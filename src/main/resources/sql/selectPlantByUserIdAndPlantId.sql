@@ -19,7 +19,7 @@ select plant.id                plant_id,
 from garden.plant plant
          inner join garden.plant_catalog pc
                     on plant.id_plants_catalog = pc.id
-         inner join garden.garden garden
+         left join garden.garden garden
                     on plant.id_garden = garden.id
 where plant.is_active
   and plant.user_id = :idUser

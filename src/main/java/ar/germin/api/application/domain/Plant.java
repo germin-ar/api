@@ -42,4 +42,6 @@ public class Plant {
     String pcSunExposure;
 
     String gardenName;
+    @With
+    List<PlantHistory> history;
 }
