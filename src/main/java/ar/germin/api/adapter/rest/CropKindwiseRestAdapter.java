@@ -23,13 +23,12 @@ public class CropKindwiseRestAdapter implements GetHealthSuggestionsRepository {
     private final GerminarConfiguration germinarConfiguration;
 
     @Autowired
-    public CropKindwiseRestAdapter (GerminarConfiguration germinarConfiguration) {
+    public CropKindwiseRestAdapter(GerminarConfiguration germinarConfiguration) {
         this.germinarConfiguration = germinarConfiguration;
         this.restClient = RestClient.builder()
                 .baseUrl("https://crop.kindwise.com")
                 .build();
     }
-
 
     public HealthAIDetection getHealthStatus(FileImage fileImage) {
         String base64 = this.getBase64(fileImage.getFilePath());
@@ -61,6 +60,7 @@ public class CropKindwiseRestAdapter implements GetHealthSuggestionsRepository {
 
 
     }
+
     private String getBase64(String imageUrl) {
         try {
             return RestUtils.fileUrlToBase64(imageUrl);

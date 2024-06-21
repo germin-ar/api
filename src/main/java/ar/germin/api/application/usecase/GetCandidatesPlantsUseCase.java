@@ -38,7 +38,7 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
                                       GetPlantCatalogRepository getPlantCatalogRepository,
                                       GetPlantDetailDataRepository getPlantDetailDataRepository,
                                       SavePlantCatalogRepository savePlantCatalogRepository,
-                                      @Qualifier("plantIdRestAdapter") GetHealthSuggestionsRepository getHealthSuggestionsRepository
+                                      @Qualifier("plantid") GetHealthSuggestionsRepository getHealthSuggestionsRepository
     ) {
         this.getFileRepository = getFileRepository;
         this.getAIDetectionRepository = getAIDetectionRepository;
