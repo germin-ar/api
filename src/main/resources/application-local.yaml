@@ -4,3 +4,11 @@ spring:
     username: postgres
     password: pa55w0rd
 
+cognito:
+  clientId: up0gehu7gd2phsvb2bd9vv2ml
+  clientSecret: gre4r9nu3efqi394bekl84sktl8j8rbonvu8es0qoj13cbtt90u
+  userPoolId: us-east-1_g34U2Zocx
+aws:
+  accessKeyId: AKIAQ3GEND5GZNHENNOE
+  secretKey: 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
+

@@ -34,6 +34,14 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
+
+
+    //runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'software.amazon.awssdk:cognitoidentityprovider:2.20.1'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // implementation 'org.springframework.boot:spring-boot-starter-security'
+    // implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'com.amazonaws:aws-java-sdk-cognitoidp:1.11.934'
 }
 
 jar {
