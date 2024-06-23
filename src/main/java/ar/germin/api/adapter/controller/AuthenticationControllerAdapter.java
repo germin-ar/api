@@ -2,12 +2,15 @@ package ar.germin.api.adapter.controller;
 
 
 import ar.germin.api.application.port.in.UserConfirmRegistrationPortIn;
+import ar.germin.api.application.port.in.UserLoginPortIn;
 import ar.germin.api.application.port.in.UserRegistrationPortIn;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -16,10 +19,14 @@ public class AuthenticationControllerAdapter {
 
   private final UserRegistrationPortIn userRegistrationPortIn;
   private final UserConfirmRegistrationPortIn userConfirmRegistrationPortIn;
+  private final UserLoginPortIn userLoginPortIn;
 
-  public AuthenticationControllerAdapter(UserRegistrationPortIn userRegistrationPortIn, UserConfirmRegistrationPortIn userConfirmRegistrationPortIn) {
+  public AuthenticationControllerAdapter(UserRegistrationPortIn userRegistrationPortIn,
+                                         UserConfirmRegistrationPortIn userConfirmRegistrationPortIn,
+                                         UserLoginPortIn userLoginPortIn) {
     this.userRegistrationPortIn = userRegistrationPortIn;
     this.userConfirmRegistrationPortIn = userConfirmRegistrationPortIn;
+    this.userLoginPortIn = userLoginPortIn;
   }
 
 
@@ -38,6 +45,12 @@ public class AuthenticationControllerAdapter {
     return response;
   }
 
+  @PostMapping("/login")
+  public Map<String, String> login(@RequestParam String username, @RequestParam String password) {
+    Map<String, String> response = userLoginPortIn.login(username, password);
+    log.info("loginResponse: {}", response);
+    return response;
+  }
 
 
 }
