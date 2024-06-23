@@ -10,7 +10,8 @@ public record GerminarConfiguration(Integrations integrations) {
                                FreeImage freeImage,
                                Trefle trefle,
                                Weather weather,
-                               PlantId plantId) {
+                               PlantId plantId,
+                               CropKindwise cropKindwise) {
     }
 
     public record Perenual(String apiKey) {
@@ -29,6 +30,8 @@ public record GerminarConfiguration(Integrations integrations) {
     }
 
     public record PlantId(String apiKey) {
+    }
+    public record CropKindwise(String apiKey) {
     }
 }
 

@@ -30,3 +30,7 @@ germinar:
 
     plant-id:
       api-key: ${PLANTID_API_KEY}
+
+    crop-kindwise:
+      api-key: ${CROPKINDWISE_API_KEY}
+
