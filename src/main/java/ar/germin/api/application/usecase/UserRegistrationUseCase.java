@@ -4,13 +4,14 @@ import ar.germin.api.application.domain.User;
 import ar.germin.api.application.port.in.UserRegistrationPortIn;
 import ar.germin.api.application.port.out.GetUserRepository;
 import ar.germin.api.application.port.out.SaveUserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UsernameExistsException;
 
 @Component
+@Slf4j
 public class UserRegistrationUseCase implements UserRegistrationPortIn {
   private final GetUserRepository getJdbcUserRepository;
   private final GetUserRepository getCognitoUserRepository;
@@ -33,18 +34,28 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
 
   @Override
   public String signUp(String username, String password, String email) {
-    if(userExistsInBothRepositories(email)) return "Ya hay un usuario registrado con ese mail";
+    boolean existsInDb = userExistsInRepository(getJdbcUserRepository, email);
+    boolean existsInCognito = userExistsInRepository(getCognitoUserRepository, email);
 
+    if (existsInDb && existsInCognito) {
+      return "Ya hay un usuario registrado con ese mail";
+    }
     try {
-      User userToSave=User.builder()
-              .username(username)
-              .email(email)
-              .isConfirmed(false)
-              .build();
-
-      this.saveCognitoUserRepository.save(userToSave);
-
-      this.saveJdbcUserRepository.save(userToSave);
+      if (!existsInDb) {
+        this.saveJdbcUserRepository.save(User.builder()
+                .name(username)
+                .username(username)
+                .email(email)
+                .isConfirmed(false)
+                .build());
+      }
+      if (!existsInCognito) {
+        this.saveCognitoUserRepository.save(User.builder()
+                .username(username)
+                .email(email)
+                .pass(password)
+                .build());
+      }
 
       return "Sign up successful. Please check your email for confirmation.";
 
@@ -55,18 +66,10 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
     }
   }
 
-
-  private boolean userExistsInBothRepositories(String email) {
-    // Verificar en la base de datos
-    User dbUser = this.getJdbcUserRepository.get(email);
-    boolean existsInDb = dbUser != null && dbUser.getEmail() != null && !dbUser.getEmail().isEmpty();
-
-    // Verificar en Cognito
-    User cognitoUser = this.getCognitoUserRepository.get(email);
-    boolean existsInCognito = cognitoUser != null && cognitoUser.getEmail() != null && cognitoUser.getEmail().equals(email);
-    //TODO: Ver que pasa si solo existe en la base de datos...deberia agregarlo a cognito p borrarlo de la bd y dejar que se registre?¿
-    return existsInDb || existsInCognito;
+  private boolean userExistsInRepository(GetUserRepository getUserRepository, String email) {
+    return getUserRepository.get(email).isPresent();
   }
+
 
 }
 

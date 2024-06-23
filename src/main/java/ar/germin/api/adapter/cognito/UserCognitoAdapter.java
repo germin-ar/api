@@ -1,10 +1,12 @@
 package ar.germin.api.adapter.cognito;
 
 import ar.germin.api.application.domain.User;
+import ar.germin.api.application.exceptions.CognitoSignUpException;
 import ar.germin.api.application.exceptions.HashCalculatedExeption;
 import ar.germin.api.application.exceptions.UserNotFoundException;
 import ar.germin.api.application.port.out.GetUserRepository;
 import ar.germin.api.application.port.out.SaveUserRepository;
+import ar.germin.api.application.port.out.UpdateCognitoUserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,11 +18,12 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Qualifier("cognito")
 @Slf4j
-public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository {
+public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository, UpdateCognitoUserRepository {
   @Value("${cognito.clientId}")
   private String clientId;
 
@@ -37,36 +40,37 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
   }
 
   @Override
-  public User get(String email) {
+  public Optional<User> get(String email) {
     try {
       ListUsersRequest listUsersRequest = ListUsersRequest.builder()
               .userPoolId(userPoolId)
-              .filter("email=\""+email+ "\"")
+              .filter("email=\"" + email + "\"")
               .build();
       ListUsersResponse listUsersResponse = cognitoClient.listUsers(listUsersRequest);
-      List<UserType> users=listUsersResponse.users();
+      List<UserType> users = listUsersResponse.users();
 
-      if (users.isEmpty()){
-        return null;
+      if (users.isEmpty()) {
+        return Optional.empty();
       }
 
       UserType cognitoUser = users.get(0);
 
-      return User.builder()
+      return Optional.ofNullable(User.builder()
               .username(cognitoUser.username())
               .email(cognitoUser.attributes()
                       .stream()
-                      .filter(attr ->attr.name().equals("email"))
+                      .filter(attr -> attr.name().equals("email"))
                       .findFirst()
                       .map(AttributeType::value)
                       .orElse(null)
               )
-              .build();
-    }catch (CognitoIdentityProviderException ex){
-      log.error("Error getting user from Cognito",ex);
+              .build());
+    } catch (CognitoIdentityProviderException ex) {
+      log.error("Error getting user from Cognito", ex);
       throw new UserNotFoundException();
     }
   }
+
 
   @Override
   public void save(User user) {
@@ -83,11 +87,30 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
                       .value(user.getEmail())
                       .build())
               .build();
-
       SignUpResponse signUpResult = cognitoClient.signUp(signUpRequest);
-      log.info("Confirmation success:{}",signUpResult);
+      log.info("Confirmation success:{}", signUpResult);
     } catch (CognitoIdentityProviderException ex) {
-      log.error("Confirmation failed: {}", ex.awsErrorDetails().errorMessage());
+      throw new CognitoSignUpException("Failed to sign up user: " + ex.awsErrorDetails().errorMessage());
+    }
+  }
+
+  @Override
+  public String update(String username, String confirmationCode) {
+    try {
+      String secretHash = calculateSecretHash(username);
+
+      ConfirmSignUpRequest confirmSignUpRequest = ConfirmSignUpRequest.builder()
+              .clientId(clientId)
+              .username(username)
+              .confirmationCode(confirmationCode)
+              .secretHash(secretHash)
+              .build();
+
+      ConfirmSignUpResponse confirmSignUpResponse = cognitoClient.confirmSignUp(confirmSignUpRequest);
+      log.info("Confirmation code response: {}", confirmSignUpResponse);
+      return "Confirmacion exitosa";
+    } catch (CognitoIdentityProviderException ex) {
+      return "Confirmation failed: " + ex.awsErrorDetails().errorMessage();
     }
   }
 
@@ -104,4 +127,5 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
       throw new HashCalculatedExeption("Failed to calculate secret hash");
     }
   }
+
 }

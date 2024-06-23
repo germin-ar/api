@@ -1,7 +1,7 @@
 package ar.germin.api.adapter.controller;
 
 
-import ar.germin.api.application.port.in.GetCandidatesPlantsPortIn;
+import ar.germin.api.application.port.in.UserConfirmRegistrationPortIn;
 import ar.germin.api.application.port.in.UserRegistrationPortIn;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationControllerAdapter {
 
   private final UserRegistrationPortIn userRegistrationPortIn;
+  private final UserConfirmRegistrationPortIn userConfirmRegistrationPortIn;
 
-  public AuthenticationControllerAdapter(UserRegistrationPortIn userRegistrationPortIn) {
+  public AuthenticationControllerAdapter(UserRegistrationPortIn userRegistrationPortIn, UserConfirmRegistrationPortIn userConfirmRegistrationPortIn) {
     this.userRegistrationPortIn = userRegistrationPortIn;
+    this.userConfirmRegistrationPortIn = userConfirmRegistrationPortIn;
   }
 
 
@@ -28,5 +30,14 @@ public class AuthenticationControllerAdapter {
     log.info("signupResponse: {}", response);
     return response;
   }
+
+  @PostMapping("/confirm-signup")
+  public String confirmSignUp(@RequestParam String email, @RequestParam String confirmationCode) {
+    String response = userConfirmRegistrationPortIn.confirmSignUp(email, confirmationCode);
+    log.info("confirmSignUpResponse: {}", response);
+    return response;
+  }
+
+
 
 }

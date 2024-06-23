@@ -1,6 +1,2 @@
-insert into garden."user" (username,email,is_confirmed)
-values (:username,:email,:isConfirmed);
-
-
-
--- TODO:agregar los campos que faltan.
+insert into garden."user" (name,username,email,is_confirmed)
+values (:username,:username,:email,:isConfirmed);

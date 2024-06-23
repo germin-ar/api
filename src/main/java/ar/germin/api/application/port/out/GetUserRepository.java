@@ -2,6 +2,8 @@ package ar.germin.api.application.port.out;
 
 import ar.germin.api.application.domain.User;
 
+import java.util.Optional;
+
 public interface GetUserRepository {
-  User get(String email);
+  Optional<User> get(String email);
 }
