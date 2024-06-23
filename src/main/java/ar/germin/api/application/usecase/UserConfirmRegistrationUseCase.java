@@ -1,6 +1,5 @@
 package ar.germin.api.application.usecase;
 
-import ar.germin.api.adapter.cognito.ManagmentCognitoAdapter;
 import ar.germin.api.application.domain.User;
 import ar.germin.api.application.exceptions.ErrorConfirmAccountException;
 import ar.germin.api.application.port.in.UserConfirmRegistrationPortIn;
@@ -37,7 +36,7 @@ public class UserConfirmRegistrationUseCase implements UserConfirmRegistrationPo
         return "User already confirmed";
       }
       updateUserRepositories(user, confirmationCode);
-      this.updateRoleRepository.addUserToGroup(user.getName(),"FREE");
+      this.updateRoleRepository.addUserToGroup(user.getName(),"FREE_USER");
       return "Confirm account successful";
     } catch (ErrorConfirmAccountException ex) {
       throw new ErrorConfirmAccountException("Error confirming account for email " + email);
@@ -50,8 +49,8 @@ public class UserConfirmRegistrationUseCase implements UserConfirmRegistrationPo
   }
 
   private void updateUserRepositories(User user, String confirmationCode) {
-    this.updateJdbcUserRepository.update(user.getEmail());
     this.updateCognitoUserRepository.update(user.getName(), confirmationCode);
+    this.updateJdbcUserRepository.update(user.getEmail());
   }
 
 }

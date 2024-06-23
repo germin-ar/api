@@ -2,8 +2,10 @@ package ar.germin.api.adapter.jdbc;
 
 import ar.germin.api.adapter.jdbc.models.UserModel;
 import ar.germin.api.application.domain.User;
+import ar.germin.api.application.exceptions.ErrorUserDeleteException;
 import ar.germin.api.application.exceptions.ErrorUserSaveException;
 import ar.germin.api.application.exceptions.ErrorUserUpdateException;
+import ar.germin.api.application.port.out.DeleteUserRepository;
 import ar.germin.api.application.port.out.GetUserRepository;
 import ar.germin.api.application.port.out.SaveUserRepository;
 import ar.germin.api.application.port.out.UpdateUserRepository;
@@ -20,17 +22,19 @@ import java.util.Optional;
 @Component
 @Slf4j
 @Qualifier("jdbc")
-public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, UpdateUserRepository {
+public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, UpdateUserRepository, DeleteUserRepository {
 
   private static final String GET_USER_BY_EMAIL_PATH = "sql/selectUserByEmail.sql";
   private static final String SAVE_USER_PATH = "sql/saveUser.sql";
   private static final String UPDATE_USER_PATH = "sql/updateUser.sql";
+  private static final String DELETE_USER_PATH = "sql/deleteUser.sql";
 
 
   private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
   private final String selectUserByEmailSql;
   private final String saveUserSql;
   private final String updateUserSql;
+  private final String deleteUserSql;
 
 
   public UserJdbcAdapter(NamedParameterJdbcTemplate namedParameterJdbcTemplate, SqlReader sqlReader) {
@@ -38,6 +42,8 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
     this.selectUserByEmailSql = sqlReader.readSql(GET_USER_BY_EMAIL_PATH);
     this.saveUserSql = sqlReader.readSql(SAVE_USER_PATH);
     this.updateUserSql = sqlReader.readSql(UPDATE_USER_PATH);
+    this.deleteUserSql = sqlReader.readSql(DELETE_USER_PATH);
+
   }
 
   @Override
@@ -86,6 +92,19 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
     } catch (ErrorUserSaveException ex) {
       log.error("Error confirm email user", ex);
       throw new ErrorUserUpdateException("No se pudo actualizar el usuario");
+    }
+  }
+
+  @Override
+  public void delete(String email) {
+    try {
+      MapSqlParameterSource sqlParams = new MapSqlParameterSource()
+              .addValue("email", email);
+      log.info("Deleting user with sql [{}] with params: [{}]", deleteUserSql, sqlParams);
+      this.namedParameterJdbcTemplate.update(deleteUserSql, sqlParams);
+    } catch (Exception ex) {
+      log.error("Error deleting user", ex);
+      throw new ErrorUserDeleteException("Could not delete the user");
     }
   }
 }

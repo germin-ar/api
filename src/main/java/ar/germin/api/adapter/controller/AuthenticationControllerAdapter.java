@@ -3,12 +3,10 @@ package ar.germin.api.adapter.controller;
 
 import ar.germin.api.application.port.in.UserConfirmRegistrationPortIn;
 import ar.germin.api.application.port.in.UserLoginPortIn;
+import ar.germin.api.application.port.in.UserLogoutPortIn;
 import ar.germin.api.application.port.in.UserRegistrationPortIn;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -20,13 +18,15 @@ public class AuthenticationControllerAdapter {
   private final UserRegistrationPortIn userRegistrationPortIn;
   private final UserConfirmRegistrationPortIn userConfirmRegistrationPortIn;
   private final UserLoginPortIn userLoginPortIn;
+  private final UserLogoutPortIn userLogoutPortIn;
 
   public AuthenticationControllerAdapter(UserRegistrationPortIn userRegistrationPortIn,
                                          UserConfirmRegistrationPortIn userConfirmRegistrationPortIn,
-                                         UserLoginPortIn userLoginPortIn) {
+                                         UserLoginPortIn userLoginPortIn, UserLogoutPortIn userLogoutPortIn) {
     this.userRegistrationPortIn = userRegistrationPortIn;
     this.userConfirmRegistrationPortIn = userConfirmRegistrationPortIn;
     this.userLoginPortIn = userLoginPortIn;
+    this.userLogoutPortIn = userLogoutPortIn;
   }
 
 
@@ -50,6 +50,13 @@ public class AuthenticationControllerAdapter {
     Map<String, String> response = userLoginPortIn.login(username, password);
     log.info("loginResponse: {}", response);
     return response;
+  }
+
+  @PostMapping("/logout")
+  public String logout(@RequestHeader("Authorization") String token) {
+    //refreshToken
+    // Asume que el token se pasa directamente sin el prefijo 'Bearer '
+    return userLogoutPortIn.logout(token);
   }
 
 

@@ -2,6 +2,7 @@ package ar.germin.api.application.usecase;
 
 import ar.germin.api.application.exceptions.HashCalculatedExeption;
 import ar.germin.api.application.port.in.UserLoginPortIn;
+import ar.germin.api.application.port.out.UserLoginRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,8 @@ import java.util.Map;
 @Slf4j
 public class UserLoginUseCase implements UserLoginPortIn {
 
+  private final UserLoginRepository userLoginRepository;
+
   @Value("${cognito.clientId}")
   private String clientId;
 
@@ -29,7 +32,8 @@ public class UserLoginUseCase implements UserLoginPortIn {
 
   private final CognitoIdentityProviderClient cognitoClient;
 
-  public UserLoginUseCase(CognitoIdentityProviderClient cognitoClient) {
+  public UserLoginUseCase(UserLoginRepository userLoginRepository, CognitoIdentityProviderClient cognitoClient) {
+    this.userLoginRepository = userLoginRepository;
     this.cognitoClient = cognitoClient;
   }
 
@@ -61,11 +65,8 @@ public class UserLoginUseCase implements UserLoginPortIn {
       tokens.put("idToken", authResult.idToken());
       tokens.put("accessToken", authResult.accessToken());
       tokens.put("refreshToken", authResult.refreshToken());
-      //TODO:cambiarle el rol cuando cambie la suscripcion
-      //TODO:hacer el servicio para cambios de roles
+      //TODO: se le aplico el rol de free user en la confirmacion de cuenta
       //roleManagementService.assignUserRole(username, ROLE.FREE_USER.name());
-
-
 
       return tokens;
     } catch (CognitoIdentityProviderException e) {
@@ -73,6 +74,7 @@ public class UserLoginUseCase implements UserLoginPortIn {
       throw new RuntimeException("Login failed: " + e.awsErrorDetails().errorMessage(), e);
     }
   }
+
 
 
   private String calculateSecretHash(String username) {

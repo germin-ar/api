@@ -2,6 +2,7 @@ package ar.germin.api.application.usecase;
 
 import ar.germin.api.application.domain.User;
 import ar.germin.api.application.port.in.UserRegistrationPortIn;
+import ar.germin.api.application.port.out.DeleteUserRepository;
 import ar.germin.api.application.port.out.GetUserRepository;
 import ar.germin.api.application.port.out.SaveUserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -17,19 +18,21 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
   private final GetUserRepository getCognitoUserRepository;
   private final SaveUserRepository saveJdbcUserRepository;
   private final SaveUserRepository saveCognitoUserRepository;
+  private final DeleteUserRepository deleteUserRepository;
 
 
   @Autowired
   public UserRegistrationUseCase(@Qualifier("jdbc") GetUserRepository getJdbcUserRepository,
                                  @Qualifier("cognito") GetUserRepository getCognitoUserRepository,
                                  @Qualifier("jdbc") SaveUserRepository saveJdbcUserRepository,
-                                 @Qualifier("cognito") SaveUserRepository saveCognitoUserRepository
+                                 @Qualifier("cognito") SaveUserRepository saveCognitoUserRepository, DeleteUserRepository deleteUserRepository
   ) {
 
     this.getJdbcUserRepository = getJdbcUserRepository;
     this.getCognitoUserRepository = getCognitoUserRepository;
     this.saveJdbcUserRepository = saveJdbcUserRepository;
     this.saveCognitoUserRepository = saveCognitoUserRepository;
+    this.deleteUserRepository = deleteUserRepository;
   }
 
   @Override
@@ -37,6 +40,9 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
     boolean existsInDb = userExistsInRepository(getJdbcUserRepository, email);
     boolean existsInCognito = userExistsInRepository(getCognitoUserRepository, email);
 
+    if(existsInDb && !existsInCognito){
+      this.deleteUserRepository.delete(email);
+    }
     if (existsInDb && existsInCognito) {
       return "Ya hay un usuario registrado con ese mail";
     }
