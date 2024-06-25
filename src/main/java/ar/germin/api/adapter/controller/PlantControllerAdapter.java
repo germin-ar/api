@@ -111,11 +111,11 @@ public class PlantControllerAdapter {
         return HealthPlantResponseModel.fromDomain(healthAIDetection);
     }
 
-    @PostMapping(value = "/{idPlant}/photo",
+    @PostMapping(value = "/{id}/photo",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Object> uploadPhoto(@RequestHeader("id-user") Integer idUser,
-                                    @PathVariable Integer idPlant,
+                                    @PathVariable("id") Integer idPlant,
                                     @RequestPart("image") FilePart filePart) {
 
         return DataBufferUtils.join(filePart.content())
