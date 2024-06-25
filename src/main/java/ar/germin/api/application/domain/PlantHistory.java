@@ -3,6 +3,7 @@ package ar.germin.api.application.domain;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalDateTime;
 
 @Builder
 @Value
@@ -12,7 +13,7 @@ public class PlantHistory {
     String notes;
     Double height;
     String alias;
-    String url_image;
-    String modified_at;
+    String urlImage;
+    LocalDateTime modifiedAt;
     Integer idDiseases;
 }

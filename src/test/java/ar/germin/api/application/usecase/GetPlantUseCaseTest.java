@@ -2,6 +2,7 @@ package ar.germin.api.application.usecase;
 
 import ar.germin.api.application.domain.Plant;
 import ar.germin.api.application.port.in.GetPlantPortIn;
+import ar.germin.api.application.port.out.GetPlantHistoryRepository;
 import ar.germin.api.application.port.out.GetPlantPhotosRepository;
 import ar.germin.api.application.port.out.GetPlantRepository;
 import org.junit.jupiter.api.Assertions;
@@ -14,8 +15,9 @@ class GetPlantUseCaseTest {
 
     private final GetPlantRepository getPlantRepository = mock(GetPlantRepository.class);
     private final GetPlantPhotosRepository getPlantPhotosRepository = mock(GetPlantPhotosRepository.class);
+    private final GetPlantHistoryRepository getPlantHistoryRepository = mock(GetPlantHistoryRepository.class);
 
-    /*@Test
+    @Test
     void testGetPlantByUserIdAndPlantIdReturnsPlant() {
         Plant plant = Plant.builder()
                 .id(5)
@@ -24,7 +26,7 @@ class GetPlantUseCaseTest {
 
         when(getPlantRepository.getByIdUserAndIdPlant(2, 5)).thenReturn(plant);
 
-        GetPlantPortIn useCase = new GetPlantUseCase(getPlantRepository, getPlantPhotosRepository);
+        GetPlantPortIn useCase = new GetPlantUseCase(getPlantRepository, getPlantPhotosRepository, getPlantHistoryRepository);
 
         Plant result = useCase.get(2, 5);
 
@@ -37,7 +39,7 @@ class GetPlantUseCaseTest {
     void testGetPlantByUserIdAndPlantIdReturnsNullWhenNoPlantsExists() {
         when(getPlantRepository.getByIdUserAndIdPlant(2, null)).thenReturn(null);
 
-        GetPlantPortIn useCase = new GetPlantUseCase(getPlantRepository, getPlantPhotosRepository);
+        GetPlantPortIn useCase = new GetPlantUseCase(getPlantRepository, getPlantPhotosRepository, getPlantHistoryRepository);
 
         Plant result = useCase.get(2, null);
 
@@ -48,11 +50,11 @@ class GetPlantUseCaseTest {
     void testGetPlantByUserIdAndPlantIdReturnsNullWhenUserDoesntExist() {
         when(getPlantRepository.getByIdUserAndIdPlant(null, 5)).thenReturn(null);
 
-        GetPlantPortIn useCase = new GetPlantUseCase(getPlantRepository, getPlantPhotosRepository);
+        GetPlantPortIn useCase = new GetPlantUseCase(getPlantRepository, getPlantPhotosRepository, getPlantHistoryRepository);
 
         Plant result = useCase.get(null, 5);
 
         Assertions.assertNull(result);
-    }*/
+    }
 
 }

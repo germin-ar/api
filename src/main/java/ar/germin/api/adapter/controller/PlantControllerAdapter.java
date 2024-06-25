@@ -1,17 +1,31 @@
 package ar.germin.api.adapter.controller;
 
+import ar.germin.api.adapter.controller.models.HealthPlantResponseModel;
 import ar.germin.api.adapter.controller.models.PlantResponseModel;
 import ar.germin.api.adapter.controller.models.SaveImageResponseModel;
 import ar.germin.api.adapter.controller.models.SavePlantRequestModel;
 import ar.germin.api.adapter.controller.models.UpdatePlantRequestModel;
-import ar.germin.api.application.domain.FileImage;
-import ar.germin.api.application.port.in.*;
+import ar.germin.api.application.domain.HealthAIDetection;
+import ar.germin.api.application.port.in.DeletePlantPortIn;
+import ar.germin.api.application.port.in.GetCandidatesDiseasePlantsPortIn;
+import ar.germin.api.application.port.in.GetPlantPortIn;
+import ar.germin.api.application.port.in.SaveImagePortIn;
+import ar.germin.api.application.port.in.SavePlantPortIn;
+import ar.germin.api.application.port.in.UpdatePlantPortIn;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.multipart.FilePart;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @Slf4j
@@ -22,6 +36,7 @@ public class PlantControllerAdapter {
     private final DeletePlantPortIn deletePlantPortIn;
     private final UpdatePlantPortIn updatePlantPortIn;
     private final GetPlantPortIn getPlantPortIn;
+    private final GetCandidatesDiseasePlantsPortIn getCandidatesDiseasePlantsPortIn;
     private final SaveImagePortIn saveImagePortIn;
 
     @Autowired
@@ -29,11 +44,13 @@ public class PlantControllerAdapter {
                                   DeletePlantPortIn deletePlantPortIn,
                                   UpdatePlantPortIn updatePlantPortIn,
                                   GetPlantPortIn getPlantPortIn,
+                                  GetCandidatesDiseasePlantsPortIn getCandidatesDiseasePlantsPortIn,
                                   SaveImagePortIn saveImagePortIn) {
         this.savePlantPortIn = savePlantPortIn;
         this.deletePlantPortIn = deletePlantPortIn;
         this.updatePlantPortIn = updatePlantPortIn;
         this.getPlantPortIn = getPlantPortIn;
+        this.getCandidatesDiseasePlantsPortIn = getCandidatesDiseasePlantsPortIn;
         this.saveImagePortIn = saveImagePortIn;
     }
 
@@ -81,8 +98,17 @@ public class PlantControllerAdapter {
     }
 
     @GetMapping("/{id}")
-    public PlantResponseModel getPlant(@PathVariable Integer id, @RequestHeader("id-user") Integer idUser) {
+    public PlantResponseModel getPlant(@PathVariable Integer id,
+                                       @RequestHeader("id-user") Integer idUser) {
         return PlantResponseModel.fromDomain(this.getPlantPortIn.get(idUser, id));
+    }
+
+    @GetMapping("/{id}/health-status")
+    public HealthPlantResponseModel getHealthPlantStatus(@PathVariable Integer id,
+                                                         @RequestHeader("id-user") Integer idUser) {
+        HealthAIDetection healthAIDetection = this.getCandidatesDiseasePlantsPortIn.get(id);
+
+        return HealthPlantResponseModel.fromDomain(healthAIDetection);
     }
 
     @PostMapping(value = "/{idPlant}/photo",
@@ -90,14 +116,14 @@ public class PlantControllerAdapter {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Object> uploadPhoto(@RequestHeader("id-user") Integer idUser,
                                     @PathVariable Integer idPlant,
-                                    @RequestPart("image") FilePart filePart){
+                                    @RequestPart("image") FilePart filePart) {
 
         return DataBufferUtils.join(filePart.content())
                 .map(dataBuffer -> {
                     byte[] bytes = new byte[dataBuffer.readableByteCount()];
                     dataBuffer.read(bytes);
                     DataBufferUtils.release(dataBuffer);
-                    return  this.saveImagePortIn.saveHistory(bytes, idPlant);
+                    return this.saveImagePortIn.saveHistory(bytes, idPlant);
                 })
                 .map(SaveImageResponseModel::fromDomain);
     }
