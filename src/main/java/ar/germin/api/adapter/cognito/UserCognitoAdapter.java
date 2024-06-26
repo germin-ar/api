@@ -1,5 +1,6 @@
 package ar.germin.api.adapter.cognito;
 
+import ar.germin.api.adapter.controller.models.LogoutResponse;
 import ar.germin.api.application.domain.User;
 import ar.germin.api.application.exceptions.CognitoSignUpException;
 import ar.germin.api.application.exceptions.HashCalculatedExeption;
@@ -36,7 +37,7 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
   }
 
   @Override
-  public Optional<User> get(String email) {
+  public User get(String email) {
     try {
       ListUsersRequest listUsersRequest = ListUsersRequest.builder()
               .userPoolId(userPoolId)
@@ -46,12 +47,12 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
       List<UserType> users = listUsersResponse.users();
 
       if (users.isEmpty()) {
-        return Optional.empty();
+        throw new UserNotFoundException("There is no user registered with that email.");
       }
 
       UserType cognitoUser = users.get(0);
 
-      return Optional.ofNullable(User.builder()
+      return User.builder()
               .username(cognitoUser.username())
               .email(cognitoUser.attributes()
                       .stream()
@@ -60,10 +61,10 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
                       .map(AttributeType::value)
                       .orElse(null)
               )
-              .build());
+              .build();
     } catch (CognitoIdentityProviderException ex) {
       log.error("Error getting user from Cognito", ex);
-      throw new UserNotFoundException();
+      throw new UserNotFoundException("Error getting user from Cognito");
     }
   }
 
@@ -125,16 +126,27 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
   }
 
   @Override
-  public String logout(String accessToken) {
+  public LogoutResponse logout(String accessToken) {
     try {
       GlobalSignOutRequest signOutRequest = GlobalSignOutRequest.builder()
               .accessToken(accessToken)
               .build();
 
       GlobalSignOutResponse signOutResponse = cognitoClient.globalSignOut(signOutRequest);
-      return "Logout successful";
+      //log.info("signupResponse: {}",signOutResponse);
+
+      log.info("Logout successful");
+      return LogoutResponse.builder()
+              .isLogout(true)
+              .message("Logout successful")
+              .build();
     } catch (CognitoIdentityProviderException e) {
-      return "Logout failed: " + e.awsErrorDetails().errorMessage();
+      log.info("Logout failed: {}", e.awsErrorDetails().errorMessage());
+      return LogoutResponse.builder()
+              .isLogout(false)
+              .message(e.awsErrorDetails().errorMessage())
+              .build();
+      //throw new LogoutCognitoException("Logout failed: Access Token has been revoked");
     }
   }
 

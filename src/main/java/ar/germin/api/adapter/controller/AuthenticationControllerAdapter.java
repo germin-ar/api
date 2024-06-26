@@ -1,11 +1,15 @@
 package ar.germin.api.adapter.controller;
 
 
+import ar.germin.api.adapter.controller.models.LogoutResponse;
+import ar.germin.api.adapter.controller.models.UserResponseModel;
 import ar.germin.api.application.port.in.UserConfirmRegistrationPortIn;
 import ar.germin.api.application.port.in.UserLoginPortIn;
 import ar.germin.api.application.port.in.UserLogoutPortIn;
 import ar.germin.api.application.port.in.UserRegistrationPortIn;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -31,18 +35,13 @@ public class AuthenticationControllerAdapter {
 
 
   @PostMapping("/signup")
-  public String signUp(@RequestParam String username, @RequestParam String password, @RequestParam String email) {
-
-    String response = userRegistrationPortIn.signUp(username, password, email);
-    log.info("signupResponse: {}", response);
-    return response;
+  public UserResponseModel signUp(@RequestParam String username, @RequestParam String password, @RequestParam String email) throws Exception {
+    return UserResponseModel.fromDomain(userRegistrationPortIn.signUp(username, password, email));
   }
 
   @PostMapping("/confirm-signup")
-  public String confirmSignUp(@RequestParam String email, @RequestParam String confirmationCode) {
-    String response = userConfirmRegistrationPortIn.confirmSignUp(email, confirmationCode);
-    log.info("confirmSignUpResponse: {}", response);
-    return response;
+  public UserResponseModel confirmSignUp(@RequestParam String email, @RequestParam String confirmationCode) {
+    return UserResponseModel.fromDomain(userConfirmRegistrationPortIn.confirmSignUp(email,confirmationCode));
   }
 
   @PostMapping("/login")
@@ -53,11 +52,14 @@ public class AuthenticationControllerAdapter {
   }
 
   @PostMapping("/logout")
-  public String logout(@RequestHeader("Authorization") String token) {
-    //refreshToken
+  public ResponseEntity<LogoutResponse> logout(@RequestHeader("Authorization") String token) {
     // Asume que el token se pasa directamente sin el prefijo 'Bearer '
-    return userLogoutPortIn.logout(token);
-  }
 
+    LogoutResponse logoutResponse =userLogoutPortIn.logout(token);
+    if (logoutResponse.getIsLogout()){
+      return ResponseEntity.ok(logoutResponse);
+    }
+    return ResponseEntity.internalServerError().body(logoutResponse);
+  }
 
 }

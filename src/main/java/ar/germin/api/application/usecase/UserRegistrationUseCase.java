@@ -1,6 +1,7 @@
 package ar.germin.api.application.usecase;
 
 import ar.germin.api.application.domain.User;
+import ar.germin.api.application.exceptions.UserExistsException;
 import ar.germin.api.application.port.in.UserRegistrationPortIn;
 import ar.germin.api.application.port.out.DeleteUserRepository;
 import ar.germin.api.application.port.out.GetUserRepository;
@@ -36,7 +37,7 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
   }
 
   @Override
-  public String signUp(String username, String password, String email) {
+  public User signUp(String username, String password, String email) throws Exception {
     boolean existsInDb = userExistsInRepository(getJdbcUserRepository, email);
     boolean existsInCognito = userExistsInRepository(getCognitoUserRepository, email);
 
@@ -44,7 +45,8 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
       this.deleteUserRepository.delete(email);
     }
     if (existsInDb && existsInCognito) {
-      return "Ya hay un usuario registrado con ese mail";
+      log.info("There's already a user registered with that email.");
+      return this.getJdbcUserRepository.get(email);
     }
     try {
       if (!existsInDb) {
@@ -62,19 +64,20 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
                 .pass(password)
                 .build());
       }
-
-      return "Sign up successful. Please check your email for confirmation.";
-
+      log.info("Sign up successful. Please check your email for confirmation.");
+      return this.getJdbcUserRepository.get(email);
     } catch (UsernameExistsException e) {
-      return "Username already exists.";
+      throw new UserExistsException("Username already exists.") ;
     } catch (Exception e) {
-      return "An error occurred: " + e.getMessage();
+      throw new Exception(e.getMessage());
     }
   }
 
   private boolean userExistsInRepository(GetUserRepository getUserRepository, String email) {
-    return getUserRepository.get(email).isPresent();
+    User user = getUserRepository.get(email);
+    return user != null;
   }
+
 
 
 }

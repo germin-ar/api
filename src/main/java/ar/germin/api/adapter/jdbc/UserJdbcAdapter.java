@@ -5,6 +5,7 @@ import ar.germin.api.application.domain.User;
 import ar.germin.api.application.exceptions.ErrorUserDeleteException;
 import ar.germin.api.application.exceptions.ErrorUserSaveException;
 import ar.germin.api.application.exceptions.ErrorUserUpdateException;
+import ar.germin.api.application.exceptions.UserNotFoundException;
 import ar.germin.api.application.port.out.DeleteUserRepository;
 import ar.germin.api.application.port.out.GetUserRepository;
 import ar.germin.api.application.port.out.SaveUserRepository;
@@ -47,7 +48,7 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
   }
 
   @Override
-  public Optional<User> get(String email) {
+  public User get(String email) {
     try {
       MapSqlParameterSource params = new MapSqlParameterSource()
               .addValue("email", email);
@@ -58,10 +59,10 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
               selectUserByEmailSql,
               params,
               new BeanPropertyRowMapper<>(UserModel.class));
-      return Optional.of(userModel.toDomain());
+      return userModel.toDomain();
     } catch (EmptyResultDataAccessException ex) {
       log.warn("User with email [{}] not found", email);
-      return Optional.empty();
+      throw new UserNotFoundException("User with email [{}] not found");
     }
   }
 
