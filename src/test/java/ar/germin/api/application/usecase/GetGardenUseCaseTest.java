@@ -2,6 +2,7 @@ package ar.germin.api.application.usecase;
 
 import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.domain.Plant;
+import ar.germin.api.application.exceptions.GardenNotFoundException;
 import ar.germin.api.application.port.in.GetGardenPortIn;
 import ar.germin.api.application.port.out.GetGardenRepository;
 import ar.germin.api.application.port.out.GetPlantPhotosRepository;
@@ -80,21 +81,24 @@ class GetGardenUseCaseTest {
     }
 
 
-//    @Test
-//    void testGetGardenByIdReturnsNullWhenNoGardensExists() {
-//        GardenNotFoundException exception = new GardenNotFoundException();
-//        when(getGardenRepository.getById(2)).thenThrow(exception);
-//        when(getPlantRepository.getByIdGardenAndIdUser(2, 1)).thenThrow(exception);
-//
-//        GetGardenPortIn useCase = new GetGardenUseCase(getGardenRepository, getPlantRepository);
-//
-//        Garden result;
-//        try {
-//            result = useCase.get(5, 2);
-//        } catch (GardenNotFoundException e) {
-//            result = null;
-//        }
-//            Assertions.assertNull(result);
-//    }
+    @Test
+    void testGetGardenByIdReturnsNullWhenNoGardensExists() {
+        GardenNotFoundException exception = new GardenNotFoundException();
+        when(getGardenRepository.getById(2)).thenThrow(exception);
+        when(getPlantRepository.getByIdGardenAndIdUser(2, 1)).thenThrow(exception);
+
+        GetGardenPortIn useCase = new GetGardenUseCase(
+                getGardenRepository,
+                getPlantRepository,
+                getPlantPhotosRepository);
+
+        Garden result;
+        try {
+            result = useCase.get(5, 2);
+        } catch (GardenNotFoundException e) {
+            result = null;
+        }
+        Assertions.assertNull(result);
+    }
 
 }

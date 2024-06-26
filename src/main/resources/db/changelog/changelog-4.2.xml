@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240620-0" author="Jfoppoli">
+        <createTable tableName="diseases_candidate" schemaName="garden">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="scientific_name_disease" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="type" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="eppo_code" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="common_names" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="kingdom_taxonomy" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="entity_id" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="class_taxonomy" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="genus_taxonomy" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="order_taxonomy" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="family_taxonomy" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="phylum_taxonomy" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="language" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="wiki_urls" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
 
     <changeSet id="20240621_1" author="armando">
         <addColumn tableName="user" schemaName="garden">
