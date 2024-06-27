@@ -41,10 +41,9 @@ public class AuthenticationControllerAdapter {
     return UserResponseModel.fromDomain(userConfirmRegistrationPortIn.confirmSignUp(email, confirmationCode));
   }
 
-  //TODO: cambiar username por email-tratar error
   @PostMapping("/login")
-  public LoginUserResponseModel login(@RequestParam String username, @RequestParam String password) {
-    UserSessionTokens response = userLoginPortIn.login(username, password);
+  public LoginUserResponseModel login(@RequestParam String email, @RequestParam String password) {
+    UserSessionTokens response = userLoginPortIn.login(email, password);
     log.info("loginResponse: {}", response);
     return LoginUserResponseModel.fromDomain(response);
   }

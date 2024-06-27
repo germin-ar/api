@@ -38,7 +38,6 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
     this.cognitoClient = cognitoClient;
   }
 
-  //TODO: replicar
   @Override
   public User get(String email) {
     try {
@@ -54,6 +53,13 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
       }
 
       UserType cognitoUser = users.get(0);
+      boolean isConfirmed = cognitoUser.attributes()
+              .stream()
+              .filter(attr -> attr.name().equals("email_verified"))
+              .findFirst()
+              .map(AttributeType::value)
+              .map(Boolean::parseBoolean)
+              .orElse(false);
 
       return User.builder()
               .username(cognitoUser.username())
@@ -64,6 +70,7 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
                       .map(AttributeType::value)
                       .orElse(null)
               )
+              .isConfirmed(isConfirmed)
               .build();
     } catch (CognitoIdentityProviderException ex) {
       log.error("Error getting user from Cognito", ex);
@@ -97,6 +104,8 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
   @Override
   public void confirm(String username, String confirmationCode) {
     try {
+      //deberia de tener un servicio que haga las validaciones
+      //TODO:User user =  this.get()
       String secretHash = calculateSecretHash(username);
 
       ConfirmSignUpRequest confirmSignUpRequest = ConfirmSignUpRequest.builder()

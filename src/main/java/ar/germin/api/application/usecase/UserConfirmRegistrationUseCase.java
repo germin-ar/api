@@ -3,9 +3,8 @@ package ar.germin.api.application.usecase;
 import ar.germin.api.application.domain.User;
 import ar.germin.api.application.exceptions.ErrorConfirmAccountException;
 import ar.germin.api.application.port.in.UserConfirmRegistrationPortIn;
-
-import ar.germin.api.application.port.out.GetUserRepository;
 import ar.germin.api.application.port.out.ConfirmUserRepository;
+import ar.germin.api.application.port.out.GetUserRepository;
 import ar.germin.api.application.port.out.UpdateRoleRepository;
 import ar.germin.api.application.port.out.UpdateUserRepository;
 import lombok.extern.slf4j.Slf4j;
