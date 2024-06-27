@@ -42,7 +42,7 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
     Boolean existsInDb = userExistsInRepository(getJdbcUserRepository, email);
     Boolean existsInCognito = userExistsInRepository(getCognitoUserRepository, email);
 
-    if(existsInDb && !existsInCognito){
+    if (existsInDb && !existsInCognito) {
       this.deleteUserRepository.delete(email);
     }
     if (existsInDb && existsInCognito) {
@@ -68,23 +68,21 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
       log.info("Sign up successful. Please check your email for confirmation.");
       return this.getJdbcUserRepository.get(email);
     } catch (UsernameExistsException e) {
-      throw new UserExistsException("Username already exists.") ;
+      throw new UserExistsException("Username already exists.");
     } catch (Exception e) {
       throw new Exception(e.getMessage());
     }
   }
 
   private Boolean userExistsInRepository(GetUserRepository getUserRepository, String email) {
-    try{
-      User user = getUserRepository.get(email);
+    try {
+      getUserRepository.get(email);
       return true;
-    }
-    catch (UserNotFoundException ex) {
+    } catch (UserNotFoundException ex) {
       return false;
     }
 
   }
-
 
 
 }

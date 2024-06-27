@@ -38,6 +38,7 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
     this.cognitoClient = cognitoClient;
   }
 
+  //TODO: replicar
   @Override
   public User get(String email) {
     try {
