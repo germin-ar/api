@@ -40,6 +40,11 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
 
         AIDetection aiDetection = this.getAIDetectionRepository.getByFileImage(fileImage);
 
+        if (aiDetection == null) {
+            log.warn("No AI detection found for file image with id: {}", id);
+            return null;  // Retorna null si no se encuentra ninguna detección de AI
+        }
+
         List<Candidate> candidates = aiDetection
                 .getCandidates()
                 .parallelStream()

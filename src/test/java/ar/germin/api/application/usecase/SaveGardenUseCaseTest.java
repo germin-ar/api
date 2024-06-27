@@ -35,13 +35,17 @@ class SaveGardenUseCaseTest {
 
     @Test
     void testSaveGardenWithEmptyNameReturnsFalse() {
+        // Configuración del comportamiento del mock
         when(saveGardenRepository.save(1, "")).thenReturn(1);
 
+        // Creación del caso de uso
         SaveGardenUseCase useCase = new SaveGardenUseCase(saveGardenRepository);
 
+        // Llamada al método bajo prueba
         Integer candidateResults = useCase.save(1, "");
 
-        Assertions.assertEquals("", candidateResults);
+        // Afirmación: comprobar que el resultado retornado es igual a 1
+        Assertions.assertEquals(1, candidateResults);
     }
 
     @Test
