@@ -2,6 +2,7 @@ package ar.germin.api.application.usecase;
 
 import ar.germin.api.application.domain.User;
 import ar.germin.api.application.exceptions.UserExistsException;
+import ar.germin.api.application.exceptions.UserNotFoundException;
 import ar.germin.api.application.port.in.UserRegistrationPortIn;
 import ar.germin.api.application.port.out.DeleteUserRepository;
 import ar.germin.api.application.port.out.GetUserRepository;
@@ -38,8 +39,8 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
 
   @Override
   public User signUp(String username, String password, String email) throws Exception {
-    boolean existsInDb = userExistsInRepository(getJdbcUserRepository, email);
-    boolean existsInCognito = userExistsInRepository(getCognitoUserRepository, email);
+    Boolean existsInDb = userExistsInRepository(getJdbcUserRepository, email);
+    Boolean existsInCognito = userExistsInRepository(getCognitoUserRepository, email);
 
     if(existsInDb && !existsInCognito){
       this.deleteUserRepository.delete(email);
@@ -73,9 +74,15 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
     }
   }
 
-  private boolean userExistsInRepository(GetUserRepository getUserRepository, String email) {
-    User user = getUserRepository.get(email);
-    return user != null;
+  private Boolean userExistsInRepository(GetUserRepository getUserRepository, String email) {
+    try{
+      User user = getUserRepository.get(email);
+      return true;
+    }
+    catch (UserNotFoundException ex) {
+      return false;
+    }
+
   }
 
 
