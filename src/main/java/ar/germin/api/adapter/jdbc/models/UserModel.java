@@ -1,6 +1,5 @@
 package ar.germin.api.adapter.jdbc.models;
 
-import ar.germin.api.application.domain.FileImage;
 import ar.germin.api.application.domain.User;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

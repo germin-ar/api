@@ -1,18 +1,15 @@
 package ar.germin.api.adapter.controller;
 
 
-import ar.germin.api.adapter.controller.models.LogoutResponse;
+import ar.germin.api.adapter.controller.models.LoginUserResponseModel;
 import ar.germin.api.adapter.controller.models.UserResponseModel;
+import ar.germin.api.application.domain.UserSessionTokens;
 import ar.germin.api.application.port.in.UserConfirmRegistrationPortIn;
 import ar.germin.api.application.port.in.UserLoginPortIn;
 import ar.germin.api.application.port.in.UserLogoutPortIn;
 import ar.germin.api.application.port.in.UserRegistrationPortIn;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -41,25 +38,21 @@ public class AuthenticationControllerAdapter {
 
   @PostMapping("/confirm-signup")
   public UserResponseModel confirmSignUp(@RequestParam String email, @RequestParam String confirmationCode) {
-    return UserResponseModel.fromDomain(userConfirmRegistrationPortIn.confirmSignUp(email,confirmationCode));
+    return UserResponseModel.fromDomain(userConfirmRegistrationPortIn.confirmSignUp(email, confirmationCode));
   }
 
+  //TODO: cambiar username por email-tratar error
   @PostMapping("/login")
-  public Map<String, String> login(@RequestParam String username, @RequestParam String password) {
-    Map<String, String> response = userLoginPortIn.login(username, password);
+  public LoginUserResponseModel login(@RequestParam String username, @RequestParam String password) {
+    UserSessionTokens response = userLoginPortIn.login(username, password);
     log.info("loginResponse: {}", response);
-    return response;
+    return LoginUserResponseModel.fromDomain(response);
   }
 
   @PostMapping("/logout")
-  public ResponseEntity<LogoutResponse> logout(@RequestHeader("Authorization") String token) {
-    // Asume que el token se pasa directamente sin el prefijo 'Bearer '
-
-    LogoutResponse logoutResponse =userLogoutPortIn.logout(token);
-    if (logoutResponse.getIsLogout()){
-      return ResponseEntity.ok(logoutResponse);
-    }
-    return ResponseEntity.internalServerError().body(logoutResponse);
+  public void logout(@RequestHeader("Authorization") String token) {
+    userLogoutPortIn.logout(token);
   }
+
 
 }

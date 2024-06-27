@@ -1,10 +1,9 @@
 package ar.germin.api.adapter.cognito;
 
-import ar.germin.api.adapter.controller.models.LogoutResponse;
 import ar.germin.api.application.domain.User;
-import ar.germin.api.application.exceptions.CognitoSignUpException;
-import ar.germin.api.application.exceptions.HashCalculatedExeption;
+import ar.germin.api.application.domain.UserSessionTokens;
 import ar.germin.api.application.exceptions.UserNotFoundException;
+import ar.germin.api.application.exceptions.*;
 import ar.germin.api.application.port.out.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,12 +14,15 @@ import software.amazon.awssdk.services.cognitoidentityprovider.model.*;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.util.*;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 @Qualifier("cognito")
 @Slf4j
-public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository, UpdateCognitoUserRepository,SetCognitoUserRepository, UserLoginRepository {
+public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository, ConfirmUserRepository, LogoutUserRepository, UserLoginRepository {
   @Value("${cognito.clientId}")
   private String clientId;
 
@@ -92,7 +94,7 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
   }
 
   @Override
-  public String update(String username, String confirmationCode) {
+  public void confirm(String username, String confirmationCode) {
     try {
       String secretHash = calculateSecretHash(username);
 
@@ -105,9 +107,8 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
 
       ConfirmSignUpResponse confirmSignUpResponse = cognitoClient.confirmSignUp(confirmSignUpRequest);
       log.info("Confirmation code response: {}", confirmSignUpResponse);
-      return "Confirmacion exitosa";
     } catch (CognitoIdentityProviderException ex) {
-      return "Confirmation failed: " + ex.awsErrorDetails().errorMessage();
+      throw new UserConfirmationException("Confirmation failed");
     }
   }
 
@@ -126,7 +127,7 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
   }
 
   @Override
-  public LogoutResponse logout(String accessToken) {
+  public void logout(String accessToken) {
     try {
       GlobalSignOutRequest signOutRequest = GlobalSignOutRequest.builder()
               .accessToken(accessToken)
@@ -136,22 +137,15 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
       //log.info("signupResponse: {}",signOutResponse);
 
       log.info("Logout successful");
-      return LogoutResponse.builder()
-              .isLogout(true)
-              .message("Logout successful")
-              .build();
+
     } catch (CognitoIdentityProviderException e) {
       log.info("Logout failed: {}", e.awsErrorDetails().errorMessage());
-      return LogoutResponse.builder()
-              .isLogout(false)
-              .message(e.awsErrorDetails().errorMessage())
-              .build();
-      //throw new LogoutCognitoException("Logout failed: Access Token has been revoked");
+      throw new UserLogoutException("Logout failed: Access Token has been revoked");
     }
   }
 
   @Override
-  public Map<String, String> login(String username, String password) {
+  public UserSessionTokens login(String username, String password) {
     try {
       String secretHash = calculateSecretHash(username);
 
@@ -172,15 +166,11 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
       if (authResult == null) {
         throw new RuntimeException("No authentication result returned");
       }
-
-      Map<String, String> tokens = new HashMap<>();
-      tokens.put("idToken", authResult.idToken());
-      tokens.put("accessToken", authResult.accessToken());
-      tokens.put("refreshToken", authResult.refreshToken());
-      //TODO: se le aplico el rol de free user en la confirmacion de cuenta
-      //roleManagementService.assignUserRole(username, ROLE.FREE_USER.name());
-
-      return tokens;
+      return UserSessionTokens.builder()
+              .id(authResult.idToken())
+              .access(authResult.accessToken())
+              .refresh(authResult.refreshToken())
+              .build();
     } catch (CognitoIdentityProviderException e) {
       log.error("Login failed: {}", e.awsErrorDetails().errorMessage(), e);
       throw new RuntimeException("Login failed: " + e.awsErrorDetails().errorMessage(), e);

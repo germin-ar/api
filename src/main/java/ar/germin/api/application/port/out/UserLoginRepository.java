@@ -1,7 +1,7 @@
 package ar.germin.api.application.port.out;
 
-import java.util.Map;
+import ar.germin.api.application.domain.UserSessionTokens;
 
 public interface UserLoginRepository {
-  Map<String, String> login(String username, String password);
+  UserSessionTokens login(String username, String password);
 }
