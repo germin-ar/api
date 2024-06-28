@@ -42,7 +42,7 @@ public class GetCandidatesDiseasePlantsUseCase implements GetCandidatesDiseasePl
 
         HealthAIDetection healthAIDetection = this.getHealthSuggestionsRepository.getHealthStatus(lastImageUrl);
 
-        // TOOD: se pueden guardar candidatos repetidos
+
         healthAIDetection
                 .getCandidates()
                 .parallelStream()
