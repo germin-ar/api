@@ -564,4 +564,44 @@
         </update>
     </changeSet>
 
+    <changeSet id="20240627-14" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Alhábega, Alfábega, Hierba de los reyes, Hierba de salitre"/>
+            <column name="scientific_name" value="Ocimum basilicum"/>
+            <column name="slug_scientific_name" value="ocimum-basilicum"/>
+            <column name="description" value="La albahaca dulce es una gran fuente de vitamina A, vitamina C, vitamina K y hierro. ¡Es una hierba fácil de cultivar que añade un sabor único y un impulso extra de nutrientes a cualquier plato!"/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol parcial"/>
+            <column name="watering_care" value="A la albahaca le va bien un medio de cultivo húmedo. Es necesario riego frecuente. Las plantas asentadas deben regarse una vez cada 4-6 días en primavera y otoño, y cada 2-4 días en verano. En invierno, trasládelas adentro y reduzca el riego."/>
+            <column name="fertilizer" value="Los fertilizantes contienen altos niveles de nitrógeno, potasio, fósforo, hierro, manganeso y zinc, como el abono de pescado."/>
+            <column name="pruning" value="Se pueden podar cuando alcanzan 20 cm de altura. Las hojas amarillas, se deben cortar de inmediato."/>
+            <column name="soil" value="Arena, Marga, Arcilla, Franco-arenoso, Ácido, Neutro, Alcalino."/>
+            <column name="repotting" value="En la primavera o el otoño, cuando las temperaturas son más suaves, lo que garantiza un crecimiento óptimo."/>
+            <column name="lifespan" value="Anual, Perenne, Bianual"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="primavera,verano, otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Lamiáceas"/>
+            <column name="genus" value="Albahacas"/>
+            <column name="specie" value="Albahaca"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Por semillas"/>
+            <column name="fruit" value="Frutas Verdes, Marrones Y Negras Listas Para Usar."/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="tips" value="Complementar el suelo con una fuente de nitrógeno. Elija un lugar soleado y con buen drenaje y tenga cuidado con sus delicadas raíces durante el proceso de trasplante."/>
+            <column name="insecticide" value="Controlar plagas como ácaros y pulgones con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="80.0"/>
+            <column name="max_size" valueNumeric="50.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="30"/>
+            <column name="url_image" value="https://inaturalist-open-data.s3.amazonaws.com/photos/243391495/original.jpeg"/>
+            <where>slug_scientific_name='ocimum-basilicum'</where>
+        </update>
+    </changeSet>
+
 </databaseChangeLog>
