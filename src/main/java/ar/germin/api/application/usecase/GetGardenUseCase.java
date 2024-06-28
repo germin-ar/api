@@ -45,4 +45,8 @@ public class GetGardenUseCase implements GetGardenPortIn {
 
         return garden.withPlants(plants);
     }
+
+    public Garden getGardenById(Integer id) {
+        return getGardenRepository.getById(id);
+    }
 }

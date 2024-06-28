@@ -1,11 +1,10 @@
 package ar.germin.api.application.domain;
 
-import lombok.Builder;
-import lombok.Value;
-import lombok.With;
+import lombok.*;
 
 import java.util.List;
 
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Builder
 @Value
 public class Garden {
