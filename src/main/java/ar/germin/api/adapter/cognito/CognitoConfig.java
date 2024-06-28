@@ -11,12 +11,6 @@ import software.amazon.awssdk.services.cognitoidentityprovider.CognitoIdentityPr
 @Configuration
 public class CognitoConfig {
 
-  @Value("${cognito.clientId}")
-  private String clientId;
-
-  @Value("${cognito.clientSecret}")
-  private String clientSecret;
-
   @Value("${aws.accessKeyId}")
   private String accessKeyId;
 

@@ -5,10 +5,10 @@ spring:
     password: pa55w0rd
 
 cognito:
-  clientId: up0gehu7gd2phsvb2bd9vv2ml
-  clientSecret: gre4r9nu3efqi394bekl84sktl8j8rbonvu8es0qoj13cbtt90u
-  userPoolId: us-east-1_g34U2Zocx
+  clientId:  ${AWS_COGNITO_APP_CLIENT_ID}
+  clientSecret: ${COGNITO_CLIENT_SECRET}
+  userPoolId: ${AWS_COGNITO_POOL_ID}
 aws:
-  accessKeyId: AKIAQ3GEND5GZNHENNOE
-  secretKey: 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
+  accessKeyId: ${AWS_ACCESS_KEY_ID}
+  secretKey: ${AWS_SECRET_KEY}
 
