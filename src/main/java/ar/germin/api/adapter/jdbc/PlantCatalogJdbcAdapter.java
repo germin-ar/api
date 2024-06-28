@@ -46,11 +46,11 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
             MapSqlParameterSource params = new MapSqlParameterSource()
                     .addValue("slugScientificName", slugScientificName);
 
-            PlantCatalogModel plantCatalogModel = this.namedParameterJdbcTemplate.queryForObject(
+            PlantCatalogModelAlternative plantCatalogModelAlternative = this.namedParameterJdbcTemplate.queryForObject(
                     selectPlantCatalogByScientificNameSql,
                     params,
-                    new BeanPropertyRowMapper<>(PlantCatalogModel.class));
-            return plantCatalogModel.toDomain();
+                    new BeanPropertyRowMapper<>(PlantCatalogModelAlternative.class));
+            return plantCatalogModelAlternative.toDomain();
         } catch (EmptyResultDataAccessException e) {
             log.warn("PlantCatalog with scientific name [{}] not found", slugScientificName);
             throw new PlantCatalogNotFoundException();

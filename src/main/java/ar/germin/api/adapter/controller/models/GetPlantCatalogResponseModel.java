@@ -47,6 +47,8 @@ public class GetPlantCatalogResponseModel {
     String plantType;
     Double width;
 
+    String urlImage;
+
     public static GetPlantCatalogResponseModel fromDomain(PlantCatalog plantCatalog){
         return GetPlantCatalogResponseModel.builder()
                 .id(plantCatalog.getId())
@@ -83,6 +85,7 @@ public class GetPlantCatalogResponseModel {
                 .harvestTime(plantCatalog.getHarvestTime())
                 .plantType(plantCatalog.getPlantType())
                 .width(plantCatalog.getWidth())
+                .urlImage(plantCatalog.getUrlImage())
                 .build();
     }
 
