@@ -42,7 +42,8 @@ public class PlantDiseaseJdbcAdapter implements SaveCandidateDiseasePlantsReposi
                     .addValue("orderTaxonomy", diseaseCandidate.getOrderTaxonomy())
                     .addValue("familyTaxonomy", diseaseCandidate.getFamilyTaxonomy())
                     .addValue("phylumTaxonomy", diseaseCandidate.getPhylumTaxonomy())
-                    .addValue("genusTaxonomy", diseaseCandidate.getGenusTaxonomy());
+                    .addValue("genusTaxonomy", diseaseCandidate.getGenusTaxonomy())
+                    .addValue("slug", diseaseCandidate.toSlugFormat());
 
             log.info("Saving diseasePlant with sql [{}] with params: [{}]",savePlantDiseaseSql, sqlParams);
             KeyHolder keyHolder = new GeneratedKeyHolder();

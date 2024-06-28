@@ -41,12 +41,15 @@ public class GetCandidatesDiseasePlantsUseCase implements GetCandidatesDiseasePl
                 .orElseThrow();
 
         HealthAIDetection healthAIDetection = this.getHealthSuggestionsRepository.getHealthStatus(lastImageUrl);
-
+        
 
         healthAIDetection
                 .getCandidates()
                 .parallelStream()
                 .forEach(this.saveCandidateDiseasePlantsRepository::save);
+
+
+
 
         return healthAIDetection;
     }
