@@ -33,8 +33,8 @@ select id,
        plant_type,
        width
 from garden.plant_catalog
-where temperature_min >= :minTemperature
+where temperature_min <= :minTemperature
 and temperature_max >= :maxTemperature
 and planting_time ilike '%' || :temporada || '%'
-and sunlight ilike :luz
+and sunlight ilike '%' || :luz || '%'
 and width >= :squareCentimeters;
