@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet  author="Jfoppoli"  id="20240627-0">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Pepino"/>
+            <column name="scientific_name" value="Cucumis sativus"/>
+            <column name="slug_scientific_name" value="cucumis-sativus"/>
+            <column name="description" value="Los pepinos son una planta asombrosa que brinda muchos beneficios para la salud de los humanos. Son bajas en calorías, ricas en agua y contienen vitaminas y minerales esenciales como las vitaminas K, C y B6. Los pepinos también se han utilizado como medicina natural durante siglos y ofrecen una variedad de beneficios curativos y energizantes. Están llenos de antioxidantes para ayudar a reducir la inflamación, neutralizar los radicales libres y proteger de ciertas enfermedades crónicas. Los pepinos son una excelente adición a ensaladas, batidos, salsas y jugos, e incluso se pueden comer crudos o en escabeche."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita agua regularmente para mantener el suelo húmedo, evitando la acumulación de agua."/>
+            <column name="fertilizer" value="Aplicar fertilizante equilibrado cada 3-4 semanas durante la temporada de crecimiento."/>
+            <column name="pruning" value="Podar las ramas secundarias para promover un crecimiento más vigoroso y una mejor producción de frutos."/>
+            <column name="soil" value="Prefiere suelos fértiles y bien drenados."/>
+            <column name="repotting" value="El pepino generalmente se cultiva en el suelo directamente y no se suele trasplantar."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="verano, otoño"/>
+            <column name="plant_type" value="Enredadera, Hierba"/>
+            <column name="family_name" value="Cucurbitáceas"/>
+            <column name="genus" value="Cucumis"/>
+            <column name="specie" value="Cucumis sativus"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Se propaga principalmente por semillas."/>
+            <column name="fruit" value="El fruto del pepino es largo, cilíndrico y de color verde."/>
+            <column name="growth_rate" value="Bajo"/>
+            <column name="tips" value="Proteger los frutos en desarrollo del contacto directo con el suelo para prevenir daños. Mantén el jardín limpio de malezas y restos de plantas para reducir el riesgo de enfermedades. Durante el clima cálido y seco, es posible que necesites regar las plantas de pepino con más frecuencia para mantener la tierra húmeda. Asegúrate de regar los pepinos más temprano en el día para que las hojas se sequen antes de la noche."/>
+            <column name="insecticide" value="Controlar plagas como ácaros y pulgones con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="70.0"/>
+            <column name="max_size" valueNumeric="90.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="60"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/b/b9/Cucumis_sativus_5.jpg"/>
+            <where>slug_scientific_name='cucumis-sativus'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-1" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Melón"/>
+            <column name="scientific_name" value="Cucumis melo"/>
+            <column name="slug_scientific_name" value="cucumis-melo"/>
+            <column name="description" value="Tiene un sabor distintivo, pulpa dulce y jugosa y muy aromática. Además, el melón es una gran fuente de vitaminas, minerales y fibra dietética. También contiene antioxidantes que ayudan a combatir el daño de los radicales libres y pueden reducir el riesgo de desarrollar ciertas enfermedades. Además, su contenido en agua ayuda a mantener el organismo hidratado y su textura fibrosa favorece la digestión. Se puede consumir fresco, hervido, en jugo o añadido a otros platos. En general, su sabor dulce, contenido nutricional, versatilidad y bajo contenido calórico lo convierten en un snack o golosina ideal."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Mantener el suelo húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer" value="Fertilizar cada 3-4 semanas con un fertilizante equilibrado durante la temporada de crecimiento."/>
+            <column name="pruning" value="Podar para controlar el crecimiento y favorecer la producción de frutos."/>
+            <column name="soil" value="Prefiere suelos bien drenados y ricos en materia orgánica."/>
+            <column name="repotting" value="No aplica para melones, ya que generalmente se cultivan directamente en el suelo."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="verano, otoño"/>
+            <column name="plant_type" value="Enredadera, Hierba"/>
+            <column name="family_name" value="Cucurbitáceas"/>
+            <column name="genus" value="Cucumis"/>
+            <column name="specie" value="Cucumis melo"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Se propaga por semillas."/>
+            <column name="fruit" value="El fruto del melón es una baya grande, jugosa y dulce."/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="tips" value="Proteger los frutos en desarrollo del contacto directo con el suelo para prevenir daños. Si la planta se cultiva en un lugar seco o en una maceta, es posible que sea necesario regarla con más frecuencia. El mejor momento para regar los melones es por la mañana, para que tengan tiempo de secarse antes de que se ponga el sol. Si la tierra es pesada, es posible que las raíces del melón no puedan acceder al agua que les proporcionas, así que intenta regar alrededor de la base de la planta. El riego también debe realizarse lenta y exhaustivamente para permitir que el agua penetre bien en el suelo."/>
+            <column name="insecticide" value="Controlar plagas como pulgones y ácaros con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="70.0"/>
+            <column name="max_size" valueNumeric="90.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="100"/>
+            <column name="url_image" value="https://www.picturethisai.com/wiki-image/1080/330366096985260032.jpeg"/>
+            <where>slug_scientific_name='cucumis-melo'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-2" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Cilantro"/>
+            <column name="scientific_name" value="Coriandrum sativum"/>
+            <column name="slug_scientific_name" value="coriandrum-sativum"/>
+            <column name="description" value="El cilantro (Coriandrum sativum) es una hierba anual que crece erecta y se caracteriza por su aromaticidad y sabor. Es totalmente comestible y se usa extensivamente en las cocinas de todo el mundo como especia. Curiosamente, algunas personas poseen un gen que causa que el cilantro tenga un sabor a jabón."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita agua promedio, regar regularmente pero sin acumulación de agua."/>
+            <column name="fertilizer" value="Fertilizar cada 4-6 semanas con un fertilizante equilibrado durante la temporada de crecimiento."/>
+            <column name="pruning" value="No requiere poda específica, pero se pueden recortar las hojas según sea necesario para promover el crecimiento."/>
+            <column name="soil" value="Prefiere suelos bien drenados y ricos en materia orgánica."/>
+            <column name="repotting" value="Puede ser necesario replantar en macetas con buen drenaje cada primavera si se cultiva en contenedores."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="Primavera, verano, otoño, invierno"/>
+            <column name="harvest_time" value="primavera, verano, otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Apiáceas"/>
+            <column name="genus" value="Coriandrum"/>
+            <column name="specie" value="Coriandrum sativum"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Se propaga por semillas."/>
+            <column name="fruit" value="Las semillas de cilantro son comestibles y se utilizan como especia."/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="tips" value="Mantener el suelo húmedo pero no saturado para evitar la pudrición de las raíces. Recoger las hojas regularmente para promover un crecimiento continuo. Tanto las hojas como las semillas son comestibles. Las hojas se utilizan frescas como hierba y las semillas secas como especia."/>
+            <column name="insecticide" value="Controlar plagas como ácaros y pulgones con insecticidas naturales como el aceite de neem."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No tiene un período de dormancia marcado."/>
+            <column name="atmospheric_humidity" valueNumeric="40.0"/>
+            <column name="max_size" valueNumeric="100.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="30"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Coriandrum_sativum_L._%284171522832%29.jpg/1280px-Coriandrum_sativum_L._%284171522832%29.jpg"/>
+            <where>slug_scientific_name='coriandrum-sativum'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-03" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Limonero"/>
+            <column name="scientific_name" value="Citrus limon"/>
+            <column name="slug_scientific_name" value="citrus-limon"/>
+            <column name="description" value="El limonero es uno de los árboles frutales más cultivados para el consumo de su fruta. España y Argentina son los principales exportadores mundiales de limón. La esencia del limón se obtiene de la cáscara, se utiliza en perfumería y como aromatizante. En adición, con su madera de llamativo veteado se pueden crear hermosas piezas."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Mantener húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer" value="Fertilizar cada 4-6 semanas con un fertilizante específico para cítricos."/>
+            <column name="pruning" value="Poda anual para eliminar ramas muertas o enfermas y mantener una forma abierta."/>
+            <column name="soil" value="Prefiere suelos bien drenados, ligeramente ácidos y ricos en materia orgánica."/>
+            <column name="repotting" value="Necesita un excelente drenaje en macetas."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, verano, otoño, invierno"/>
+            <column name="harvest_time" value="primavera, otoño, Invierno"/>
+            <column name="plant_type" value="Arbusto, Árbol"/>
+            <column name="family_name" value="Rutáceas"/>
+            <column name="genus" value="Citrus"/>
+            <column name="specie" value="Citrus limon"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="A través de semillas o esquejes."/>
+            <column name="fruit" value="Fruto es una baya (hesperidio) de cáscara gruesa y pulpa jugosa y ácida."/>
+            <column name="growth_rate" value="Moderada"/>
+            <column name="tips" value="Proteger del viento fuerte y asegurarse de que reciba al menos 6-8 horas de sol al día. Cuando se cultiva en contenedores, es importante utilizar una maceta grande y profunda para que las raíces tengan suficiente espacio para extenderse, y utilizar tierra para macetas que drene bien. Las plantas de limón también necesitan mucha luz solar y agua durante la temporada de crecimiento, además de fertilización regular. Con un riego cuidadoso, luz solar constante y una maceta lo suficientemente grande, puedes cultivar con éxito tu propia planta de limón en un recipiente."/>
+            <column name="insecticide" value="Uso de insecticidas naturales como aceite de neem para controlar plagas como ácaros y pulgones."/>
+            <column name="toxic" value="Ligeramente tóxico para mascotas."/>
+            <column name="dormancy" value="No tiene un período de dormancia marcado, pero el crecimiento puede ralentizarse en invierno."/>
+            <column name="atmospheric_humidity" valueNumeric="60.0"/>
+            <column name="max_size" valueNumeric="600.0"/>
+            <column name="growth_season" value="primavera, verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="100"/>
+            <column name="url_image" value="https://cdn.britannica.com/84/188484-050-F27B0049/lemons-tree.jpg"/>
+            <where>slug_scientific_name='citrus-limon'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-04" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Achicoria"/>
+            <column name="scientific_name" value="Cichorium intybus"/>
+            <column name="slug_scientific_name" value="cichorium-intybus"/>
+            <column name="description" value="La achicoria es una planta originaria de Eurasia y África, aunque se ha naturalizado en diversas partes del mundo. En algunas ocasiones se ha utilizado puntualmente para plantarla en jardines como planta ornamental por su bella flor azul. Una característica particular de la achicoria es que la flor solo se abre cuando está en contacto con el sol."/>
+            <column name="watering_frecuency" value="Todas las semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita agua promedio, agua regularmente pero sin acumulación de agua"/>
+            <column name="fertilizer" value="4 semanas después de ser transplantada, aplicar un fertilizante a base de nitrógeno"/>
+            <column name="pruning" value="Recorte las hojas marchitas y enfermas una vez al mes."/>
+            <column name="soil" value="Franco, Arena, Calcáreo, Arcilloso, Franco Arenoso, Ácido, Neutro, Alcalino"/>
+            <column name="repotting" value="Necesita un excelente drenaje en macetas."/>
+            <column name="lifespan" value="Perenne, Bianual, Anual"/>
+            <column name="planting_time" value="primavera, verano, otoño, invierno"/>
+            <column name="harvest_time" value="primavera, verano, otoño, invierno"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Asteráceas"/>
+            <column name="genus" value="Lechuguillas"/>
+            <column name="specie" value="Achicoria"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Propagación De Semillas, División, Corte, Propagación Por Capas"/>
+            <column name="fruit" value="El fruto es un pequeño aquenio de color marrón, forma oblonga y un anillo de cerdas en un extremo."/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="tips" value="Quienes cultivan esta planta en interiores necesitarán regarla con más frecuencia, ya que permitir que el agua de lluvia empape el suelo no será una opción. La achicoria común se utiliza en una variedad de aplicaciones culinarias en todo el mundo, más comúnmente con café."/>
+            <column name="insecticide" value="Neem, Jabón insecticida, Aceite de horticultura, Tierra de diatomeas"/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="50.0"/>
+            <column name="max_size" valueNumeric="120.0"/>
+            <column name="growth_season" value="verano, otoño"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="50"/>
+            <column name="url_image" value="https://gardenerspath.com/wp-content/uploads/2023/04/Sky-Blue-Chicory-Flowers-Growing-in-the-Garden-Featured2.jpg"/>
+            <where>slug_scientific_name='cichorium-intybus'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-05" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Chile"/>
+            <column name="scientific_name" value="Capsicum annuum"/>
+            <column name="slug_scientific_name" value="capsicum-annuum"/>
+            <column name="description" value="El chile es una planta herbácea que fue llevada a Europa por los exploradores de la época. Se cultiva principalmente en huertos por su fruto alargado comestible llamado pimiento. Existen numerosas variedades que se diferencian en el color, desde verde hasta rojo, y en el sabor, que va de dulce a picante. El pimiento es apreciado en la cocina del mundo entero."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita agua promedio, agua regularmente pero sin acumulación de agua"/>
+            <column name="fertilizer" value="Fertilizar cada 2-3 semanas con fertilizante balanceado"/>
+            <column name="pruning" value="Eliminar hojas y ramas dañadas para fomentar un crecimiento saludable"/>
+            <column name="soil" value="Suelo bien drenado y fértil, preferiblemente con alto contenido de materia orgánica"/>
+            <column name="repotting" value="Necesita un excelente drenaje en macetas."/>
+            <column name="lifespan" value="Anual, Perenne, Bianual"/>
+            <column name="planting_time" value="Primavera, verano"/>
+            <column name="harvest_time" value="verano, otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Solanáceas"/>
+            <column name="genus" value="Capsicum"/>
+            <column name="specie" value="Capsicum annuum"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="A través de semillas"/>
+            <column name="fruit" value="El fruto es una baya alargada, de color variable entre verde, rojo, amarillo y naranja"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Proteger la planta de heladas y asegurarse de que reciba suficiente sol para maximizar la producción de frutos. Los frutos son comestibles y ampliamente utilizados en la cocina."/>
+            <column name="insecticide" value="Uso de insecticidas naturales como neem o jabón insecticida para controlar plagas"/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No tiene un período de dormancia marcado, pero el crecimiento puede ralentizarse en condiciones adversas"/>
+            <column name="atmospheric_humidity" valueNumeric="65.0"/>
+            <column name="max_size" valueNumeric="100.0"/>
+            <column name="growth_season" value="verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="100"/>
+            <column name="url_image" value="https://cdn11.bigcommerce.com/s-a9b4a/images/stencil/1280x1280/products/244/7106/Cayenne-Pepper__09646.1667682470.jpg?c=2"/>
+            <where>slug_scientific_name='capsicum-annuum'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-06" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Coles de Bruselas"/>
+            <column name="scientific_name" value="Brassica oleracea var. gemmifera"/>
+            <column name="slug_scientific_name" value="brassica-oleracea-var.-gemmifera"/>
+            <column name="description" value="La col de Bruselas es una subespecie del repollo. Nativa europea, su nombre proviene de que esta compacta variedad fue obtenida en la ciudad de Bruselas. Las coles de Bruselas poseen tallos erectos que presentan pequeños cogollos apretados. Su sabor es intenso y de notas amargas y dulces. Generalmente, suele consumirse al vapor y con manteca."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Mantener el suelo constantemente húmedo, pero evitar el encharcamiento"/>
+            <column name="fertilizer" value="Fertilizar cada 4-6 semanas con fertilizante balanceado"/>
+            <column name="pruning" value="Eliminar hojas dañadas o enfermas para fomentar un crecimiento saludable"/>
+            <column name="soil" value="Arena, Marga, Calcáreo, Arcilla"/>
+            <column name="repotting" value="Transplantar a Finales de verano, Otoño, Invierno"/>
+            <column name="lifespan" value="Anual, Bianual"/>
+            <column name="planting_time" value="primavera, verano, otoño, nvierno"/>
+            <column name="harvest_time" value="verano, otoño, invierno"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Brasicáceas"/>
+            <column name="genus" value="Brassica"/>
+            <column name="specie" value="Coles de Bruselas"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="A través de semillas"/>
+            <column name="fruit" value="Produce silicuas que contienen semillas"/>
+            <column name="growth_rate" value="Lenta"/>
+            <column name="tips" value="Las coles de Bruselas requieren una exposición prolongada a temperaturas frescas para desarrollar cogollos de calidad. Es importante mantener el suelo húmedo y rico en nutrientes. Los cogollos son comestibles y se consumen generalmente al vapor o cocidos."/>
+            <column name="insecticide" value="Uso de insecticidas naturales como neem o jabón insecticida para controlar plagas"/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No tiene un período de dormancia marcado, pero el crecimiento puede ralentizarse en condiciones adversas"/>
+            <column name="atmospheric_humidity" valueNumeric="70.0"/>
+            <column name="max_size" valueNumeric="61.0"/>
+            <column name="growth_season" value="Lenta"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="90"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/1/1a/Brassica_oleracea_var._gemmifera_Jade_Cross_1zz.jpg"/>
+            <where>slug_scientific_name='brassica-oleracea-var.-gemmifera'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-07" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Col silvestre"/>
+            <column name="scientific_name" value="Brassica oleracea"/>
+            <column name="slug_scientific_name" value="brassica-oleracea"/>
+            <column name="description" value="La col silvestre es una col que se usa a modo decorativo por su intenso y abundante follaje. No obstante, hay que cuidarla mucho, ya que insectos como los pulgones y las orugas se encargan de comerse las hojas de la planta. De esta planta se han creado muchas variedades, algunas incluso de distintos colores, que sirven como plantas ornamentales."/>
+            <column name="watering_frecuency" value="Todas las semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita agua promedio, agua regularmente pero sin acumulación de agua"/>
+            <column name="fertilizer" value="Fertilizar cada 4-6 semanas con fertilizante balanceado"/>
+            <column name="pruning" value="Eliminar hojas dañadas o enfermas para fomentar un crecimiento saludable"/>
+            <column name="soil" value="Suelo bien drenado y fértil, preferiblemente con alto contenido de materia orgánica"/>
+            <column name="repotting" value="Necesita un excelente drenaje en macetas."/>
+            <column name="lifespan" value="Perenne, Bianual, Anual"/>
+            <column name="planting_time" value="primavera, verano, otoño, invierno"/>
+            <column name="harvest_time" value="primavera, verano, otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Brasicáceas"/>
+            <column name="genus" value="Brassica"/>
+            <column name="specie" value="Col silvestre"/>
+            <column name="temperature_min" valueNumeric="15.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="A través de semillas o esquejes"/>
+            <column name="fruit" value="Produce silicuas que contienen semillas"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="La col silvestre necesita pleno sol y suelos bien drenados. Es importante controlar plagas como pulgones y orugas. Las hojas son comestibles."/>
+            <column name="insecticide" value="Uso de insecticidas naturales como neem o jabón insecticida para controlar plagas"/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No tiene un período de dormancia marcado, pero el crecimiento puede ralentizarse en condiciones adversas"/>
+            <column name="atmospheric_humidity" valueNumeric="50.0"/>
+            <column name="max_size" valueNumeric="100.0"/>
+            <column name="growth_season" value="primavera, verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="90"/>
+            <column name="url_image" value="https://d2seqvvyy3b8p2.cloudfront.net/5b088f2ee0f9fa4de4a3afb035c540f7.jpg"/>
+            <where>slug_scientific_name='brassica-oleracea'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-08" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Nabo"/>
+            <column name="scientific_name" value="Brassica napus"/>
+            <column name="slug_scientific_name" value="brassica-napus"/>
+            <column name="description" value="El aceite que se extrae de las semillas de nabo, también conocido como canola, es la tercera fuente de aceite vegetal más importante, después de la soja y la palma. El aceite tiene uso como aceite comestible, además de la fabricación de velas y diversos usos industriales. Una vez extraído el aceite, los sobrantes se utilizan para la alimentación de alta calidad para los animales."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita agua promedio, agua regularmente pero sin acumulación de agua"/>
+            <column name="fertilizer" value="Fertilizar cada 4-6 semanas con fertilizante balanceado"/>
+            <column name="pruning" value="Eliminar hojas dañadas o enfermas para fomentar un crecimiento saludable"/>
+            <column name="soil" value="Suelo bien drenado y fértil, preferiblemente con alto contenido de materia orgánica"/>
+            <column name="repotting" value="Necesita un excelente drenaje en macetas."/>
+            <column name="lifespan" value="Anual, Bianual"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="primavera, verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Brasicáceas"/>
+            <column name="genus" value="Brassica"/>
+            <column name="specie" value="Nabo"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="A través de semillas"/>
+            <column name="fruit" value="Produce silicuas que contienen semillas"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="El nabo prefiere suelos ricos en nutrientes y bien drenados. Evitar el riego excesivo para prevenir enfermedades fúngicas. Las raíces y las hojas son comestibles."/>
+            <column name="insecticide" value="Uso de insecticidas naturales como neem o jabón insecticida para controlar plagas"/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No tiene un período de dormancia marcado, pero el crecimiento puede ralentizarse en condiciones adversas"/>
+            <column name="atmospheric_humidity" valueNumeric="65.0"/>
+            <column name="max_size" valueNumeric="100.0"/>
+            <column name="growth_season" value="primavera, invierno"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="50"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/1/13/Brassica_napus_Inflorescencia_2011-4-02_CampodeCalatrava.jpg"/>
+            <where>slug_scientific_name='brassica-napus'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-09" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Rábano rusticano"/>
+            <column name="scientific_name" value="Armoracia rusticana"/>
+            <column name="slug_scientific_name" value="armoracia-rusticana"/>
+            <column name="description" value="El rábano rusticano es procedente de Europa y del suroeste de Asia. En España lo podemos encontrar cerca de las zonas pirenaicas. Es una planta muy rica y flexible en el sector culinario, ya que el rábano rusticano tiene multitud de diferentes formas de preparación."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol parcial o sombra"/>
+            <column name="watering_care" value="Mantener húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer" value="Fertilizar cada 4-6 semanas con fertilizante balanceado"/>
+            <column name="pruning" value="Eliminar hojas dañadas o enfermas para fomentar un crecimiento saludable"/>
+            <column name="soil" value="Suelo bien drenado y fértil, preferiblemente con alto contenido de materia orgánica"/>
+            <column name="repotting" value="Transplantar en primavera, otoño"/>
+            <column name="lifespan" value="Perenne, Anual"/>
+            <column name="planting_time" value="primavera, otoño"/>
+            <column name="harvest_time" value="primavera, verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Brasicáceas"/>
+            <column name="genus" value="Armoracia"/>
+            <column name="specie" value="Rábano rusticano"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="A través de esquejes de raíz o semillas"/>
+            <column name="fruit" value="Produce pequeñas silicuas que contienen semillas"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="El rábano rusticano prefiere suelos ricos en nutrientes y húmedos. Puede volverse invasivo, por lo que es recomendable plantarlo en contenedores o áreas controladas."/>
+            <column name="insecticide" value="Uso de insecticidas naturales como neem o jabón insecticida para controlar plagas"/>
+            <column name="toxic" value="Puede causar irritación en la piel al contacto prolongado"/>
+            <column name="dormancy" value="Puede entrar en dormancia durante los meses más fríos"/>
+            <column name="atmospheric_humidity" valueNumeric="60.0"/>
+            <column name="max_size" valueNumeric="76.0"/>
+            <column name="growth_season" value="primavera"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="80"/>
+            <column name="url_image" value="https://bs.plantnet.org/image/o/ff932a8f5d570c8334a27f81a8d39f827ef84255"/>
+            <where>slug_scientific_name='armoracia-rusticana'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-10" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Apio"/>
+            <column name="scientific_name" value="Apium graveolens"/>
+            <column name="slug_scientific_name" value="apium-graveolens"/>
+            <column name="description" value="El apio es una planta comestible y tanto los tallos como las hojas se pueden comer crudas o cocidas. Increíblemente, se cultivaba ya en los tiempos de Carlomagno, quien emitió una orden para que siempre se cultivara en sus campos. Esta planta se la encuentra silvestre en suelos húmedos junto a canales, lagos y lagunas naturales."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita agua promedio, agua regularmente pero sin acumulación de agua"/>
+            <column name="fertilizer" value="Fertilizar cada 4-6 semanas con fertilizante balanceado"/>
+            <column name="pruning" value="Eliminar hojas dañadas o enfermas para fomentar un crecimiento saludable"/>
+            <column name="soil" value="Suelo bien drenado y fértil, preferiblemente con alto contenido de materia orgánica"/>
+            <column name="repotting" value="primavera, otoño"/>
+            <column name="lifespan" value="Perenne, Anual, Bianual"/>
+            <column name="planting_time" value="primavera, otoño"/>
+            <column name="harvest_time" value="otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Apiáceas"/>
+            <column name="genus" value="Apium"/>
+            <column name="specie" value="Apio"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="A través de semillas o esquejes"/>
+            <column name="fruit" value="Produce pequeños frutos secos llamados aquenios"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Mantener el suelo constantemente húmedo pero no encharcado. El apio requiere suelos ricos en nutrientes, por lo que se recomienda abonar regularmente. Los tallos y hojas del apio son comestibles"/>
+            <column name="insecticide" value="Uso de insecticidas naturales como neem o jabón insecticida para controlar plagas."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Puede entrar en dormancia si las condiciones no son adecuadas, especialmente en climas fríos"/>
+            <column name="atmospheric_humidity" valueNumeric="75.0"/>
+            <column name="max_size" valueNumeric="100.0"/>
+            <column name="growth_season" value="primavera, otoño"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="30"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/8/84/Apium_graveolens_003.JPG"/>
+            <where>slug_scientific_name='apium-graveolens'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-11" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Cebolla"/>
+            <column name="scientific_name" value="Allium cepa"/>
+            <column name="slug_scientific_name" value="allium-cepa"/>
+            <column name="description" value="La cebolla es una planta herbácea y se cultiva como alimento, aunque hay muchas variedades. La cebolla cuando se está procesando y se corta o trocea provoca una irritación en los ojos, no es peligrosa y al cabo de unos segundos desaparece."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita agua promedio, agua regularmente pero sin acumulación de agua"/>
+            <column name="fertilizer" value="Fertilizar cada 4-6 semanas con fertilizante balanceado"/>
+            <column name="pruning" value="La cebolla no requiere poda regular, pero se recomienda eliminar las hojas dañadas o enfermas"/>
+            <column name="soil" value="Suelo bien drenado y fértil. pH entre 6.0 y 7.0"/>
+            <column name="repotting" value="sol pleno, sol parcial"/>
+            <column name="lifespan" value="Perenne, Anual, Bianual"/>
+            <column name="planting_time" value="primavera, verano, otoño, invierno"/>
+            <column name="harvest_time" value="primavera, verano, otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Amarilidáceas"/>
+            <column name="genus" value="Allium"/>
+            <column name="specie" value="Cebolla"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="A través de semillas o bulbos"/>
+            <column name="fruit" value="La cebolla produce una cápsula que contiene semillas negras pequeñas"/>
+            <column name="growth_rate" value="Moderada"/>
+            <column name="tips" value="Plantar en suelos bien drenados y mantener una humedad constante, pero sin encharcar. Evitar el exceso de nitrógeno en el suelo para prevenir el crecimiento excesivo de hojas en detrimento del bulbo. Las cebollas son comestibles y ampliamente utilizadas en la cocina"/>
+            <column name="insecticide" value="Uso de insecticidas naturales o químicos según sea necesario, como neem o jabón insecticida"/>
+            <column name="toxic" value="Tóxica para mascotas"/>
+            <column name="dormancy" value="Las cebollas pueden entrar en dormancia si las condiciones no son adecuadas, especialmente en climas fríos"/>
+            <column name="atmospheric_humidity" valueNumeric="60.0"/>
+            <column name="max_size" valueNumeric="45.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="45"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/d/d0/Allium_cepa_001.JPG"/>
+            <where>slug_scientific_name='allium-cepa'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-12" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Ciruelo"/>
+            <column name="scientific_name" value="Prunus domestica"/>
+            <column name="slug_scientific_name" value="prunus-domestica"/>
+            <column name="description" value="El ciruelo es un árbol cuyo fruto es comestible y muy apreciado, utilizado para hacer mermeladas, otros alimentos y bebidas. Las flores del ciruelo se utilizan para extraer extractos usados en la creación de perfumes. La madera también es valorada para trabajos de ebanistería."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Requiere mantener el suelo húmedo pero sin permitir la acumulación de agua."/>
+            <column name="fertilizer" value="Aplicar fertilizante equilibrado durante la primavera para promover un buen desarrollo."/>
+            <column name="pruning" value="Podar para eliminar ramas muertas o enfermas y dar forma al árbol, preferiblemente en invierno."/>
+            <column name="soil" value="Prefiere suelos húmedos y bien drenados, ricos en materia orgánica."/>
+            <column name="repotting" value="No se suele cultivar en macetas, plantar directamente en el suelo."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="otoño"/>
+            <column name="harvest_time" value="verano"/>
+            <column name="plant_type" value="Árbol"/>
+            <column name="family_name" value="Rosáceas"/>
+            <column name="genus" value="Prunus"/>
+            <column name="specie" value="Prunus domestica"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Principalmente por semillas o injertos."/>
+            <column name="fruit" value="El fruto del ciruelo es la ciruela, que puede variar en tamaño y color según la variedad. El fruto del ciruelo es comestible."/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="tips" value="Proteger los brotes jóvenes de las heladas. Mantener el suelo libre de malezas para evitar competencia con el árbol. Las semillas de las ciruelas contienen pequeñas cantidades de cianuro y deben evitarse consumir en grandes cantidades crudas."/>
+            <column name="insecticide" value="Controlar plagas como pulgones y orugas con métodos orgánicos si es posible."/>
+            <column name="toxic" value="Tóxica para mascotas"/>
+            <column name="dormancy" value="Pasa por un período de dormancia durante el invierno."/>
+            <column name="atmospheric_humidity" valueNumeric="80.0"/>
+            <column name="max_size" valueNumeric="1500"/>
+            <column name="growth_season" value="Moderada"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="1000"/>
+            <column name="url_image" value="https://plantasflores.com/wp-content/uploads/2021/11/Prunus-domestica-syriaca-1.jpg"/>
+            <where>slug_scientific_name='prunus-domestica'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240627-13" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Calabaza"/>
+            <column name="scientific_name" value="Cucurbita maxima"/>
+            <column name="slug_scientific_name" value="cucurbita-maxima"/>
+            <column name="description" value="La calabaza es un tipo de calabaza comestible, es una enredadera vegetal. Además de sus usos alimenticios, también se emplea para fabricar las tradicionales linternas de Halloween. Una característica distintiva de la calabaza es su tamaño grande, ya que puede llegar a pesar hasta 50 kg, como lo indica su nombre científico Cucurbita maxima."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita agua regularmente para mantener el suelo húmedo, evitando la acumulación de agua."/>
+            <column name="fertilizer" value="Aplicar fertilizante equilibrado cada 3-4 semanas durante la temporada de crecimiento."/>
+            <column name="pruning" value="Podar las ramas secundarias para promover un crecimiento más vigoroso y una mejor producción de frutos."/>
+            <column name="soil" value="Prefiere suelos fértiles y bien drenados."/>
+            <column name="repotting" value="La calabaza generalmente se cultiva en el suelo directamente y no se suele trasplantar."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="otoño"/>
+            <column name="plant_type" value="Enredadera, Hierba"/>
+            <column name="family_name" value="Cucurbitáceas"/>
+            <column name="genus" value="Cucurbita"/>
+            <column name="specie" value="Cucurbita maxima"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Se propaga principalmente por semillas."/>
+            <column name="fruit" value="El fruto de la calabaza es grande, redondeado y de color naranja o verde, dependiendo de la variedad."/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="tips" value="Proteger los frutos en desarrollo del contacto directo con el suelo para prevenir daños. Durante períodos secos o de calor intenso, aumenta la frecuencia de riego, especialmente cuando las plantas están floreciendo y desarrollando frutos."/>
+            <column name="insecticide" value="Controlar plagas como ácaros y pulgones con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="No."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="80.0"/>
+            <column name="max_size" valueNumeric="60.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="500"/>
+            <column name="url_image" value="https://static.vecteezy.com/system/resources/previews/007/484/038/large_2x/pumpkin-cucurbita-maxima-duchesne-green-fresh-vegetable-blooming-tree-in-garden-nature-background-fruit-food-photo.JPG"/>
+            <where>slug_scientific_name='cucurbita-maxima'</where>
+        </update>
+    </changeSet>
+
+</databaseChangeLog>
