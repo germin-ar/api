@@ -2,13 +2,13 @@ package ar.germin.api.application.domain;
 
 import lombok.Builder;
 import lombok.Value;
-
-import java.util.List;
+import lombok.With;
 
 @Value
 @Builder
 public class DiseaseCandidate {
-    String id;
+    @With
+    Integer id;
     Double score;
     String name;
     String scientificNameDisease;
@@ -25,7 +25,6 @@ public class DiseaseCandidate {
     String language;
     String wikiUrls;
     String slug;
-
 
     public String toSlugFormat() {
         return this.getScientificNameDisease()

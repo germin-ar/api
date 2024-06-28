@@ -6,6 +6,7 @@ import ar.germin.api.application.port.in.GetCandidatesDiseasePlantsPortIn;
 import ar.germin.api.application.port.out.GetHealthSuggestionsRepository;
 import ar.germin.api.application.port.out.GetPlantPhotosRepository;
 import ar.germin.api.application.port.out.SaveCandidateDiseasePlantsRepository;
+import ar.germin.api.application.port.out.SavePlantPhotoDiseaseRelationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,36 +21,38 @@ public class GetCandidatesDiseasePlantsUseCase implements GetCandidatesDiseasePl
     private final GetPlantPhotosRepository getPlantPhotosRepository;
     private final GetHealthSuggestionsRepository getHealthSuggestionsRepository;
     private final SaveCandidateDiseasePlantsRepository saveCandidateDiseasePlantsRepository;
+    private final SavePlantPhotoDiseaseRelationRepository savePlantPhotoDiseaseRelationRepository;
 
     @Autowired
     public GetCandidatesDiseasePlantsUseCase(GetPlantPhotosRepository getPlantPhotosRepository,
                                              @Qualifier("cropkindwise") GetHealthSuggestionsRepository getHealthSuggestionsRepository,
-                                             SaveCandidateDiseasePlantsRepository saveCandidateDiseasePlantsRepository) {
+                                             SaveCandidateDiseasePlantsRepository saveCandidateDiseasePlantsRepository,
+                                             SavePlantPhotoDiseaseRelationRepository savePlantPhotoDiseaseRelationRepository) {
         this.getPlantPhotosRepository = getPlantPhotosRepository;
         this.getHealthSuggestionsRepository = getHealthSuggestionsRepository;
         this.saveCandidateDiseasePlantsRepository = saveCandidateDiseasePlantsRepository;
+        this.savePlantPhotoDiseaseRelationRepository = savePlantPhotoDiseaseRelationRepository;
     }
 
     @Override
     public HealthAIDetection get(Integer id) {
         List<PlantPhoto> plantPhotoList = getPlantPhotosRepository.getByPlantId(id);
 
-        String lastImageUrl = plantPhotoList
+        PlantPhoto lastPlantPhoto = plantPhotoList
                 .stream()
                 .max(Comparator.comparing(PlantPhoto::getUploadedAt))
-                .map(PlantPhoto::getUrl)
                 .orElseThrow();
 
-        HealthAIDetection healthAIDetection = this.getHealthSuggestionsRepository.getHealthStatus(lastImageUrl);
-        
+        HealthAIDetection healthAIDetection = this.getHealthSuggestionsRepository.getHealthStatus(lastPlantPhoto.getUrl());
 
         healthAIDetection
                 .getCandidates()
                 .parallelStream()
-                .forEach(this.saveCandidateDiseasePlantsRepository::save);
-
-
-
+                .map(disease -> {
+                    Integer newId = this.saveCandidateDiseasePlantsRepository.save(disease);
+                    return disease.withId(newId);
+                })
+                .forEach(diseaseCandidate -> this.savePlantPhotoDiseaseRelationRepository.save(diseaseCandidate, lastPlantPhoto));
 
         return healthAIDetection;
     }
