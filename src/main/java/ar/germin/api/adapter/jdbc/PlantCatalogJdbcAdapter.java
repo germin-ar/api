@@ -15,11 +15,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.ErrorResponseException;
 
 
+
 @Component
 @Slf4j
 public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SavePlantCatalogRepository {
-    private static final String SELECT_PLANT_CATALOG_BY_SCIENTIFIC_NAME_PATH = "sql/selectPlantCatalogByScientificName.sql";
-    private static final String SAVE_PLANT_CATALOG_PATH = "sql/savePlantCatalog.sql";
+    public static final String SELECT_PLANT_CATALOG_BY_SCIENTIFIC_NAME_PATH = "sql/selectPlantCatalogByScientificName.sql";
+    public static final String SAVE_PLANT_CATALOG_PATH = "sql/savePlantCatalog.sql";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String selectPlantCatalogByScientificNameSql;
@@ -31,12 +32,10 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
         this.savePlantCatalogSql = sqlReader.readSql(SAVE_PLANT_CATALOG_PATH);
     }
 
+
     @Override
     public PlantCatalog getPlantCatalog(String slugScientificName) {
-
-
         try {
-
             MapSqlParameterSource params = new MapSqlParameterSource()
                     .addValue("slugScientificName", slugScientificName);
 
@@ -44,6 +43,8 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
                     selectPlantCatalogByScientificNameSql,
                     params,
                     new BeanPropertyRowMapper<>(PlantCatalogModel.class));
+
+            // Assuming PlantCatalogModel has toDomain() method to convert to PlantCatalog
             return plantCatalogModel.toDomain();
         } catch (EmptyResultDataAccessException e) {
             log.warn("PlantCatalog with scientific name [{}] not found", slugScientificName);
@@ -53,6 +54,8 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
             throw e;
         }
     }
+
+
 
     @Override
     public void save(PlantCatalog plantCatalog) {
@@ -71,13 +74,9 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
                     .addValue("insecticide", plantCatalog.getInsecticide())
                     .addValue("tips", plantCatalog.getInsecticide());
 
-
             log.info("Saving plant with sql [{}] with params: [{}]", savePlantCatalogSql, sqlParams);
 
-            //KeyHolder keyHolder = new GeneratedKeyHolder();
-            //this.namedParameterJdbcTemplate.update(savePlantCatalogSql, sqlParams, keyHolder, new String[]{"id"});
             this.namedParameterJdbcTemplate.update(savePlantCatalogSql, sqlParams);
-            //return Optional.ofNullable(keyHolder.getKey()).map(Number::intValue).orElse(-1);
         } catch (ErrorResponseException ex) {
             log.error("Error saving plantCatalog", ex);
             throw new ErrorPlantSaveException("No se pudo guardar el plantCatalog");

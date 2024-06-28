@@ -59,23 +59,24 @@ public class GardenJdbcAdapter implements GetGardenRepository, SaveGardenReposit
 
     }
 
+
     @Override
     public List<Garden> getByUserId(Integer userId) {
-        // TODO: implement me
         MapSqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("idUser", userId);
 
         log.info("Querying gardens with sql [{}] with param: [{}]", selectGardensByIdUserSql, parameters);
 
-        return Optional
-                .of(this.namedParameterJdbcTemplate.query(selectGardensByIdUserSql, parameters, BeanPropertyRowMapper.newInstance(GardenModel.class)))
-                .map(GardenModel::toDomainFromModelListGardens)
-                .orElseThrow(() -> {
-                    log.error("Gardens with id {} not found", userId);
-                    return new GardenNotFoundException();
-                });
+        List<GardenModel> gardenModels = this.namedParameterJdbcTemplate.query(selectGardensByIdUserSql, parameters, BeanPropertyRowMapper.newInstance(GardenModel.class));
 
+        if (gardenModels.isEmpty()) {
+            log.error("Gardens with user id {} not found", userId);
+            throw new GardenNotFoundException();
+        }
+
+        return GardenModel.toDomainFromModelListGardens(gardenModels);
     }
+
 
     @Override
     public Integer save(Integer userId, String name) {

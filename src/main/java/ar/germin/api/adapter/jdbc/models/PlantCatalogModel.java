@@ -1,9 +1,11 @@
 package ar.germin.api.adapter.jdbc.models;
 
 import ar.germin.api.application.domain.PlantCatalog;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class PlantCatalogModel {
     private Integer id;
     private String scientificName;
