@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240613-0" author="JFoppoli">
+        <addColumn tableName="plant_catalog" schemaName="garden">
+            <column name="width" type="double">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20240614_0" author="jfoppoli">
+        <addColumn tableName="plant_catalog" schemaName="garden">
+            <column name="url_image" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20240615_0" author="Jfoppoli">
+        <update tableName="plant_catalog" schemaName="garden">
+            <!--Vid-->
+            <column name="common_name" value="Vid"/>
+            <column name="scientific_name" value="Vitis vinifera"/>
+            <column name="slug_scientific_name" value="vitis-vinifera"/>
+            <column name="description"
+                    value="La vid se cultiva ampliamente para la obtención de sus uvas que se emplean en la elaboración de vinos y otras bebidas, como el mosto, el cual es básicamente el zumo de las uvas. Esta planta en jardinería se utiliza para cubrir pérgolas y crear zonas de sombra en patios y jardines."/>
+            <column name="watering_frecuency" value="Todas las semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care"
+                    value="Necesita agua promedio, agua regularmente pero sin acumulación de agua"/>
+            <column name="fertilizer" value="Aplicar fertilizante equilibrado durante la primavera."/>
+            <column name="pruning"
+                    value="Podar durante el invierno para eliminar el crecimiento viejo y fomentar la formación de nuevos brotes."/>
+            <column name="soil" value="Preferiblemente suelos bien drenados y ligeramente alcalinos."/>
+            <column name="repotting"
+                    value="Necesita un excelente drenaje en macetas para evitar el encharcamiento de las raíces."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, verano, otoño, invierno"/>
+            <column name="harvest_time" value="otoño"/>
+            <column name="plant_type" value="Enredadera"/>
+            <column name="family_name" value="Vitáceas"/>
+            <column name="genus" value="Vitis"/>
+            <column name="specie" value="Vid"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Principalmente por esquejes de madera semidura en primavera u otoño."/>
+            <column name="fruit"
+                    value="Uvas, utilizadas para la producción de vinos, mosto y otros productos derivados."/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="tips"
+                    value="Para obtener uvas de calidad, asegúrate de proporcionar un buen drenaje y exposición solar adecuada. La poda regular y el manejo de la fertilización son clave para un buen rendimiento."/>
+            <column name="insecticide"
+                    value="Puede requerir control de plagas como ácaros y pulgones, utiliza métodos orgánicos."/>
+            <column name="toxic" value="No."/>
+            <column name="dormancy" value="Experimenta un período de dormancia durante los meses de invierno."/>
+            <column name="atmospheric_humidity" valueNumeric="60.0"/>
+            <column name="max_size" valueNumeric="15000"/>
+            <column name="growth_season" value="primavera"/>
+            <column name="maintenance" value="Alto"/>
+            <column name="width" value="300"/>
+            <column name="url_image" value="https://robis.es/wp-content/uploads/2023/11/vitis-vinifera.jpg"/>
+            <where>slug_scientific_name='vitis-vinifera'</where>
+        </update>
+    </changeSet>
+    <!--tomillo-->
+    <changeSet id="20240615-1" author="jfoppoli">
+        <update tableName="plant_catalog" schemaName="garden">
+            <column name="common_name" value="Tomillo"/>
+            <column name="scientific_name" value="Thymus vulgaris"/>
+            <column name="slug_scientific_name" value="thymus-vulgaris"/>
+            <column name="description"
+                    value="El tomillo (Thymus vulgaris) es una hierba aromática mediterránea de la familia de la menta. Sus hojas de color verde grisáceo son muy fragantes y liberan un embriagador aroma a limón y menta cuando se trituran. Es popular en la cocina y agrega un sabor delicado a salsas, sopas, verduras y platos de carne. El tomillo crece mejor en condiciones soleadas y secas y prefiere suelos bien drenados. Es una planta anual resistente y fácil de cultivar, tolerante a la sequía y de bajo mantenimiento. Si bien se cultiva más comúnmente en jardines de hierbas, el tomillo también resulta atractivo para los polinizadores, lo que lo convierte en una excelente opción para los paisajes."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care"
+                    value="Necesita agua promedio, agua regularmente pero sin acumulación de agua"/>
+            <column name="fertilizer"
+                    value="Aplicar fertilizantes minerales en forma de aerosol. Estiércol bien podrido y fertilización con nitrógeno"/>
+            <column name="pruning" value="Recorte las hojas marchitas y enfermas una vez al mes."/>
+            <column name="soil" value="Arena, Franco, Calcáreo, Franco Arenoso, Neutro, Alcalino"/>
+            <column name="repotting" value="Necesita un excelente drenaje en macetas."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera"/>
+            <column name="harvest_time" value="otoño"/>
+            <column name="plant_type" value="Hierba, Arbusto"/>
+            <column name="family_name" value="Lamiáceas"/>
+            <column name="genus" value="Tomillos"/>
+            <column name="specie" value="Tomillo"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Principalmente por esquejes o división de matas."/>
+            <column name="fruit" value="No produce fruto comestible significativo."/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="tips"
+                    value="El tomillo es resistente a la sequía una vez establecido. Se recomienda podar ligeramente después de la floración para mantener su forma y fomentar un nuevo crecimiento."/>
+            <column name="insecticide" value="No suele requerir insecticidas específicos."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="50.0"/>
+            <column name="max_size" valueNumeric="30.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="30"/>
+            <column name="url_image"
+                    value="https://images.immediate.co.uk/production/volatile/sites/10/2018/08/fc028ed6-7629-4db5-8bf4-afe26ba6a0dc-7abaf36.jpg"/>
+            <where>slug_scientific_name='thymus-vulgaris'</where>
+        </update>
+    </changeSet>
+    <changeSet id="20240615-2" author="jfoppoli">
+        <update tableName="plant_catalog" schemaName="garden">
+            <column name="common_name" value="Espinaca"/>
+            <column name="scientific_name" value="Spinacia oleracea"/>
+            <column name="slug_scientific_name" value="spinacia-oleracea"/>
+            <column name="description"
+                    value="La espinaca (Spinacia oleracea) es una especie vegetal comestible que a menudo se considera un superalimento debido a su alto contenido de vitaminas, ácido fólico, fibra, hierro, magnesio y otros nutrientes. La espinaca se cultiva en jardines de todo el mundo y proporciona una importante fuente de alimento. Las hojas de la espinaca son ricas en vitaminas A, E y K, además de tener un alto contenido de yodo y antioxidantes."/>
+            <column name="watering_frecuency" value="Todas las semanas"/>
+            <column name="sunlight" value="sombra"/>
+            <column name="watering_care" value="Mantener el suelo húmedo pero sin encharcamiento"/>
+            <column name="fertilizer" value="Aplicar fertilizante orgánico equilibrado al inicio del crecimiento."/>
+            <column name="pruning" value="No requiere poda regular."/>
+            <column name="soil" value="Suelos ricos en materia orgánica, bien drenados y ligeramente ácidos."/>
+            <column name="repotting" value="No es necesario repotar la espinaca."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="primavera, verano, otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Amarantáceas"/>
+            <column name="genus" value="Spinacia"/>
+            <column name="specie" value="Espinaca"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="20.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation"
+                    value="La espinaca se propaga principalmente por semillas, sembradas directamente en el suelo o en recipientes."/>
+            <column name="fruit" value="No tiene"/>
+            <column name="growth_rate" value="Rápido."/>
+            <column name="tips"
+                    value="Mantén la espinaca fresca y bien regada para evitar que se vuelva amarga y fibrosa. Protege del calor excesivo para prolongar su temporada de crecimiento."/>
+            <column name="insecticide"
+                    value="Puede ser susceptible a pulgones y orugas. Se pueden aplicar insecticidas naturales."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="80.0"/>
+            <column name="max_size" valueNumeric="30"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="45"/>
+            <column name="url_image"
+                    value="https://www.asturnatura.com/photo/_files/photogallery/b2dc6996b3f97f37c90616539d15ed5c.jpg"/>
+            <where>slug_scientific_name='spinacia-oleracea'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-3" author="jfoppoli">
+        <update tableName="plant_catalog" schemaName="garden">
+            <column name="common_name" value="Tomate"/>
+            <column name="scientific_name" value="Solanum lycopersicum"/>
+            <column name="slug_scientific_name" value="solanum-lycopersicum"/>
+            <column name="description"
+                    value="El tomate (Solanum lycopersicum) es un cultivo de estación cálida que se cultiva ampliamente por sus frutos comestibles. Esta planta herbácea es miembro de la familia de las solanáceas y crece mejor en climas cálidos con abundante luz solar. Las frutas varían en tamaño, desde tomates cherry pequeños hasta tomates bistec grandes. Los tomates tienen un alto valor nutricional, ya que contienen licopeno, vitamina A y diversos minerales y antioxidantes."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care"
+                    value="Necesidades promedio de agua. Riegue cuando los 3 cm superiores del suelo se hayan secado. Asegúrese de regar a fondo para saturar el suelo y permitir que el exceso de agua se drene completamente."/>
+            <column name="fertilizer"
+                    value="Fertilice cada 2-3 semanas con un fertilizante balanceado durante la temporada de crecimiento."/>
+            <column name="pruning"
+                    value="Pode las ramas laterales y las hojas inferiores para promover la circulación de aire."/>
+            <column name="soil"
+                    value="Prefiere suelos bien drenados y ricos en materia orgánica. Mantener el suelo ligeramente ácido a neutro (pH 6-7)."/>
+            <column name="repotting"
+                    value="Al plantar en macetas, asegúrese de que tengan un excelente drenaje para evitar el encharcamiento de las raíces."/>
+            <column name="lifespan" value="Anual, Perenne"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="verano, otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Solanáceas"/>
+            <column name="genus" value="Solanum"/>
+            <column name="specie" value="Tomate"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation"
+                    value="Se propaga principalmente por semillas. Las semillas deben sembrarse en interiores al menos 6-8 semanas antes de la última helada esperada."/>
+            <column name="fruit" value="El fruto del tomate es una baya pulposa y comestible."/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="tips"
+                    value="Apoye las plantas de tomate con estacas o jaulas para soportar el peso de los frutos maduros. Mantenga una buena circulación de aire alrededor de las plantas para prevenir enfermedades fúngicas."/>
+            <column name="insecticide"
+                    value="Proteger de plagas como los áfidos y los gusanos cortadores utilizando insecticidas específicos."/>
+            <column name="toxic" value="Tóxica para las mascotas"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="60.0"/>
+            <column name="max_size" valueNumeric="300.0"/>
+            <column name="growth_season" value="Verano, Otoño"/>
+            <column name="maintenance" value="Alto"/>
+            <column name="width" value="150"/>
+            <column name="url_image"
+                    value="https://gvb.imgix.net/content/dam/gini/hausinfo/bilder/garten/tomaten-pflanzen.jpg.gini-transform/original/tomaten-pflanzen.1646515924857.jpeg"/>
+            <where>slug_scientific_name='solanum-lycopersicum'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-4" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Romero"/>
+            <column name="scientific_name" value="Salvia rosmarinus"/>
+            <column name="slug_scientific_name" value="salvia-rosmarinus"/>
+            <column name="description"
+                    value="El romero es una planta que gusta de los climas costeros. Suele crecer en esas regiones espontáneamente o se cultiva para su uso comercial. Esta planta aromática de intenso olor. Tiene múltiples usos culinarios para aromatizar."/>
+            <column name="watering_frecuency" value="Todas las semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care"
+                    value="Necesita agua regularmente para mantener el suelo ligeramente húmedo, pero evitando la acumulación de agua."/>
+            <column name="fertilizer" value="Aplicar un fertilizante equilibrado cada primavera."/>
+            <column name="pruning" value="Podar ligeramente después de la floración."/>
+            <column name="soil" value="Prefiere suelos bien drenados y ligeramente alcalinos."/>
+            <column name="repotting"
+                    value="Plantar en macetas con excelente drenaje para evitar el encharcamiento de las raíces."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, verano, otoño, invierno."/>
+            <column name="harvest_time" value="verano, otoño"/>
+            <column name="plant_type" value="Arbusto"/>
+            <column name="family_name" value="Lamiáceas"/>
+            <column name="genus" value="Salvias"/>
+            <column name="specie" value="Romero"/>
+            <column name="temperature_min" valueNumeric="15.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="El romero se propaga principalmente por esquejes de tallo."/>
+            <column name="fruit"
+                    value="El romero produce pequeñas bayas que contienen semillas, aunque no son generalmente consumidas."/>
+            <column name="growth_rate" value="Moderado."/>
+            <column name="tips"
+                    value="El romero es resistente a la sequía una vez establecido. Prefiere condiciones cálidas y soleadas. Las hojas de romero son comestibles y se utilizan en la cocina para aromatizar diversos platos."/>
+            <column name="insecticide" value="Es una planta repelente natural."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="60.0"/>
+            <column name="max_size" valueNumeric="100.0"/>
+            <column name="growth_season" value="Primavera, verano, Invierno"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="60"/>
+            <column name="url_image" value="https://static.inaturalist.org/photos/87326219/large.jpg"/>
+            <where>slug_scientific_name='salvia-rosmarinus'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-5" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Salvia"/>
+            <column name="scientific_name" value="Salvia officinalis"/>
+            <column name="slug_scientific_name" value="salvia-officinalis"/>
+            <column name="description"
+                    value="La salvia tiene hábitats naturales en herbazales de suelo seco y rocoso tanto a nivel del mar como en la montaña. Es un subarbusto de hoja perenne originario de las regiones mediterráneas. Tiene hojas fragantes de color verde grisáceo y racimos de flores de dos labios, sin perfume, de color azul violeta en verano. Las hojas y flores se utilizan en la cocina. También es la fuente del aceite esencial. La planta es elogiada por sus bonitas flores, su sabroso aroma y sus poderosas cualidades medicinales."/>
+            <column name="watering_frecuency" value="Todas las semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care"
+                    value="Necesita agua regularmente para mantener el suelo ligeramente húmedo, pero evitando la acumulación de agua."/>
+            <column name="fertilizer"
+                    value="Aplicar fertilizante equilibrado cada primavera para promover un crecimiento saludable."/>
+            <column name="pruning"
+                    value="Podar en primavera para fomentar un crecimiento compacto y renovar el follaje."/>
+            <column name="soil" value="Prefiere suelos bien drenados y ligeramente alcalinos."/>
+            <column name="repotting"
+                    value="Plante en macetas con un diámetro de al menos 10 cm para permitir un buen desarrollo radicular. Asegúrese de que haya un excelente drenaje en las macetas."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, verano, Otoño, invierno"/>
+            <column name="harvest_time" value="verano, otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Lamiáceas"/>
+            <column name="genus" value="Salvias"/>
+            <column name="specie" value="Salvia"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Principalmente por esquejes de tallo en primavera u otoño."/>
+            <column name="fruit"
+                    value="Fruto de naturaleza esquizocarpiana, que contiene 4 cámaras con pequeñas nueces esféricas."/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="tips"
+                    value="La salvia es resistente a la sequía una vez establecida. Proteger de heladas severas en climas fríos."/>
+            <column name="insecticide"
+                    value="Controlar plagas como ácaros y pulgones con métodos orgánicos si es posible."/>
+            <column name="toxic" value="Tóxica en grandes cantidades."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="60.0"/>
+            <column name="max_size" valueNumeric="100.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="60"/>
+            <column name="url_image"
+                    value="https://www.myseeds.co/cdn/shop/files/Sage_Italian_Salviaofficinalis_plantwithpollinators002_1024x1024.jpg?v=1689184064"/>
+            <where>slug_scientific_name='salvia-officinalis'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-6" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Frambuesa"/>
+            <column name="scientific_name" value="Rubus idaeus"/>
+            <column name="slug_scientific_name" value="rubus-idaeus"/>
+            <column name="description"
+                    value="La frambuesa (Rubus idaeus) es un arbusto de bajo crecimiento. Produce bayas de color rojo brillante con alto contenido de vitamina C, calcio, hierro y fibra. Los frutos se utilizan popularmente en postres y en jugos, mermeladas y jaleas. Las hojas se pueden remojar en agua caliente para preparar un té con un sabor ligero y astringente. La planta crece mejor en ambientes soleados y protegidos y es lo suficientemente resistente como para sobrevivir inviernos fríos. Forma grandes parches de cañas densas y leñosas y necesita una poda regular para mantener la forma y asegurar una cosecha abundante de frutas dulces y sabrosas."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care"
+                    value="Necesita agua regularmente para mantener el suelo ligeramente húmedo, pero evitando la acumulación de agua."/>
+            <column name="fertilizer" value="Aplicar fertilizante equilibrado durante la primavera."/>
+            <column name="pruning"
+                    value="Podar en invierno para eliminar ramas viejas y fomentar la producción de frutos en ramas jóvenes."/>
+            <column name="soil" value="Prefiere suelos ricos en materia orgánica y bien drenados."/>
+            <column name="repotting"
+                    value="No es común cultivar frambuesas en macetas, prefieren crecer en el suelo directamente."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="otoño"/>
+            <column name="harvest_time" value="primavera, verano, otoño"/>
+            <column name="plant_type" value="Arbusto, Enredadera"/>
+            <column name="family_name" value="Rosáceas"/>
+            <column name="genus" value="Rubus"/>
+            <column name="specie" value="Frambuesa"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Principalmente por esquejes o división de matas."/>
+            <column name="fruit"
+                    value="El fruto de la frambuesa es una baya compuesta que varía en color desde rojo hasta amarillo y negro, dependiendo de la variedad."/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="tips"
+                    value="Proteger los brotes jóvenes de las heladas. Mantener el suelo libre de malezas para evitar la competencia por nutrientes."/>
+            <column name="insecticide"
+                    value="Controlar plagas como ácaros y pulgones con métodos orgánicos si es posible."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Pasa por un período de dormancia durante el invierno."/>
+            <column name="atmospheric_humidity" valueNumeric="70.0"/>
+            <column name="max_size" valueNumeric="300.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="150"/>
+            <column name="url_image"
+                    value="https://essentialmery.com/wp-content/uploads/2023/05/planta_fambuesas_.png"/>
+            <where>slug_scientific_name='rubus-idaeus'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-7" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Guisante"/>
+            <column name="scientific_name" value="Pisum sativum"/>
+            <column name="slug_scientific_name" value="pisum-sativum"/>
+            <column name="description"
+                    value="Es una planta anual con semillas pequeñas, redondas y comestibles que son de color verde o amarillo cuando maduran. Prefiere pleno sol y suelos bien drenados, ricos en nutrientes y con un pH neutro a ligeramente alcalino. Es fácil de cuidar y requiere sólo un poco de fertilizante y agua regular. Los guisantes son populares en ensaladas y son una gran fuente de proteínas de origen vegetal. Cuando se cocinan, aportan un sabor dulce y delicioso, además de una gran cantidad de vitaminas, minerales y antioxidantes."/>
+            <column name="watering_frecuency" value="Regularmente."/>
+            <column name="sunlight" value="sol pleno, sol parcial"/>
+            <column name="watering_care"
+                    value="Necesita agua regularmente para mantener el suelo húmedo pero no encharcado."/>
+            <column name="fertilizer" value="Aplicar fertilizante equilibrado durante la fase de crecimiento activo."/>
+            <column name="pruning"
+                    value="No requiere poda específica; mantener las malezas bajo control alrededor de las plantas."/>
+            <column name="soil" value="Prefiere suelos húmedos y bien drenados, ricos en materia orgánica."/>
+            <column name="repotting" value="No suele ser necesario; plantar directamente en el suelo."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="Primavera, verano, otoño, invierno"/>
+            <column name="harvest_time" value="Verano, otoño"/>
+            <column name="plant_type" value="Enredadera, Hierba"/>
+            <column name="family_name" value="Fabáceas"/>
+            <column name="genus" value="Pisum"/>
+            <column name="specie" value="Pisum sativum"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Principalmente por semillas."/>
+            <column name="fruit" value="El fruto son las vainas que contienen los guisantes."/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="tips"
+                    value="Entutorar las plantas para un mejor crecimiento vertical y fácil recolección de los guisantes.Las semillas (guisantes) son comestibles y altamente nutritivas, ricas en proteínas y otros nutrientes."/>
+            <column name="insecticide"
+                    value="Controlar plagas como los pulgones y ácaros con métodos orgánicos si es posible."/>
+            <column name="toxic" value="No."/>
+            <column name="dormancy" value="Latencia de verano, Latencia de invierno"/>
+            <column name="atmospheric_humidity" valueNumeric="50.0"/>
+            <column name="max_size" valueNumeric="180.0"/>
+            <column name="growth_season" value="Primavera, Otoño"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="60"/>
+            <column name="url_image"
+                    value="https://inaturalist-open-data.s3.amazonaws.com/photos/57714057/original.jpg"/>
+            <where>slug_scientific_name='pisum-sativum'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-8" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Frijol"/>
+            <column name="scientific_name" value="Phaseolus vulgaris"/>
+            <column name="slug_scientific_name" value="phaseolus-vulgaris"/>
+            <column name="description"
+                    value="El frijol es uno de los principales cultivos de legumbres, consumido y cultivado a nivel global. Se consumen tanto sus vainas verdes como sus semillas verdes o secas. Estas últimas se conocen como habas, alubias y con diferentes nombres según el país y la región. La planta es una excelente fijadora de nitrógeno, por lo que funciona bien para la rotación de cultivos y para mantener los suelos fértiles. Esta especie es extremadamente abundante y fácil de cultivar, lo que la convierte en un cultivo popular con una amplia gama de usos culinarios."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Mantener el suelo húmedo pero sin encharcamiento."/>
+            <column name="fertilizer" value="Aplicar fertilizante equilibrado durante la fase de crecimiento activo."/>
+            <column name="pruning"
+                    value="No requiere poda específica; mantener las malezas bajo control alrededor de las plantas."/>
+            <column name="soil" value="Prefiere suelos fértiles y bien drenados; pH entre 6.0 y 7.5."/>
+            <column name="repotting"
+                    value="No suele ser necesario; plantar directamente en el suelo o macetas grandes."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="Verano, Otoño"/>
+            <column name="plant_type" value="Enredadera, Hierba"/>
+            <column name="family_name" value="Fabáceas"/>
+            <column name="genus" value="Phaseolus"/>
+            <column name="specie" value="Phaseolus vulgaris"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Se propaga principalmente por semillas."/>
+            <column name="fruit" value="El fruto son las vainas que contienen las semillas (frijoles)."/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="tips" value="Entutorar las plantas para un mejor crecimiento vertical y fácil cosecha."/>
+            <column name="insecticide"
+                    value="Controlar plagas como los pulgones y ácaros con métodos orgánicos si es posible."/>
+            <column name="toxic" value="No."/>
+            <column name="dormancy" value="Letargo invernal."/>
+            <column name="atmospheric_humidity" valueNumeric="60.0"/>
+            <column name="max_size" valueNumeric="60.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="90"/>
+            <column name="url_image"
+                    value="https://d2seqvvyy3b8p2.cloudfront.net/4940d1c510d4572306e654ade3874d25.jpg"/>
+            <where>slug_scientific_name='phaseolus-vulgaris'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-9" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Palta"/>
+            <column name="scientific_name" value="Persea americana"/>
+            <column name="slug_scientific_name" value="persea-americana"/>
+            <column name="description"
+                    value="Es un gran árbol de hoja perenne que puede crecer hasta 20 metros de altura, con un dosel amplio y extendido de hojas de color verde brillante. La corteza es gruesa, de color marrón grisáceo y surcada. El fruto del árbol de palta es una drupa de forma ovalada que contiene una sola semilla grande. La pulpa de la palta es atractiva, mantecosa y con sabor a nuez. Las paltas son una fuente de vitaminas y minerales esenciales, y son un refrigerio o ingrediente delicioso y rico en nutrientes en muchos platos. También son valorados por su aceite comestible, que se utiliza ampliamente en cosmética y como ingrediente en muchos alimentos. Por otra parte, esta especie resulta un buen árbol de sombra en los jardines."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Regularmente para mantener el suelo húmedo pero no encharcado."/>
+            <column name="fertilizer"
+                    value="Aplicar fertilizante orgánico una vez al mes durante la temporada de crecimiento."/>
+            <column name="pruning" value="Podar ligeramente para dar forma y estimular un crecimiento saludable."/>
+            <column name="soil" value="Prefiere suelos bien drenados y ricos en materia orgánica."/>
+            <column name="repotting" value="El trasplante no es común; plantar directamente en el suelo cuando joven."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="Primavera, otoño"/>
+            <column name="harvest_time" value="otoño"/>
+            <column name="plant_type" value="Árbol"/>
+            <column name="family_name" value="Lauráceas"/>
+            <column name="genus" value="Persea"/>
+            <column name="specie" value="Persea americana"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí."/>
+            <column name="propagation"
+                    value="Se propaga principalmente por injerto o semillas, siendo el injerto preferido para mantener la calidad del fruto."/>
+            <column name="fruit"
+                    value="Produce la conocida palta o aguacate, utilizado en una variedad de platos culinarios y guarniciones."/>
+            <column name="growth_rate" value="Bajo"/>
+            <column name="tips"
+                    value="Proteger los árboles jóvenes del viento fuerte y proporcionar soporte si es necesario."/>
+            <column name="insecticide"
+                    value="Puede ser susceptible a plagas como la palomilla del aguacate; controlar con métodos orgánicos si es posible."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No presenta un periodo de dormancia significativo."/>
+            <column name="atmospheric_humidity" valueNumeric="60.0"/>
+            <column name="max_size" valueNumeric="2000.0"/>
+            <column name="growth_season" value="Otoño"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="2500"/>
+            <column name="url_image" value="https://www.frotzfruits.com/wp-content/uploads/2021/10/AGUACATE-ARBOL.jpg"/>
+            <where>slug_scientific_name='persea-americana'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-10" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Hierbabuena"/>
+            <column name="scientific_name" value="Mentha spicata"/>
+            <column name="slug_scientific_name" value="mentha-spicata"/>
+            <column name="description"
+                    value="Las hojas de la hierbabuena se utilizan frescas o secas para condimentar los platos y elaborar bebidas. Su aceite esencial tiene diversos usos, como la fabricación de dentífricos gracias a su aroma refrescante. En ocasiones se cultiva ornamentalmente por su interesante follaje, a pesar de que sus raíces se expanden agresivamente y pueden hacerla una maleza molesta."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita mantener el suelo húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer"
+                    value="Aplicar un fertilizante equilibrado una vez al mes durante la temporada de crecimiento."/>
+            <column name="pruning"
+                    value="Recortar las hojas y tallos marchitos para promover un crecimiento más vigoroso."/>
+            <column name="soil" value="Suelo fértil y bien drenado."/>
+            <column name="repotting"
+                    value="Replantar en una maceta más grande cada 2-3 años para evitar que las raíces se vuelvan demasiado densas."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="primavera, otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Lamiáceas"/>
+            <column name="genus" value="Mentha"/>
+            <column name="specie" value="Mentha spicata"/>
+            <column name="temperature_min" valueNumeric="0.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation"
+                    value="Se propaga fácilmente por división de matas en primavera o mediante esquejes de raíz."/>
+            <column name="fruit" value="No produce frutos."/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="tips"
+                    value="Para controlar su expansión, se recomienda plantarla en contenedores o utilizar barreras físicas en el suelo."/>
+            <column name="insecticide"
+                    value="Generalmente no requiere insecticidas, pero puede ser susceptible a pulgones y ácaros."/>
+            <column name="toxic" value="Es tóxica para mascotas."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="40.0"/>
+            <column name="max_size" valueNumeric="0.5"/>
+            <column name="growth_season" value="Verano, Otoño"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="100"/>
+            <column name="url_image"
+                    value="https://www.myseeds.co/cdn/shop/files/Mint_Spearmint_Menthaspicata_plantwithpollinators001_1024x1024.jpg?v=1696867058"/>
+            <where>slug_scientific_name='mentha-spicata'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-11" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Melisa"/>
+            <column name="scientific_name" value="Melissa officinalis"/>
+            <column name="slug_scientific_name" value="melissa-officinalis"/>
+            <column name="description"
+                    value="Es una planta herbácea perenne ampliamente cultivada en jardines. Su nombre científico Melissa officinalis proviene del griego y significa abeja, ya que es una planta muy apreciada por las mismas. Las hojas y flores son comestibles y se utilizan principalmente para hacer infusiones."/>
+            <column name="watering_frecuency" value="Todas las semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita mantener el suelo húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer"
+                    value="Aplicar un fertilizante equilibrado cada 4-6 semanas durante la temporada de crecimiento."/>
+            <column name="pruning"
+                    value="Recortar las flores marchitas para promover un crecimiento saludable y compacto."/>
+            <column name="soil" value="Preferiblemente suelo bien drenado y fértil."/>
+            <column name="repotting"
+                    value="Necesita un excelente drenaje en las macetas para evitar el encharcamiento de las raíces."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera"/>
+            <column name="harvest_time" value="primavera"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Lamiáceas"/>
+            <column name="genus" value="Melissa"/>
+            <column name="specie" value="Melissa officinalis"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation"
+                    value="Se propaga fácilmente por semillas o por división de matas en primavera."/>
+            <column name="fruit" value="No produce frutos."/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="tips"
+                    value="Es atractiva para las abejas y otros polinizadores, por lo que puede usarse para atraer fauna beneficiosa al jardín."/>
+            <column name="insecticide"
+                    value="Generalmente no requiere insecticidas, pero puede ser susceptible a pulgones y ácaros."/>
+            <column name="toxic" value="No."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="50.0"/>
+            <column name="max_size" valueNumeric="150.0"/>
+            <column name="growth_season" value="Verano, Otoño"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="40"/>
+            <column name="url_image"
+                    value="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Melissa_officinalis%2C_2020-07-11%2C_Beechview%2C_01.jpg/1200px-Melissa_officinalis%2C_2020-07-11%2C_Beechview%2C_01.jpg"/>
+            <where>slug_scientific_name='melissa-officinalis'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-12" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Lavanda"/>
+            <column name="scientific_name" value="Lavandula angustifolia"/>
+            <column name="slug_scientific_name" value="lavandula-angustifolia"/>
+            <column name="description"
+                    value="Las flores del lavanda se caracterizan por su agradable e intenso aroma, de ellas se extrae aceite esencial que tiene diversos usos, incluso cosméticos. En adición, las flores secas en bolsitas funcionan bien para aromatizar y prevenir la aparición de polillas en los armarios. Esta planta de fácil cultivo prospera bien en suelos rocosos o secos del jardín, donde otras plantas tendrían más dificultades. Las flores son comestibles y se utilizan en la gastronomía como decoración o saborizante."/>
+            <column name="watering_frecuency" value="Todas las semanas"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita mantener el suelo húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer"
+                    value="Aplicar un fertilizante equilibrado una vez al mes durante la temporada de crecimiento."/>
+            <column name="pruning"
+                    value="Podar las flores marchitas para fomentar la floración continua y la formación de nuevas ramas."/>
+            <column name="soil" value="Suelo bien drenado, preferiblemente arenoso o rocoso."/>
+            <column name="repotting"
+                    value="Requiere un excelente drenaje en las macetas para evitar el encharcamiento de las raíces."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, verano, Otoño, invierno"/>
+            <column name="harvest_time" value="verano, otoño"/>
+            <column name="plant_type" value="Hierba, Arbusto"/>
+            <column name="family_name" value="Lamiáceas"/>
+            <column name="genus" value="Lavandula"/>
+            <column name="specie" value="Lavandula angustifolia"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Se propaga principalmente por corte, capas y semillas."/>
+            <column name="fruit" value="No produce frutos."/>
+            <column name="growth_rate" value="Moderado"/>
+            <column name="tips"
+                    value="La lavanda es atractiva para las abejas y otros polinizadores, por lo que puede usarse para atraer fauna beneficiosa al jardín."/>
+            <column name="insecticide"
+                    value="Generalmente no requiere insecticidas, pero puede ser susceptible a pulgones y ácaros."/>
+            <column name="toxic" value="Es tóxica para mascotas."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="40.0"/>
+            <column name="max_size" valueNumeric="1.5"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="100"/>
+            <column name="url_image" value="https://inaturalist-open-data.s3.amazonaws.com/photos/157057/original.jpg"/>
+            <where>slug_scientific_name='lavandula-angustifolia'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-13" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Lechuga"/>
+            <column name="scientific_name" value="Lactuca sativa"/>
+            <column name="slug_scientific_name" value="lactuca-sativa"/>
+            <column name="description"
+                    value="La lechuga es una planta herbácea originaria de zonas templadas que se cultiva por su consumo como alimento, principalmente servida cruda en ensaladas. Existen diferentes variedades dentro de esta hortaliza. Es una gran fuente de vitaminas y minerales esenciales como hierro, calcio, magnesio, potasio y vitaminas A, C y K. Hoy en día, la lechuga se puede encontrar en las tiendas de comestibles durante todo el año y también es popular entre los jardineros caseros debido a su naturaleza fácil de cultivar."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Necesita mantener el suelo húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer"
+                    value="Aplicar fertilizante orgánico o equilibrado cada 3-4 semanas durante la temporada de crecimiento."/>
+            <column name="pruning"
+                    value="Eliminar hojas amarillas o marchitas para fomentar un crecimiento saludable."/>
+            <column name="soil" value="Suelo rico en nutrientes, bien drenado y con materia orgánica."/>
+            <column name="repotting"
+                    value="Si prefieres trasplantar plántulas, asegúrate de hacerlo en un momento fresco del día para evitar el estrés por calor."/>
+            <column name="lifespan" value="Anual, Bianual, Perenne"/>
+            <column name="planting_time" value="Primavera, Verano, otoño, invierno"/>
+            <column name="harvest_time" value="Primavera, Verano, Otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Asteráceas"/>
+            <column name="genus" value="Lactuca"/>
+            <column name="specie" value="Lechuga"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Se propaga principalmente por semillas."/>
+            <column name="fruit"
+                    value="La lechuga produce semillas, pero no se consume la fruta en términos culinarios."/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="tips"
+                    value="Mantener la lechuga bien regada para evitar que se vuelva amarga. La sombra parcial puede ser útil en climas muy cálidos y húmedos, pero el crecimiento de la lechuga puede verse atrofiado y menos productivo sin exposición directa al sol. Las plantas pueden requerir menos luz solar a finales del verano o principios del otoño si las temperaturas son más cálidas de lo normal. El riego y la fertilización adecuados también son importantes para una producción saludable de lechuga."/>
+            <column name="insecticide"
+                    value="Controlar plagas como pulgones y ácaros con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="No."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="70.0"/>
+            <column name="max_size" valueNumeric="90.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="30"/>
+            <column name="url_image" value="https://www.gardensonline.com.au/Uploads/Plant/939/Lactuca-Sativa-1a.jpg"/>
+            <where>slug_scientific_name='lactuca-sativa'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-14" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Calabacín"/>
+            <column name="scientific_name" value="Cucurbita pepo"/>
+            <column name="slug_scientific_name" value="cucurbita-pepo"/>
+            <column name="description"
+                    value="El calabacín es una planta herbácea rastrera, es increíble porque es deliciosa y nutritiva, baja en calorías pero rica en fibra y muchas vitaminas y minerales. Esta calabaza es una excelente manera de incorporar sus porciones diarias de vegetales. Este cultivo de estación cálida también es fácil de cultivar y requiere muy poco mantenimiento una vez establecido. Sus vibrantes colores amarillo y verde pueden alegrar cualquier plato. También se puede consumir fresco, a la plancha, al horno o hervido. Además, sus hojas, flores, frutos inmaduros y semillas son todos comestibles."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value=" sol pleno"/>
+            <column name="watering_care" value="Necesita mantener el suelo húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer"
+                    value="Aplicar fertilizante equilibrado cada 3-4 semanas durante la temporada de crecimiento."/>
+            <column name="pruning"
+                    value="Podar las ramas secundarias para promover un crecimiento más vigoroso y una mejor producción de frutos."/>
+            <column name="soil" value="Preferiblemente suelos fértiles y bien drenados."/>
+            <column name="repotting"
+                    value="El calabacín se cultiva en el suelo directamente y no se suele trasplantar."/>
+            <column name="lifespan" value="Anual, Perenne"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="verano, otoño"/>
+            <column name="plant_type" value="Enredadera, Hierba"/>
+            <column name="family_name" value="Cucurbitáceas"/>
+            <column name="genus" value="Calabazas"/>
+            <column name="specie" value="Calabacín"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Se propaga principalmente por semillas."/>
+            <column name="fruit"
+                    value="El fruto del calabacín es comestible y se consume en una variedad de formas, desde crudo hasta cocido."/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="tips"
+                    value="Cosechar los calabacines cuando sean pequeños para una mejor calidad y sabor. Es importante regar por la mañana para que las hojas de la planta puedan absorber el agua durante el día y la tierra se seque por completo antes del anochecer. Durante períodos de clima seco prolongado o calor extremo, es posible que se requiera riego adicional. Es mejor regar con más frecuencia durante períodos de tiempo más cortos que con poca frecuencia y durante períodos más largos."/>
+            <column name="insecticide"
+                    value="Controlar plagas como ácaros y pulgones con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="No."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="70.0"/>
+            <column name="max_size" valueNumeric="76.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="500"/>
+            <column name="url_image"
+                    value="https://plantasflores.com/wp-content/uploads/2021/11/Cucurbita-pepo-ssp-pepo.jpg"/>
+            <where>slug_scientific_name='cucurbita-pepo'</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="20240615-15" author="jfoppoli">
+        <update schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Calabaza moscada"/>
+            <column name="scientific_name" value="Cucurbita moschata"/>
+            <column name="slug_scientific_name" value="cucurbita-moschata"/>
+            <column name="description"
+                    value="La calabaza moscada es una planta enredadera. Su nombre científico, Cucurbita moschata, hace referencia a su fruta comestible de color naranja y sabor dulce cuando se cocina. Esta calabaza puede alcanzar hasta 3500 g de peso y es muy nutritivo y aporta muchas vitaminas y minerales esenciales. Florece en verano, con flores solitarias de color amarillo anaranjado."/>
+            <column name="watering_frecuency" value="2 veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care"
+                    value="Necesita agua regularmente para mantener el suelo húmedo, evitando la acumulación de agua."/>
+            <column name="fertilizer"
+                    value="Aplicar fertilizante equilibrado cada 3-4 semanas durante la temporada de crecimiento."/>
+            <column name="pruning"
+                    value="Podar las ramas secundarias para promover un crecimiento más vigoroso y una mejor producción de frutos."/>
+            <column name="soil" value="Prefiere suelos fértiles y bien drenados."/>
+            <column name="repotting"
+                    value="La calabaza moscada se cultiva en el suelo directamente y no se suele trasplantar."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, Otoño"/>
+            <column name="harvest_time" value="verano, otoño"/>
+            <column name="plant_type" value="Enredadera, Hierba"/>
+            <column name="family_name" value="Cucurbitáceas"/>
+            <column name="genus" value="Calabazas"/>
+            <column name="specie" value="Calabaza moscada"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Se propaga principalmente por semillas."/>
+            <column name="fruit"
+                    value="El fruto de la calabaza moscada es grande, de color naranja y tiene un sabor dulce ideal para cocina."/>
+            <column name="growth_rate" value="Rápido"/>
+            <column name="tips"
+                    value="Proteger los frutos en desarrollo del contacto directo con el suelo para prevenir daños. Durante períodos de calor intenso o sequía, aumenta la frecuencia de riego para asegurar que las plantas no se sequen."/>
+            <column name="insecticide"
+                    value="Controlar plagas como ácaros y pulgones con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="70.0"/>
+            <column name="max_size" valueNumeric="500.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="400"/>
+            <column name="url_image"
+                    value="https://upload.wikimedia.org/wikipedia/commons/1/16/Cucurbita_moschata_HabitusFruit_BotGardBln0906.JPG"/>
+            <where>slug_scientific_name='cucurbita-moschata'</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>
