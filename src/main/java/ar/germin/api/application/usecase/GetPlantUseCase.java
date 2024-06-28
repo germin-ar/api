@@ -29,8 +29,11 @@ public class GetPlantUseCase implements GetPlantPortIn {
     public Plant get(Integer idUser, Integer idPlant) {
         Plant plant = this.getPlantRepository.getByIdUserAndIdPlant(idUser, idPlant);
 
-        List<PlantPhoto> photos = this.getPlantPhotosRepository.getByPlantId(plant.getId());
+        if (plant == null) {
+            return null; // Return null if plant is not found
+        }
 
+        List<PlantPhoto> photos = this.getPlantPhotosRepository.getByPlantId(plant.getId());
         List<PlantHistory> history = this.getPlantHistoryRepository.getByPlantId(plant.getId());
 
         return plant.withPhotos(photos).withHistory(history);

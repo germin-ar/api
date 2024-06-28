@@ -8,6 +8,7 @@ import ar.germin.api.application.port.out.GetPlantRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -37,24 +38,30 @@ class GetPlantUseCaseTest {
 
     @Test
     void testGetPlantByUserIdAndPlantIdReturnsNullWhenNoPlantsExists() {
+        // Given
         when(getPlantRepository.getByIdUserAndIdPlant(2, null)).thenReturn(null);
 
         GetPlantPortIn useCase = new GetPlantUseCase(getPlantRepository, getPlantPhotosRepository, getPlantHistoryRepository);
 
+        // When
         Plant result = useCase.get(2, null);
 
-        Assertions.assertNull(result);
+        // Then
+        assertNull(result);
     }
 
     @Test
     void testGetPlantByUserIdAndPlantIdReturnsNullWhenUserDoesntExist() {
+        // Given
         when(getPlantRepository.getByIdUserAndIdPlant(null, 5)).thenReturn(null);
 
         GetPlantPortIn useCase = new GetPlantUseCase(getPlantRepository, getPlantPhotosRepository, getPlantHistoryRepository);
 
+        // When
         Plant result = useCase.get(null, 5);
 
-        Assertions.assertNull(result);
+        // Then
+        assertNull(result);
     }
 
 }

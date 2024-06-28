@@ -1,14 +1,14 @@
 package ar.germin.api.application.domain;
 
-import lombok.Builder;
-import lombok.Value;
-import lombok.With;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Builder
 @Value
+@EqualsAndHashCode
+@AllArgsConstructor
 public class Plant {
     Integer id;
     String alias;

@@ -1,6 +1,5 @@
 package ar.germin.api.adapter.jdbc;
 
-import ar.germin.api.adapter.jdbc.models.CandidateModel;
 import ar.germin.api.application.domain.Candidate;
 import ar.germin.api.application.domain.FileImage;
 import ar.germin.api.application.port.out.GetCandidateRepository;
@@ -15,24 +14,22 @@ import java.util.List;
 @Slf4j
 @Component
 public class CandidateJdbcAdapter implements SaveCandidateRepository, GetCandidateRepository {
-    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private final SaveCandidateRepository saveCandidateRepository;
 
     @Autowired
-    public CandidateJdbcAdapter(SqlReader sqlReader,
-                                NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    public CandidateJdbcAdapter(SaveCandidateRepository saveCandidateRepository, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.saveCandidateRepository = saveCandidateRepository;
     }
 
     @Override
     public Integer save(Candidate candidate) {
-
-        CandidateModel candidateModel = CandidateModel.fromDomain(candidate);
-        return 1;
-        //TODO retorna 1?
+        // No es necesario convertir Candidate a CandidateModel si saveCandidateRepository.save espera un Candidate
+        Integer result = saveCandidateRepository.save(candidate);
+        return result;  // Retorna el resultado del método save de saveCandidateRepository
     }
 
     @Override
     public List<Candidate> getByFileImage(FileImage fileImage) {
-        return List.of();
+        return List.of();  // Implementa la lógica para obtener candidatos por imagen de archivo
     }
 }
