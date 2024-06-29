@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.io.FileNotFoundException;
 import java.sql.Types;
 import java.util.Optional;
 
@@ -44,26 +43,6 @@ public class FileImageJdbcAdapter implements SaveFileRepository, GetFileReposito
             log.error("Error saving image for duplicate key", ex);
             throw new FileImageAlreadyExistsException("Image already exists");
         }
-    }
-
-    @Override
-    public FileImage saveHistory(FileImage fileImage, Integer idPlant) {
-        try {
-            String sql = "insert into garden.plant_history (id_plant, url_image, notes, height, alias) values (:idPlant, :urlImage, :notes, :height, :alias)";
-            MapSqlParameterSource params = new MapSqlParameterSource()
-                    .addValue("idPlant", idPlant)
-                    .addValue("urlImage", fileImage.getFilePath())
-                    .addValue("notes", "imagen subida")
-                    .addValue("height", 0)
-                    .addValue("alias", "imagen subida");
-
-            log.info("Saving history with sql [{}] with params: [{}]", sql, params);
-            this.namedParameterJdbcTemplate.update(sql, params);
-            return fileImage;
-        }catch (RuntimeException ex) {
-            throw new RuntimeException("error saving history", ex);
-        }
-
     }
 
     @Override

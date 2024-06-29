@@ -3,12 +3,12 @@ package ar.germin.api.adapter.rest;
 import ar.germin.api.adapter.rest.models.plantid.PlantIdCheckHealthRequestModel;
 import ar.germin.api.adapter.rest.models.plantid.PlantIdCheckHealthResponseModel;
 import ar.germin.api.adapter.rest.utils.RestUtils;
+import ar.germin.api.application.domain.FileImage;
 import ar.germin.api.application.domain.HealthAIDetection;
 import ar.germin.api.application.port.out.GetHealthSuggestionsRepository;
 import ar.germin.api.configuration.GerminarConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
@@ -17,7 +17,6 @@ import java.util.List;
 
 @Slf4j
 @Component
-@Qualifier("plantid")
 public class PlantIdRestAdapter implements GetHealthSuggestionsRepository {
     private final RestClient restClient;
     private final GerminarConfiguration germinarConfiguration;
@@ -30,8 +29,8 @@ public class PlantIdRestAdapter implements GetHealthSuggestionsRepository {
                 .build();
     }
 
-    public HealthAIDetection getHealthStatus(String imageUrl) {
-        String base64 = this.getBase64(imageUrl);
+    public HealthAIDetection getHealthStatus(FileImage fileImage) {
+        String base64 = this.getBase64(fileImage.getFilePath());
 
         PlantIdCheckHealthRequestModel plantIdCheckHealthRequestModel = PlantIdCheckHealthRequestModel.builder()
                 .images(List.of(base64))
