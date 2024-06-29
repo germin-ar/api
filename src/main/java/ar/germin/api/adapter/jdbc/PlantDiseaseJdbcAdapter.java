@@ -43,7 +43,7 @@ public class PlantDiseaseJdbcAdapter implements SaveCandidateDiseasePlantsReposi
                     .addValue("language", diseaseCandidate.getLanguage())
                     .addValue("eppoCode", diseaseCandidate.getEppoCode())
                     .addValue("type", diseaseCandidate.getType())
-                    .addValue("commonName", diseaseCandidate.getCommonNames())
+                    .addValue("commonNames", diseaseCandidate.getCommonNames())
                     .addValue("kingdomTaxonomy", diseaseCandidate.getKingdomTaxonomy())
                     .addValue("wikiUrls", diseaseCandidate.getWikiUrls())
                     .addValue("classTaxonomy", diseaseCandidate.getClassTaxonomy())

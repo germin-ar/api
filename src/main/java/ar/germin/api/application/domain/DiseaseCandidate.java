@@ -24,7 +24,6 @@ public class DiseaseCandidate {
     String phylumTaxonomy;
     String language;
     String wikiUrls;
-    String slug;
 
     public String toSlugFormat() {
         return this.getScientificNameDisease()

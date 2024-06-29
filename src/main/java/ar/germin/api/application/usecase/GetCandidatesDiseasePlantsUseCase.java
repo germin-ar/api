@@ -51,8 +51,8 @@ public class GetCandidatesDiseasePlantsUseCase implements GetCandidatesDiseasePl
                 .map(disease -> {
                     Integer newId = this.saveCandidateDiseasePlantsRepository.save(disease);
                     return disease.withId(newId);
-                })
-                .forEach(diseaseCandidate -> this.savePlantPhotoDiseaseRelationRepository.save(diseaseCandidate, lastPlantPhoto));
+                });
+                //.forEach(diseaseCandidate -> this.savePlantPhotoDiseaseRelationRepository.save(diseaseCandidate, lastPlantPhoto));
 
         return healthAIDetection;
     }

@@ -21,7 +21,6 @@ public class DiseaseCandidateModel {
     String phylumTaxonomy;
     String language;
     String wikiUrls;
-    String slug;
 
     public DiseaseCandidate toDomain(){
         return DiseaseCandidate.builder()
@@ -41,7 +40,6 @@ public class DiseaseCandidateModel {
                 .phylumTaxonomy(this.phylumTaxonomy)
                 .language(this.language)
                 .wikiUrls(this.wikiUrls)
-                .slug(this.slug)
                 .build();
     }
 }
