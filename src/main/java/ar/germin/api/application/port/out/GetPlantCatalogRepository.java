@@ -8,4 +8,6 @@ public interface GetPlantCatalogRepository {
 
     PlantCatalog getPlantCatalog(String scientificName);
     List<PlantCatalog> getPlantsCatalogs(Double minTemperature, Double maxTemperature, String luz, String temporada, Integer squareCentimeters);
+
+    List<PlantCatalog> getPlantsCatalogsPlace(String light, Integer place, String temporada);
 }

@@ -24,17 +24,20 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
     private static final String SELECT_PLANT_CATALOG_BY_SCIENTIFIC_NAME_PATH = "sql/selectPlantCatalogByScientificName.sql";
     private static final String SAVE_PLANT_CATALOG_PATH = "sql/savePlantCatalog.sql";
     private static final String GET_PLANTS_CATALOG_PATH = "sql/getPlantsCatalog.sql";
+    private static final String GET_PLANTS_CATALOG_PLACE_PATH = "sql/getPlantsCatalogPlace.sql";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String selectPlantCatalogByScientificNameSql;
     private final String savePlantCatalogSql;
     private final String selectPlantsCatalog;
+    private final String selectPlantsCatalogPlace;
 
     public PlantCatalogJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.selectPlantCatalogByScientificNameSql = sqlReader.readSql(SELECT_PLANT_CATALOG_BY_SCIENTIFIC_NAME_PATH);
         this.savePlantCatalogSql = sqlReader.readSql(SAVE_PLANT_CATALOG_PATH);
         this.selectPlantsCatalog = sqlReader.readSql(GET_PLANTS_CATALOG_PATH);
+        this.selectPlantsCatalogPlace = sqlReader.readSql(GET_PLANTS_CATALOG_PLACE_PATH);
     }
 
     @Override
@@ -82,6 +85,25 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
         }
 
 
+    }
+
+    @Override
+    public List<PlantCatalog> getPlantsCatalogsPlace(String light, Integer place, String temporada) {
+        try {
+            MapSqlParameterSource params = new MapSqlParameterSource()
+                    .addValue("light", light)
+                    .addValue("place", place)
+                    .addValue("temporada", temporada);
+
+            log.info("place querying plant_catalog with sql [{}] with params: [{}]", selectPlantsCatalogPlace , params );
+            List<PlantCatalogModelAlternative> plantCatalogModel =
+                    this.namedParameterJdbcTemplate.query(selectPlantsCatalogPlace, params, BeanPropertyRowMapper.newInstance(PlantCatalogModelAlternative.class));
+
+            return PlantCatalogModelAlternative.toDomainFromList(plantCatalogModel);
+        } catch (EmptyResultDataAccessException e){
+            log.warn("Plant not found with light {}, place {}, temporada {}", light, place, temporada);
+            throw new PlantCatalogNotFoundException();
+        }
     }
 
     @Override

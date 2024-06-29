@@ -28,22 +28,6 @@ public class PlantSuggestionControllerAdapter {
         this.getPlantCatalogPortIn = getPlantCatalogPortIn;
     }
 
-    /*@GetMapping()
-    public List<GetPlantSuggestionResponseModel> getPlantsSuggestion1(@Param("latitude") Float latitude,
-                                                                     @Param("longitude") Float longitude,
-                                                                     @Param("sun_exposure") Integer sunExposure,
-                                                                     @Param("square_meters") Integer squareMeters,
-                                                                     @Param("page") Integer page) {
-        List<PlantDataSuggestion> response = this.getPlantsSuggestionPortIn.getPlantsSuggestions(GetPlantsSuggestionPortIn.Query.builder()
-                .page(page)
-                .squareMeters(squareMeters)
-                .latitude(latitude)
-                .longitude(longitude)
-                .sunExposure(sunExposure)
-                .build());
-
-        return GetPlantSuggestionResponseModel.fromDomain(response);
-    }*/
 
     @GetMapping
     public List<GetPlantCatalogResponseModel> getPlantsSuggestion(@Param("latitude") Float latitude,
@@ -52,5 +36,12 @@ public class PlantSuggestionControllerAdapter {
                                                                   @Param("squareCentimeters") Integer squareCentimeters) {
 
         return GetPlantCatalogResponseModel.fromDomainList(this.getPlantCatalogPortIn.getPlantsCatalog(latitude, longitude, sunExposure, squareCentimeters));
+    }
+
+    @GetMapping("/espacio")
+    public List<GetPlantCatalogResponseModel> getPLantsSuggestionPlace(@Param("luz") String luz,
+                                                                       @Param("temporada") String temporada,
+                                                                       @Param("espacio") String espacio){
+        return GetPlantCatalogResponseModel.fromDomainList(this.getPlantCatalogPortIn.getPlantsCatalogPlace(luz, temporada, espacio));
     }
 }

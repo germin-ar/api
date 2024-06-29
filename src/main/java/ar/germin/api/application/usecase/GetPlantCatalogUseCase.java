@@ -47,6 +47,30 @@ public class GetPlantCatalogUseCase implements GetPlantCatalogPortIn {
 
     }
 
+    @Override
+    public List<PlantCatalog> getPlantsCatalogPlace(String luz, String temporada, String espacio) {
+        String light = this.getLightConvert(luz);
+        Integer place = this.getPlaceConvertInt(espacio);
+        return this.getPlantCatalogRepository.getPlantsCatalogsPlace(light, place, temporada);
+    }
+
+    private String getLightConvert(String luz) {
+        return switch (luz) {
+            case "mas-4hs-sol" -> "sol parcial";
+            case "sol-pleno" -> "sol pleno";
+            case "sin-luz" -> "sombra";
+            default -> "Desconocida";
+        };
+    }
+
+    private Integer getPlaceConvertInt(String espacio){
+        return switch (espacio){
+            case "patio" -> 33;
+            case "baño" -> 30;
+            default -> 20;
+        };
+    }
+
     private String getTemporada(Float latitude) {
         LocalDate fecha = LocalDate.now();
         Month mes = fecha.getMonth();
@@ -76,18 +100,6 @@ public class GetPlantCatalogUseCase implements GetPlantCatalogPortIn {
             return "valor fuera de rango";
         }
     }
-    // temperatura min y max
-    // altura ?
-    // campo: sun light
-    // sombra
-    // sol parcial
-    // sol pleno
-    // 1 3     4 6     7 10
 
-    // campo: width   centimetros
-    // 30         zapallo
-
-    // campo: planting time
-    // las 4 temporadas
 
 }
