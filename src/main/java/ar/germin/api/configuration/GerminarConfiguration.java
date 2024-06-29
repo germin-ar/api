@@ -10,7 +10,8 @@ public record GerminarConfiguration(Integrations integrations, Cognito cognito, 
                                FreeImage freeImage,
                                Trefle trefle,
                                Weather weather,
-                               PlantId plantId) {
+                               PlantId plantId,
+                               CropKindwise cropKindwise) {
     }
 
     public record Cognito(String clientId, String clientSecret, String userPoolId) {}
@@ -33,6 +34,9 @@ public record GerminarConfiguration(Integrations integrations, Cognito cognito, 
     }
 
     public record PlantId(String apiKey) {
+    }
+
+    public record CropKindwise(String apiKey) {
     }
 }
 
