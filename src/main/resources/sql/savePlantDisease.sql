@@ -11,7 +11,8 @@ insert into garden.diseases_candidate (scientific_name_disease,
                                        family_taxonomy,
                                        phylum_taxonomy,
                                        language,
-                                       wiki_urls)
+                                       wiki_urls,
+                                       slug)
 values (:scientificNameDisease,
         :name,
         :type,
@@ -24,4 +25,5 @@ values (:scientificNameDisease,
         :familyTaxonomy,
         :phylumTaxonomy,
         :language,
-        :wikiUrls);
+        :wikiUrls,
+        :slug);

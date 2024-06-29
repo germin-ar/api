@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20240625-0" author="Jfoppoli">
+        <createTable tableName="plant_photo_disease" schemaName="garden">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="id_plant" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_photo" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_disease_candidate" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="plant_photo_disease"
+                                 baseColumnNames="id_plant"
+                                 constraintName="fk_plant_id"
+                                 referencedTableName="plant"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="garden"
+                                 referencedTableSchemaName="garden"
+                                 validate="true"
+        />
+        <addForeignKeyConstraint baseTableName="plant_photo_disease"
+                                 baseColumnNames="id_photo"
+                                 constraintName="fk_plant_photo_id"
+                                 referencedTableName="plant_photo"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="garden"
+                                 referencedTableSchemaName="garden"
+                                 validate="true"
+        />
+        <addForeignKeyConstraint baseTableName="plant_photo_disease"
+                                 baseColumnNames="id_disease_candidate"
+                                 constraintName="fk_disease_candidate_id"
+                                 referencedTableName="diseases_candidate"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="garden"
+                                 referencedTableSchemaName="garden"
+                                 validate="true"
+        />
+    </changeSet>
+    <changeSet id="20240626-1" author="Jfoppoli">
+
+        <addUniqueConstraint
+                columnNames="id_plant, id_photo, id_disease_candidate"
+                constraintName="Uc_id_plant_id_photo_id_disease_candidate"
+                schemaName="garden"
+                tableName="plant_photo_disease"
+        />
+
+    </changeSet>
+    <changeSet id="20240626-2" author="JFoppoli">
+        <addColumn tableName="diseases_candidate" schemaName="garden">
+            <column name="slug" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </addColumn>
+
+    </changeSet>
+    <changeSet id="20240626-3" author="JFoppoli">
+        <addColumn tableName="plant_catalog" schemaName="garden">
+            <column name="width" type="double">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

@@ -26,20 +26,19 @@ public class CropKindwiseCheckHealthResponseModel {
     public HealthAIDetection toDomain() {
         return HealthAIDetection.builder()
                 .candidates(this.getResult()
-                        .getDisease()
-                        .getSuggestions()
+                        .disease()
+                        .suggestions()
                         .stream()
                         .map(suggestion -> DiseaseCandidate.builder()
-                                .id(suggestion.getId())
-                                .name(suggestion.getName())
+                                .name(suggestion.name())
                                 .build())
                         .toList())
                 .isHealthy(!this
                         .getResult()
-                        .getDisease()
-                        .getSuggestions()
+                        .disease()
+                        .suggestions()
                         .stream()
-                        .filter(suggestionModel -> suggestionModel.getName().equals("healthy"))
+                        .filter(suggestionModel -> suggestionModel.name().equals("healthy"))
                         .toList()
                         .isEmpty())
                 .build();
@@ -47,72 +46,39 @@ public class CropKindwiseCheckHealthResponseModel {
 
 }
 
-@Value
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-class CropModel {
-    List<SuggestionModel> suggestions;
+record CropModel(List<SuggestionModel> suggestions) {
 }
 
-@Value
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-class DetailsModel {
-    List<String> commonNames;
-    String type;
-    TaxonomyModel taxonomy;
-    String eppoCode;
-    String wikiUrl;
-    String language;
-    String entityId;
+record DetailsModel(List<String> commonNames, String type, TaxonomyModel taxonomy, String eppoCode, String wikiUrl,
+                    String language, String entityId) {
 }
 
-@Value
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-class DiseaseModel {
-    List<SuggestionModel> suggestions;
+record DiseaseModel(List<SuggestionModel> suggestions) {
 }
 
-@Value
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-class InputModel {
-    Float latitude;
-    Float longitude;
-    List<String> images;
-    String datetime;
+record InputModel(Float latitude, Float longitude, List<String> images, String datetime) {
 }
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 record IsPlantModel(Double probability, Double threshold, Boolean binary) {
 }
 
-@Value
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-class ResultModel {
-    IsPlantModel isPlant;
-    DiseaseModel disease;
-    CropModel crop;
+record ResultModel(IsPlantModel isPlant, DiseaseModel disease, CropModel crop) {
 }
 
 
-@Value
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-class SuggestionModel {
-    String id;
-    String name;
-    Double probability;
-    DetailsModel details;
-    String scientificName;
+record SuggestionModel(String id, String name, Double probability, DetailsModel details, String scientificName) {
 }
 
-@Value
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-class TaxonomyModel {
-    @JsonProperty("class")
-    String className;
-    String genus;
-    String order;
-    String family;
-    String phylum;
-    String kingdom;
+record TaxonomyModel(@JsonProperty("class") String className, String genus, String order, String family, String phylum,
+                     String kingdom) {
 }
 
 
