@@ -27,7 +27,8 @@ public class GetSpacePlantingUseCase implements GetSpacePlantingPortIn {
             "cocina",
             "balcon",
             "terraza",
-            "living");
+            "living",
+            "cuarto");
 
 
     @Autowired

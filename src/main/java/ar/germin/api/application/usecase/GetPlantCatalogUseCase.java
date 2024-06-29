@@ -65,9 +65,21 @@ public class GetPlantCatalogUseCase implements GetPlantCatalogPortIn {
 
     private Integer getPlaceConvertInt(String espacio){
         return switch (espacio){
-            case "patio" -> 33;
+            case "comedor" -> 40;
+            case "dormitorio" -> 30;
+            case "habitacion" -> 30;
+            case "habitación" -> 30;
+            case "sala" -> 50;
+            case "bano" -> 30;
             case "baño" -> 30;
-            default -> 20;
+            case "jardin" -> 2500;
+            case "jardín" -> 2500;
+            case "cocina" -> 40;
+            case "balcon" -> 60;
+            case "terraza" -> 100;
+            case "living" -> 70;
+            case "cuarto" -> 40;
+            default -> 30;
         };
     }
 

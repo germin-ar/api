@@ -38,4 +38,4 @@ where temperature_min <= :minTemperature
 and temperature_max >= :maxTemperature
 and planting_time ilike '%' || :temporada || '%'
 and sunlight ilike '%' || :luz || '%'
-and width >= :squareCentimeters;
+and width <= :squareCentimeters;
