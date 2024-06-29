@@ -43,4 +43,6 @@ public class PlantCatalog {
     Integer atmosphericHumidity;
     String plantType;
     Double width;
+
+    String urlImage;
 }

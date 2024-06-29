@@ -47,6 +47,7 @@ public class PlantCatalogModelAlternative {
     String harvestTime;
     String plantType;
     Double width;
+    String urlImage;
 
     public static List<PlantCatalog> toDomainFromList(List<PlantCatalogModelAlternative> plantCatalogModelAlternative){
         return plantCatalogModelAlternative
@@ -91,6 +92,7 @@ public class PlantCatalogModelAlternative {
                 .harvestTime(harvestTime)
                 .plantType(plantType)
                 .width(width)
+                .urlImage(urlImage)
                 .build();
     }
 }

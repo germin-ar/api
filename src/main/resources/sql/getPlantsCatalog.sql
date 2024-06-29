@@ -31,7 +31,8 @@ select id,
        planting_time,
        harvest_time,
        plant_type,
-       width
+       width,
+       url_image
 from garden.plant_catalog
 where temperature_min <= :minTemperature
 and temperature_max >= :maxTemperature
