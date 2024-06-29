@@ -14,15 +14,16 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class UserConfirmRegistrationUseCase implements UserConfirmRegistrationPortIn {
-
   private final ConfirmUserRepository confirmUserRepository;
   private final UpdateUserRepository updateJdbcUserRepository;
   private final GetUserRepository getJdbcUserRepository;
   private final UpdateRoleRepository updateRoleRepository;
+
   public UserConfirmRegistrationUseCase(
           @Qualifier("jdbc") GetUserRepository getJdbcUserRepository,
           ConfirmUserRepository confirmUserRepository,
-          UpdateUserRepository updateJdbcUserRepository, UpdateRoleRepository updateRoleRepository) {
+          UpdateUserRepository updateJdbcUserRepository,
+          UpdateRoleRepository updateRoleRepository) {
     this.confirmUserRepository = confirmUserRepository;
     this.updateJdbcUserRepository = updateJdbcUserRepository;
     this.getJdbcUserRepository = getJdbcUserRepository;
