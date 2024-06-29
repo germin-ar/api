@@ -1,12 +1,10 @@
 package ar.germin.api.application.usecase;
 
+import ar.germin.api.application.domain.DiseaseCandidate;
 import ar.germin.api.application.domain.HealthAIDetection;
 import ar.germin.api.application.domain.PlantPhoto;
 import ar.germin.api.application.port.in.GetCandidatesDiseasePlantsPortIn;
-import ar.germin.api.application.port.out.GetHealthSuggestionsRepository;
-import ar.germin.api.application.port.out.GetPlantPhotosRepository;
-import ar.germin.api.application.port.out.SaveCandidateDiseasePlantsRepository;
-import ar.germin.api.application.port.out.SavePlantPhotoDiseaseRelationRepository;
+import ar.germin.api.application.port.out.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,16 +20,19 @@ public class GetCandidatesDiseasePlantsUseCase implements GetCandidatesDiseasePl
     private final GetHealthSuggestionsRepository getHealthSuggestionsRepository;
     private final SaveCandidateDiseasePlantsRepository saveCandidateDiseasePlantsRepository;
     private final SavePlantPhotoDiseaseRelationRepository savePlantPhotoDiseaseRelationRepository;
+    private final GetCandidateDiseasePlantsRepository getCandidateDiseasePlantsRepository;
 
     @Autowired
     public GetCandidatesDiseasePlantsUseCase(GetPlantPhotosRepository getPlantPhotosRepository,
                                              @Qualifier("cropkindwise") GetHealthSuggestionsRepository getHealthSuggestionsRepository,
                                              SaveCandidateDiseasePlantsRepository saveCandidateDiseasePlantsRepository,
-                                             SavePlantPhotoDiseaseRelationRepository savePlantPhotoDiseaseRelationRepository) {
+                                             SavePlantPhotoDiseaseRelationRepository savePlantPhotoDiseaseRelationRepository,
+                                             GetCandidateDiseasePlantsRepository getCandidateDiseasePlantsRepository) {
         this.getPlantPhotosRepository = getPlantPhotosRepository;
         this.getHealthSuggestionsRepository = getHealthSuggestionsRepository;
         this.saveCandidateDiseasePlantsRepository = saveCandidateDiseasePlantsRepository;
         this.savePlantPhotoDiseaseRelationRepository = savePlantPhotoDiseaseRelationRepository;
+        this.getCandidateDiseasePlantsRepository = getCandidateDiseasePlantsRepository;
     }
 
     @Override
@@ -49,6 +50,9 @@ public class GetCandidatesDiseasePlantsUseCase implements GetCandidatesDiseasePl
                 .getCandidates()
                 .parallelStream()
                 .map(disease -> {
+                    DiseaseCandidate diseaseCandidate = this.getCandidateDiseasePlantsRepository.get(disease.toSlugFormat());
+                    //TODO hacer logica para guardar si no está la planta
+
                     Integer newId = this.saveCandidateDiseasePlantsRepository.save(disease);
                     return disease.withId(newId);
                 })
