@@ -31,6 +31,9 @@ germinar:
     plant-id:
       api-key: ${PLANTID_API_KEY}
 
+    crop-kindwise:
+      api-key: ${CROPKINDWISE_API_KEY}
+
   cognito:
     client-id: ${AWS_COGNITO_APP_CLIENT_ID}
     client-secret: ${AWS_COGNITO_CLIENT_SECRET}
