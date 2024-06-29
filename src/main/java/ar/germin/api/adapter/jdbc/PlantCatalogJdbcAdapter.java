@@ -1,6 +1,5 @@
 package ar.germin.api.adapter.jdbc;
 
-import ar.germin.api.adapter.jdbc.models.PlantCatalogModel;
 import ar.germin.api.adapter.jdbc.models.PlantCatalogModelAlternative;
 import ar.germin.api.application.domain.PlantCatalog;
 import ar.germin.api.application.exceptions.ErrorPlantSaveException;
@@ -42,10 +41,7 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
 
     @Override
     public PlantCatalog getPlantCatalog(String slugScientificName) {
-
-
         try {
-
             MapSqlParameterSource params = new MapSqlParameterSource()
                     .addValue("slugScientificName", slugScientificName);
 
@@ -68,18 +64,18 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
 
         try {
             MapSqlParameterSource params = new MapSqlParameterSource()
-                    .addValue("minTemperature", minTemperature)
-                    .addValue("maxTemperature", maxTemperature)
+                    .addValue("minTemperature", minTemperature - 5)
+                    .addValue("maxTemperature", maxTemperature + 5)
                     .addValue("luz", luz)
                     .addValue("temporada", temporada)
                     .addValue("squareCentimeters", squareCentimeters);
 
-            log.info("querying plant_catalog with sql [{}] with params: [{}]", selectPlantsCatalog , params );
+            log.info("querying plant_catalog with sql [{}] with params: [{}]", selectPlantsCatalog, params);
             List<PlantCatalogModelAlternative> plantCatalogModel =
                     this.namedParameterJdbcTemplate.query(selectPlantsCatalog, params, BeanPropertyRowMapper.newInstance(PlantCatalogModelAlternative.class));
 
             return PlantCatalogModelAlternative.toDomainFromList(plantCatalogModel);
-        } catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             log.warn("Plant not found with min_temperature {}, max_temperature {}, luz {}, temporada {}", minTemperature, maxTemperature, luz, temporada);
             throw new PlantCatalogNotFoundException();
         }
@@ -95,12 +91,12 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
                     .addValue("place", place)
                     .addValue("temporada", temporada);
 
-            log.info("place querying plant_catalog with sql [{}] with params: [{}]", selectPlantsCatalogPlace , params );
+            log.info("place querying plant_catalog with sql [{}] with params: [{}]", selectPlantsCatalogPlace, params);
             List<PlantCatalogModelAlternative> plantCatalogModel =
                     this.namedParameterJdbcTemplate.query(selectPlantsCatalogPlace, params, BeanPropertyRowMapper.newInstance(PlantCatalogModelAlternative.class));
 
             return PlantCatalogModelAlternative.toDomainFromList(plantCatalogModel);
-        } catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             log.warn("Plant not found with light {}, place {}, temporada {}", light, place, temporada);
             throw new PlantCatalogNotFoundException();
         }
