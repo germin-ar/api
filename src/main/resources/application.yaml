@@ -39,3 +39,6 @@ germinar:
   aws:
     access-key-id: ${AWS_ACCESS_KEY_ID}
     secret-key: ${AWS_SECRET_KEY}
+
+  compute-vision:
+    subscription-key: ${COMPUTE_VISION_SUBSCRIPTION_KEY}

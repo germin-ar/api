@@ -3,7 +3,7 @@ package ar.germin.api.configuration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "germinar")
-public record GerminarConfiguration(Integrations integrations, Cognito cognito, Aws aws) {
+public record GerminarConfiguration(Integrations integrations, Cognito cognito, Aws aws, ComputeVision computeVision) {
 
     public record Integrations(Perenual perenual,
                                Plantnet plantnet,
@@ -14,9 +14,15 @@ public record GerminarConfiguration(Integrations integrations, Cognito cognito, 
                                CropKindwise cropKindwise) {
     }
 
-    public record Cognito(String clientId, String clientSecret, String userPoolId) {}
+    public record Cognito(String clientId, String clientSecret, String userPoolId) {
+    }
 
-    public record Aws(String accessKeyId, String secretKey) {}
+    public record Aws(String accessKeyId, String secretKey) {
+    }
+
+    public record ComputeVision(String subscriptionKey) {
+
+    }
 
     public record Perenual(String apiKey) {
     }

@@ -114,9 +114,9 @@ public class PlantControllerAdapter {
     @PostMapping(value = "/{id}/photo",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Object> uploadPhoto(@RequestHeader("id-user") Integer idUser,
-                                    @PathVariable("id") Integer idPlant,
-                                    @RequestPart("image") FilePart filePart) {
+    public Mono<SaveImageResponseModel> uploadPhoto(@RequestHeader("id-user") Integer idUser,
+                                                    @PathVariable("id") Integer idPlant,
+                                                    @RequestPart("image") FilePart filePart) {
 
         return DataBufferUtils.join(filePart.content())
                 .map(dataBuffer -> {

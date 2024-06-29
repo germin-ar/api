@@ -2,10 +2,12 @@ package ar.germin.api.adapter.jdbc;
 
 import ar.germin.api.adapter.jdbc.models.DiseaseCandidateModel;
 import ar.germin.api.application.domain.DiseaseCandidate;
+import ar.germin.api.application.exceptions.DiseaseCandidateNotFoundException;
 import ar.germin.api.application.exceptions.ErrorPlantSaveException;
 import ar.germin.api.application.port.out.GetCandidateDiseasePlantsRepository;
 import ar.germin.api.application.port.out.SaveCandidateDiseasePlantsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -14,7 +16,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.ErrorResponseException;
 
-import java.util.Map;
 import java.util.Optional;
 
 @Component
@@ -52,7 +53,7 @@ public class PlantDiseaseJdbcAdapter implements SaveCandidateDiseasePlantsReposi
                     .addValue("genusTaxonomy", diseaseCandidate.getGenusTaxonomy())
                     .addValue("slug", diseaseCandidate.toSlugFormat());
 
-            log.info("Saving diseasePlant with sql [{}] with params: [{}]",savePlantDiseaseSql, sqlParams);
+            log.info("Saving diseasePlant with sql [{}] with params: [{}]", savePlantDiseaseSql, sqlParams);
             KeyHolder keyHolder = new GeneratedKeyHolder();
             this.namedParameterJdbcTemplate.update(savePlantDiseaseSql, sqlParams, keyHolder, new String[]{"id"});
             Integer generatedId = Optional.ofNullable(keyHolder.getKey()).map(Number::intValue).orElse(-1);
@@ -62,7 +63,6 @@ public class PlantDiseaseJdbcAdapter implements SaveCandidateDiseasePlantsReposi
             log.error("Error saving plant", ex);
             throw new ErrorPlantSaveException("No se pudo guardar la planta");
         }
-
     }
 
     @Override
@@ -76,9 +76,9 @@ public class PlantDiseaseJdbcAdapter implements SaveCandidateDiseasePlantsReposi
                     parameterSource,
                     new BeanPropertyRowMapper<>(DiseaseCandidateModel.class));
             return diseaseCandidateModel.toDomain();
-        } catch (Exception ex){
+        } catch (EmptyResultDataAccessException ex) {
             log.error("Error querying disease candidate with scientific name [{}]", slugFormat);
-            throw ex;
+            throw new DiseaseCandidateNotFoundException("Disease candidate not found");
         }
     }
 }
