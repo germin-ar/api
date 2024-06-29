@@ -77,13 +77,13 @@ public class PlantResponseModel {
                 .history(plant
                         .getHistory()
                         .stream()
-                        .map(plantHistory -> PlantHistoryModel.builder()
+                        .map( plantHistory -> PlantHistoryModel.builder()
                                 .idPlant(plantHistory.getIdPlant())
                                 .notes(plantHistory.getNotes())
                                 .height(plantHistory.getHeight())
                                 .alias(plantHistory.getAlias())
-                                .urlImage(plantHistory.getUrlImage())
-                                .modifiedAt(plantHistory.getModifiedAt())
+                                .urlImage(plantHistory.getUrl_image())
+                                .modifiedAt(plantHistory.getModified_at())
                                 .idDiseases(plantHistory.getIdDiseases())
                                 .build())
                         .toList())
@@ -98,13 +98,7 @@ public class PlantResponseModel {
 
     @Builder
     @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-    record PlantHistoryModel(Integer idPlant,
-                             String notes,
-                             Double height,
-                             String alias,
-                             String urlImage,
-                             LocalDateTime modifiedAt,
-                             Integer idDiseases) {
+    record PlantHistoryModel(Integer idPlant, String notes, Double height, String alias, String urlImage, String modifiedAt, Integer idDiseases){
 
     }
 
