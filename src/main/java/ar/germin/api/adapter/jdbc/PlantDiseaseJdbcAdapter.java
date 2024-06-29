@@ -21,7 +21,7 @@ import java.util.Optional;
 @Slf4j
 public class PlantDiseaseJdbcAdapter implements SaveCandidateDiseasePlantsRepository, GetCandidateDiseasePlantsRepository {
     private static final String SAVE_PLANT_DISEASE_PATH = "sql/savePlantDisease.sql";
-    private static final String SELECT_PLANT_DISEASE_PATH = "sql/selectDiseaseCandidateBySlugSql";
+    private static final String SELECT_PLANT_DISEASE_PATH = "sql/selectDiseaseCandidateBySlug.sql";
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final String savePlantDiseaseSql;
     private final String selectPlantDiseaseSql;
