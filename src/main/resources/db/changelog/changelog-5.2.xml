@@ -41,13 +41,13 @@
             <column name="url_image" value="https://seedsworld.online/cdn/shop/products/5-bay-leaf-tree-seeds-laurus-nobilis-2_1024x1024.jpg?v=1678800536"/>
         </insert>
     </changeSet>
-    <changeSet id="20240629-02" author="jfoppoli">
+    <changeSet id="20240629-01" author="jfoppoli">
         <update schemaName="garden" tableName="plant_catalog">
             <column name="planting_time" value="primavera, verano, otoño, invierno"/>
               <where>slug_scientific_name='brassica-oleracea-var.-gemmifera'</where>
         </update>
     </changeSet>
-    <changeSet  author="Jfoppoli"  id="20240629-0">
+    <changeSet  author="Jfoppoli"  id="20240629-2">
         <insert schemaName="garden" tableName="plant_catalog">
             <column name="common_name" value="Higera"/>
             <column name="scientific_name" value="Ficus Carica"/>
