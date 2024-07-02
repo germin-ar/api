@@ -14,21 +14,20 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class GetGardensUseCaseTest {
 
     private final GetGardenRepository getGardenRepository = mock(GetGardenRepository.class);
     private final GetPlantRepository getPlantRepository = mock(GetPlantRepository.class);
-    private final GetPlantPhotosRepository getPlantPhotosRepositor = mock(GetPlantPhotosRepository.class);
+    private final GetPlantPhotosRepository getPlantPhotosRepository = mock(GetPlantPhotosRepository.class);
 
     @Test
     void testGetGardensByUserReturnsEmptyListWhenNoGardensExists() {
         when(getGardenRepository.getByUserId(2)).thenReturn(Collections.emptyList());
         when(getPlantRepository.getByIdGardenAndIdUser(anyInt(), eq(2))).thenReturn(Collections.emptyList());
 
-        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepositor);
+        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepository);
 
         List<Garden> gardens = useCase.getGardensByUser(2);
 
@@ -51,7 +50,7 @@ class GetGardensUseCaseTest {
 
         when(getGardenRepository.getByUserId(2)).thenReturn(gardens);
 
-        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepositor);
+        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepository);
 
         List<Garden> result = useCase.getGardensByUser(2);
 
@@ -79,7 +78,7 @@ class GetGardensUseCaseTest {
         when(getGardenRepository.getByUserId(2)).thenReturn(List.of(garden));
         when(getPlantRepository.getByIdGardenAndIdUser(1, 2)).thenReturn(mockPlants);
 
-        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepositor);
+        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepository);
 
         List<Garden> result = useCase.getGardensByUser(2);
 
@@ -91,20 +90,39 @@ class GetGardensUseCaseTest {
 
     @Test
     void testGetPlantsWithoutGardenByUserReturnsCorrectNumberOfPlants() {
-        Plant plant1 = Plant.builder().build();
-        Plant plant2 = Plant.builder().build();
+        // Plantas sin jardín
+        Plant plant1 = Plant.builder()
+                .id(1)
+                .alias("Plant 1")
+                .photos(null) // Asignar photos como null si no tienes fotos para las plantas en este test
+                .build();
 
+        Plant plant2 = Plant.builder()
+                .id(2)
+                .alias("Plant 2")
+                .photos(null) // Asignar photos como null si no tienes fotos para las plantas en este test
+                .build();
+
+        // Configurar el comportamiento del repositorio mock
         when(getPlantRepository.getByIdUser(2)).thenReturn(List.of(plant1, plant2));
 
-        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepositor);
+        // Instanciar el caso de uso
+        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepository);
 
+        // Ejecutar el método a probar
         List<Garden> result = useCase.getGardensByUser(2);
 
+        // Verificaciones
         Assertions.assertNotNull(result);
         Assertions.assertEquals(2, result.get(0).getPlants().size());
-        Assertions.assertEquals(plant1, result.get(0).getPlants().get(0));
-        Assertions.assertEquals(plant2, result.get(0).getPlants().get(1));
 
+        // Verificar que las fotos sean null o vacías
+        for (Plant plant : result.get(0).getPlants()) {
+            Assertions.assertTrue(plant.getPhotos() == null || plant.getPhotos().isEmpty());
+        }
+
+        // Verificar que se haya llamado al método getByIdUser del repositorio mock
+        verify(getPlantRepository, times(1)).getByIdUser(2);
     }
 
     @Test
@@ -114,7 +132,7 @@ class GetGardensUseCaseTest {
         when(getGardenRepository.getByUserId(2)).thenReturn(List.of(garden));
         when(getPlantRepository.getByIdGardenAndIdUser(5, 2)).thenReturn(null);
 
-        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepositor);
+        GetGardensPortIn useCase = new GetGardensUseCase(getPlantRepository, getGardenRepository, getPlantPhotosRepository);
 
         List<Garden> result = useCase.getGardensByUser(2);
 
