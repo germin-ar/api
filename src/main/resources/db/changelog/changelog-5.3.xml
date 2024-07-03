@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+        <changeSet author="Jfoppoli" id="20240702-00">
+            <insert schemaName="garden" tableName="plant_catalog">
+                <column name="common_name" value="Balzamovec"/>
+                <column name="scientific_name" value="Abies balsamea"/>
+                <column name="slug_scientific_name" value="abies-balsamea"/>
+                <column name="description" value="El balzamovec es uno de los árboles más resistentes al frío del mundo. El balzamovec es utilizado para fabricar pasta de papel. Además, la resina de esta especie solía utilizarse como pegamento. Muchos animales se alimentan de esta árbol también: la ardilla roja, la liebre de patas blancas, ciervos, entre otros. Es de las especies más comercializadas en Canadá y Estados Unidos como árbol de Navidad."/>
+                <column name="watering_frecuency" value="Cada 1 o 2 semanas"/>
+                <column name="sunlight" value="sol pleno, sol parcial"/>
+                <column name="watering_care" value="Mantener húmedo pero sin acumulación de agua."/>
+                <column name="fertilizer" value="Aplicar fertilizante equilibrado a finales del invierno o principios de la primavera."/>
+                <column name="pruning" value="Invierno"/>
+                <column name="soil" value="Arena, Arcilla, Marga, Calcáreo, Ácido, Neutro, Alcalino"/>
+                <column name="repotting" value="Durante los meses fríos del invierno. Cuando lo trasplantes, manipula el cepellón con cuidado."/>
+                <column name="lifespan" value="Perenne"/>
+                <column name="planting_time" value="invierno, otoño, primavera, verano"/>
+                <column name="harvest_time" value="Otoño"/>
+                <column name="plant_type" value="Árbol"/>
+                <column name="family_name" value="Pináceas"/>
+                <column name="genus" value="Abetos"/>
+                <column name="specie" value="Balzamovec"/>
+                <column name="temperature_min" valueNumeric="-30.0"/>
+                <column name="temperature_max" valueNumeric="30.0"/>
+                <column name="edible" value="Sí"/>
+                <column name="propagation" value="Se propaga principalmente por semillas."/>
+                <column name="fruit" value="Color marrón o cobre"/>
+                <column name="growth_rate" value="Lento"/>
+                <column name="tips" value="Prefiere suelos secos o húmedos. La planta puede tolerar vientos fuertes pero no la exposición marítima."/>
+                <column name="insecticide" value="Controlar plagas como ácaros y pulgones con insecticidas naturales según sea necesario."/>
+                <column name="toxic" value="Causa irritación en la piel"/>
+                <column name="dormancy" value="Letargo invernal"/>
+                <column name="atmospheric_humidity" valueNumeric="80"/>
+                <column name="max_size" valueNumeric="2500.0"/>
+                <column name="growth_season" value="Primavera, Verano"/>
+                <column name="maintenance" value="Moderado"/>
+                <column name="width" value="2500"/>
+                <column name="url_image" value="https://wildadirondacks.org/images/Trees-of-the-Adirondacks-Balsam-Fir-Abies-balsamea-Needles-Silver-Lake-Bog-Preserve-27-September-2019-72.jpg"/>
+            </insert>
+        </changeSet>
+    <changeSet author="Jfoppoli" id="20240702-01">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Cerezo"/>
+            <column name="scientific_name" value="Prunus avium"/>
+            <column name="slug_scientific_name" value="prunus-avium"/>
+            <column name="description" value="El cerezo (Prunus avium) es un árbol de tamaño y volumen considerables, inconfundible por sus frutos de color rojo muy vivo.Se cultiva para uso alimenticio y también se aprovecha por su madera para la elaboración de muebles y por su corteza, de la que se extrae una goma que puede masticarse."/>
+            <column name="watering_frecuency" value="Cada 1 o 2 semanas"/>
+            <column name="sunlight" value="Sol pleno, sol parcial"/>
+            <column name="watering_care" value="Mantener húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer" value="Fertilizante base en otoño, fertilización durante la temporada de floración y fructificación."/>
+            <column name="pruning" value="Recorte las ramas enfermas, marchitas y cubiertas de maleza"/>
+            <column name="soil" value="Marga, Arcilla, Arena, Calcáreo, Franco-arenoso, Ácido, Neutro, Alcalino"/>
+            <column name="repotting" value="Trasplantar cerezo durante los meses más cálidos, ya que así se favorece el arraigo de las raíces"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, verano, otoño, invierno"/>
+            <column name="harvest_time" value="Primavera, Principios de verano"/>
+            <column name="plant_type" value="Árbol"/>
+            <column name="family_name" value="Rosáceas"/>
+            <column name="genus" value="Duraznos"/>
+            <column name="specie" value="Cerezo"/>
+            <column name="temperature_min" valueNumeric="-20.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value=" Propagación por injerto, gemación, acodo, esqueje, cultivo de tejidos"/>
+            <column name="fruit" value="Frutos Rojos Listos Para Comer"/>
+            <column name="growth_rate" value="Alto"/>
+            <column name="tips" value="Asegúrate de que la maceta sea lo suficientemente grande como para acomodar el sistema de raíces y usa una tierra para macetas de calidad con buen drenaje. Riega con regularidad y trasplántalo cada año. "/>
+            <column name="insecticide" value="Controlar plagas como ácaros y pulgones con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="Ligeramente tóxica para humanos, muy tóxica para mascotas "/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="70"/>
+            <column name="max_size" valueNumeric="2500.0"/>
+            <column name="growth_season" value="Primavera"/>
+            <column name="maintenance" value="Medio"/>
+            <column name="width" value="800"/>
+            <column name="url_image" value="https://www.vdberk.es/media/72203/prunus-avium.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240702-02">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Zanahoria silvestre"/>
+            <column name="scientific_name" value="Daucus carota"/>
+            <column name="slug_scientific_name" value="daucus-carota"/>
+            <column name="description" value="La zanahoria silvestre es la forma antigua de la zanahoria que habitualmente se consume. Se suele utilizar simplemente como planta de jardín, ornamental y decorativa, por sus bonitas inflorescencias. Atrae enormemente a los insectos polinizadores, como las abejas y otros polinizadores."/>
+            <column name="watering_frecuency" value="Dos veces por semana"/>
+            <column name="sunlight" value="sol pleno"/>
+            <column name="watering_care" value="Tolerante a la sequía, menos riego, agua cuando el suelo está seco."/>
+            <column name="fertilizer" value="Fertilización 2 a 3 veces durante el período de crecimiento."/>
+            <column name="pruning" value="Primavera, Verano, Otoño"/>
+            <column name="soil" value="Arena, Arcilla, Marga, Calcáreo, Ácido, Neutro, Alcalino"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Bianual, Anual, Perenne"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="primavera, verano, otoño, invierno"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Apiáceas"/>
+            <column name="genus" value="Dauco"/>
+            <column name="specie" value="Zanahoria silvestre"/>
+            <column name="temperature_min" valueNumeric="20.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Si"/>
+            <column name="propagation" value="Por semillas"/>
+            <column name="fruit" value="No"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Atrae a los insectos polinizadores, como las abejas y otros polinizadores."/>
+            <column name="insecticide" value="Controlar plagas con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="Puede causar reacción alérgica en la piel."/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="70"/>
+            <column name="max_size" valueNumeric="120.0"/>
+            <column name="growth_season" value="Verano, Otoño"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="30"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/2/23/Daucus_carota_May_2008-1_edit.jpg"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240702-03">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Ciruelo mirobolano"/>
+            <column name="scientific_name" value="Prunus cerasifera"/>
+            <column name="slug_scientific_name" value="prunus-cerasifera"/>
+            <column name="description" value="El ciruelo mirobolano es un arbusto muy llamativo, puesto que sus hojas son de color purpura y sus flores rosadas. Se utiliza como planta ornamental frutal, ya que el fruto es comestible y bien apreciado por varias especies de animales que lo aprovechan."/>
+            <column name="watering_frecuency" value="Cada 1 o 2 semanas"/>
+            <column name="sunlight" value="sol pleno, sol parcial"/>
+            <column name="watering_care" value="Mantener húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer" value="Fertilizante básico durante el otoño, fertilización durante la primavera y los períodos de floración y fructificación."/>
+            <column name="pruning" value="Se deben podar a fines del invierno o principios de la primavera, antes de que la planta comience a echar hojas"/>
+            <column name="soil" value="Arena, Arcilla, Marga, Calcáreo, Ácido, Neutro, Alcalino"/>
+            <column name="repotting" value="Principios de primavera, Finales de otoño, Invierno"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, otoño, invierno"/>
+            <column name="harvest_time" value="Verano, otoño"/>
+            <column name="plant_type" value="Arbusto, Árbol"/>
+            <column name="family_name" value="Rosáceas"/>
+            <column name="genus" value="Prunus"/>
+            <column name="specie" value="Ciruelo mirobolano"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="35.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="esquejes, semillas"/>
+            <column name="fruit" value="Fruto comestible, color purpura"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Riegue temprano en el día para darle tiempo al follaje a secarse antes del anochecer.  Al podar, intente crear una forma abierta, similar a un jarrón."/>
+            <column name="insecticide" value="Controlar plagas con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="Ligeramente tóxica para humanos y muy tóxica para mascotas"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="70"/>
+            <column name="max_size" valueNumeric="1200.0"/>
+            <column name="growth_season" value="Primavera"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="900"/>
+            <column name="url_image" value="https://www.treesandshrubsonline.org/site/assets/files/6870/prunus-cerasifera.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240702-04">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Cerezo criollo"/>
+            <column name="scientific_name" value="Prunus serotina"/>
+            <column name="slug_scientific_name" value="prunus-serotina"/>
+            <column name="description" value="Una especie estrechamente relacionada con otros cerezos como el cerezo aliso (Prunus padus), con el que se le confunde a menudo, el cerezo criollo (Prunus serotina) es una especie de cerezo salvaje, invasora en ciertas partes del mundo como Europa."/>
+            <column name="watering_frecuency" value="Cada 1 o 2 semanas"/>
+            <column name="sunlight" value="sol pleno, sol parcial"/>
+            <column name="watering_care" value="Mantener húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer" value="Fertilización una vez cada 1-2 meses durante la temporada de crecimiento"/>
+            <column name="pruning" value="Finales de invierno o principios de primavera, cuando los árboles están inactivos y justo antes de que los brotes se hinchen"/>
+            <column name="soil" value="Arena, Arcilla, Marga, Calcáreo, Ácido, Neutro, Alcalino"/>
+            <column name="repotting" value="Primavera, Otoño, Invierno"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="Primavera, Otoño, Invierno"/>
+            <column name="harvest_time" value="Finales de verano"/>
+            <column name="plant_type" value="Árbol"/>
+            <column name="family_name" value="Rosáceas"/>
+            <column name="genus" value="Prunus"/>
+            <column name="specie" value="Cerezo criollo"/>
+            <column name="temperature_min" valueNumeric="0.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Propagación por semillas, acodo, esqueje, injerto, y brotación"/>
+            <column name="fruit" value=""/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Frutas Rojas, Moradas Y Negras listas en otoño"/>
+            <column name="insecticide" value="Controlar plagas con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="Levemente tóxica para humanos y muy tóxica para mascotas"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="70"/>
+            <column name="max_size" valueNumeric="2400.0"/>
+            <column name="growth_season" value="Primavera"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="800"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Amerikaanse_vogelkers_Prunus_serotina_closeup.jpg/1200px-Amerikaanse_vogelkers_Prunus_serotina_closeup.jpg"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240702-05">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Ciruelo"/>
+            <column name="scientific_name" value="Prunus domestica"/>
+            <column name="slug_scientific_name" value="prunus-domestica"/>
+            <column name="description" value="El ciruelo es un árbol cuyo fruto es comestible. Además, la madera también es apta para distintos trabajos de ebanistería."/>
+            <column name="watering_frecuency" value="Cada 1 o 2 semanas"/>
+            <column name="sunlight" value="sol pleno, sol parcial"/>
+            <column name="watering_care" value="Mantener húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer" value="Fertilización 3 veces al año."/>
+            <column name="pruning" value="Recorte las ramas enfermas, marchitas y cubiertas de maleza"/>
+            <column name="soil" value="Arena, Arcilla, Marga, Calcáreo, Ácido, Neutro, Alcalino"/>
+            <column name="repotting" value="Primavera o veranom, cuando el suelo y las condiciones meteorológicas favorezcan su crecimiento."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="Otoño"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Árbol"/>
+            <column name="family_name" value="Rosáceas"/>
+            <column name="genus" value="Duraznos"/>
+            <column name="specie" value="Ciruelo"/>
+            <column name="temperature_min" valueNumeric="-25.0"/>
+            <column name="temperature_max" valueNumeric="38.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Propagación por injerto, gemación, acodo, esqueje, cultivo de tejidos"/>
+            <column name="fruit" value="Fruto de drupa suculenta, 5-7.6 cm, que madura a un color negro-azulado."/>
+            <column name="growth_rate" value="Moderada"/>
+            <column name="tips" value="Donde el espacio es limitado, o en los límites de su rango climático, pueden cultivarse contra  una pared soleada orientada al sur o al oeste, mientras que una pared orientada al este será adecuada para los más resistentes. Una pared orientada al norte no es adecuada."/>
+            <column name="insecticide" value="Controlar plagas con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="Ligeramente tóxico para humanos y muy tóxico para mascotas"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="70"/>
+            <column name="max_size" valueNumeric="1500.0"/>
+            <column name="growth_season" value="Primavera"/>
+            <column name="maintenance" value=""/>
+            <column name="width" value="1000"/>
+            <column name="url_image" value="https://www.picturethisai.com/wiki-image/1080/153427643583168538.jpeg"/>
+        </insert>
+    </changeSet>
+
+
+
+
+</databaseChangeLog>
