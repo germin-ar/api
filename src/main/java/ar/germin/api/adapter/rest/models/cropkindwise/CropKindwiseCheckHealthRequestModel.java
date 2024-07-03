@@ -6,13 +6,8 @@ import lombok.Builder;
 
 import java.util.List;
 
-
 @Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class CropKindwiseCheckHealthRequestModel {
-    Float latitude;
-    Float longitude;
-    Boolean similarImages;
-    List<String> images;
+public record CropKindwiseCheckHealthRequestModel (Float latitude, Float longitude, Boolean similarImages, List<String> images){
 }
 

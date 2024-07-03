@@ -3,7 +3,6 @@ package ar.germin.api.adapter.jdbc;
 import ar.germin.api.application.domain.DiseaseCandidate;
 import ar.germin.api.application.domain.PlantPhoto;
 import ar.germin.api.application.exceptions.PlantPhotoDiseaseAlreadyExistException;
-import ar.germin.api.application.port.out.SaveCandidateDiseasePlantsRepository;
 import ar.germin.api.application.port.out.SavePlantPhotoDiseaseRelationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DuplicateKeyException;
@@ -25,9 +24,7 @@ public class PlantPhotoDiseaseJdbcAdapter implements SavePlantPhotoDiseaseRelati
 
     public PlantPhotoDiseaseJdbcAdapter(SqlReader sqlReader, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-
         this.savePlantPhotoDiseaseSql = sqlReader.readSql(SAVE_PLANT_PHOTO_DISEASE_PATH);
-
     }
 
     @Override
