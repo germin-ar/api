@@ -5,14 +5,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="20240613-0" author="JFoppoli">
-        <addColumn tableName="plant_catalog" schemaName="garden">
-            <column name="width" type="double">
-                <constraints nullable="true"/>
-            </column>
-        </addColumn>
-    </changeSet>
-
     <changeSet id="20240614_0" author="jfoppoli">
         <addColumn tableName="plant_catalog" schemaName="garden">
             <column name="url_image" type="varchar">

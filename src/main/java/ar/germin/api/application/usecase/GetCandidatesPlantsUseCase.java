@@ -4,9 +4,16 @@ import ar.germin.api.application.domain.AIDetection;
 import ar.germin.api.application.domain.Candidate;
 import ar.germin.api.application.domain.FileImage;
 import ar.germin.api.application.domain.HealthAIDetection;
+import ar.germin.api.application.domain.PlantCatalog;
+import ar.germin.api.application.domain.Specie;
+import ar.germin.api.application.exceptions.PlantCatalogNotFoundException;
 import ar.germin.api.application.port.in.GetCandidatesPlantsPortIn;
 import ar.germin.api.application.port.out.GetAIDetectionRepository;
 import ar.germin.api.application.port.out.GetFileRepository;
+import ar.germin.api.application.port.out.GetHealthSuggestionsRepository;
+import ar.germin.api.application.port.out.GetPlantCatalogRepository;
+import ar.germin.api.application.port.out.GetPlantDetailDataRepository;
+import ar.germin.api.application.port.out.SavePlantCatalogRepository;
 import ar.germin.api.application.usecase.service.GetPlantCatalogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +65,8 @@ public class GetCandidatesPlantsUseCase implements GetCandidatesPlantsPortIn {
 
         return result;
     }
+
+
 
     private HealthAIDetection checkHealth(FileImage fileImage) {
         //HealthAIDetection healthAIDetection = this.getHealthSuggestionsRepository.getHealthStatus(fileImage);

@@ -3,4 +3,3 @@ spring:
     url: jdbc:postgresql://localhost:5432/germinar
     username: postgres
     password: pa55w0rd
-

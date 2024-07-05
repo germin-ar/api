@@ -9,6 +9,7 @@ import ar.germin.api.configuration.GerminarConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
@@ -50,6 +51,7 @@ public class CropKindwiseRestAdapter implements GetHealthSuggestionsRepository {
                                 .queryParam("details", "type,common_names,eppo_code,wiki_url,taxonomy")
                                 .build())
                 .header("Api-Key", this.germinarConfiguration.integrations().cropKindwise().apiKey())
+                .contentType(MediaType.APPLICATION_JSON)
                 .body(requestModel)
                 .retrieve()
                 .body(CropKindwiseCheckHealthResponseModel.class);
