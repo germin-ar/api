@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet author="Jfoppoli" id="20240703-00">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Cebolleta"/>
+            <column name="scientific_name" value="Allium fistulosum"/>
+            <column name="slug_scientific_name" value="allium-fistulosum"/>
+            <column name="description" value="La cebolleta se diferencia de la cebolla en que la primera no produce bulbos, sino que la parte blanca es un engrosamiento de las hojas. La cebolleta es comestible."/>
+            <column name="watering_frecuency" value="Cada 1 o 2 semanas"/>
+            <column name="sunlight" value="sol pleno, sol parcial"/>
+            <column name="watering_care" value="Mantener húmedo pero sin acumulación de agua."/>
+            <column name="fertilizer" value="Fertilización una vez al mes durante la temporada de crecimiento."/>
+            <column name="pruning" value="Eliminar las flores marchitas y recortar el follaje dañado durante la primavera y el verano."/>
+            <column name="soil" value="Marga, Arenosa, Bien drenada"/>
+            <column name="repotting" value="Primavera o verano, cuando el suelo y las condiciones meteorológicas favorezcan su crecimiento."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="verano, otoño, invierno, primavera"/>
+            <column name="harvest_time" value="verano, otoño, invierno, primavera"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Amarilidáceas"/>
+            <column name="genus" value="Allium"/>
+            <column name="specie" value="Cebolleta"/>
+            <column name="temperature_min" valueNumeric="-10.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas, División de matas"/>
+            <column name="fruit" value="No produce frutos, solo flores pequeñas y blancas."/>
+            <column name="growth_rate" value="Moderada"/>
+            <column name="tips" value="Para obtener cebolletas más tiernas y de mejor sabor, riegue regularmente y aplique una capa de mantillo para conservar la humedad del suelo."/>
+            <column name="insecticide" value="Controlar plagas como pulgones y trips con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="50"/>
+            <column name="max_size" valueNumeric="60.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="10.0"/>
+            <column name="url_image" value="https://premierseedsdirect.com/wp-content/uploads/2017/02/Herb-Welsh-Onion-1-scaled.jpg"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240703-01">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Frutilla"/>
+            <column name="scientific_name" value="Fragaria × ananassa"/>
+            <column name="slug_scientific_name" value="fragaria-x-ananassa"/>
+            <column name="description" value="La frutilla, también conocida como fresa, es una planta herbácea perenne que se cultiva por sus deliciosos frutos rojos."/>
+            <column name="watering_frecuency" value="Cada 1 o 2 semanas"/>
+            <column name="sunlight" value="sol pleno, sol parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo pero sin acumulación de agua. Evitar el riego por encima para prevenir enfermedades."/>
+            <column name="fertilizer" value="Fertilización equilibrada durante la primavera y el verano, especialmente durante la floración y fructificación."/>
+            <column name="pruning" value="Eliminar las hojas secas y los estolones no deseados para fomentar el crecimiento de frutos."/>
+            <column name="soil" value="Marga, Bien drenada, Rica en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando el suelo y las condiciones meteorológicas favorezcan su crecimiento."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, otoño"/>
+            <column name="harvest_time" value="primavera, Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Rosáceas"/>
+            <column name="genus" value="Fragaria"/>
+            <column name="specie" value="Fragaria × ananassa"/>
+            <column name="temperature_min" valueNumeric="-10.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Estolones, Semillas"/>
+            <column name="fruit" value="Fruto rojo, suculento, con semillas diminutas en la superficie."/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Para obtener frutillas grandes y dulces, asegúrese de proporcionar suficiente luz solar y mantenga el suelo bien abonado."/>
+            <column name="insecticide" value="Controlar plagas como pulgones y ácaros con insecticidas naturales según sea necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Letargo invernal"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="30.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Moderado"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://cdn0.ecologiaverde.com/es/posts/4/0/2/sembrar_y_plantar_fresas_cuando_y_como_hacerlo_2204_orig.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240703-02">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Rúcula"/>
+            <column name="scientific_name" value="Eruca sativa"/>
+            <column name="slug_scientific_name" value="eruca-sativa"/>
+            <column name="description" value="La rúcula es una planta comestible muy popular en ensaladas y otros platos. Es conocida por su sabor ligeramente picante y su fácil cultivo en diversas condiciones."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="Sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo constantemente húmedo, pero evitar el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="No requiere poda regular, pero se puede cosechar frecuentemente para promover un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, otoño"/>
+            <column name="harvest_time" value="Primavera, Verano, Otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Brassicaceae"/>
+            <column name="genus" value="Eruca"/>
+            <column name="specie" value="Eruca sativa"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="La rúcula puede cultivarse en interiores en macetas cerca de una ventana que reciba luz indirecta."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="50.0"/>
+            <column name="growth_season" value="Primavera, Verano, Otoño"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/5/50/Eruca_vesicaria_re.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240703-03">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Lechuga Romana"/>
+            <column name="scientific_name" value="Lactuca serriola"/>
+            <column name="slug_scientific_name" value="lactuca-serriola"/>
+            <column name="description" value="La lechuga romana es una variedad de lechuga conocida por sus hojas largas y crujientes. Es ideal para ensaladas y se adapta bien a diversas condiciones de cultivo."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="Sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo constantemente húmedo, pero evitar el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="No requiere poda regular, pero se puede cosechar frecuentemente para promover un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="invierno, primavera"/>
+            <column name="harvest_time" value="Invierno, Primavera, Otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Asteraceae"/>
+            <column name="genus" value="Lactuca"/>
+            <column name="specie" value="Lactuca serriola"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="La lechuga romana puede cultivarse en interiores en macetas cerca de una ventana que reciba luz indirecta."/>
+            <column name="insecticide" value="Controlar plagas como pulgones y caracoles con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="30.0"/>
+            <column name="growth_season" value="Invierno, Primavera"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="20.0"/>
+            <column name="url_image" value="https://www.picturethisai.com/wiki-image/1080/201214403161489408.jpeg"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240703-04">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Lechuga Mantecosa"/>
+            <column name="scientific_name" value="Lactuca sativa var. capitata"/>
+            <column name="slug_scientific_name" value="lactuca-sativa-var-capitata"/>
+            <column name="description" value="La lechuga mantecosa es una variedad de lechuga conocida por sus hojas tiernas y sabor suave. Es ideal para ensaladas y se adapta bien a diversas condiciones de cultivo."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="Sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo constantemente húmedo, pero evitar el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="No requiere poda regular, pero se puede cosechar frecuentemente para promover un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="invierno, primavera"/>
+            <column name="harvest_time" value="Invierno, Primavera, Otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Asteraceae"/>
+            <column name="genus" value="Lactuca"/>
+            <column name="specie" value="Lactuca sativa var. capitata"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="La lechuga mantecosa puede cultivarse en interiores en macetas cerca de una ventana que reciba luz indirecta."/>
+            <column name="insecticide" value="Controlar plagas como pulgones y caracoles con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="30.0"/>
+            <column name="growth_season" value="Invierno, Primavera"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="20.0"/>
+            <column name="url_image" value="https://a.semena.cz/11029-superlarge_default/salat-ledovy-prazan-lactuca-sativa-var-capitata-semena-100-ks.jpg"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240703-05">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Lechuga Frisée"/>
+            <column name="scientific_name" value="Cichorium endivia var. crispum"/>
+            <column name="slug_scientific_name" value="cichorium-endivia-var-crispum"/>
+            <column name="description" value="La lechuga frisée, conocida también como achicoria rizada, es una variedad de lechuga con hojas finamente cortadas y un sabor ligeramente amargo. Es popular en ensaladas por su textura crujiente y su apariencia atractiva."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="Sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo constantemente húmedo, pero evitar el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="No requiere poda regular, pero se puede cosechar frecuentemente para promover un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, otoño"/>
+            <column name="harvest_time" value="Primavera, Verano, Otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Asteraceae"/>
+            <column name="genus" value="Cichorium"/>
+            <column name="specie" value="Cichorium endivia var. crispum"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="La lechuga frisée puede cultivarse en interiores en macetas cerca de una ventana que reciba luz indirecta."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="40.0"/>
+            <column name="growth_season" value="Primavera, Verano, Otoño"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Chicor%C3%A9e_Francfort_J1.JPG/640px-Chicor%C3%A9e_Francfort_J1.JPG"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240703-06">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Perejil"/>
+            <column name="scientific_name" value="Petroselinum crispum"/>
+            <column name="slug_scientific_name" value="petroselinum-crispum"/>
+            <column name="description" value="El perejil es una planta aromática y comestible que se utiliza comúnmente como condimento en la cocina. Es fácil de cultivar y puede prosperar en interiores con luz indirecta."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="Sombra"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero sin encharcar."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Bienal"/>
+            <column name="planting_time" value="Primavera, Otoño"/>
+            <column name="harvest_time" value="Primavera, Verano, Otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Apiaceae"/>
+            <column name="genus" value="Petroselinum"/>
+            <column name="specie" value="Petroselinum crispum"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Media"/>
+            <column name="tips" value="El perejil puede cultivarse en interiores en macetas cerca de una ventana que reciba luz indirecta. Evitar el exceso de riego."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="30.0"/>
+            <column name="growth_season" value="Primavera, Verano, Otoño"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="25.0"/>
+            <column name="url_image" value="https://inaturalist-open-data.s3.amazonaws.com/photos/2869730/original.JPG"/>
+        </insert>
+    </changeSet>
+
+        <changeSet author="Jfoppoli" id="20240703-07">
+            <insert schemaName="garden" tableName="plant_catalog">
+                <column name="common_name" value="Cebollino"/>
+                <column name="scientific_name" value="Allium schoenoprasum"/>
+                <column name="slug_scientific_name" value="allium-schoenoprasum"/>
+                <column name="description" value="El cebollino es una planta aromática y comestible de la familia de las cebollas. Se utiliza comúnmente como condimento en la cocina y es fácil de cultivar en interiores."/>
+                <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+                <column name="sunlight" value="Sombra parcial"/>
+                <column name="watering_care" value="Mantener el suelo ligeramente húmedo."/>
+                <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+                <column name="pruning" value="Cosechar regularmente para fomentar un nuevo crecimiento."/>
+                <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+                <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+                <column name="lifespan" value="Perenne"/>
+                <column name="planting_time" value="primavera, otoño"/>
+                <column name="harvest_time" value="Primavera, Verano, Otoño"/>
+                <column name="plant_type" value="Hierba"/>
+                <column name="family_name" value="Amaryllidaceae"/>
+                <column name="genus" value="Allium"/>
+                <column name="specie" value="Allium schoenoprasum"/>
+                <column name="temperature_min" valueNumeric="4.0"/>
+                <column name="temperature_max" valueNumeric="24.0"/>
+                <column name="edible" value="Sí"/>
+                <column name="propagation" value="Semillas o división de matas"/>
+                <column name="fruit" value="No aplicable"/>
+                <column name="growth_rate" value="Media"/>
+                <column name="tips" value="El cebollino puede cultivarse en interiores en macetas cerca de una ventana que reciba luz indirecta. Evitar el exceso de riego."/>
+                <column name="insecticide" value="Controlar plagas con insecticidas naturales si es necesario."/>
+                <column name="toxic" value="No"/>
+                <column name="dormancy" value="Letargo invernal"/>
+                <column name="atmospheric_humidity" valueNumeric="50"/>
+                <column name="max_size" valueNumeric="40.0"/>
+                <column name="growth_season" value="Primavera, Verano, Otoño"/>
+                <column name="maintenance" value="Bajo"/>
+                <column name="width" value="30.0"/>
+                <column name="url_image" value="https://images.immediate.co.uk/production/volatile/sites/10/2018/08/bda14a55-1e6e-4ed1-a24e-5c44ffedc6a5-a64001c.jpg"/>
+            </insert>
+        </changeSet>
+    <changeSet author="Jfoppoli" id="20240703-08">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Orégano"/>
+            <column name="scientific_name" value="Origanum vulgare"/>
+            <column name="slug_scientific_name" value="origanum-vulgare"/>
+            <column name="description" value="El orégano es una planta aromática y comestible, conocida por sus hojas aromáticas que se utilizan como condimento en la cocina mediterránea. Puede cultivarse fácilmente en interiores."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="Sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las hojas regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="Primavera, Otoño"/>
+            <column name="harvest_time" value="Primavera, Verano, Otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Lamiaceae"/>
+            <column name="genus" value="Origanum"/>
+            <column name="specie" value="Origanum vulgare"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas o esquejes"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Media"/>
+            <column name="tips" value="El orégano puede cultivarse en interiores en macetas cerca de una ventana que reciba luz indirecta. Evitar el exceso de riego."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Sí, en invierno"/>
+            <column name="atmospheric_humidity" valueNumeric="50"/>
+            <column name="max_size" valueNumeric="45.0"/>
+            <column name="growth_season" value="Primavera, Verano, Otoño"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Origanum_vulgare_-_harilik_pune.jpg/1365px-Origanum_vulgare_-_harilik_pune.jpg"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240703-09">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Berro"/>
+            <column name="scientific_name" value="Nasturtium officinale"/>
+            <column name="slug_scientific_name" value="nasturtium-officinale"/>
+            <column name="description" value="El berro es una planta comestible que se utiliza comúnmente en ensaladas y platos frescos. Es fácil de cultivar en interiores y puede prosperar con sombra parcial."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="Sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo constantemente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las hojas regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, otoño"/>
+            <column name="harvest_time" value="Primavera, Verano, Otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Brassicaceae"/>
+            <column name="genus" value="Nasturtium"/>
+            <column name="specie" value="Nasturtium officinale"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="El berro puede cultivarse en interiores en macetas cerca de una ventana que reciba luz indirecta. Mantener el suelo constantemente húmedo."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="30.0"/>
+            <column name="growth_season" value="Primavera, Verano, Otoño"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="20.0"/>
+            <column name="url_image" value="https://www.magicgardenseeds.es/media/image/product/1815/lg/brunnenkresse-nasturtium-officinale-samen.jpg"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240703-10">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Romero"/>
+            <column name="scientific_name" value="Rosmarinus officinalis"/>
+            <column name="slug_scientific_name" value="rosmarinus-officinalis"/>
+            <column name="description" value="El romero es una planta aromática y comestible utilizada como condimento en diversas cocinas. Es fácil de cultivar en interiores y puede prosperar con sombra parcial."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="Sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las hojas regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, otoño"/>
+            <column name="harvest_time" value="Primavera, Verano, Otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Lamiaceae"/>
+            <column name="genus" value="Rosmarinus"/>
+            <column name="specie" value="Rosmarinus officinalis"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas o esquejes"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Lenta"/>
+            <column name="tips" value="El romero puede cultivarse en interiores en macetas cerca de una ventana que reciba luz indirecta. Evitar el exceso de riego."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="40"/>
+            <column name="max_size" valueNumeric="50.0"/>
+            <column name="growth_season" value="Primavera, Verano, Otoño"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://inaturalist-open-data.s3.amazonaws.com/photos/2869735/original.JPG"/>
+        </insert>
+    </changeSet>
+
+    </databaseChangeLog>
+
+
+
