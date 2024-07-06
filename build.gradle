@@ -29,6 +29,7 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.5.0'
     implementation 'commons-codec:commons-codec'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    testImplementation 'org.projectlombok:lombok:1.18.26'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
@@ -39,6 +40,7 @@ dependencies {
     // implementation 'org.springframework.boot:spring-boot-starter-security'
     // implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'com.amazonaws:aws-java-sdk-cognitoidp:1.11.934'
+    testImplementation 'com.h2database:h2'
 }
 
 jar {
