@@ -74,3 +74,20 @@ jobs:
           push: true
           tags: ${{ vars.REGISTRY_URL }}/dienavarrete/api-germinar:latest
 
+  deploy:
+    if: github.event.pull_request.merged == true
+    needs: docker
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            docker-compose -f ~/compose/docker-compose.yml pull
+            docker-compose -f ~/compose/docker-compose.yml up -d
+
