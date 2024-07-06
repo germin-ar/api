@@ -64,8 +64,8 @@ public class PlantCatalogJdbcAdapter implements GetPlantCatalogRepository, SaveP
 
         try {
             MapSqlParameterSource params = new MapSqlParameterSource()
-                    .addValue("minTemperature", minTemperature + 5)
-                    .addValue("maxTemperature", maxTemperature + 5)
+                    .addValue("minTemperature", minTemperature)
+                    .addValue("maxTemperature", maxTemperature)
                     .addValue("luz", luz)
                     .addValue("temporada", temporada)
                     .addValue("squareCentimeters", squareCentimeters);
