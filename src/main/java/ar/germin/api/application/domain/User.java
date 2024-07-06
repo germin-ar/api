@@ -7,9 +7,12 @@ import lombok.Value;
 @Value
 public class User {
     Integer id;
+    String pass;
     String name;
+    Boolean isConfirmed;
     String email;
-    // TODO password  ver cognito? String password;
+    String username;
+    //Role role;
     // TODO favoritos, preferencia alimentaria, notificaciones
     //TODO tutoriales guardados,ubicacion geografica,foto,suscripcion
 }

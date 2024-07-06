@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class SaveGardenUseCaseTest {
+public class SaveGardenUseCaseTest {
 
     private final SaveGardenRepository saveGardenRepository = mock(SaveGardenRepository.class);
 
@@ -41,7 +41,7 @@ class SaveGardenUseCaseTest {
 
         Integer candidateResults = useCase.save(1, "");
 
-        Assertions.assertEquals("", candidateResults);
+        Assertions.assertEquals(1, candidateResults);
     }
 
     @Test

@@ -1,7 +1,5 @@
 package ar.germin.api.adapter.controller.models;
 
-import ar.germin.api.application.domain.DiseaseCandidate;
-import ar.germin.api.application.domain.Garden;
 import ar.germin.api.application.domain.HealthAIDetection;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -17,19 +15,7 @@ import java.util.Optional;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class HealthPlantResponseModel {
     Boolean isHealthy;
-    String name;
-    String scientificNameDisease;
-    String type;
-    String commonName;
-    String kingdomTaxonomy;
-    String entityId;
-    String classTaxonomy;
-    String genusTaxonomy;
-    String orderTaxonomy;
-    String familyTaxonomy;
-    String phylumTaxonomy;
-    String wikiUrls;
-    List<HealthPlantResponseModel>candidates;
+    List<HealthCandidateResponseModel> candidates;
 
 
     public static HealthPlantResponseModel fromDomain(HealthAIDetection healthAIDetection) {
@@ -38,7 +24,7 @@ public class HealthPlantResponseModel {
                 .candidates(Optional
                         .ofNullable(healthAIDetection.getCandidates()).orElse(Collections.emptyList())
                         .stream()
-                        .map(candidate -> HealthPlantResponseModel.builder()
+                        .map(candidate -> HealthCandidateResponseModel.builder()
                                 .scientificNameDisease(candidate.getScientificNameDisease())
                                 .classTaxonomy(candidate.getClassTaxonomy())
                                 .commonName(candidate.getCommonNames())
@@ -51,20 +37,29 @@ public class HealthPlantResponseModel {
                                 .phylumTaxonomy(candidate.getPhylumTaxonomy())
                                 .type(candidate.getType())
                                 .wikiUrls(candidate.getWikiUrls())
-                        .build())
+                                .build())
                         .toList())
                 .build();
     }
-    public static List<HealthPlantResponseModel> fromDomainList(List<HealthAIDetection>candidates) {
-        return candidates
-                .stream()
-                .map(HealthPlantResponseModel::fromDomain)
-                .toList();
-    }
+
+
 }
+
 @Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-record CandidateModel(List<CandidateModel>candidates){
+record HealthCandidateResponseModel(String name,
+                                    String scientificNameDisease,
+                                    String type,
+                                    String commonName,
+                                    String kingdomTaxonomy,
+                                    String entityId,
+                                    String classTaxonomy,
+                                    String genusTaxonomy,
+                                    String orderTaxonomy,
+                                    String familyTaxonomy,
+                                    String phylumTaxonomy,
+                                    String wikiUrls) {
 };
+
 
 

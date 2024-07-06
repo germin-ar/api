@@ -25,4 +25,24 @@ public class PlantCatalog {
     String growthSeason;
     String harvestTime;
     String plantingTime;
+
+
+    String slugScientificName;
+    String wateringCare;
+    String commonName;
+    String lifespan;
+    String propagation;
+    String fruit;
+    String edible;
+    String growthRate;
+    String maintenance;
+    String specie;
+    String toxic;
+    String repotting;
+    String dormancy;
+    Integer atmosphericHumidity;
+    String plantType;
+    Double width;
+
+    String urlImage;
 }
