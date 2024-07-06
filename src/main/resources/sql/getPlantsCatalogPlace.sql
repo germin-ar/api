@@ -35,5 +35,5 @@ select id,
        url_image
 from garden.plant_catalog
 where sunlight ilike '%' || :light || '%'
-and width >= :place
+and width <= :place
 and planting_time ilike '%' || :temporada || '%';
