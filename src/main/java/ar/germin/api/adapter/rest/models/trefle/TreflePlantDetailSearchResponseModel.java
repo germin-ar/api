@@ -21,12 +21,12 @@ public class TreflePlantDetailSearchResponseModel {
                 .genus(data.genus.getName())
                 .familyName(data.family.getName())
                 .description(data.observations)
-                .fertilizer("fertilizer")
-                .wateringFrequency("irrigation")
-                .pruning("pruning")
-                .soil("soil")
-                .insecticide("insecticide")
-                .tips("tips")
+                .fertilizer("Fertilizar cada 2-3 semanas con fertilizante balanceado")
+                .wateringFrequency("Dos veces por semana")
+                .pruning("Podar las ramas secundarias para promover un crecimiento más vigoroso y una mejor producción de frutos.")
+                .soil("Arena, Arcilla, Marga, Calcáreo, Ácido, Neutro, Alcalino")
+                .insecticide("controlar las plagas y pulgones con insecticidas naturales de ser posible")
+                .tips("Mantener el suelo constantemente húmedo pero no encharcado. Requiere suelos ricos en nutrientes, por lo que se recomienda abonar regularmente. Los tallos y hojas son comestibles")
                 .build();
     }
 }
