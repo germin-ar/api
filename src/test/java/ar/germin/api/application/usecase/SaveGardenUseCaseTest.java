@@ -41,7 +41,7 @@ public class SaveGardenUseCaseTest {
 
         Integer candidateResults = useCase.save(1, "");
 
-        Assertions.assertEquals("", candidateResults);
+        Assertions.assertEquals(1, candidateResults);
     }
 
     @Test
