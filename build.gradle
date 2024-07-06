@@ -29,6 +29,8 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.5.0'
     implementation 'commons-codec:commons-codec'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     testImplementation 'org.projectlombok:lombok:1.18.26'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
