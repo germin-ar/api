@@ -50,6 +50,8 @@ jobs:
     #   run: gradle build
 
   docker:
+    if: github.event.pull_request.merged == true
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
