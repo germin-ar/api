@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet author="Jfoppoli" id="20240706-1">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Acelga"/>
+            <column name="scientific_name" value="Beta vulgaris subsp. vulgaris"/>
+            <column name="slug_scientific_name" value="beta-vulgaris-subsp-vulgaris"/>
+            <column name="description" value="La acelga es una verdura de hoja verde que crece bien en climas fríos y áreas sombreadas. Es rica en vitaminas y minerales."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las hojas regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Primavera, Verano"/>
+            <column name="plant_type" value="Verdura"/>
+            <column name="family_name" value="Amaranthaceae"/>
+            <column name="genus" value="Beta"/>
+            <column name="specie" value="Beta vulgaris"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Cosechar las hojas exteriores para permitir que las interiores continúen creciendo."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="40.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://www.infocampo.com.ar/wp-content/uploads/2020/02/huerta-acelga-2-infocampo.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240706-2">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Mostaza"/>
+            <column name="scientific_name" value="Brassica juncea"/>
+            <column name="slug_scientific_name" value="brassica-juncea"/>
+            <column name="description" value="Las hojas jóvenes de la mostaza son comestibles y pueden crecer en sombra parcial. Es ideal para ensaladas y guisos."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las hojas regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Primavera, Verano"/>
+            <column name="plant_type" value="Verdura"/>
+            <column name="family_name" value="Brassicaceae"/>
+            <column name="genus" value="Brassica"/>
+            <column name="specie" value="Brassica juncea"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Cosechar las hojas jóvenes para obtener el mejor sabor."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="40.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://inaturalist-open-data.s3.amazonaws.com/photos/81020/original.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240706-3">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Borraja"/>
+            <column name="scientific_name" value="Borago officinalis"/>
+            <column name="slug_scientific_name" value="borago-officinalis"/>
+            <column name="description" value="La borraja tolera la sombra y es adecuada para climas frescos. Sus flores y hojas son comestibles."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las hojas y flores regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Primavera, Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Boraginaceae"/>
+            <column name="genus" value="Borago"/>
+            <column name="specie" value="Borago officinalis"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Las flores de borraja son comestibles y pueden usarse como decoración en ensaladas."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="60.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="40.0"/>
+            <column name="url_image" value="https://static.vecteezy.com/system/resources/previews/002/353/783/large_2x/blue-flowers-and-buds-of-borage-borago-officinalis-free-photo.jpg"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet author="Jfoppoli" id="20240706-4">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Pak Choi"/>
+            <column name="scientific_name" value="Brassica rapa subsp. chinensis"/>
+            <column name="slug_scientific_name" value="brassica-rapa-subsp-chinensis"/>
+            <column name="description" value="El Pak Choi prefiere climas frescos y puede tolerar la sombra parcial. Es popular en la cocina asiática."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las hojas exteriores para permitir que las interiores continúen creciendo."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Primavera, Verano"/>
+            <column name="plant_type" value="Verdura"/>
+            <column name="family_name" value="Brassicaceae"/>
+            <column name="genus" value="Brassica"/>
+            <column name="specie" value="Brassica rapa subsp. chinensis"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Cosechar las hojas exteriores para permitir que las interiores continúen creciendo."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="40.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/3/33/Pak-ch.jpg"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240706-05">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Hierba de San Juan"/>
+            <column name="scientific_name" value="Hypericum perforatum"/>
+            <column name="slug_scientific_name" value="hypericum-perforatum"/>
+            <column name="description" value="La hierba de San Juan puede crecer en sombra parcial y es conocida por sus propiedades medicinales."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las flores durante el verano para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Hypericaceae"/>
+            <column name="genus" value="Hypericum"/>
+            <column name="specie" value="Hypericum perforatum"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="No"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Secar las flores para usarlas en infusiones o tinturas."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="Sí"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="70.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="50.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/4/47/Saint_John%27s_wort_flowers.jpg"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240706-6">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Caléndula"/>
+            <column name="scientific_name" value="Calendula officinalis"/>
+            <column name="slug_scientific_name" value="calendula-officinalis"/>
+            <column name="description" value="La caléndula tolera la sombra y es adecuada para climas frescos. Sus flores son comestibles y se usan en ensaladas y tés."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las flores regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Primavera, Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Asteraceae"/>
+            <column name="genus" value="Calendula"/>
+            <column name="specie" value="Calendula officinalis"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Las flores de caléndula son comestibles y pueden usarse como decoración en ensaladas."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="30.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="20.0"/>
+            <column name="url_image" value="https://jardin.lacritica.com.ar/wp-content/uploads/2022/12/Calendula_officinalis.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240706-7">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Ortiga"/>
+            <column name="scientific_name" value="Urtica dioica"/>
+            <column name="slug_scientific_name" value="urtica-dioica"/>
+            <column name="description" value="La ortiga puede crecer en sombra parcial y es adecuada para climas frescos. Sus hojas son comestibles cuando se cocinan."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las hojas regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Primavera, Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Urticaceae"/>
+            <column name="genus" value="Urtica"/>
+            <column name="specie" value="Urtica dioica"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Cocinar las hojas antes de consumir para eliminar el efecto urticante."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="60.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="40.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Br%C3%A4nn%C3%A4ssla_%28Urtica_Dioica%29.jpg/1200px-Br%C3%A4nn%C3%A4ssla_%28Urtica_Dioica%29.jpg"/>
+        </insert>
+    </changeSet>
+    <changeSet author="Jfoppoli" id="20240706-8">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Diente de León"/>
+            <column name="scientific_name" value="Taraxacum officinale"/>
+            <column name="slug_scientific_name" value="taraxacum-officinale"/>
+            <column name="description" value="El diente de león puede crecer en sombra parcial y es adecuado para climas frescos. Sus hojas y flores son comestibles."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las hojas y flores regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Primavera, Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Asteraceae"/>
+            <column name="genus" value="Taraxacum"/>
+            <column name="specie" value="Taraxacum officinale"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Las hojas de diente de león se pueden usar en ensaladas y tés."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="30.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="20.0"/>
+            <column name="url_image" value="https://www.canr.msu.edu/pestid/uploads/images/Dandelion-plant.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240706-9">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Valeriana"/>
+            <column name="scientific_name" value="Valeriana officinalis"/>
+            <column name="slug_scientific_name" value="valeriana-officinalis"/>
+            <column name="description" value="La valeriana crece bien en sombra parcial y es adecuada para climas frescos. Es conocida por sus propiedades medicinales."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra"/>
+            <column name="watering_care" value="Mantener el suelo ligeramente húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización ligera con compost o fertilizante balanceado cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las raíces en otoño, después de que las flores se hayan marchitado."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera o verano, cuando las raíces llenen la maceta actual."/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Otoño"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Caprifoliaceae"/>
+            <column name="genus" value="Valeriana"/>
+            <column name="specie" value="Valeriana officinalis"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Utilizar las raíces secas para hacer infusiones relajantes."/>
+            <column name="insecticide" value="Controlar plagas como pulgones con insecticidas naturales si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="60.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="40.0"/>
+            <column name="url_image" value="https://content.cuerpomente.com/medio/2023/05/30/valeriana-officinalis_00000000_76c1670a_230530150739_1280x720.jpg"/>
+        </insert>
+    </changeSet>
+
+
+
+</databaseChangeLog>
