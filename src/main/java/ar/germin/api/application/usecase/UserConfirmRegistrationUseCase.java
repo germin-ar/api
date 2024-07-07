@@ -35,7 +35,7 @@ public class UserConfirmRegistrationUseCase implements UserConfirmRegistrationPo
     try {
       User user = getJdbcUserRepository.get(email);
       if (!user.getIsConfirmed()) {
-        this.updateRoleRepository.addUserToGroup(user.getName(), "FREE_USER");
+        updateRolesRepositories(user);
         updateUserRepositories(user, confirmationCode);
         log.info("Confirm account successful");
         return this.getJdbcUserRepository.get(email);
@@ -46,6 +46,11 @@ public class UserConfirmRegistrationUseCase implements UserConfirmRegistrationPo
     } catch (ErrorConfirmAccountException ex) {
       throw new ErrorConfirmAccountException("Error confirming account for email " + email);
     }
+  }
+
+  private void updateRolesRepositories(User user){
+    this.updateRoleRepository.addUserToGroup(user.getName(), "FREE_USER");
+    this.updateJdbcUserRepository.changeRole(user.getEmail(), "FREE_USER");
   }
 
   private void updateUserRepositories(User user, String confirmationCode) {

@@ -29,13 +29,14 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
   private static final String SAVE_USER_PATH = "sql/saveUser.sql";
   private static final String UPDATE_USER_PATH = "sql/updateUser.sql";
   private static final String DELETE_USER_PATH = "sql/deleteUser.sql";
-
+  private static final String UPDATE_ROLE_USER_PATH = "sql/updateRoleUser.sql";
 
   private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
   private final String selectUserByEmailSql;
   private final String saveUserSql;
   private final String updateUserSql;
   private final String deleteUserSql;
+  private final String updateRoleUserSql;
 
 
   public UserJdbcAdapter(NamedParameterJdbcTemplate namedParameterJdbcTemplate, SqlReader sqlReader) {
@@ -44,6 +45,7 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
     this.saveUserSql = sqlReader.readSql(SAVE_USER_PATH);
     this.updateUserSql = sqlReader.readSql(UPDATE_USER_PATH);
     this.deleteUserSql = sqlReader.readSql(DELETE_USER_PATH);
+    this.updateRoleUserSql = sqlReader.readSql(UPDATE_ROLE_USER_PATH);
 
   }
 
@@ -73,7 +75,10 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
       MapSqlParameterSource sqlParams = new MapSqlParameterSource()
               .addValue("username", user.getUsername())
               .addValue("email", user.getEmail())
-              .addValue("isConfirmed", user.getIsConfirmed());
+              .addValue("isConfirmed", user.getIsConfirmed())
+              .addValue("hash",user.getHash())
+              .addValue("rol",user.getRol());
+      //TODO : hacer un caso de uso para cambiar el rol al usuario.
       log.info("Saving user with sql [{}] with params: [{}]", saveUserSql, sqlParams);
       this.namedParameterJdbcTemplate.update(saveUserSql, sqlParams);
     } catch (ErrorUserSaveException ex) {
@@ -92,6 +97,20 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
       this.namedParameterJdbcTemplate.update(updateUserSql, sqlParams);
     } catch (ErrorUserSaveException ex) {
       log.error("Error confirm email user", ex);
+      throw new ErrorUserUpdateException("No se pudo actualizar el usuario");
+    }
+  }
+
+  @Override
+  public void changeRole(String email, String rol) {
+    try {
+      MapSqlParameterSource sqlParams = new MapSqlParameterSource()
+              .addValue("email", email)
+              .addValue("rol",rol);
+      log.info("Changed role user with sql [{}] with params: [{}]", updateRoleUserSql, sqlParams);
+      this.namedParameterJdbcTemplate.update(updateRoleUserSql, sqlParams);
+    } catch (ErrorUserSaveException ex) {
+      log.error("Error changing role user", ex);
       throw new ErrorUserUpdateException("No se pudo actualizar el usuario");
     }
   }

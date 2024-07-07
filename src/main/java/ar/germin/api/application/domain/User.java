@@ -12,7 +12,8 @@ public class User {
     Boolean isConfirmed;
     String email;
     String username;
-    //Role role;
+    String rol;
+    String hash;
     // TODO favoritos, preferencia alimentaria, notificaciones
     //TODO tutoriales guardados,ubicacion geografica,foto,suscripcion
 }
