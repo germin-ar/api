@@ -11,6 +11,8 @@ public class UserModel {
   String name;
   Boolean isConfirmed;
   String email;
+  String hash;
+  String rol;
   //String username;
 
   public User toDomain() {

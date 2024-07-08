@@ -10,6 +10,7 @@ public class UserResponseModel {
   String email;
   Boolean isConfirmed;
   String name;
+  String rol;
 
   public static UserResponseModel fromDomain(User user) {
 
@@ -17,6 +18,7 @@ public class UserResponseModel {
             .email(user.getEmail())
             .isConfirmed(user.getIsConfirmed())
             .name(user.getName())
+            .rol(user.getRol())
             .build();
   }
 

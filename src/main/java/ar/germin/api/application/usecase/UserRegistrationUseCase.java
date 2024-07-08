@@ -50,19 +50,22 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
             return this.getJdbcUserRepository.get(email);
         }
         try {
-            if (!existsInDb) {
-                this.saveJdbcUserRepository.save(User.builder()
-                        .name(username)
-                        .username(username)
-                        .email(email)
-                        .isConfirmed(false)
-                        .build());
-            }
             if (!existsInCognito) {
                 this.saveCognitoUserRepository.save(User.builder()
                         .username(username)
                         .email(email)
                         .pass(password)
+                        .build());
+            }
+            User userCognito = this.getCognitoUserRepository.get(email);
+            if (!existsInDb) {
+                this.saveJdbcUserRepository.save(User.builder()
+                        .name(username)
+                        .username(username)
+                        .email(email)
+                        .hash(userCognito.getHash())
+                        .rol(userCognito.getRol())
+                        .isConfirmed(userCognito.getIsConfirmed())
                         .build());
             }
             log.info("Sign up successful. Please check your email for confirmation.");
@@ -74,7 +77,8 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
         }
     }
 
-    private Boolean userExistsInRepository(GetUserRepository getUserRepository, String email) {
+
+    private Boolean userExistsInRepository(GetUserRepository getUserRepository, String email){
         try {
             getUserRepository.get(email);
             return true;
