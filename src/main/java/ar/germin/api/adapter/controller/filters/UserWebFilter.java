@@ -34,8 +34,7 @@ public class UserWebFilter implements WebFilter {
                     return Mono.error(new BadCredentialsException("Invalid token"));
                 })
                 .map(idUser -> {
-                    //FIXME: hacer la búsqueda por id de usuario en cognito
-                    User user = this.getUserRepository.get(idUser.toString());
+                    User user = this.getUserRepository.getByHash(idUser.toString());
 
                     return exchange
                             .mutate()
@@ -44,6 +43,7 @@ public class UserWebFilter implements WebFilter {
                                             .header("id-user", user.getId().toString()))
                             .build();
                 })
-                .flatMap(chain::filter);
+                .flatMap(chain::filter)
+                .switchIfEmpty(chain.filter(exchange));
     }
 }
