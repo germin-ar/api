@@ -65,8 +65,8 @@ public class AuthenticationControllerAdapter {
     }
 
     @PostMapping("/get")
-    public UserResponseModel getUser(@RequestHeader("hash") String hash){
-        User response = getUserPortIn.getByHash(hash);
+    public UserResponseModel getUser(@RequestHeader("sub") String sub){
+        User response = getUserPortIn.getByHash(sub);
         return UserResponseModel.fromDomain(response);
     }
 

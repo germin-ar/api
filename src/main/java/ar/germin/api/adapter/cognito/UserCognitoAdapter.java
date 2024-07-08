@@ -22,10 +22,8 @@ import software.amazon.awssdk.services.cognitoidentityprovider.model.*;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 @Qualifier("cognito")
@@ -40,9 +38,44 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
         this.cognitoClient = cognitoClient;
     }
 
+    //TODO: cambiar el repository si no se va a implementar
     @Override
-    public User getByHash(String hash) {
-        return null;
+    public User getByHash(String sub) {
+        if (sub == null || sub.isEmpty()) {
+            throw new IllegalArgumentException("Sub cannot be null or empty");
+        }
+
+        try {
+            ListUsersRequest listUsersRequest = ListUsersRequest.builder()
+                    .userPoolId(this.germinarConfiguration.cognito().userPoolId())
+                    .filter("sub=\"" + sub + "\"")
+                    .build();
+
+            ListUsersResponse listUsersResponse = cognitoClient.listUsers(listUsersRequest);
+            List<UserType> users = listUsersResponse.users();
+
+            if (users.isEmpty()) {
+                log.warn("No users found with sub: " + sub);
+                throw new UserNotFoundException("There is no user from cognito registered with that sub.");
+            }
+
+            UserType cognitoUser = users.get(0);
+            Map<String, String> attributes = cognitoUser.attributes().stream()
+                    .collect(Collectors.toMap(AttributeType::name, AttributeType::value));
+
+            boolean isConfirmed = Boolean.parseBoolean(attributes.getOrDefault("email_verified", "false"));
+            String email = attributes.getOrDefault("email", "");
+
+            return User.builder()
+                    .email(email)
+                    .hash(sub)
+                    .rol(cognitoUser.enabled() ? getUserRole(cognitoUser.username()) : "")
+                    .isConfirmed(isConfirmed)
+                    .build();
+        } catch (CognitoIdentityProviderException ex) {
+            log.error("Error getting user from Cognito", ex);
+            throw new UserNotFoundException("Error getting user from Cognito");
+        }
     }
 
     @Override
