@@ -42,5 +42,4 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            docker-compose -f ~/compose/docker-compose.yml pull
-            docker-compose -f ~/compose/docker-compose.yml up -d
+            docker-compose -f ~/compose/docker-compose.yml pull && docker-compose -f ~/compose/docker-compose.yml up -d

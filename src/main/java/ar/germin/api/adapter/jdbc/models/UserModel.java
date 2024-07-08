@@ -8,18 +8,20 @@ import lombok.Data;
 @Data
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class UserModel {
-  String name;
-  Boolean isConfirmed;
-  String email;
-  String hash;
-  String rol;
-  //String username;
+    Integer id;
+    String name;
+    Boolean isConfirmed;
+    String email;
+    String hash;
+    String rol;
+    //String username;
 
-  public User toDomain() {
-    return User.builder()
-            .name(this.name)
-            .isConfirmed(this.isConfirmed)
-            .email(this.email)
-            .build();
-  }
+    public User toDomain() {
+        return User.builder()
+                .id(this.getId())
+                .name(this.getName())
+                .isConfirmed(this.getIsConfirmed())
+                .email(this.getEmail())
+                .build();
+    }
 }
