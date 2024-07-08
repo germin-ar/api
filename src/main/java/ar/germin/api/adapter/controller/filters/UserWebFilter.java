@@ -29,8 +29,7 @@ public class UserWebFilter implements WebFilter {
                 .map(principal -> {
                     if (principal instanceof JwtAuthenticationToken) {
                         Jwt jwt = ((JwtAuthenticationToken) principal).getToken();
-                        // FIXME: revisar el nombre del campo de identificación que viene en jwt
-                        return jwt.getClaims().get("asd");
+                        return jwt.getClaims().get("sub");
                     }
                     return Mono.error(new BadCredentialsException("Invalid token"));
                 })
