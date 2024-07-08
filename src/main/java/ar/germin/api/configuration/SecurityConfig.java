@@ -20,6 +20,7 @@ public class SecurityConfig {
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/api/v1/auth/login").permitAll()
                         .pathMatchers("/api/v1/auth/signup").permitAll()
+                        .pathMatchers("/webjars/**", "/v3/api-docs/**").permitAll()
                         .anyExchange().authenticated())
                 .oauth2ResourceServer(oauth2ResourceServer ->
                         oauth2ResourceServer
