@@ -15,6 +15,7 @@ public class SecurityConfig {
         String jwkSetUri = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_g34U2Zocx/.well-known/jwks.json";
 
         http
+                .cors(ServerHttpSecurity.CorsSpec::disable)
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/api/v1/auth/login").permitAll()
