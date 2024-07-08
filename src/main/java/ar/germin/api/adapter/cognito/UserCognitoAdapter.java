@@ -18,28 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.cognitoidentityprovider.CognitoIdentityProviderClient;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.AttributeType;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.AuthFlowType;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.AuthenticationResultType;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.CognitoIdentityProviderException;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.ConfirmSignUpRequest;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.ConfirmSignUpResponse;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.GlobalSignOutRequest;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.GlobalSignOutResponse;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.InitiateAuthRequest;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.InitiateAuthResponse;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.ListUsersRequest;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.ListUsersResponse;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.SignUpRequest;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.SignUpResponse;
-import software.amazon.awssdk.services.cognitoidentityprovider.model.UserType;
+import software.amazon.awssdk.services.cognitoidentityprovider.model.*;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 @Qualifier("cognito")
@@ -54,8 +38,48 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
         this.cognitoClient = cognitoClient;
     }
 
+    //TODO: cambiar el repository si no se va a implementar
     @Override
-    public User get(String email) {
+    public User getByHash(String sub) {
+        if (sub == null || sub.isEmpty()) {
+            throw new IllegalArgumentException("Sub cannot be null or empty");
+        }
+
+        try {
+            ListUsersRequest listUsersRequest = ListUsersRequest.builder()
+                    .userPoolId(this.germinarConfiguration.cognito().userPoolId())
+                    .filter("sub=\"" + sub + "\"")
+                    .build();
+
+            ListUsersResponse listUsersResponse = cognitoClient.listUsers(listUsersRequest);
+            List<UserType> users = listUsersResponse.users();
+
+            if (users.isEmpty()) {
+                log.warn("No users found with sub: " + sub);
+                throw new UserNotFoundException("There is no user from cognito registered with that sub.");
+            }
+
+            UserType cognitoUser = users.get(0);
+            Map<String, String> attributes = cognitoUser.attributes().stream()
+                    .collect(Collectors.toMap(AttributeType::name, AttributeType::value));
+
+            boolean isConfirmed = Boolean.parseBoolean(attributes.getOrDefault("email_verified", "false"));
+            String email = attributes.getOrDefault("email", "");
+
+            return User.builder()
+                    .email(email)
+                    .hash(sub)
+                    .rol(cognitoUser.enabled() ? getUserRole(cognitoUser.username()) : "")
+                    .isConfirmed(isConfirmed)
+                    .build();
+        } catch (CognitoIdentityProviderException ex) {
+            log.error("Error getting user from Cognito", ex);
+            throw new UserNotFoundException("Error getting user from Cognito");
+        }
+    }
+
+    @Override
+    public User get(String email) throws UserNotFoundException{
         try {
             ListUsersRequest listUsersRequest = ListUsersRequest.builder()
                     .userPoolId(this.germinarConfiguration.cognito().userPoolId())
@@ -65,7 +89,8 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
             List<UserType> users = listUsersResponse.users();
 
             if (users.isEmpty()) {
-                throw new UserNotFoundException("There is no user registered with that email.");
+                log.warn("No users found with email: " + email);
+                throw new UserNotFoundException("There is no user from cognito registered with that email.");
             }
 
             UserType cognitoUser = users.get(0);
@@ -77,6 +102,14 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
                     .map(Boolean::parseBoolean)
                     .orElse(false);
 
+            String hashUser = cognitoUser.attributes()
+                    .stream()
+                    .filter(attributeType -> attributeType.name().equals("sub"))
+                    .findFirst()
+                    .map(AttributeType::value)
+                    .orElseThrow(() -> new RuntimeException("Atributo 'sub' no encontrado"));
+
+
             return User.builder()
                     .username(cognitoUser.username())
                     .email(cognitoUser.attributes()
@@ -86,9 +119,12 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
                             .map(AttributeType::value)
                             .orElse(null)
                     )
+                    .hash(hashUser)
+                    .rol(cognitoUser.enabled()?getUserRole(cognitoUser.username()):"")
                     .isConfirmed(isConfirmed)
                     .build();
         } catch (CognitoIdentityProviderException ex) {
+
             log.error("Error getting user from Cognito", ex);
             throw new UserNotFoundException("Error getting user from Cognito");
         }
@@ -201,5 +237,22 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
             log.error("Login failed: {}", e.awsErrorDetails().errorMessage(), e);
             throw new RuntimeException("Login failed: " + e.awsErrorDetails().errorMessage(), e);
         }
+    }
+
+    private String getUserRole(String username) {
+
+        AdminListGroupsForUserRequest listGroupsForUserRequest = AdminListGroupsForUserRequest.builder()
+                .userPoolId(this.germinarConfiguration.cognito().userPoolId())
+                .username(username)
+                .build();
+        AdminListGroupsForUserResponse listGroupsForUserResponse = cognitoClient.adminListGroupsForUser(listGroupsForUserRequest);
+        List<GroupType> groups = listGroupsForUserResponse.groups();
+
+        if (groups.isEmpty()) {
+            return "";
+            //throw new RuntimeException("User does not belong to any group");
+        }
+        // Asumiendo que el usuario tiene un solo rol
+        return groups.get(0).groupName();
     }
 }
