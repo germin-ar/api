@@ -18,8 +18,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 @Slf4j
 @Qualifier("jdbc")
@@ -30,6 +28,7 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
   private static final String UPDATE_USER_PATH = "sql/updateUser.sql";
   private static final String DELETE_USER_PATH = "sql/deleteUser.sql";
   private static final String UPDATE_ROLE_USER_PATH = "sql/updateRoleUser.sql";
+  public static final String GET_USER_BY_HASH_PATH="sql/selectUserByHash.sql";
 
   private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
   private final String selectUserByEmailSql;
@@ -37,7 +36,7 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
   private final String updateUserSql;
   private final String deleteUserSql;
   private final String updateRoleUserSql;
-
+  private final String getUserByHashSql;
 
   public UserJdbcAdapter(NamedParameterJdbcTemplate namedParameterJdbcTemplate, SqlReader sqlReader) {
     this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
@@ -46,7 +45,25 @@ public class UserJdbcAdapter implements GetUserRepository, SaveUserRepository, U
     this.updateUserSql = sqlReader.readSql(UPDATE_USER_PATH);
     this.deleteUserSql = sqlReader.readSql(DELETE_USER_PATH);
     this.updateRoleUserSql = sqlReader.readSql(UPDATE_ROLE_USER_PATH);
+    this.getUserByHashSql = sqlReader.readSql(GET_USER_BY_HASH_PATH);
+  }
 
+  @Override
+  public User getByHash(String hash){
+    try {
+      MapSqlParameterSource params = new MapSqlParameterSource()
+              .addValue("hash",hash);
+      log.info("Querying User with sql hash[{}] with params: [{}]", getUserByHashSql, params);
+
+      UserModel userModel = this.namedParameterJdbcTemplate.queryForObject(
+              getUserByHashSql,
+              params,
+              new BeanPropertyRowMapper<>(UserModel.class));
+      return userModel.toDomain();
+    } catch (EmptyResultDataAccessException ex) {
+      log.warn("User with hash [{}] not found", hash);
+      throw new UserNotFoundException("User with hash [{}] not found");
+    }
   }
 
   @Override

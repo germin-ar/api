@@ -41,6 +41,11 @@ public class UserCognitoAdapter implements GetUserRepository, SaveUserRepository
     }
 
     @Override
+    public User getByHash(String hash) {
+        return null;
+    }
+
+    @Override
     public User get(String email) throws UserNotFoundException{
         try {
             ListUsersRequest listUsersRequest = ListUsersRequest.builder()

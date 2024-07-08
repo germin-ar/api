@@ -5,11 +5,9 @@ import ar.germin.api.adapter.controller.models.LoginUserRequestModel;
 import ar.germin.api.adapter.controller.models.LoginUserResponseModel;
 import ar.germin.api.adapter.controller.models.SignupRequestModel;
 import ar.germin.api.adapter.controller.models.UserResponseModel;
+import ar.germin.api.application.domain.User;
 import ar.germin.api.application.domain.UserSessionTokens;
-import ar.germin.api.application.port.in.UserConfirmRegistrationPortIn;
-import ar.germin.api.application.port.in.UserLoginPortIn;
-import ar.germin.api.application.port.in.UserLogoutPortIn;
-import ar.germin.api.application.port.in.UserRegistrationPortIn;
+import ar.germin.api.application.port.in.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,14 +24,16 @@ public class AuthenticationControllerAdapter {
     private final UserConfirmRegistrationPortIn userConfirmRegistrationPortIn;
     private final UserLoginPortIn userLoginPortIn;
     private final UserLogoutPortIn userLogoutPortIn;
+    private final getUserPortIn getUserPortIn;
 
     public AuthenticationControllerAdapter(UserRegistrationPortIn userRegistrationPortIn,
                                            UserConfirmRegistrationPortIn userConfirmRegistrationPortIn,
-                                           UserLoginPortIn userLoginPortIn, UserLogoutPortIn userLogoutPortIn) {
+                                           UserLoginPortIn userLoginPortIn, UserLogoutPortIn userLogoutPortIn, ar.germin.api.application.port.in.getUserPortIn getUserPortIn) {
         this.userRegistrationPortIn = userRegistrationPortIn;
         this.userConfirmRegistrationPortIn = userConfirmRegistrationPortIn;
         this.userLoginPortIn = userLoginPortIn;
         this.userLogoutPortIn = userLogoutPortIn;
+        this.getUserPortIn = getUserPortIn;
     }
 
 
@@ -64,5 +64,10 @@ public class AuthenticationControllerAdapter {
         userLogoutPortIn.logout(token);
     }
 
+    @PostMapping("/get")
+    public UserResponseModel getUser(@RequestHeader("hash") String hash){
+        User response = getUserPortIn.getByHash(hash);
+        return UserResponseModel.fromDomain(response);
+    }
 
 }

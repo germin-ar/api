@@ -41,7 +41,7 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
     public User signUp(String username, String password, String email) throws Exception {
         Boolean existsInDb = userExistsInRepository(getJdbcUserRepository, email);
         Boolean existsInCognito = userExistsInRepository(getCognitoUserRepository, email);
-        User userCognito = this.getCognitoUserRepository.get(email);
+
         if (existsInDb && !existsInCognito) {
             this.deleteUserRepository.delete(email);
         }
@@ -57,7 +57,7 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
                         .pass(password)
                         .build());
             }
-
+            User userCognito = this.getCognitoUserRepository.get(email);
             if (!existsInDb) {
                 this.saveJdbcUserRepository.save(User.builder()
                         .name(username)
@@ -78,7 +78,7 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
     }
 
 
-    private Boolean userExistsInRepository(GetUserRepository getUserRepository, String email) throws UserNotFoundException{
+    private Boolean userExistsInRepository(GetUserRepository getUserRepository, String email){
         try {
             getUserRepository.get(email);
             return true;
