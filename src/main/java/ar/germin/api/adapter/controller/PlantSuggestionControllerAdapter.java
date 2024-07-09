@@ -1,9 +1,6 @@
 package ar.germin.api.adapter.controller;
 
 import ar.germin.api.adapter.controller.models.GetPlantCatalogResponseModel;
-import ar.germin.api.adapter.controller.models.GetPlantSuggestionResponseModel;
-import ar.germin.api.application.domain.PlantCatalog;
-import ar.germin.api.application.domain.PlantDataSuggestion;
 import ar.germin.api.application.port.in.GetPlantCatalogPortIn;
 import ar.germin.api.application.port.in.GetPlantsSuggestionPortIn;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +38,7 @@ public class PlantSuggestionControllerAdapter {
     @GetMapping("/espacio")
     public List<GetPlantCatalogResponseModel> getPLantsSuggestionPlace(@Param("luz") String luz,
                                                                        @Param("temporada") String temporada,
-                                                                       @Param("espacio") String espacio){
+                                                                       @Param("espacio") String espacio) {
         return GetPlantCatalogResponseModel.fromDomainList(this.getPlantCatalogPortIn.getPlantsCatalogPlace(luz, temporada, espacio));
     }
 }
