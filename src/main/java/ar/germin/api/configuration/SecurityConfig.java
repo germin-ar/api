@@ -10,12 +10,18 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableWebFluxSecurity
 public class SecurityConfig {
 
+    private final CorsGlobalConfiguration corsGlobalConfiguration;
+
+    public SecurityConfig(CorsGlobalConfiguration corsGlobalConfiguration) {
+        this.corsGlobalConfiguration = corsGlobalConfiguration;
+    }
+
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         String jwkSetUri = "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_g34U2Zocx/.well-known/jwks.json";
 
         http
-                .cors(ServerHttpSecurity.CorsSpec::disable)
+                .cors(corsSpec -> corsSpec.configurationSource(this.corsGlobalConfiguration))
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/api/v1/auth/login").permitAll()
@@ -27,4 +33,5 @@ public class SecurityConfig {
                                 .jwt(jwt -> jwt.jwkSetUri(jwkSetUri)));
         return http.build();
     }
+
 }

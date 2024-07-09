@@ -1,19 +1,24 @@
 package ar.germin.api.configuration;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.config.CorsRegistry;
-import org.springframework.web.reactive.config.EnableWebFlux;
-import org.springframework.web.reactive.config.WebFluxConfigurer;
+import org.springframework.stereotype.Component;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsConfigurationSource;
+import org.springframework.web.server.ServerWebExchange;
 
-@Configuration
-@EnableWebFlux
-public class CorsGlobalConfiguration implements WebFluxConfigurer {
+import java.util.List;
+
+@Component
+public class CorsGlobalConfiguration implements CorsConfigurationSource {
 
     @Override
-    public void addCorsMappings(CorsRegistry corsRegistry) {
-        corsRegistry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000", "https://germinar.dienavarrete.com.ar/")
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .maxAge(3600);
+    public CorsConfiguration getCorsConfiguration(ServerWebExchange exchange) {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+        corsConfiguration.setAllowedOriginPatterns(List.of("*"));
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT", "OPTIONS", "PATCH", "DELETE"));
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setExposedHeaders(List.of("Authorization", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+
+        return corsConfiguration;
     }
 }
