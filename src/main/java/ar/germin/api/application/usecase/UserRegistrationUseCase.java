@@ -13,6 +13,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.cognitoidentityprovider.model.UsernameExistsException;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+
 @Component
 @Slf4j
 public class UserRegistrationUseCase implements UserRegistrationPortIn {
@@ -37,6 +43,8 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
         this.deleteUserRepository = deleteUserRepository;
     }
 
+
+
     @Override
     public User signUp(String username, String password, String email) throws Exception {
         Boolean existsInDb = userExistsInRepository(getJdbcUserRepository, email);
@@ -57,7 +65,18 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
                         .pass(password)
                         .build());
             }
-            User userCognito = this.getCognitoUserRepository.get(email);
+
+            // Crear un ScheduledExecutorService
+            ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+            // Programar la ejecución del método get después de 3 segundos
+            Future<User> userCognitoFuture = scheduler.schedule(() -> this.getCognitoUserRepository.get(email), 1, TimeUnit.SECONDS);
+
+            // Esperar a que la tarea programada se complete y obtener el resultado
+            User userCognito = userCognitoFuture.get();
+
+            scheduler.shutdown();
+
             if (!existsInDb) {
                 this.saveJdbcUserRepository.save(User.builder()
                         .name(username)
@@ -71,12 +90,11 @@ public class UserRegistrationUseCase implements UserRegistrationPortIn {
             log.info("Sign up successful. Please check your email for confirmation.");
             return this.getJdbcUserRepository.get(email);
         } catch (UsernameExistsException e) {
-            throw new UserExistsException("Username already exists.");
+            throw new UserExistsException("Username qqalready exists.");
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
-
 
     private Boolean userExistsInRepository(GetUserRepository getUserRepository, String email){
         try {
