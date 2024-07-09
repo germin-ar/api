@@ -37,11 +37,12 @@ germinar:
   cognito:
     client-id: ${AWS_COGNITO_APP_CLIENT_ID}
     client-secret: ${AWS_COGNITO_CLIENT_SECRET}
-    user-pool-id: ${AWS_COGNITO_POOL_ID} 
+    user-pool-id: ${AWS_COGNITO_POOL_ID}
 
   aws:
     access-key-id: ${AWS_ACCESS_KEY_ID}
     secret-key: ${AWS_SECRET_KEY}
 
   compute-vision:
+    base-url: https://jennifer2056.cognitiveservices.azure.com
     subscription-key: ${COMPUTE_VISION_SUBSCRIPTION_KEY}

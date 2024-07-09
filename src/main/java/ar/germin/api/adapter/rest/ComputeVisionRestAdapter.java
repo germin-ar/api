@@ -1,7 +1,7 @@
 package ar.germin.api.adapter.rest;
 
 import ar.germin.api.adapter.rest.models.ComputeVisionRequestModel;
-import ar.germin.api.adapter.rest.models.ComputeVisionResponseModel;
+import ar.germin.api.adapter.rest.models.computevision.ComputeVisionResponseModel;
 import ar.germin.api.application.domain.FileImage;
 import ar.germin.api.application.domain.SpacePlanting;
 import ar.germin.api.application.port.out.GetSpacePlantingRepository;
@@ -21,7 +21,7 @@ public class ComputeVisionRestAdapter implements GetSpacePlantingRepository {
     public ComputeVisionRestAdapter(GerminarConfiguration germinarConfiguration) {
         this.germinarConfiguration = germinarConfiguration;
         this.restClient = RestClient.builder()
-                .baseUrl("https://jennifer2056.cognitiveservices.azure.com")
+                .baseUrl(this.germinarConfiguration.computeVision().baseUrl())
                 .build();
     }
 

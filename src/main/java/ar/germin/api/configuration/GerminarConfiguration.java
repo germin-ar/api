@@ -20,7 +20,7 @@ public record GerminarConfiguration(Integrations integrations, Cognito cognito, 
     public record Aws(String accessKeyId, String secretKey) {
     }
 
-    public record ComputeVision(String subscriptionKey) {
+    public record ComputeVision(String baseUrl, String subscriptionKey) {
 
     }
 

@@ -1,6 +1,6 @@
 package ar.germin.api.adapter.rest;
 
-import ar.germin.api.adapter.rest.models.NominatimReverseResponseModel;
+import ar.germin.api.adapter.rest.models.nominatim.NominatimReverseResponseModel;
 import ar.germin.api.application.domain.Address;
 import ar.germin.api.application.port.out.GetGeoRepository;
 import org.springframework.stereotype.Component;
