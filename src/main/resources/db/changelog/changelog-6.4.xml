@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet author="Jfoppoli" id="20240708-00">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Shiso"/>
+            <column name="scientific_name" value="Perilla frutescens"/>
+            <column name="slug_scientific_name" value="perilla-frutescens"/>
+            <column name="description" value="Shiso, también conocido como perilla, puede crecer en sombra parcial y es común en la cocina asiática."/>
+            <column name="watering_frecuency" value="Cada semana"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las hojas regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Lamiaceae"/>
+            <column name="genus" value="Perilla"/>
+            <column name="specie" value="Perilla frutescens"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Shiso puede ser utilizado fresco en ensaladas o como acompañamiento de sushi."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="70"/>
+            <column name="max_size" valueNumeric="60.0"/>
+            <column name="growth_season" value="Verano"/>
+            <column name="maintenance" value="Medio"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/e/ee/Perilla_frutescens%27_flower.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-01">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Ruibarbo"/>
+            <column name="scientific_name" value="Rheum rhabarbarum"/>
+            <column name="slug_scientific_name" value="rheum-rhabarbarum"/>
+            <column name="description" value="El ruibarbo puede crecer en sombra parcial, aunque prefiere algo de sol."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, evitando el encharcamiento."/>
+            <column name="fertilizer" value="Fertilización con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Eliminar hojas muertas y cosechar tallos cuando estén maduros."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Primavera, Verano"/>
+            <column name="plant_type" value="Vegetal"/>
+            <column name="family_name" value="Polygonaceae"/>
+            <column name="genus" value="Rheum"/>
+            <column name="specie" value="Rheum rhabarbarum"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="División de raíces"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Media"/>
+            <column name="tips" value="Utilizar los tallos de ruibarbo para hacer postres y compotas."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="Hojas tóxicas"/>
+            <column name="dormancy" value="Sí"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="100.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Medio"/>
+            <column name="width" value="50.0"/>
+            <column name="url_image" value="https://newfs.s3.amazonaws.com/taxon-images-1000s1000/Polygonaceae/rheum-rhabarbarum-le-ahaines-a.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-02">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Hierba de San Juan"/>
+            <column name="scientific_name" value="Hypericum perforatum"/>
+            <column name="slug_scientific_name" value="hypericum-perforatum"/>
+            <column name="description" value="La Hierba de San Juan tiene usos medicinales y puede crecer en sombra parcial."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar las flores cuando estén completamente abiertas."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Hypericaceae"/>
+            <column name="genus" value="Hypericum"/>
+            <column name="specie" value="Hypericum perforatum"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="No"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Media"/>
+            <column name="tips" value="Utilizar las flores secas para hacer infusiones medicinales."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="Sí"/>
+            <column name="dormancy" value="Sí"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="100.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="40.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Saint_John%27s_wort_flowers.jpg/1200px-Saint_John%27s_wort_flowers.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-03">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Alcachofa"/>
+            <column name="scientific_name" value="Cynara scolymus"/>
+            <column name="slug_scientific_name" value="cynara-scolymus"/>
+            <column name="description" value="Las alcachofas pueden crecer en sombra parcial y son una excelente adición a cualquier huerto."/>
+            <column name="watering_frecuency" value="Cada semana"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Eliminar hojas muertas y cosechar flores cuando estén maduras."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="invierno"/>
+            <column name="harvest_time" value="Primavera, Verano"/>
+            <column name="plant_type" value="Vegetal"/>
+            <column name="family_name" value="Asteraceae"/>
+            <column name="genus" value="Cynara"/>
+            <column name="specie" value="Cynara scolymus"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Lenta"/>
+            <column name="tips" value="Utilizar las alcachofas frescas en ensaladas o cocidas."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="150.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Medio"/>
+            <column name="width" value="100.0"/>
+            <column name="url_image" value="https://www.picturethisai.com/wiki-image/1080/153908787294502935.jpeg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-04">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Salsifí"/>
+            <column name="scientific_name" value="Tragopogon porrifolius"/>
+            <column name="slug_scientific_name" value="tragopogon-porrifolius"/>
+            <column name="description" value="Tanto la raíz como las hojas jóvenes de salsifí son comestibles y pueden crecer en sombra parcial."/>
+            <column name="watering_frecuency" value="Cada semana"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar raíces en otoño."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="Otoño"/>
+            <column name="plant_type" value="Vegetal"/>
+            <column name="family_name" value="Asteraceae"/>
+            <column name="genus" value="Tragopogon"/>
+            <column name="specie" value="Tragopogon porrifolius"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Lenta"/>
+            <column name="tips" value="Utilizar las raíces de salsifí en sopas y guisos."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="120.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Medio"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Tragopogon_porrifolius_%28subsp._porrifolius%29_sl6.jpg/1200px-Tragopogon_porrifolius_%28subsp._porrifolius%29_sl6.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-05">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Verdolaga de jardín"/>
+            <column name="scientific_name" value="Portulaca oleracea var. sativa"/>
+            <column name="slug_scientific_name" value="portulaca-oleracea-var-sativa"/>
+            <column name="description" value="La verdolaga de jardín crece bien en sombra parcial y es comestible."/>
+            <column name="watering_frecuency" value="Cada semana"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar hojas jóvenes regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Vegetal"/>
+            <column name="family_name" value="Portulacaceae"/>
+            <column name="genus" value="Portulaca"/>
+            <column name="specie" value="Portulaca oleracea var. sativa"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Utilizar las hojas de verdolaga en ensaladas y guisos."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="30.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="20.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/1/1c/Harvey_JJ%27s_Portulaca_oleracea_subsp._sativa.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-06">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Culantro"/>
+            <column name="scientific_name" value="Eryngium foetidum"/>
+            <column name="slug_scientific_name" value="eryngium-foetidum"/>
+            <column name="description" value="El culantro puede crecer en sombra parcial y es utilizado en la cocina latinoamericana y asiática."/>
+            <column name="watering_frecuency" value="Cada semana"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar hojas regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Apiaceae"/>
+            <column name="genus" value="Eryngium"/>
+            <column name="specie" value="Eryngium foetidum"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Utilizar las hojas frescas en sopas y ensaladas."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="70"/>
+            <column name="max_size" valueNumeric="50.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Medio"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://herbariovaa.org/imglib/neotrop/misc/201306/imgid-38860_web.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-07">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Cebolla rocambola"/>
+            <column name="scientific_name" value="Allium scorodoprasum"/>
+            <column name="slug_scientific_name" value="allium-scorodoprasum"/>
+            <column name="description" value="La cebolla rocambola puede crecer en sombra parcial y es valorada por su sabor suave y dulce."/>
+            <column name="watering_frecuency" value="Cada 1-2 semanas"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar cuando las hojas comiencen a secarse."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Perenne"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Vegetal"/>
+            <column name="family_name" value="Amaryllidaceae"/>
+            <column name="genus" value="Allium"/>
+            <column name="specie" value="Allium scorodoprasum"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Bulbos"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Media"/>
+            <column name="tips" value="Utilizar cebolla rocambola fresca en ensaladas o cocida en guisos."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="Sí"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="60.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Medio"/>
+            <column name="width" value="20.0"/>
+            <column name="url_image" value="https://www.researchgate.net/publication/357265689/figure/fig1/AS:11431281215402596@1704192905854/Allium-scorodoprasum-L-c-Photo-by-V-V-Gritsenko.png"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-08">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Malva"/>
+            <column name="scientific_name" value="Malva sylvestris"/>
+            <column name="slug_scientific_name" value="malva-sylvestris"/>
+            <column name="description" value="La malva es una planta medicinal que puede crecer en sombra parcial."/>
+            <column name="watering_frecuency" value="Cada semana"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar hojas y flores cuando estén completamente desarrolladas."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Malvaceae"/>
+            <column name="genus" value="Malva"/>
+            <column name="specie" value="Malva sylvestris"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Utilizar las hojas y flores de malva en infusiones y ensaladas."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="120.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Bajo"/>
+            <column name="width" value="60.0"/>
+            <column name="url_image" value="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Mallow_January_2008-1.jpg/1200px-Mallow_January_2008-1.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-09">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Albahaca morada"/>
+            <column name="scientific_name" value="Ocimum basilicum 'Purpurascens'"/>
+            <column name="slug_scientific_name" value="ocimum-basilicum-purpurascens"/>
+            <column name="description" value="La albahaca morada es una variedad de albahaca que puede crecer en sombra parcial."/>
+            <column name="watering_frecuency" value="Cada semana"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar hojas regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Anual"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Lamiaceae"/>
+            <column name="genus" value="Ocimum"/>
+            <column name="specie" value="Ocimum basilicum 'Purpurascens'"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Rápida"/>
+            <column name="tips" value="Utilizar albahaca morada fresca en ensaladas, pestos y platos italianos."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="60.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Medio"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://cdn11.bigcommerce.com/s-ch4skik/images/stencil/1280x1280/products/500/1444/purple_basil__59449.1655891521.jpg?c=2"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-10">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Acelga roja"/>
+            <column name="scientific_name" value="Beta vulgaris subsp. vulgaris var. cicla 'Ruby Red'"/>
+            <column name="slug_scientific_name" value="beta-vulgaris-subsp-vulgaris-var-cicla-ruby-red"/>
+            <column name="description" value="La acelga roja puede crecer en sombra parcial y es valorada por sus hojas coloridas y sabor suave."/>
+            <column name="watering_frecuency" value="Cada semana"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar hojas exteriores regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Bienal"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Vegetal"/>
+            <column name="family_name" value="Amaranthaceae"/>
+            <column name="genus" value="Beta"/>
+            <column name="specie" value="Beta vulgaris subsp. vulgaris var. cicla 'Ruby Red'"/>
+            <column name="temperature_min" valueNumeric="5.0"/>
+            <column name="temperature_max" valueNumeric="25.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Media"/>
+            <column name="tips" value="Utilizar hojas de acelga roja en ensaladas, sopas y salteados."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="50.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Medio"/>
+            <column name="width" value="30.0"/>
+            <column name="url_image" value="https://garden.org/pics/2019-03-21/csandt/5693be.jpg"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jfoppoli" id="20240708-11">
+        <insert schemaName="garden" tableName="plant_catalog">
+            <column name="common_name" value="Perejil de hoja plana"/>
+            <column name="scientific_name" value="Petroselinum crispum var. neapolitanum"/>
+            <column name="slug_scientific_name" value="petroselinum-crispum-var-neapolitanum"/>
+            <column name="description" value="El perejil de hoja plana puede crecer en sombra parcial y es ampliamente utilizado en la cocina."/>
+            <column name="watering_frecuency" value="Cada semana"/>
+            <column name="sunlight" value="sombra parcial"/>
+            <column name="watering_care" value="Mantener el suelo húmedo, pero no encharcado."/>
+            <column name="fertilizer" value="Fertilización ligera con compost cada 4-6 semanas."/>
+            <column name="pruning" value="Cosechar hojas exteriores regularmente para fomentar un nuevo crecimiento."/>
+            <column name="soil" value="Bien drenado, Rico en materia orgánica"/>
+            <column name="repotting" value="Primavera"/>
+            <column name="lifespan" value="Bienal"/>
+            <column name="planting_time" value="primavera, verano"/>
+            <column name="harvest_time" value="Verano"/>
+            <column name="plant_type" value="Hierba"/>
+            <column name="family_name" value="Apiaceae"/>
+            <column name="genus" value="Petroselinum"/>
+            <column name="specie" value="Petroselinum crispum var. neapolitanum"/>
+            <column name="temperature_min" valueNumeric="10.0"/>
+            <column name="temperature_max" valueNumeric="30.0"/>
+            <column name="edible" value="Sí"/>
+            <column name="propagation" value="Semillas"/>
+            <column name="fruit" value="No aplicable"/>
+            <column name="growth_rate" value="Media"/>
+            <column name="tips" value="Utilizar perejil fresco en ensaladas, sopas y salsas."/>
+            <column name="insecticide" value="Controlar plagas con métodos orgánicos si es necesario."/>
+            <column name="toxic" value="No"/>
+            <column name="dormancy" value="No"/>
+            <column name="atmospheric_humidity" valueNumeric="60"/>
+            <column name="max_size" valueNumeric="50.0"/>
+            <column name="growth_season" value="Primavera, Verano"/>
+            <column name="maintenance" value="Medio"/>
+            <column name="width" valueNumeric="20.0"/>
+            <column name="url_image" value="https://www.bomagardencentre.co.uk/files/images/webshop/petroselinum-crispum-var-neapolitanum-french-pot-size-1l-fla-1080x1080-62b0762fb5fa3_l.webp"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
