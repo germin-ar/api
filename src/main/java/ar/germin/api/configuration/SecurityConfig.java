@@ -1,5 +1,6 @@
 package ar.germin.api.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
@@ -12,6 +13,7 @@ public class SecurityConfig {
 
     private final CorsGlobalConfiguration corsGlobalConfiguration;
 
+    @Autowired
     public SecurityConfig(CorsGlobalConfiguration corsGlobalConfiguration) {
         this.corsGlobalConfiguration = corsGlobalConfiguration;
     }
@@ -26,6 +28,7 @@ public class SecurityConfig {
                 .authorizeExchange(exchanges -> exchanges
                         .pathMatchers("/api/v1/auth/login").permitAll()
                         .pathMatchers("/api/v1/auth/signup").permitAll()
+                        .pathMatchers("/api/v1/auth/confirm-signup").permitAll()
                         .pathMatchers("/webjars/**", "/v3/api-docs/**").permitAll()
                         .anyExchange().authenticated())
                 .oauth2ResourceServer(oauth2ResourceServer ->
