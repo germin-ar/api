@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.*;
 
 class UserRegistrationUseCaseTest {
-/*
+
     @Test
     void testSignUp_UserAlreadyExistsInJdbcAndCognito() throws Exception {
 
@@ -19,48 +20,20 @@ class UserRegistrationUseCaseTest {
         String password = "password";
         String email = "test@example.com";
 
-        GetUserRepository jdbcUserRepository = new GetUserRepository() {
-            @Override
-            public User get(String email) {
-                if ("test@example.com".equals(email)) {
-                    return User.builder().id(1).username("testuser").email(email).build();
-                } else {
-                    throw new UserNotFoundException("User not found");
-                }
-            }
-        };
+        User existingUser = User.builder()
+                .id(1)
+                .username(username)
+                .email(email)
+                .build();
 
-        GetUserRepository cognitoUserRepository = new GetUserRepository() {
-            @Override
-            public User get(String email) {
-                if ("test@example.com".equals(email)) {
-                    return User.builder().id(1).username("testuser").email(email).build();
-                } else {
-                    throw new UserNotFoundException("User not found");
-                }
-            }
-        };
+        GetUserRepository jdbcUserRepository = mock(GetUserRepository.class);
+        GetUserRepository cognitoUserRepository = mock(GetUserRepository.class);
+        SaveUserRepository saveJdbcUserRepository = mock(SaveUserRepository.class);
+        SaveUserRepository saveCognitoUserRepository = mock(SaveUserRepository.class);
+        DeleteUserRepository deleteUserRepository = mock(DeleteUserRepository.class);
 
-        SaveUserRepository saveJdbcUserRepository = new SaveUserRepository() {
-            @Override
-            public void save(User user) {
-
-            }
-        };
-
-        SaveUserRepository saveCognitoUserRepository = new SaveUserRepository() {
-            @Override
-            public void save(User user) {
-
-            }
-        };
-
-        DeleteUserRepository deleteUserRepository = new DeleteUserRepository() {
-            @Override
-            public void delete(String email) {
-
-            }
-        };
+        when(jdbcUserRepository.get(email)).thenReturn(existingUser);
+        when(cognitoUserRepository.get(email)).thenReturn(existingUser);
 
         UserRegistrationUseCase userRegistrationUseCase = new UserRegistrationUseCase(
                 jdbcUserRepository,
@@ -76,50 +49,39 @@ class UserRegistrationUseCaseTest {
 
         assertNotNull(result);
         assertEquals(email, result.getEmail());
+        assertEquals(username, result.getUsername());
+        verify(deleteUserRepository, never()).delete(anyString());
+        verify(saveJdbcUserRepository, never()).save(any(User.class));
+        verify(saveCognitoUserRepository, never()).save(any(User.class));
     }
 
+
+ /*
     @Test
     void testSignUp_UserDoesNotExistInAnyRepository() throws Exception {
-
+        // Datos de prueba
         String username = "newuser";
         String password = "password";
         String email = "new@example.com";
 
-        GetUserRepository jdbcUserRepository = new GetUserRepository() {
-            @Override
-            public User get(String email) {
-                throw new UserNotFoundException("User not found");
-            }
-        };
+        // Mock de GetUserRepository para JDBC que lanza UserNotFoundException
+        GetUserRepository jdbcUserRepository = mock(GetUserRepository.class);
+        when(jdbcUserRepository.get(email)).thenThrow(new UserNotFoundException("User not found"));
 
-        GetUserRepository cognitoUserRepository = new GetUserRepository() {
-            @Override
-            public User get(String email) {
-                throw new UserNotFoundException("User not found");
-            }
-        };
+        // Mock de GetUserRepository para Cognito que lanza UserNotFoundException
+        GetUserRepository cognitoUserRepository = mock(GetUserRepository.class);
+        when(cognitoUserRepository.get(email)).thenThrow(new UserNotFoundException("User not found"));
 
-        SaveUserRepository saveJdbcUserRepository = new SaveUserRepository() {
-            @Override
-            public void save(User user) {
+        // Mock de SaveUserRepository para verificar llamadas sin implementación real
+        SaveUserRepository saveJdbcUserRepository = mock(SaveUserRepository.class);
 
-            }
-        };
+        // Mock de SaveUserRepository para verificar llamadas sin implementación real
+        SaveUserRepository saveCognitoUserRepository = mock(SaveUserRepository.class);
 
-        SaveUserRepository saveCognitoUserRepository = new SaveUserRepository() {
-            @Override
-            public void save(User user) {
+        // Mock de DeleteUserRepository para verificar que no se llame a delete()
+        DeleteUserRepository deleteUserRepository = mock(DeleteUserRepository.class);
 
-            }
-        };
-
-        DeleteUserRepository deleteUserRepository = new DeleteUserRepository() {
-            @Override
-            public void delete(String email) {
-
-            }
-        };
-
+        // Crear instancia del caso de uso con los mocks de los repositorios
         UserRegistrationUseCase userRegistrationUseCase = new UserRegistrationUseCase(
                 jdbcUserRepository,
                 cognitoUserRepository,
@@ -128,36 +90,80 @@ class UserRegistrationUseCaseTest {
                 deleteUserRepository
         );
 
+        // Ejecutar el método bajo prueba
+        User result = userRegistrationUseCase.signUp(username, password, email);
 
-        User newUser = User.builder()
+        // Verificar resultados esperados
+        assertNotNull(result);
+        assertEquals(email, result.getEmail());
+        assertEquals(username, result.getUsername());
+
+        // Verificar que deleteUserRepository.delete() nunca se llamó
+        verify(deleteUserRepository, never()).delete(anyString());
+
+        // Verificar que saveJdbcUserRepository.save() se llamó exactamente una vez con cualquier usuario
+        verify(saveJdbcUserRepository, times(1)).save(any(User.class));
+
+        // Verificar que saveCognitoUserRepository.save() se llamó exactamente una vez con cualquier usuario
+        verify(saveCognitoUserRepository, times(1)).save(any(User.class));
+    }
+
+
+
+
+    @Test
+    void testSignUp_UserExistsInJdbcButNotInCognito() throws Exception {
+        // Datos de prueba
+        String username = "testuser";
+        String password = "password";
+        String email = "test@example.com";
+
+        // Usuario existente en JDBC
+        User existingJdbcUser = User.builder()
+                .id(1)
                 .username(username)
                 .email(email)
-                .pass(password)
                 .build();
 
-        GetUserRepository finalJdbcUserRepository = new GetUserRepository() {
-            @Override
-            public User get(String email) {
-                return newUser;
-            }
-        };
+        // Mock de GetUserRepository para JDBC que devuelve el usuario existente
+        GetUserRepository jdbcUserRepository = mock(GetUserRepository.class);
+        when(jdbcUserRepository.get(email)).thenReturn(existingJdbcUser);
 
+        // Mock de GetUserRepository para Cognito que lanza UserNotFoundException
+        GetUserRepository cognitoUserRepository = mock(GetUserRepository.class);
+        when(cognitoUserRepository.get(email)).thenThrow(new UserNotFoundException("User not found"));
 
-        UserRegistrationUseCase updatedUserRegistrationUseCase = new UserRegistrationUseCase(
-                finalJdbcUserRepository,
+        // Mock de SaveUserRepository para verificar llamadas sin implementación real
+        SaveUserRepository saveJdbcUserRepository = mock(SaveUserRepository.class);
+
+        // Mock de SaveUserRepository para verificar llamadas sin implementación real
+        SaveUserRepository saveCognitoUserRepository = mock(SaveUserRepository.class);
+
+        // Mock de DeleteUserRepository para verificar llamadas sin implementación real
+        DeleteUserRepository deleteUserRepository = mock(DeleteUserRepository.class);
+
+        // Crear instancia del caso de uso con los mocks de los repositorios
+        UserRegistrationUseCase userRegistrationUseCase = new UserRegistrationUseCase(
+                jdbcUserRepository,
                 cognitoUserRepository,
                 saveJdbcUserRepository,
                 saveCognitoUserRepository,
                 deleteUserRepository
         );
 
+        // Ejecutar el método bajo prueba
+        User result = userRegistrationUseCase.signUp(username, password, email);
 
-        User result = updatedUserRegistrationUseCase.signUp(username, password, email);
-
-
+        // Verificar resultados esperados
         assertNotNull(result);
         assertEquals(email, result.getEmail());
         assertEquals(username, result.getUsername());
+
+        // Verificar llamadas a repositorios
+        verify(deleteUserRepository, times(1)).delete(email);
+        verify(saveJdbcUserRepository, times(1)).save(any(User.class));
+        verify(saveCognitoUserRepository, times(1)).save(any(User.class));
     }
-*/
+
+     */
 }
