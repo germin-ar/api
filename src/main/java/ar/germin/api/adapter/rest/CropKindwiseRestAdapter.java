@@ -40,7 +40,7 @@ public class CropKindwiseRestAdapter implements GetHealthSuggestionsRepository {
                 .similarImages(true)
                 .build();
 
-        log.info("body for call crop.kindwise: {}", requestModel);
+        //log.info("body for call crop.kindwise: {}", requestModel);
 
         CropKindwiseCheckHealthResponseModel responseModel = this.restClient
                 .post()
