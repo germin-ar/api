@@ -71,7 +71,7 @@ class ResultModel {
                                 .scientificName(species.getFamily().getScientificName())
                                 .build())
                         .commonNames(species.getCommonNames())
-                        .idGbif(gbif.getId())
+                        .idGbif(Optional.ofNullable(gbif).map(Gbif::getId).orElse(-1))
                         .idPowo(Optional.ofNullable(powo).map(Powo::getId).orElse(Strings.EMPTY))
                         .build())
                 .build();
